@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+h1, .h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: var(--font-bold);
+    font-size: var(--heading1-size);
+}
+
+h2, .h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: var(--font-bold);
+    font-size: var(--heading2-size);
+}
+
+h3, .h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: var(--font-bold);
+    font-size: var(--heading3-size);
+}
+
+h4, .h4 {
+    font-family: 'Inter', sans-serif;
+    font-weight: var(--font-bold);
+    font-size: var(--heading4-size);
+}
+
+h5, .h5 {
+    font-family: 'Inter', sans-serif;
+    font-weight: var(--font-bold);
+    font-size: var(--heading5-size);
+}
+
+h6, .h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: var(--font-bold);
+    font-size: var(--heading6-size);
+}
+
+:root {
+    /* color hex */
+    --color-primary-light: #3F5AA9;
+    --color-on-primary-light: #FFFFFF;
+    --color-primary-container-light: #DBE1FF;
+    --color-on-primary-container-light: #00174C;
+    --color-primary-fixed-light: #DBE1FF;
+    --color-on-primary-fixed-light: #00174C;
+    --color-primary-fixed-dim-light: #B4C5FF;
+    --color-on-primary-fixed-variant-light: #244290;
+    --color-secondary-light: #595E72;
+    --color-on-secondary-light: #FFFFFF;
+    --color-secondary-container-light: #DDE1F9;
+    --color-on-secondary-container-light: #161B2C;
+    --color-secondary-fixed-light: #DDE1F9;
+    --color-on-secondary-fixed-light: #161B2C;
+    --color-secondary-fixed-dim-light: #C1C5DD;
+    --color-on-secondary-fixed-variant-light: #414659;
+    --color-tertiary-light: #745470;
+    --color-on-tertiary-light: #FFFFFF;
+    --color-tertiary-container-light: #FFD6F7;
+    --color-on-tertiary-container-light: #2B122A;
+    --color-tertiary-fixed-light: #FFD6F7;
+    --color-on-tertiary-fixed-light: #2B122A;
+    --color-tertiary-fixed-dim-light: #E2BBDB;
+    --color-on-tertiary-fixed-variant-light: #5B3D58;
+    --color-error-light: #BA1A1A;
+    --color-on-error-light: #FFFFFF;
+    --color-error-container-light: #FFDAD6;
+    --color-on-error-container-light: #410002;
+    --color-outline-light: #757680;
+    --color-background-light: #FEFBFF;
+    --color-on-background-light: #1B1B1F;
+    --color-surface-light: #FBF8FD;
+    --color-on-surface-light: #1B1B1F;
+    --color-surface-variant-light: #E2E2EC;
+    --color-on-surface-variant-light: #45464F;
+    --color-inverse-surface-light: #303034;
+    --color-inverse-on-surface-light: #F2F0F4;
+    --color-inverse-primary-light: #B4C5FF;
+    --color-shadow-light: #000000;
+    --color-surface-tint-light: #3F5AA9;
+    --color-outline-variant-light: #C5C6D0;
+    --color-scrim-light: #000000;
+    --color-surface-container-highest-light: #E4E2E6;
+    --color-surface-container-high-light: #EAE7EC;
+    --color-surface-container-light: #EFEDF1;
+    --color-surface-container-low-light: #F5F3F7;
+    --color-surface-container-lowest-light: #FFFFFF;
+    --color-surface-bright-light: #FBF8FD;
+    --color-surface-dim-light: #DBD9DD;
+    /* text */
+    --font-black: 900;
+    --font-bold: 700;
+    --font-medium: 500;
+    --font-regular: 400;
+    /* head-size */
+    --heading1-size: 64px;
+    --heading2-size: 56px;
+    --heading3-size: 48px;
+    --heading4-size: 40px;
+    --heading5-size: 32px;
+    --heading6-size: 24px;
+}
