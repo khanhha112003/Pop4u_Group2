@@ -1,37 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 h1, .h1 {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--inter);
     font-weight: var(--font-bold);
     font-size: var(--heading1-size);
 }
 
 h2, .h2 {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--inter);
     font-weight: var(--font-bold);
     font-size: var(--heading2-size);
 }
 
 h3, .h3 {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--inter);
     font-weight: var(--font-bold);
     font-size: var(--heading3-size);
 }
 
 h4, .h4 {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--inter);
     font-weight: var(--font-bold);
     font-size: var(--heading4-size);
 }
 
 h5, .h5 {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--inter);
     font-weight: var(--font-bold);
     font-size: var(--heading5-size);
 }
 
 h6, .h6 {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--inter);
     font-weight: var(--font-bold);
     font-size: var(--heading6-size);
 }
@@ -87,6 +87,8 @@ h6, .h6 {
     --color-surface-container-lowest-light: #FFFFFF;
     --color-surface-bright-light: #FBF8FD;
     --color-surface-dim-light: #DBD9DD;
+    /* font */
+    --inter: 'Inter', sans-serif;
     /* text */
     --font-black: 900;
     --font-bold: 700;
