@@ -1,42 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vn">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Cmpatible" content="IE-edge"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navigation bar</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link href="\nav-bar\nav-bar-style.css" rel="stylesheet">
+    <link href="\nav-bar\style.css" rel="stylesheet">
+    <link rel="stylesheet" href="\theme.css">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav id="navbar">
     <div class="container">
-      <a class="navbar-brand" href="#"><img src="\public\images\pop-4-u.svg" alt=""></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Sản phẩm</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Nghệ sĩ</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pre-order</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Về chúng tôi</a>
-          </li>
-
-        </ul>
+      <div class="logo">
+        <a href="#"><img src="\public\images\pop-4-u.svg" alt="Pop4u Logo"></a>
+      </div>
+      <div class="nav-list">
+        <ul>
+          <li><a href="#home">Sản phẩm</a></li>
+          <li><a href="#products">Nghệ sĩ</a></li>
+          <li><a href="#about">Pre-order</a></li>
+          <li><a href="#contact">Về chúng tôi</a></li>
+          <li><a href="#contact">Blog</a></li>
+        </ul>  
+      </div>
+      <div class="nav-list-icons">
+        <div class="icon"><a href="#"><i><img src="\public\images\quick-reference-all.svg" alt="Tra cứu đơn hàng"></i></a></div>
+        <div class="icon"><a href="#"><i><img src="\public\images\local-mall.svg" alt="Giỏ hàng"></i></a></div>
+        <div class="icon"><a href="#"><i><img src="\public\images\account-circle.svg" alt="Tài khoản"></i></a></div>
       </div>
     </div>
   </nav>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
