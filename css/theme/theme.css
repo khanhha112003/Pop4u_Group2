@@ -57,52 +57,52 @@
     --inter: 'Inter', sans-serif;
     /* text */
     --font-black: 900;
+    --font-extrabold: 800;
     --font-bold: 700;
+    --font-semibold: 600;
     --font-medium: 500;
     --font-regular: 400;
-    /* head-size */
-    --heading1-size: 64px;
-    --heading2-size: 56px;
-    --heading3-size: 48px;
-    --heading4-size: 40px;
-    --heading5-size: 32px;
-    --heading6-size: 24px;
+}
+
+body {
+    font-family: var(--inter);
 }
 
 h1, .h1 {
     font-family: var(--inter);
-    font-weight: var(--font-black);
-    font-size: var(--heading1-size);
+    font-weight: var(--font-extrabold);
+    font-size: 64px;
 }
 
 h2, .h2 {
     font-family: var(--inter);
-    font-weight: var(--font-bold);
-    font-size: var(--heading2-size);
+    font-weight: var(--font-extrabold);
+    font-size: 56px;
 }
 
 h3, .h3 {
     font-family: var(--inter);
     font-weight: var(--font-bold);
-    font-size: var(--heading3-size);
+    font-size: 48px;
+
 }
 
 h4, .h4 {
     font-family: var(--inter);
     font-weight: var(--font-bold);
-    font-size: var(--heading4-size);
+    font-size: 40px;
 }
 
 h5, .h5 {
     font-family: var(--inter);
     font-weight: var(--font-bold);
-    font-size: var(--heading5-size);
+    font-size: 32px;
 }
 
 h6, .h6 {
     font-family: var(--inter);
     font-weight: var(--font-bold);
-    font-size: var(--heading6-size);
+    font-size: 24px;
 }
 
 .body-max {
@@ -114,24 +114,25 @@ h6, .h6 {
 .body-large {
     font-family: var(--inter);
     font-weight: var(--font-medium);
-    font-size: 32px;
+    font-size: 28px;
 }
 
 .body-big {
     font-family: var(--inter);
     font-weight: var(--font-medium);
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .body-medium {
+    font-family: var(--inter);
     font-weight: var(--font-medium);
-    font-size: 28px;
+    font-size: 20px;
 }
 
 .body-small {
     font-family: var(--inter);
     font-weight: var(--font-medium);
-    font-size: 32px;
+    font-size: 16px;
 }
 
 .body-min {
@@ -141,14 +142,58 @@ h6, .h6 {
 }
 
 .old-price {
+    font-family: var(--inter);
     text-decoration: line-through;
     font-size: 20px;
 }
 
 .price {
+    font-family: var(--inter);
     font-weight: var(--font-bold);
     font-size: 20px;
 }
-body {
+
+.label-xxxl {
     font-family: var(--inter);
+    font-weight: var(--font-bold);
+    font-size: 32px;
 }
+
+.label-xxl {
+    font-family: var(--inter);
+    font-weight: var(--font-bold);
+    font-size: 24px;
+}
+
+.label-xl {
+    font-family: var(--inter);
+    font-weight: var(--font-bold);
+    font-size: 20px;
+}
+
+.label-l {
+    font-family: var(--inter);
+    font-weight: var(--font-semibold);
+    font-size: 18px;
+}
+
+.label-m {
+    font-family: var(--inter);
+    font-weight: var(--font-medium);
+    font-size: 16px;
+}
+
+.label-s {
+    font-family: var(--inter);
+    font-weight: var(--font-medium);
+    font-size: 14px;
+}
+
+.label-xxl, 
+.label-l,
+.label-m,
+.label-s,
+.label-xl,
+.label-xxxl :hover {
+
+} 

@@ -1,0 +1,102 @@
+@import url(\css\theme\theme.css);
+
+.big-img {
+
+}
+
+.about-us-logo {
+    display: flex;
+    justify-content: center;  
+}
+
+.main-statement {
+    background: linear-gradient(111deg, #11448F 8.58%, #FD574C 61.78%); 
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    text-align: center;
+    font-family: Inter;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-bottom: 0;
+}
+
+#main-des {
+    text-align: center;
+}
+
+#core-value > * {
+    margin-bottom: 24px;
+}
+
+#core-value > * last-child {
+    margin-bottom: 24px;
+    margin-bottom: 0;
+}
+
+
+.core-value-card {
+    background-color: #B4C5FF;
+    border-radius: 40px;
+    position: relative;
+    width: 100%;
+    height: 200px;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;  
+}
+
+.core-value-card h4 {
+    text-align: center; 
+    margin: 0; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.core-value-img {
+    height: 400px;
+    border-radius: 40px;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;  
+}
+
+.core-value-img img {
+    border-radius: 40px;
+}
+
+.heading-about-us {
+    text-align: center;
+    color: var(--color-on-background-light);
+}
+
+.about-us-sec-statement {
+    text-align: center; 
+    margin: 0; 
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('public\images\inclusion_signtime__cjyg7gx31w2u_large.jpg'); /* Thay 'link_ảnh_của_bạn.jpg' bằng URL của ảnh bạn muốn sử dụng */
+    background-size: cover; 
+    background-position: center; 
+
+}
+
+.about-us-sec-statement-script {
+    color: var(--color-primary-light);
+}
+
+/* .image-with-text {
+    position: relative; /* Để có thể định vị văn bản bên trong */
+    width: 100%; /* Chiều rộng và chiều cao của div, thay đổi theo ý muốn */
+    background-image: url('link_ảnh_của_bạn.jpg'); /* Thay 'link_ảnh_của_bạn.jpg' bằng URL của ảnh bạn muốn sử dụng */
+    background-size: cover; /* Để ảnh phủ hết kích thước div */
+    background-position: center; /* Canh ảnh vào giữa div */
+  
+} */
