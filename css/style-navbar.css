@@ -1,0 +1,44 @@
+@import url(theme/theme.css);
+/* @import url(node_modules/bootstrap/dist/css/bootstrap-grid.min.css); */
+
+.nav-list {
+    overflow: hidden;
+}
+
+.nav-list ul li {
+    display: inline-block;
+    margin-left: 5%;
+    text-align: center;
+}
+
+.nav-list ul li :last-child {
+    margin-left: 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-on-background-light);
+
+}
+
+a :hover {
+    color: var(--color-primary-light);
+}
+
+a :active {
+    color: var(--color-on-primary-container-light);
+}
+
+.nav-list-icons {
+    text-align: right;
+}
+
+.nav-list-icons ul li {
+    display: inline-block;
+    margin-left: 5%;
+}
+
+.nav-list-icons ul li :last-child {
+    margin-left: 0;
+}
+

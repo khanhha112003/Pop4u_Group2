@@ -1,4 +1,6 @@
 @import url(theme/theme.css);
+/* @import url(node_modules/bootstrap/dist/css/bootstrap-grid.min.css); */
+
 
 .link-list {
     list-style-type: none; /* Loại bỏ dấu đầu dòng (bullet) */
@@ -20,9 +22,12 @@ a :hover {
     color: var(--color-primary-light);
 }
 
+a :active {
+    color: var(--color-on-primary-container-light);
+}
+
 .footer-head {
     color: var(--color-on-primary-fixed-light);
-    /* padding-bottom: 24px; */
     margin-bottom: 24px;
 }
 
