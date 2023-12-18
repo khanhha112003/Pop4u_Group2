@@ -1,4 +1,5 @@
 // import { useEffect } from 'react'
+import { ReactComponent as Logo } from '../../theme/images/pop-4-u.svg';
 import './Navbar.css'
 function Navbar() {
     return (
@@ -7,7 +8,8 @@ function Navbar() {
           <div class="row justify-content-between">
             <div class="col-md-2 col-lg-2 col-xl-3">
               <div class="logo">
-                <a href="#"><img src="\public\images\pop-4-u.svg" alt="Pop4u Logo"/></a>
+                {/* <a href="#"><img {src :Logo} alt="Pop4u Logo"/></a> */}
+                <a href="#"><Logo></Logo></a>
               </div>    
             </div>
             <div class="col-md-8 col-lg-8 col-xl-6">
