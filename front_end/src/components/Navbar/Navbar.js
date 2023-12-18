@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
+import './Navbar.css'
 function Navbar() {
     return (
         <nav class="container-fluid">
@@ -35,5 +36,5 @@ function Navbar() {
     );
   }
   
-  export default App;
+export default Navbar;
   

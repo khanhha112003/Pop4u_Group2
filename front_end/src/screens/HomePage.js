@@ -1,4 +1,4 @@
-import { Navbar } from './components/Navbar'
+import Navbar from '../components/Navbar/Navbar'
 function HomePage() {
   return (
     <div className="App">
@@ -8,4 +8,4 @@ function HomePage() {
   );
 }
 
-export default App;
+export { HomePage };
