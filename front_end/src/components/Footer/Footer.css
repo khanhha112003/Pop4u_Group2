@@ -1,0 +1,74 @@
+@import url(../../theme/theme.css);
+/* @import url(node_modules/bootstrap/dist/css/bootstrap-grid.min.css); */
+
+
+.link-list {
+    list-style-type: none; /* Loại bỏ dấu đầu dòng (bullet) */
+    padding-left: 0; /* Loại bỏ padding bên trái */  
+}
+
+.link-list li{
+    margin-left: 0; /* Loại bỏ margin bên trái của mỗi mục */
+    padding-bottom: 24px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-on-background-light);
+
+}
+
+a :hover {
+    color: var(--color-primary-light);
+}
+
+a :active {
+    color: var(--color-on-primary-container-light);
+}
+
+.footer-head {
+    color: var(--color-on-primary-fixed-light);
+    margin-bottom: 24px;
+}
+
+.label-link-icon {
+    display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử con */
+    align-items: center; /* Căn chỉnh theo trục đứng */  
+}
+
+.label-link-icon .img-icon {
+    margin-right: 40px;
+}
+.img-icon{
+    margin-bottom: 20px;
+}
+
+.icon-social {
+    margin: 0px 10px;
+}
+
+.footer-logo {
+    width: 120px;
+}
+
+.body-small {
+    color: var(--color-on-background-light);
+}
+
+.copy-right {
+    margin-bottom: 64px;
+    text-align: right;
+}
+
+.footer-line {
+    margin-bottom: 20px;
+}
+
+.footer-social-icon {
+    margin-right: 16px;
+}
+
+.footer-list-social-icon {
+    padding-bottom: 24px;
+}
+

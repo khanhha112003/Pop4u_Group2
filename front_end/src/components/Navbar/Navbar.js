@@ -1,6 +1,10 @@
 // import { useEffect } from 'react'
-import { ReactComponent as Logo } from '../../theme/images/pop-4-u.svg';
+import { ReactComponent as LogoIcon } from './icons/logo.svg';
+import { ReactComponent as CartIcon } from './icons/icon_cart.svg';
+import { ReactComponent as AccountIcon } from './icons/icon_account.svg';
+import { ReactComponent as SearchIcon } from './icons/icon_search.svg';
 import './Navbar.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 function Navbar() {
     return (
         <nav class="container-fluid">
@@ -9,7 +13,7 @@ function Navbar() {
             <div class="col-md-2 col-lg-2 col-xl-3">
               <div class="logo">
                 {/* <a href="#"><img {src :Logo} alt="Pop4u Logo"/></a> */}
-                <a href="#"><Logo></Logo></a>
+                <a href="#"><LogoIcon/></a>
               </div>    
             </div>
             <div class="col-md-8 col-lg-8 col-xl-6">
@@ -26,9 +30,15 @@ function Navbar() {
             <div class="col-md-2 col-lg-2 col-xl-3">
               <div class="nav-list-icons">
                 <ul>
-                  <li><div class="icon"><a href="#"><i><img src="\public\images\quick-reference-all.svg" alt="Tra cứu đơn hàng"/></i></a></div></li>
-                  <li><div class="icon"><a href="#"><i><img src="\public\images\local-mall.svg" alt="Giỏ hàng"/></i></a></div></li>
-                  <li><div class="icon"><a href="#"><i><img src="\public\images\account-circle.svg" alt="Tài khoản"/></i></a></div></li>
+                  <li><div class="icon"><a href="#"><i>
+                    <SearchIcon/>
+                  </i></a></div></li>
+                  <li><div class="icon"><a href="#"><i>
+                    <CartIcon/>
+                  </i></a></div></li>
+                  <li><div class="icon"><a href="#"><i>
+                    <AccountIcon/>
+                  </i></a></div></li>
                 </ul>           
               </div>    
             </div>
