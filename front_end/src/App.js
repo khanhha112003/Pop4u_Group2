@@ -7,7 +7,6 @@ function App() {
        <Navbar></Navbar>
         <HomePage></HomePage>
       <Footer></Footer>
-      <HomePage></HomePage>
     </div>
   );
 }
