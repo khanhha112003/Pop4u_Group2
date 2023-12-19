@@ -18,7 +18,7 @@ function Footer() {
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 col-">
+            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
                 <a href="#">
                     <LogoIcon class="img-icon"/>
                 </a>
