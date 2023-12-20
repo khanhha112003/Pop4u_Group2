@@ -1,0 +1,47 @@
+@import url(../../theme/theme.css);
+
+h2,h6 {
+  text-align: center;
+}
+.product-box-price .price-inner {
+  font-weight: bold;
+  margin-right: 10px;
+}
+.product-box-price .price-del {
+  color: #888; 
+}
+.tag {
+  border-radius: 10px;
+  padding: 2px 5px;
+  background: #D8E2FF;
+  margin-right: 10px;
+}
+.component {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.album,
+.merch,
+.vinyl,
+.photobook,
+.lightstick {
+  flex: 1;
+  margin: 10px;
+  padding: 15px;
+  background-color: #D8E2FF; /* Set background color */
+  border: 16px solid #D8E2FF; /* Set border */
+  text-align: left;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: var(--theme-primary-1, #325da8);
+  border-width: 1px;
+} 
+.btn.btn-default {  
+  border-radius: 20px;
+  border-style: solid;
+  border-color: var(--theme-primary-1, #325da8);
+  border-width: 1px;
+}
+
