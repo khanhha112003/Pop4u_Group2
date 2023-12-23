@@ -29,8 +29,6 @@ def create_user(request:User):
         return {"res":"created"}
     except Exception as e:
         return {"res":str(e)}
-    
-
 
 @router.post('/login')
 def login(request:OAuth2PasswordRequestForm = Depends()):
@@ -40,6 +38,7 @@ def login(request:OAuth2PasswordRequestForm = Depends()):
     if not Hash.verify(request.password, user["password"]):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     access_token = create_access_token(data={"sub": user["username"] })
+    db['Tokens'].insert_one({"token":access_token})
     return {"access_token": access_token, "token_type": "bearer"}
 
 @router.get('/logout', status_code=status.HTTP_200_OK)

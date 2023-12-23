@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 
 # User and authorization
 class User(BaseModel):
@@ -24,22 +24,23 @@ class TokenData(BaseModel):
 
 
 # Product
-class Product(BaseModel):
-    product_name: str
-    description: str
-    discount_price: Optional[str] = None
-    sell_price: str
-    stock: str
-    category: str
-    photo: str
-    options: Optional[str] = None
-    rating: Optional[float] = None
-    num_rating: Optional[int] = None
-    reviews: Optional[str] = None
-    
-
 class ProductReview(BaseModel):
     product_id: str
     username: str
     review: str
     rating: float
+
+class Product(BaseModel):
+    _id : str
+    product_name: str 
+    description: str 
+    discount_price: Optional[str] = None 
+    sell_price: str 
+    stock: str 
+    category: str 
+    photo: List[str]
+    options: Optional[str] = None 
+    rating: Optional[float] = None
+    num_rating: Optional[int] = None
+    reviews: Optional[List[ProductReview]] = None
+    
