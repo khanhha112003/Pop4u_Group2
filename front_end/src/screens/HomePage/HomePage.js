@@ -9,7 +9,8 @@ import { ReactComponent as Lightstick } from './icons/icon_lightstick.svg';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
 import img_product from './icons/img_product.png'
 import { ReactComponent as Star } from './icons/icon_star.svg';
-
+import img_blackpink from './icons/img_blackpink.png'
+import logo_blackpink from './icons/logo_blackpink.png'
 function HomePage() {
   return (
     <div className="App">
@@ -48,9 +49,9 @@ function HomePage() {
                   Xem ngay
                 </button>
               </div>
-              <a href="#"><Merch/></a>
+                <a href="#"><Merch/></a>
+              </div>
             </div>
-          </div>
 
           <div className="col-md-4 vinyl">
             <div className="d-flex justify-content-between">
@@ -305,8 +306,39 @@ function HomePage() {
 
         <h2>Idol siêu chất, nổi bần bật</h2>
         <h6>Xem tất cả nghệ sĩ<a href="#"><Arrow/></a></h6>
+        <div className = "artist">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="blackpink row">
+                <div className="col-md-6">
+                  {/* Left column for img_blackpink */}
+                  <img src={img_blackpink} alt="Blackpink Image" />
+                </div>
+                <div className="col-md-6">
+                  {/* Right column for logo_blackpink, h3, h6 */}
+                  <img src={logo_blackpink} alt="Blackpink Logo" />
+                  <h3>BLACKPINK</h3>
+                  <h6>Xem sản phẩm<a href="#"><Arrow/></a></h6>
+                </div>
+              </div>
+            </div>
 
-
+            <div className="col-md-6">
+              <div className="blackpink row">
+                <div className="col-md-6">
+                  {/* Left column for img_blackpink */}
+                  <img src={img_blackpink} alt="Blackpink Image" />
+                </div>
+                <div className="col-md-6">
+                  {/* Right column for logo_blackpink, h3, h6 */}
+                  <img src={logo_blackpink} alt="Blackpink Logo" />
+                  <h3>BLACKPINK</h3>
+                  <h6>Xem sản phẩm<a href="#"><Arrow/></a></h6>
+                </div>
+              </div>
+            </div>
+        </div>    
+        </div>  
       </div>
     </div>
   );
