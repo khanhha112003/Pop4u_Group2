@@ -1,0 +1,130 @@
+import React from 'react'
+import "./StyleAboutUs.css"
+import "react-bootstrap"
+
+import { ReactComponent as LogoIcon } from './images/logo.svg';
+import { ReactComponent as MusicSpectrum } from './images/music-spectrum.svg';
+
+import Inclusion1 from './images/inclusion_signtime__cjyg7gx31w2u_large.jpg';
+import Inclusion2 from './images/inclusion_veterans__c8iynwo4wtea_large.jpg';
+import Universe1 from './images/34ead214963ecf4f37b1d0f62a4f1a63.png';
+import Inclusion3 from './images/inclusion_hispanic__d4rhg33wt26a_large.jpg'
+
+
+console.log(Inclusion1);
+console.log(Inclusion2);
+
+
+function AboutUs() {
+  return (
+    <div>
+        <div class="container">
+            <div class="row justify-content-center section-1">
+                <div class="col-12">
+                    <div class="about-us-logo">
+                        <LogoIcon alt="Pop4u Logo"></LogoIcon>
+                    </div>
+                </div>
+                <div class="col-12 section-content-main">
+                    <h1 class="main-statement">By your side. 
+                    Together.</h1>
+                </div>
+                <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12">
+                    <p class="body-large" id="main-des">
+                        Pop4u đã được 1 tuổi. Mang 
+                        sứ mệnh phục vụ đến hàng triệu bạn trẻ 
+                        Việt Nam, tạo ra giá trị tinh thần mạnh mẽ cho Gen Z.
+                        Chúng tôi mang đầy hoài bão của tuổi trẻ 20 như các bạn.
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-center section-2">
+                <div class="col-12">
+                    <div class="music-spectrum">
+                        <MusicSpectrum></MusicSpectrum>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center section-3">
+                <div class="col-lg-5 col-xl-5 col-sm-12 col-md-12">
+                    <h5 class="h5 heading-about-us-left">Pop4u là Ai?</h5>
+                    <p class="body-medium">Pop4u là một doanh nghiệp trẻ phân phối các sản phẩm KPop tại Việt Nam. 
+                        Chúng tôi, có thể nói, là doanh nghiệp đầu tiên phân phối đa dạng và chính hãng tất
+                        cả các sản phẩm của những công ty giải trí hàng đầu.</p>
+                    <p class="body-medium">Chúng tôi nhận thức được mục đích hoạt động tiên quyết là mang tới cơ hội tiếp cận các sản phẩm 
+                        đặc biệt tới các bạn với mức giá linh hoạt nhất.</p>
+                </div>
+                <div class="col-sm-0 col-md-0 col-lg-1 col-xl-1"></div>
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <div class="side-img">
+                        <img class="" src={Universe1} alt="Ảnh Inclusion 1"/>                  
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center section-5">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" >
+                    <h5 class="h5 heading-about-us-center">Giá Trị Cốt Lõi</h5>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" id="core-value">
+                    <div class="core-value-card">
+                        <h4>Inclusivity.</h4>
+                    </div>
+                    <div class="core-value-card">
+                        <h4>Trust.</h4>
+                    </div>
+                    <div class="side-img">
+                        <img src={Inclusion1} alt="Ảnh Inclusion 1"/>                  
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" id="core-value">
+                    <div class="side-img">
+                    <img src={Inclusion2} alt="Ảnh Inclusion 2"/>                  
+                    </div>
+                    <div class="core-value-card">
+                        <h4>Connectivity.</h4>
+                    </div>
+                    <div class="core-value-card">
+                        <h4>Novelty.</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row section-6">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="section-vision">
+                        <h5 class="h5 heading-about-us-center">Tầm Nhìn</h5>
+                        <div class="vision">
+                            <h4 class="h4 statement-script-center">Trở thành doanh nghiệp thương mại điện tử phân phối sản 
+                            phẩm K-Pop uy tín hàng đầu Việt Nam.</h4>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center section-7">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <h5 class="heading-about-us-left">Sứ Mệnh</h5>
+                    <span class="h4 statement-script-side">Phá bỏ mọi rào cản trong việc tiếp cận sản phẩm K-Pop
+                        của người hâm mộ tại Việt Nam.</span>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div class="side-img">
+                        <img src={Inclusion3} alt="Ảnh Inclusion 2"/>                  
+                    </div>
+                </div>
+            </div>
+            <div class="row section-8">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="section-esg">
+                        <h5 class="h5 heading-about-us-center">Trách Nhiệm Xã Hội</h5>
+                        <div class="esg">
+                            <h4 class="h4 statement-script-center">Mang trong mình sức trẻ, Pop4u biết mình phải làm gì để cống hiến cho môi trường, xã hội và những giá trị nội bộ.</h4>    
+                        </div>
+                        {/* <div class="dark-gradient-overlay"></div> */}
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+  )
+}
+
+export { AboutUs }

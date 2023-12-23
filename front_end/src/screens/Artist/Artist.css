@@ -1,0 +1,26 @@
+@import url(../../theme/theme.css);
+
+
+.artist-card {
+    justify-content: center;
+    align-items: center;
+    display: ;
+}
+
+.artist-pic {
+    align-self: center;
+}
+
+.artist-pic img {
+    border-radius: 5em;
+}
+
+.artist-name {
+    text-align: center;
+}
+
+.artist-name span {
+    font-size: 32px;
+    color: var(--color-on-background-light);
+    font-weight: var(--font-bold);
+}
