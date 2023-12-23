@@ -1,14 +1,16 @@
-from fastapi import APIRouter, Depends
-from bson.objectid import ObjectId
-from serializer.user_serializer import userResponseEntity
+from fastapi import APIRouter, Depends, HTTPException
+from oauth2 import get_user_or_none
 
-from database import db
-from oauth2 import get_current_active_user
-from schemas import Product, Token, ProductReview
+from schemas import Product
+from typing import List
+from serializer.product_serializer import listProductSerializer
+
 router = APIRouter()
-
-@router.get('/me', response_model=Token)
-def get_me(user_id: str = Depends(get_current_active_user)):
-    user = userResponseEntity(db["Users"].find_one({'_id': ObjectId(str(user_id))}))
-    return {"status": "success", "user": user}
-
+@router.get('/list_product', response_model=List[Product])
+def get_list_product(usr = Depends(get_user_or_none)):
+    if type(usr) == HTTPException:
+        return  []
+    elif usr == None:
+        return [Product()]
+    else:
+        return  []

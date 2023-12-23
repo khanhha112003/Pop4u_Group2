@@ -44,4 +44,6 @@ h2,h6 {
   border-color: var(--theme-primary-1, #325da8);
   border-width: 1px;
 }
-
+.artist {
+  background-color: #D8E2FF;
+}
