@@ -1,0 +1,41 @@
+@import url(../../theme/theme.css); 
+
+.tag {
+  border-radius: 10px;
+  padding: 2px 5px;
+  background: #D8E2FF;
+  margin-right: 10px;
+}
+  
+.price-inner {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size:larger ;
+  }
+.price-del {
+    color: #888; 
+    font-size: medium;
+  }
+
+  .img-product-main {
+    width:100%;
+  }
+
+  .checked {
+    color: orange;
+  }
+
+  .btn {
+    border: none;
+    outline: none;
+    padding: 10px 10px;
+    cursor: pointer;
+  }
+
+.option-box{
+  border-radius: 8px;
+  border: 1px solid var(--theme-trung-tinh4, rgba(60, 64, 67, 0.80));
+  background: var(--theme-typo-label-light, #FFF);
+}
+  
+
