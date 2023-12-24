@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from config import settings
-from routers import auth, user, product
+from routers import auth, user, product, order, artist
 
 app = FastAPI()
 
@@ -22,6 +22,8 @@ app.add_middleware(
 app.include_router(auth.router, tags=['Auth'], prefix='/api/auth')
 app.include_router(user.router, tags=['Users'], prefix='/api/users')
 app.include_router(product.router, tags=['Product'], prefix='/api/product')
+app.include_router(order.router, tags=['Order'], prefix='/api/order')
+app.include_router(artist.router, tags=['Artist'], prefix='/api/artist')
 
 
 @app.get("/api/healthchecker")
