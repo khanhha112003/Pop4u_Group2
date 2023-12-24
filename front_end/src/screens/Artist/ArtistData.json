@@ -2,32 +2,102 @@
     {
       "id": 1,
       "name": "BTS",
-      "pic": "https://cdn-contents.weverseshop.io/public/shop/88b0601c7d5a06f90bfec4b0dfe92dbf.jpg?q=95&w=128"
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/88b0601c7d5a06f90bfec4b0dfe92dbf.jpg?q=95&w=512"
     },
     {
       "id": 2,
       "name": "BLACKPINK",
-      "pic": "https://cdn-contents.weverseshop.io/public/shop/b5d47b7be6a10edef21b0c0fd540070a.png?q=95&w=128"
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/b5d47b7be6a10edef21b0c0fd540070a.png?q=95&w=512"
     },
     {
-        "id": 3,
-        "name": "AKMU",
-        "pic": "https://cdn-contents.weverseshop.io/public/shop/a71dfd00d885900028b2a5eff299cac0.png?q=95&w=128"
+      "id": 3,
+      "name": "AKMU",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/a71dfd00d885900028b2a5eff299cac0.png?q=95&w=512"
     },
     {
-        "id": 4,
-        "name": "aespa",
-        "pic": "https://cdn-contents.weverseshop.io/public/shop/172e79184516dec7a6f118819cec8ca8.jpg?q=95&w=128"
+      "id": 4,
+      "name": "aespa",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/172e79184516dec7a6f118819cec8ca8.jpg?q=95&w=512"
     },
     {
-        "id": 5,
-        "name": "Red Velvet",
-        "pic": "https://cdn-contents.weverseshop.io/public/shop/9db30ee4beee84ccfa34cc666dd9bab2.jpg?q=95&w=128"
+      "id": 5,
+      "name": "Red Velvet",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/9db30ee4beee84ccfa34cc666dd9bab2.jpg?q=95&w=512"
     },
     {
-        "id": 6,
-        "name": "ENHYPEN",
-        "pic": "https://cdn-contents.weverseshop.io/public/shop/f462ef5ce093216a406278be185251de.jpg?q=95&w=128"
+      "id": 6,
+      "name": "ENHYPEN",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/f462ef5ce093216a406278be185251de.jpg?q=95&w=512"
+    },
+    {
+      "id": 7,
+      "name": "SEVENTEEN",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/273ee7353a1620265d6de139e701c436.jpg?q=95&w=512"
+    },
+    {
+      "id": 8,
+      "name": "LE SSERAFIM",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/ab48196091bf17320c8bff2218584387.png?q=95&w=512"
+    },
+    {
+      "id": 9,
+      "name": "NewJeans",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/75e08c44ce98ea4f1b0604ac36228512.jpg?q=95&w=512"
+    },
+    {
+      "id": 10,
+      "name": "SUNMI",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/9154faaa1050dbc55829e92e54856393.png?q=95&w=512"
+    },
+    {
+      "id": 11,
+      "name": "OH MY GIRL",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/eefcd551089d3a588ca2fcd20800f346.png?q=95&w=512"
+    },
+    {
+      "id": 12,
+      "name": "EXO",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/08e1a9f51aac3bf43e3d381163507f05.jpg?q=95&w=512"
+    },
+    {
+      "id": 13,
+      "name": "NCT 127",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/2cfe5977d532c68f99c08cd62ef2fae6.jpg?q=95&w=512"
+    },
+    {
+      "id": 14,
+      "name": "SUPER JUNIOR",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/cf722fbd074ae9b2828e92971f49178a.jpg?q=95&w=512"
+    },
+    {
+      "id": 15,
+      "name": "TREASURE",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/393f7042c383d1a82deb7e865abb5dec.png?q=95&w=512"
+    },
+    {
+      "id": 16,
+      "name": "WINNER",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/7e438920daa6bfc9a1897851bd058a17.png?q=95&w=512"
+    },
+    {
+      "id": 17,
+      "name": "EVERGLOW",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/7fa748dd30c94ac5c0567ee73c9d1657.png?q=95&w=512"
+    },
+    {
+      "id": 18,
+      "name": "(G)I-DLE",
+      "pic": "https://cdn-contents.weverseshop.io/public/shop/162aaf70b2bb514aab85863ee4d89f66.jpg?q=95&w=512"
+    },
+    {
+      "id": 19,
+      "name": "TWICE",
+      "pic": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d082a537-9a45-4512-af54-08c87b335298/dbliral-2294cde8-78db-4be6-8a53-0f1e7fd5fee2.png/v1/fill/w_856,h_933/_twice__logo___png_by_tsukinofleur_dbliral-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MjAyMSIsInBhdGgiOiJcL2ZcL2QwODJhNTM3LTlhNDUtNDUxMi1hZjU0LTA4Yzg3YjMzNTI5OFwvZGJsaXJhbC0yMjk0Y2RlOC03OGRiLTRiZTYtOGE1My0wZjFlN2ZkNWZlZTIucG5nIiwid2lkdGgiOiI8PTE4NTUifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.VvYLaYtREwN8Xmyq9zVpQvbjiSTs2u8a7X2Z5_Zli8Y"
+    },
+    {
+      "id": 20,
+      "name": "Stray Kids",
+      "pic": "https://i.pinimg.com/originals/88/12/72/881272bc899c59771fc6884f3c5a9347.jpg"
     }
   ]
   
