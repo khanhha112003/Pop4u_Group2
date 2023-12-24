@@ -47,3 +47,13 @@ h2,h6 {
 .artist {
   background-color: #D8E2FF;
 }
+.col-md-3 {
+  flex: 1;
+  margin: 1px;
+  text-align: left;
+  width: 50%;
+}
+
+.product-box-title{
+  width: 80%;
+}
