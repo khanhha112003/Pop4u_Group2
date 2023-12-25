@@ -138,7 +138,7 @@ h6, .h6, .head6 {
 .body-min {
     font-family: var(--inter);
     font-weight: var(--font-medium);
-    font-size: 32px;
+    font-size: 12px;
 }
 
 .old-price {
