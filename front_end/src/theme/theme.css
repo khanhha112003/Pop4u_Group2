@@ -68,38 +68,38 @@ body {
     font-family: var(--inter);
 }
 
-h1, .h1 {
+h1, .h1, .head1 {
     font-family: var(--inter);
-    font-weight: var(--font-extrabold);
+    font-weight: var(--font-bold);
     font-size: 64px;
 }
 
-h2, .h2 {
+h2, .h2, .head2 {
     font-family: var(--inter);
-    font-weight: var(--font-extrabold);
+    font-weight: var(--font-bold);
     font-size: 56px;
 }
 
-h3, .h3 {
+h3, .h3, .head3 {
     font-family: var(--inter);
     font-weight: var(--font-bold);
     font-size: 48px;
 
 }
 
-h4, .h4 {
+h4, .h4, .head4 {
     font-family: var(--inter);
     font-weight: var(--font-bold);
     font-size: 40px;
 }
 
-h5, .h5 {
+h5, .h5, .head5 {
     font-family: var(--inter);
     font-weight: var(--font-bold);
     font-size: 32px;
 }
 
-h6, .h6 {
+h6, .h6, .head6 {
     font-family: var(--inter);
     font-weight: var(--font-bold);
     font-size: 24px;
@@ -131,14 +131,14 @@ h6, .h6 {
 
 .body-small {
     font-family: var(--inter);
-    font-weight: var(--font-medium);
+    font-weight: var(--font-regular);
     font-size: 16px;
 }
 
 .body-min {
     font-family: var(--inter);
     font-weight: var(--font-medium);
-    font-size: 32px;
+    font-size: 12px;
 }
 
 .old-price {
@@ -187,6 +187,10 @@ h6, .h6 {
     font-family: var(--inter);
     font-weight: var(--font-medium);
     font-size: 14px;
+}
+
+body{
+    background-color: var(--color-surface-light);
 }
 
 .label-xxl, 
