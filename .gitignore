@@ -3,6 +3,6 @@
 # dependencies
 node_modules
 .vscode
-
 # production
 build
+back_end/app/.env
