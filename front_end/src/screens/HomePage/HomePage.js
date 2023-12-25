@@ -140,7 +140,7 @@ function HomePage() {
               </div>
             </div>
 
-            <div className="col-md-3 product_1">
+            <div className="col-md-3 product_2">
               <img src={img_product} alt="Product Image" />
                 <div>
                   <span className="tag">Mới</span>
@@ -162,7 +162,7 @@ function HomePage() {
               </div>
             </div>
 
-            <div className="col-md-3 product_1">
+            <div className="col-md-3 product_3">
               <img src={img_product} alt="Product Image" />
                 <div>
                   <span className="tag">Mới</span>
@@ -184,7 +184,7 @@ function HomePage() {
               </div>
             </div>
 
-            <div className="col-md-3 product_1">
+            <div className="col-md-3 product_4">
               <img src={img_product} alt="Product Image" />
                 <div>
                   <span className="tag">Mới</span>
@@ -236,7 +236,7 @@ function HomePage() {
               </div>
             </div>
 
-            <div className="col-md-3 product_1">
+            <div className="col-md-3 product_2">
               <img src={img_product} alt="Product Image" />
                 <div>
                   <span className="tag">Mới</span>
@@ -258,7 +258,7 @@ function HomePage() {
               </div>
             </div>
 
-            <div className="col-md-3 product_1">
+            <div className="col-md-3 product_3">
               <img src={img_product} alt="Product Image" />
                 <div>
                   <span className="tag">Mới</span>
@@ -280,7 +280,7 @@ function HomePage() {
               </div>
             </div>
 
-            <div className="col-md-3 product_1">
+            <div className="col-md-3 product_4">
               <img src={img_product} alt="Product Image" />
                 <div>
                   <span className="tag">Mới</span>
