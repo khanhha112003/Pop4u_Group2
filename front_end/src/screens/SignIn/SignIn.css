@@ -1,0 +1,88 @@
+@import url(../../theme/theme.css);
+
+body{
+    background-color: var(--color-surface-light);
+}
+
+.sign-in-title{
+    margin-bottom: 5em;
+    margin-top: 3em;
+    text-align: center;
+}
+
+.sign-in-title h5, .sign-in-title .body-small {
+    text-align: center;
+}
+
+.sign-in-input {
+    margin-bottom: 1em;
+}
+
+.sign-in-field {
+    padding-left: 3.5em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-right: 2em;
+    border: 0.1em solid var(--color-surface-tint-light);
+    border-radius: 1em;
+    outline: none; 
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+    color: var( --color-on-surface-variant-light);
+    height: 3.5em;
+    width: 100%;
+}
+
+.sign-in-field:focus{
+    border-color: var(--color-on-primary-fixed-variant-light); 
+    box-shadow: 0 0 3em rgba(25, 118, 210, 0.5), inset 0 0 0.5em rgba(186, 225, 255, 0.3);
+
+}
+
+#user-id{
+    background: transparent url("./images/alternate_email.svg") no-repeat 1em;
+}
+
+#password {
+    background: transparent url("./images/password.svg") no-repeat 1em;
+}
+
+.error-message {
+    text-align: left;
+    margin-top: 1em;
+    color: var(--color-error-light);
+}
+
+.sign-in-button {
+    border: 0.1em solid var(--color-surface-tint-light);
+    border-radius: 1em;
+    outline: none;
+    transition: box-shadow 0.3s;
+    height: 3.5em; 
+    box-sizing: border-box; 
+    color: var(--color-on-primary-light);
+    background-color: var(--color-primary-light);
+    width: 100%;
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+    transition: background 0.5s ease-in-out;
+}
+
+.sign-in-button:hover {
+    background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%);
+    border: 0; 
+}
+
+.sign-in-button:active {
+    
+}
+
+
+
+.sign-in-support {
+    margin-bottom: 3em;
+}
+
+.sign-in-support .label-m span {
+    margin-right: 0.25em;
+
+}
