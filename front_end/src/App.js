@@ -4,6 +4,7 @@ import { AboutUs } from './screens/AboutUs/AboutUs';
 import { ArtistList }  from './screens/Artist/Artist';
 import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
+import { HomePage } from './screens/HomePage/HomePage';
 
 // import { HomePage } from './screens/HomePage'
 
@@ -13,7 +14,9 @@ function App() {
       <Navbar></Navbar>
       {/* <AboutUs></AboutUs> */}
       {/* <ArtistList></ArtistList> */}
-      <SignIn></SignIn>
+      {/* <SignIn></SignIn> */}
+      <SignUp></SignUp>
+      {/* <HomePage></HomePage> */}
       <Footer></Footer>
     </div>
   );

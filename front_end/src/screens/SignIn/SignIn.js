@@ -29,10 +29,7 @@ function SignIn() {
         }
     };
     
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-    };
-    
+   
     const handleLogin = (e) => {
         e.preventDefault();
         if (username && password) {
