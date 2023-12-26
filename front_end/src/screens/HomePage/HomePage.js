@@ -8,21 +8,8 @@ import { ReactComponent as Photobook } from './icons/icon_photobook.svg';
 import { ReactComponent as Lightstick } from './icons/icon_lightstick.svg';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
 import img_product from './icons/img_product.png'
-import { ReactComponent as Star } from './icons/icon_star.svg';
-import img_blackpink from './icons/img_blackpink.png'
-import logo_blackpink from './icons/logo_blackpink.png'
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
-
-
-// e giờ làm theo kiểu đó thì để nó hiện bao nhiêu item cũng được
-// nhưng mà để cái đó làm sau hí, giờ
-// 1- làm cho cái product detail item đẹp
-// 2- làm scroll, fix cái layout khi scroll
-// 3.1: Tìm những cái phần tử trong cái design nhìn có vẻ giống (lặp lại nhiều lần)
-//   -> lặp lại bước 1 2 (3.1 với 3.2 e chọn 1 trong 2 nhé)
-// 3.2- để 1 số data dạng mảng vào, còn cách truyền data vào thì ddeeer a xử
-//   }
-// ]
+import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
 
 function HomePage() {
   // const buttonRef = useRef(null);
@@ -142,7 +129,7 @@ function HomePage() {
                   img_product: img_product
                 }}
               onClickHandler={() => { }} />
-            <HomepageProductItem  // them 1 item hehe ma e nho hoi nay a co gui cai vong for k
+            <HomepageProductItem  
               data={
                 {
                   product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
@@ -152,7 +139,7 @@ function HomePage() {
                 }}
               onClickHandler={() => { }} />
 
-            <HomepageProductItem  // them 1 item hehe ma e nho hoi nay a co gui cai vong for k
+            <HomepageProductItem  
               data={
                 {
                   product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
@@ -162,7 +149,7 @@ function HomePage() {
                 }}
               onClickHandler={() => { }} />
 
-            <HomepageProductItem  // them 1 item hehe ma e nho hoi nay a co gui cai vong for k
+            <HomepageProductItem  
               data={
                 {
                   product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
@@ -226,33 +213,8 @@ function HomePage() {
         <h6>Xem tất cả nghệ sĩ<a href="#"><Arrow /></a></h6>
         <div className="artist">
           <div className="row">
-            <div className="col-6">
-              <div className="blackpink row">
-                <div className="col-md-6">
-                  <img src={img_blackpink} alt="Blackpink Image" />
-                </div>
-                <div className="col-6">
-                  <img src={logo_blackpink} alt="Blackpink Logo" />
-                  <h3>BLACKPINK</h3>
-                  <h6>Xem sản phẩm<a href="#"><Arrow /></a></h6>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-6">
-              <div className="blackpink row">
-                <div className="col-md-6">
-                  {/* Left column for img_blackpink */}
-                  <img src={img_blackpink} alt="Blackpink Image" />
-                </div>
-                <div className="col-md-6">
-                  {/* Right column for logo_blackpink, h3, h6 */}
-                  <img src={logo_blackpink} alt="Blackpink Logo" />
-                  <h3>BLACKPINK</h3>
-                  <h6>Xem sản phẩm<a href="#"><Arrow /></a></h6>
-                </div>
-              </div>
-            </div>
+            <ArtistCardItem />
+            <ArtistCardItem />
           </div>
         </div>
       </div>

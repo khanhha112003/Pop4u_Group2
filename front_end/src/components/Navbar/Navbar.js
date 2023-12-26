@@ -7,36 +7,36 @@ import './Navbar.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 function Navbar() {
     return (
-        <nav class="container-fluid">
-        <div class="container">
-          <div class="row justify-content-between">
-            <div class="col-md-2 col-lg-2 col-xl-3">
-              <div class="logo">
+        <nav className="container-fluid">
+        <div className="container">
+          <div className="row justify-content-between">
+            <div className="col-md-2 col-lg-2 col-xl-3">
+              <div className="logo">
                 {/* <a href="#"><img {src :Logo} alt="Pop4u Logo"/></a> */}
                 <a href="#"><LogoIcon/></a>
               </div>    
             </div>
-            <div class="col-md-8 col-lg-8 col-xl-6">
-              <div class="nav-list">
+            <div className="col-md-8 col-lg-8 col-xl-6">
+              <div className="nav-list">
                 <ul>
-                  <li><a href="#home"><span class="label-m">Sản phẩm</span></a></li>
-                  <li><a href="#products"><span class="label-m">Nghệ sĩ</span></a></li>
-                  <li><a href="#about"><span class="label-m">Pre-order</span></a></li>
-                  <li><a href="#contact"><span class="label-m">Về chúng tôi</span></a></li>
-                  <li><a href="#blog"><span class="label-m">Blog</span></a></li>
+                  <li><a href="#home"><span className="label-m">Sản phẩm</span></a></li>
+                  <li><a href="#products"><span className="label-m">Nghệ sĩ</span></a></li>
+                  <li><a href="#about"><span className="label-m">Pre-order</span></a></li>
+                  <li><a href="#contact"><span className="label-m">Về chúng tôi</span></a></li>
+                  <li><a href="#blog"><span className="label-m">Blog</span></a></li>
                 </ul>  
               </div>    
             </div>
-            <div class="col-md-2 col-lg-2 col-xl-3">
-              <div class="nav-list-icons">
+            <div className="col-md-2 col-lg-2 col-xl-3">
+              <div className="nav-list-icons">
                 <ul>
-                  <li><div class="icon"><a href="#"><i>
+                  <li><div className="icon"><a href="#"><i>
                     <SearchIcon/>
                   </i></a></div></li>
-                  <li><div class="icon"><a href="#"><i>
+                  <li><div className="icon"><a href="#"><i>
                     <CartIcon/>
                   </i></a></div></li>
-                  <li><div class="icon"><a href="#"><i>
+                  <li><div className="icon"><a href="#"><i>
                     <AccountIcon/>
                   </i></a></div></li>
                 </ul>           

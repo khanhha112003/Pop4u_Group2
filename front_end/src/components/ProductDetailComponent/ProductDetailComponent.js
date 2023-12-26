@@ -127,8 +127,8 @@ function ProductDetailComponent() {
             </div>
           </div>
           <div className="margin">
-            <label class="tag">New</label>
-            <label class="tag">Freeship</label>
+            <label className="tag">New</label>
+            <label className="tag">Freeship</label>
           </div>
           <a href="#" ><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> (12)
           <div>
