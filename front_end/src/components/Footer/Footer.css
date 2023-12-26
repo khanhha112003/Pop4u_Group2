@@ -32,13 +32,18 @@ a :active {
 }
 
 .label-link-icon {
-    display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử con */
-    align-items: center; /* Căn chỉnh theo trục đứng */  
+    display: flex; 
+    align-items: center; 
+}
+
+.label-link-icon .label-icon {
+    margin-right: 1em;
 }
 
 .label-link-icon .img-icon {
     margin-right: 40px;
 }
+
 .img-icon{
     margin-bottom: 20px;
 }
