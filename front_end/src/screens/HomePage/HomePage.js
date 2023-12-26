@@ -17,13 +17,6 @@ function HomePage() {
   const reviews = [
     { _id: 1, text: "abc" },
     { _id: 2, text: "def" },
-    { _id: 3, text: "ghi" },
-    { _id: 4, text: "jkl" },
-    { _id: 5, text: "mno" },
-    { _id: 6, text: "pqr" },
-    { _id: 7, text: "stu" },
-    { _id: 8, text: "vwx" },
-    { _id: 9, text: "yza" }
   ];
   return (
     <div className="App">
@@ -131,46 +124,6 @@ function HomePage() {
         <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
 
         <div className="product">
-          {/* <div className="row">
-            <HomepageProductItem
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400.000,
-                  sell_price: 500.000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-            <HomepageProductItem  
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-
-            <HomepageProductItem  
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-
-            <HomepageProductItem  
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-          </div> */}
            <Carousel style={{ height: 600 }}>
            {reviews.map((review, index) => (
             <Carousel.Item style={{ height: 600 }}>
