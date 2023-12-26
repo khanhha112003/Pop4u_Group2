@@ -5,8 +5,7 @@ import { ArtistList }  from './screens/Artist/Artist';
 import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
-
-// import { HomePage } from './screens/HomePage'
+import { ProductDetail } from './screens/ProductDetail';
 
 function App() {
   return (
@@ -15,8 +14,9 @@ function App() {
       {/* <AboutUs></AboutUs> */}
       {/* <ArtistList></ArtistList> */}
       {/* <SignIn></SignIn> */}
-      <SignUp></SignUp>
-      {/* <HomePage></HomePage> */}
+      {/* <SignUp></SignUp> */}
+      <HomePage></HomePage>
+      {/* <ProductDetail></ProductDetail> */}
       <Footer></Footer>
     </div>
   );
