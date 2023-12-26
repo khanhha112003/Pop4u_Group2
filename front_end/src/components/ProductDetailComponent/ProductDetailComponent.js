@@ -176,7 +176,7 @@ function ProductDetailComponent () {
             <div className="product">
           <div className="row">
             <div className="col-md-3 product_1">
-              <img src={img_product} alt="Product Image" />
+              <img className="img-fluid" src={img_product} alt="Product Image" />
                 <div>
                   <span className="tag">Mới</span>
                   <span className="tag">Freeship</span>
@@ -198,7 +198,7 @@ function ProductDetailComponent () {
             </div>
 
             <div className="col-md-3 product_1">
-              <img src={img_product} alt="Product Image" />
+              <img className="img-fluid" src={img_product} alt="Product Image" />
                 <div>
                   <span className="tag">Mới</span>
                   <span className="tag">Freeship</span>
@@ -220,7 +220,7 @@ function ProductDetailComponent () {
             </div>
 
             <div className="col-md-3 product_1">
-              <img src={img_product} alt="Product Image" />
+              <img className="img-fluid" src={img_product} alt="Product Image" />
                 <div>
                   <span className="tag">Mới</span>
                   <span className="tag">Freeship</span>
@@ -242,7 +242,7 @@ function ProductDetailComponent () {
             </div>
 
             <div className="col-md-3 product_1">
-              <img src={img_product} alt="Product Image" />
+              <img className="img-fluid" src={img_product} alt="Product Image" />
                 <div>
                   <span className="tag">Mới</span>
                   <span className="tag">Freeship</span>
