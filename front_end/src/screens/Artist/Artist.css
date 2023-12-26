@@ -1,0 +1,96 @@
+@import url(../../theme/theme.css);
+
+body{
+    background-color: var(--color-surface-light);
+}
+
+.banner-artist {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15em; 
+    background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%); 
+    color: white; 
+    font-size: 24px; 
+    border-radius: 1em;
+    margin-bottom: 3em;
+}
+  
+.search-artist {
+    text-align: center;
+    margin-bottom: 5em;
+}
+
+.search-label {
+    text-align: center;
+    color: var(--color-primary-light);
+    margin-bottom: 2em;
+    background: linear-gradient(90deg,#e1384e,#f46626,#b48f21);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+}
+
+#filterInput {
+    padding-left: 3em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    padding-right: 2em;
+    border: 0.2em solid var(--color-surface-tint-light);
+    border-radius: 2em;
+    width: 70%;
+    outline: none; 
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+    color: var( --color-on-surface-variant-light);
+    background: transparent url("./images/search.svg") no-repeat 13px;
+  }
+  
+#filterInput:focus {
+    border-color: var(--color-on-primary-fixed-variant-light); 
+    box-shadow: 0 0 5em rgba(25, 118, 210, 0.5), inset 0 0 0.5em rgba(186, 225, 255, 0.3);
+}
+    
+
+.artist-card {
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    padding-bottom: 5em;
+}
+
+/* CSS */
+.animate__slideInRightFast {
+    animation-duration: 0.1s; /* Ví dụ: Thời gian animation ngắn hơn */
+}
+
+
+.artist-pic {
+    text-align: center;
+    padding-bottom: 2em;
+}
+
+.artist-pic img {
+    border-radius: 50%; /* Bo tròn border theo hình dạng của ảnh */
+
+    /* border-radius: 5em; */
+    align-self: center;
+    align-items: center;
+    text-align: center;
+    width: 10em;
+    height: 10em;
+  
+}
+
+.artist-name {
+    text-align: center;
+}
+
+.artist-name span {
+    /* font-size: 32px; */
+    color: var(--color-on-background-light);
+    font-weight: var(--font-bold);
+}
+
+.artist-name a:hover {
+    columns: var(--color-primary-light);
+}
