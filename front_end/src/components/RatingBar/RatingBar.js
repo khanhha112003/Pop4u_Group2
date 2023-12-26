@@ -47,7 +47,6 @@ const RatingBar = ({ rating, isDisabled, onChangeValue }) => {
 
   return (
     <div>
-      <p>Rating: {currentRating}</p>
       <div>{renderStars()}</div>
     </div>
   );

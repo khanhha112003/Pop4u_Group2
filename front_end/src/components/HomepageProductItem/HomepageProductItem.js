@@ -10,16 +10,14 @@ const HomepageProductItem = ({ data, onClickHandler }) => {
         // You can perform additional actions when the rating changes, e.g., update state or send data to the server.
       };
     return (
-        <div className="col-3 product_4" onClick={onClickHandler}>
+        <div onClick={onClickHandler}>
             <img src={img_product} alt="Product Image" />
-            <div>
+            <div style={ {marginTop : "10px"}}>
                 <span className="tag">Mới</span>
                 <span className="tag">Freeship</span>
                 <div className="product-box-title">
                     <h4 className="product-name">
-                        <a href="#" title={data.product_name}>
-                            {data.product_name}
-                        </a>
+                    {data.product_name}
                     </h4>
                 </div>
                 <RatingBar isDisabled={false} rating={3} rateAction={handleRatingChange} />

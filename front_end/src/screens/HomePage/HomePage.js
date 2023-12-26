@@ -10,9 +10,21 @@ import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
 import img_product from './icons/img_product.png'
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
+import { Carousel, Card, Stack } from "react-bootstrap";
+
 
 function HomePage() {
-  // const buttonRef = useRef(null);
+  const reviews = [
+    { _id: 1, text: "abc" },
+    { _id: 2, text: "def" },
+    { _id: 3, text: "ghi" },
+    { _id: 4, text: "jkl" },
+    { _id: 5, text: "mno" },
+    { _id: 6, text: "pqr" },
+    { _id: 7, text: "stu" },
+    { _id: 8, text: "vwx" },
+    { _id: 9, text: "yza" }
+  ];
   return (
     <div className="App">
       <h2>Danh mục sản phẩm</h2>
@@ -119,8 +131,8 @@ function HomePage() {
         <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
 
         <div className="product">
-          <div className="row">
-          <HomepageProductItem
+          {/* <div className="row">
+            <HomepageProductItem
               data={
                 {
                   product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
@@ -158,7 +170,58 @@ function HomePage() {
                   img_product: img_product
                 }}
               onClickHandler={() => { }} />
-          </div>
+          </div> */}
+           <Carousel style={{ height: 600 }}>
+           {reviews.map((review, index) => (
+            <Carousel.Item style={{ height: 600 }}>
+              <Stack
+                direction="horizontal"
+                className="h-100 justify-content-center align-items-center"
+                gap={3}>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Body>
+                  <HomepageProductItem
+                    data={
+                      {
+                        product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
+                        discount_price: 400000,
+                        sell_price: 500000,
+                        img_product: img_product
+                      }}
+                    onClickHandler={() => { }} />
+                  </Card.Body>
+                </Card>
+
+                <Card style={{ width: "18rem" }}>
+                  <Card.Body>
+                  <HomepageProductItem
+                    data={
+                      {
+                        product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
+                        discount_price: 400000,
+                        sell_price: 500000,
+                        img_product: img_product
+                      }}
+                    onClickHandler={() => { }} />
+                  </Card.Body>
+                </Card>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Body>
+                  <HomepageProductItem
+                    data={
+                      {
+                        product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
+                        discount_price: 400000,
+                        sell_price: 500000,
+                        img_product: img_product
+                      }}
+                    onClickHandler={() => { }} />
+                  </Card.Body>
+                </Card>
+              </Stack>
+            </Carousel.Item>
+          ))}
+        </Carousel>
         </div>
 
 
