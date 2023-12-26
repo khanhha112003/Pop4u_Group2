@@ -8,13 +8,16 @@ import { ReactComponent as Photobook } from './icons/icon_photobook.svg';
 import { ReactComponent as Lightstick } from './icons/icon_lightstick.svg';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
 import img_product from './icons/img_product.png'
-import img_blackpink from './icons/img_blackpink.png'
-import logo_blackpink from './icons/logo_blackpink.png'
-import icon_bestprice from './icons/icon_bestprice.png'
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
+import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
+import { Carousel, Card, Stack } from "react-bootstrap";
+
 
 function HomePage() {
-  // const buttonRef = useRef(null);
+  const reviews = [
+    { _id: 1, text: "abc" },
+    { _id: 2, text: "def" },
+  ];
   return (
     <div className="App">
       <h2>Danh mục sản phẩm</h2>
@@ -121,46 +124,57 @@ function HomePage() {
         <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
 
         <div className="product">
-          <div className="row">
-            <HomepageProductItem
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-            <HomepageProductItem
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
+           <Carousel style={{ height: 600 }}>
+           {reviews.map((review, index) => (
+            <Carousel.Item style={{ height: 600 }}>
+              <Stack
+                direction="horizontal"
+                className="h-100 justify-content-center align-items-center"
+                gap={3}>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Body>
+                  <HomepageProductItem
+                    data={
+                      {
+                        product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
+                        discount_price: 400000,
+                        sell_price: 500000,
+                        img_product: img_product
+                      }}
+                    onClickHandler={() => { }} />
+                  </Card.Body>
+                </Card>
 
-            <HomepageProductItem
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-
-            <HomepageProductItem
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-          </div>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Body>
+                  <HomepageProductItem
+                    data={
+                      {
+                        product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
+                        discount_price: 400000,
+                        sell_price: 500000,
+                        img_product: img_product
+                      }}
+                    onClickHandler={() => { }} />
+                  </Card.Body>
+                </Card>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Body>
+                  <HomepageProductItem
+                    data={
+                      {
+                        product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
+                        discount_price: 400000,
+                        sell_price: 500000,
+                        img_product: img_product
+                      }}
+                    onClickHandler={() => { }} />
+                  </Card.Body>
+                </Card>
+              </Stack>
+            </Carousel.Item>
+          ))}
+        </Carousel>
         </div>
 
 
@@ -173,12 +187,12 @@ function HomePage() {
               data={
                 {
                   product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
+                  discount_price: 400.000,
+                  sell_price: 500.000,
                   img_product: img_product
                 }}
               onClickHandler={() => { }} />
-            <HomepageProductItem
+            <HomepageProductItem  // them 1 item hehe ma e nho hoi nay a co gui cai vong for k
               data={
                 {
                   product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
@@ -213,46 +227,12 @@ function HomePage() {
 
         <h2>Idol siêu chất, nổi bần bật</h2>
         <h6>Xem tất cả nghệ sĩ<a href="#"><Arrow /></a></h6>
-        <div className="artist">
-          <div className="row">
-            <div className="col-6">
-              <div className="blackpink row">
-                <div className="col-md-6">
-                  <img src={img_blackpink} alt="Blackpink Image" />
-                </div>
-                <div className="col-6">
-                  <img src={logo_blackpink} alt="Blackpink Logo" />
-                  <h3>BLACKPINK</h3>
-                  <h6>Xem sản phẩm<a href="#"><Arrow /></a></h6>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-6">
-              <div className="blackpink row">
-                <div className="col-md-6">
-                  {/* Left column for img_blackpink */}
-                  <img src={img_blackpink} alt="Blackpink Image" />
-                </div>
-                <div className="col-md-6">
-                  {/* Right column for logo_blackpink, h3, h6 */}
-                  <img src={logo_blackpink} alt="Blackpink Logo" />
-                  <h3>BLACKPINK</h3>
-                  <h6>Xem sản phẩm<a href="#"><Arrow /></a></h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <h2>Mua hàng tự tin. Dẹp đi vặt rãnh.</h2>
-        <div className="row">
-          <div className="col-3 Bestprice">
-            <img src={icon_bestprice} alt="" />
-            <h5>Gía tốt nhất</h5>
-            <h6>Tham khảo <a href="#"><Arrow /></a></h6>
-          </div>
-
+        <div className="artist" id="client-paginator">
+          <ul className="pagination">
+          <ArtistCardItem />
+          <ArtistCardItem />
+          <ArtistCardItem />
+          </ul>
         </div>
       </div>
     </div>

@@ -64,7 +64,7 @@ h2,h6 {
 .product > * {
   display: flex;
   overflow-x: auto; /* Enable horizontal scrolling */
-  white-space: nowrap; /* Prevent line breaks for inline elements */
+  white-space: wrap; /* Prevent line breaks for inline elements */
   height: 494px;
   margin-right: 10px; /* Add margin between items for spacing */
 }
