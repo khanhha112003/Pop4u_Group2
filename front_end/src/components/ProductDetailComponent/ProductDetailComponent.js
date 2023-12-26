@@ -105,13 +105,13 @@ function ProductDetailComponent () {
                   />
                   <img
                     src={ImageProductv3}
-                    alt="Thumbnail 3"
+                    alt="Thumbnail 4"
                     style={{ width: '20%', marginRight: '1px', cursor: 'pointer' }}
                     onClick={() => handleOptionSelection('v3')}
                   />
                   <img
                     src={ImageProductv4}
-                    alt="Thumbnail 3"
+                    alt="Thumbnail 5"
                     style={{ width: '20%', marginRight: '1px', cursor: 'pointer' }}
                     onClick={() => handleOptionSelection('v4')}
                   />
@@ -131,6 +131,7 @@ function ProductDetailComponent () {
                 <label class="tag">Freeship</label>
               </div>
               <a href="#" ><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> (12)
+              <hr></hr>
               <div>
                 <h5 className="margin">Ver:</h5>
                 <div>
@@ -149,6 +150,7 @@ function ProductDetailComponent () {
                   <button className='btn add-cart' ><span className="label-l" style={{ color: 'var(--theme-primary1, #325DA8)'}}>Thêm vào giỏ hàng</span></button>
                   <button className='btn pay' ><span className="label-l" style={{ color: 'var(--theme-typo-label-light, #FFF)'}} >Thanh toán ngay</span></button>
                 </div>
+                <hr></hr>
                 <div>
                   <h5 className="margin">Mô tả sản phẩm:</h5>
                   <p className="body-small margin">BLACKPINK - THE ALBUM (Random Ver.).<br/>
@@ -171,7 +173,7 @@ function ProductDetailComponent () {
             <h3 >Sản phẩm liên quan </h3>
             <h6>Xem tất cả <a href="#"><Arrow/></a></h6>
             </p>
-        <div className="product">
+            <div className="product">
           <div className="row">
             <div className="col-md-3 product_1">
               <img src={img_product} alt="Product Image" />
@@ -188,9 +190,9 @@ function ProductDetailComponent () {
               <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> (12)
               <div className="product-box-price d-flex align-items-center">
                 <div className="price-sale">
-                  <span className="price-inner">400.000</span>
+                  <span className="price-inner">400.000₫</span>
                 </div>
-                <del className="price-del">500.000</del>
+                <del className="price-del">500.000₫</del>
               </div>
               </div>
             </div>
@@ -210,9 +212,9 @@ function ProductDetailComponent () {
               <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> (12)
               <div className="product-box-price d-flex align-items-center">
                 <div className="price-sale">
-                  <span className="price-inner">400.000</span>
+                  <span className="price-inner">400.000₫</span>
                 </div>
-                <del className="price-del">500.000</del>
+                <del className="price-del">500.000₫</del>
               </div>
               </div>
             </div>
@@ -232,9 +234,9 @@ function ProductDetailComponent () {
               <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> (12)
               <div className="product-box-price d-flex align-items-center">
                 <div className="price-sale">
-                  <span className="price-inner">400.000</span>
+                  <span className="price-inner">400.000₫</span>
                 </div>
-                <del className="price-del">500.000</del>
+                <del className="price-del">500.000₫</del>
               </div>
               </div>
             </div>
@@ -254,9 +256,9 @@ function ProductDetailComponent () {
               <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> (12)
               <div className="product-box-price d-flex align-items-center">
                 <div className="price-sale">
-                  <span className="price-inner">400.000</span>
+                  <span className="price-inner">400.000₫</span>
                 </div>
-                  <del className="price-del">500.000</del>
+                  <del className="price-del">500.000₫</del>
                 </div>
               </div>
             </div>
@@ -264,7 +266,6 @@ function ProductDetailComponent () {
         </div>
 
             </div>
-
 
 
 
