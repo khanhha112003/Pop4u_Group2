@@ -68,3 +68,19 @@ h2,h6 {
   height: 494px;
   margin-right: 10px; /* Add margin between items for spacing */
 }
+
+.pagination {
+  white-space: nowrap;
+}
+
+#client-paginator {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 200px;
+  width: 100%;
+  padding: 0 15px;
+}
+
+#client-paginator li {
+  display: inline-block;  
+}

@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function ArtistCardItem() {
     return (
+        <li>
         <div className="col-6">
             <div className="blackpink row">
             <div className="col-md-6">
@@ -17,5 +18,6 @@ export default function ArtistCardItem() {
             </div>
             </div>
         </div>
+        </li>
     );
 }

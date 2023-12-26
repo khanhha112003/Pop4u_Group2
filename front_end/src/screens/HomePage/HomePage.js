@@ -211,11 +211,12 @@ function HomePage() {
 
         <h2>Idol siêu chất, nổi bần bật</h2>
         <h6>Xem tất cả nghệ sĩ<a href="#"><Arrow /></a></h6>
-        <div className="artist">
-          <div className="row">
-            <ArtistCardItem />
-            <ArtistCardItem />
-          </div>
+        <div className="artist" id="client-paginator">
+          <ul className="pagination">
+          <ArtistCardItem />
+          <ArtistCardItem />
+          <ArtistCardItem />
+          </ul>
         </div>
       </div>
     </div>

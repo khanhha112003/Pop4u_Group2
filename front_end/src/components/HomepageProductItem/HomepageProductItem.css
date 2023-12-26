@@ -1,5 +1,7 @@
 .product-name {
-    overflow: hidden;
+    width: 100%; /* Adjust the width as needed */
+    padding: 8px; /* Add padding as needed */
+    box-sizing: border-box;
     display: -webkit-box;
     -webkit-line-clamp: 2; /* Số dòng tối đa muốn hiển thị */
     -webkit-box-orient: vertical;
