@@ -1,6 +1,11 @@
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
-import { HomePage } from './screens/HomePage/HomePage'
+import { AboutUs } from './screens/AboutUs/AboutUs';
+import { ArtistList }  from './screens/Artist/Artist';
+import { SignIn } from './screens/SignIn/SignIn';
+import { SignUp } from './screens/SignUp/SIgnUp';
+import { HomePage } from './screens/HomePage/HomePage';
+import { ProductDetail } from './screens/ProductDetail';
 // import { ProductDetail } from './screens/ProductDetail'
 import { Cart } from './screens/Cart'
 import { AboutUs } from "./screens/AboutUs/AboutUs";
@@ -11,14 +16,16 @@ import { SignIn } from './screens/SignIn/SignIn';
 function App() {
   return (
     <div className="App">
-       <Navbar></Navbar>
+      <Navbar></Navbar>
+      {/* <AboutUs></AboutUs> */}
+      {/* <ArtistList></ArtistList> */}
+      {/* <SignIn></SignIn> */}
+      {/* <SignUp></SignUp> */}
+      <HomePage></HomePage>
+      {/* <ProductDetail></ProductDetail> */}
        {/* <ProductDetail></ProductDetail> */}
        {/* <Cart></Cart> */}
-       {/* <HomePage></HomePage> */}
-       {/* <AboutUs></AboutUs> */} 
-       {/* <ArtistList></ArtistList> */}
-       {/* <SignUp></SignUp> */}
-       <SignIn></SignIn>
+       <HomePage></HomePage>
       <Footer></Footer>
     </div>
   );

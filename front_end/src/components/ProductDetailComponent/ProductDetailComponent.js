@@ -16,22 +16,22 @@ import { ReactComponent as Minus } from '../../theme/images/icon_minus.svg';
 
 
 
-function ProductDetailComponent () {
-    const [quantity, setQuantity] = useState(1);
-    const decreaseQuantity = () => {
-      if (quantity > 1) {
-        setQuantity(quantity - 1);
-      }
-    };
-    const increaseQuantity = () => {
-      setQuantity(quantity + 1);
-    };
-  
-    const handleSelect = (selectedIndex) => {
-      setIndex(selectedIndex);
-    };
-  
-    const [option, setOption] = useState('Main');
+function ProductDetailComponent() {
+  const [quantity, setQuantity] = useState(1);
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
+
+  const [option, setOption] = useState('Main');
   const [index, setIndex] = useState(0);
   const [activeVersion, setActiveVersion] = useState(option); // Track active version
 
@@ -61,28 +61,28 @@ function ProductDetailComponent () {
     }
   };
 
-    return (
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6 col-sm-12">
-              <div className="image-size">
-                <Carousel activeIndex={index} onSelect={handleSelect}>
-                  <Carousel.Item>
-                    <img className="d-block w-100" src={ImageProductMain} alt="Main" />
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img className="d-block w-100" src={ImageProductv1} alt="V1" />
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img className="d-block w-100" src={ImageProductv2} alt="V2" />
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img className="d-block w-100" src={ImageProductv3} alt="V3" />
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img className="d-block w-100" src={ImageProductv4} alt="V4" />
-                  </Carousel.Item>
-                </Carousel>
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6 col-sm-12">
+          <div className="image-size">
+            <Carousel activeIndex={index} onSelect={handleSelect}>
+              <Carousel.Item>
+                <img className="d-block w-100" src={ImageProductMain} alt="Main" />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img className="d-block w-100" src={ImageProductv1} alt="V1" />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img className="d-block w-100" src={ImageProductv2} alt="V2" />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img className="d-block w-100" src={ImageProductv3} alt="V3" />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img className="d-block w-100" src={ImageProductv4} alt="V4" />
+              </Carousel.Item>
+            </Carousel>
 
                 <div style={{ marginTop: '3px', display: 'flex', justifyContent: 'center' }}>
                   <img
@@ -118,13 +118,18 @@ function ProductDetailComponent () {
               </div>
             </div>
           </div>
-            <div className="col-md-6 col-sm-12">
-              <h2 className="">BLACKPINK - 1st FULL ALBUM [THE ALBUM]</h2>
-              <div>
-                <div className="price-sale margin">
-                  <span className="price-inner">400.000 VND</span>
-                  <del className="price-del">500.000 VND</del>
-                </div>
+
+          <div className="col-md-3 product_1">
+            <img src={img_product} alt="Product Image" />
+            <div>
+              <span className="tag">Mới</span>
+              <span className="tag">Freeship</span>
+              <div className="product-box-title">
+                <h4>
+                  <a href="" title="j-hope (BTS) 'Jack In The Box' (HOPE Edition)">
+                    j-hope (BTS) 'Jack In The Box' (HOPE Edition)
+                  </a>
+                </h4>
               </div>
               <div className="margin">
                 <label class="tag">New</label>
@@ -194,11 +199,11 @@ function ProductDetailComponent () {
                 </div>
                 <del className="price-del">500.000₫</del>
               </div>
-              </div>
             </div>
+          </div>
 
             <div className="col-md-3 product_1">
-              <img className="img-fluid" src={img_product} alt="Product Image" />
+              <img src={img_product} alt="Product Image" />
                 <div>
                   <span className="tag">Mới</span>
                   <span className="tag">Freeship</span>
@@ -216,11 +221,11 @@ function ProductDetailComponent () {
                 </div>
                 <del className="price-del">500.000₫</del>
               </div>
-              </div>
             </div>
+          </div>
 
             <div className="col-md-3 product_1">
-              <img className="img-fluid" src={img_product} alt="Product Image" />
+              <img src={img_product} alt="Product Image" />
                 <div>
                   <span className="tag">Mới</span>
                   <span className="tag">Freeship</span>
@@ -264,8 +269,9 @@ function ProductDetailComponent () {
             </div>
           </div>
         </div>
+      </div>
 
-            </div>
+    </div>
 
 
 

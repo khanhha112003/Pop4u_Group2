@@ -6,8 +6,7 @@ function ProductDetail ()
 {
 
   return (
-        <ProductDetailComponent/>
-
+    <ProductDetailComponent></ProductDetailComponent>
   )
 }
 
