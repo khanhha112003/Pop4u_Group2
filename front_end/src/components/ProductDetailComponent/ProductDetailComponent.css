@@ -93,3 +93,8 @@ background: var(--theme-primary1, #325DA8);
     background: var(--theme-secondary1, #D8E2FF);
     text-align: center;
 }
+
+
+.product-box-title{
+  width: 80%;
+}
