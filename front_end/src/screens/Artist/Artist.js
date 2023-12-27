@@ -3,7 +3,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './Artist.css';
 import "react-bootstrap";
 import data from './ArtistData.json';
-import 'animate.css/animate.min.css';
+// import 'animate.css/animate.min.css'; 
 
 function ArtistList() {
   const [filterName, setFilterName] = useState('');
