@@ -16,19 +16,26 @@ const HomepageProductItem = ({ data, onClickHandler }) => {
                 <span className="tag">Mới</span>
                 <span className="tag">Freeship</span>
                 <div className="product-box-title">
-                    <h4 className="product-name">
+                    <p className="product-name">
                     {data.product_name}
-                    </h4>
+                    </p>
                 </div>
-                <RatingBar isDisabled={false} rating={3} rateAction={handleRatingChange} />
+                <RatingBar isDisabled={true} rating={data.rating} rateAction={handleRatingChange} />
+                {data.discount_price !== 0 && (
                 <div className="product-box-price d-flex align-items-center">
-                    {data.discount_price !== 0 && (
                         <div className="price-sale">
                             <span className="price-inner">{data.discount_price}</span>
                         </div>
-                    )}
                     <del className="price-del">{data.sell_price}</del>
                 </div>
+                )}
+                { data.discount_price === -1 && (
+                <div className="product-box-price d-flex align-items-center">
+                    <div className="price-sale">
+                        <span className="price-inner">{data.sell_price}</span>
+                    </div>
+                </div>
+                )}
             </div>
         </div>
     );

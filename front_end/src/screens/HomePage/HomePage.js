@@ -10,13 +10,41 @@ import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
 import img_product from './icons/img_product.png'
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
-import { Carousel, Card, Stack } from "react-bootstrap";
-
+import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
 
 function HomePage() {
-  const reviews = [
-    { _id: 1, text: "abc" },
-    { _id: 2, text: "def" },
+  const jsonData = [
+    {
+      product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
+      discount_price: 400000,
+      sell_price: 500000,
+      img_product: img_product
+    },
+    {
+      product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
+      discount_price: 400000,
+      sell_price: 500000,
+      img_product: img_product
+    },
+    {
+      product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
+      discount_price: 400000,
+      sell_price: 500000,
+      img_product: img_product
+    },
+    {
+      product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
+      discount_price: 400000,
+      sell_price: 500000,
+      img_product: img_product
+    },
+    {
+      product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
+      discount_price: 400000,
+      sell_price: 500000,
+      img_product: img_product
+    },
+    // Add more items as needed
   ];
   return (
     <div className="App">
@@ -124,57 +152,24 @@ function HomePage() {
         <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
 
         <div className="product">
-           <Carousel style={{ height: 600 }}>
-           {reviews.map((review, index) => (
-            <Carousel.Item style={{ height: 600 }}>
-              <Stack
-                direction="horizontal"
-                className="h-100 justify-content-center align-items-center"
-                gap={3}>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Body>
-                  <HomepageProductItem
-                    data={
-                      {
-                        product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                        discount_price: 400000,
-                        sell_price: 500000,
-                        img_product: img_product
-                      }}
-                    onClickHandler={() => { }} />
-                  </Card.Body>
-                </Card>
-
-                <Card style={{ width: "18rem" }}>
-                  <Card.Body>
-                  <HomepageProductItem
-                    data={
-                      {
-                        product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                        discount_price: 400000,
-                        sell_price: 500000,
-                        img_product: img_product
-                      }}
-                    onClickHandler={() => { }} />
-                  </Card.Body>
-                </Card>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Body>
-                  <HomepageProductItem
-                    data={
-                      {
-                        product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                        discount_price: 400000,
-                        sell_price: 500000,
-                        img_product: img_product
-                      }}
-                    onClickHandler={() => { }} />
-                  </Card.Body>
-                </Card>
-              </Stack>
-            </Carousel.Item>
-          ))}
-        </Carousel>
+          <HorizontalPagination
+            gap={10} // Adjust the gap between items as needed
+            items={jsonData.map((item, index) => (
+              <HomepageProductItem
+                key={index}
+                data={{
+                  product_name: item.product_name,
+                  discount_price: item.discount_price,
+                  sell_price: item.sell_price,
+                  img_product: item.img_product,
+                }}
+                onClickHandler={() => {}}
+              />
+            ))}
+            itemWidth={200} // Set the width of each item as needed
+            itemHeight={550} // Set the height of each item as needed
+            padding={20} // Set the padding as needed
+          />
         </div>
 
 
