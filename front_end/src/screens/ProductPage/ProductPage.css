@@ -75,8 +75,13 @@
     .checkmark {
         font-size: 20px;
     }
-    .checkbox {
-        width: 100%;
+    .mycheckbox {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #333;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 8px;
     }
     .sidebar-title {
         font-size: 22px;
