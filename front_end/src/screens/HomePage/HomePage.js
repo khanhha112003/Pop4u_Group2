@@ -11,6 +11,9 @@ import img_product from './icons/img_product.png'
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 function HomePage() {
   const jsonData = [
@@ -199,12 +202,18 @@ function HomePage() {
 
         <h2>Idol siêu chất, nổi bần bật</h2>
         <h6>Xem tất cả nghệ sĩ<a href="#"><Arrow /></a></h6>
-        <div className="artist" id="client-paginator">
-          <ul className="pagination">
-          <ArtistCardItem />
-          <ArtistCardItem />
-          <ArtistCardItem />
-          </ul>
+        <div className="artist">
+        <Row xs={1} md={2} className="g-4">
+          {Array.from({ length: 4 }).map((_, idx) => (
+            <Col key={idx}>
+              <Card>
+                <Card.Body>
+                <ArtistCardItem />
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
         </div>
       </div>
     </div>
