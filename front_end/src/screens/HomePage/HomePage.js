@@ -6,7 +6,8 @@ import { ReactComponent as Vinyl } from './icons/icon_vinyl.svg';
 import { ReactComponent as Photobook } from './icons/icon_photobook.svg';
 import { ReactComponent as Lightstick } from './icons/icon_lightstick.svg';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
-import img_product from './icons/img_product.png'
+
+import React, { useState, useEffect } from 'react';
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
@@ -14,61 +15,35 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 function HomePage() {
-  const artist_card_data = [
-    {
-      artist_name: "BTS",
-      artist_logo: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
-      artist_banner: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
-    },
-    {
-      artist_name: "BlackPink",
-      artist_logo: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
-      artist_banner: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
-    },
-    {
-      artist_name: "Red Velvet",
-      artist_logo: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
-      artist_banner: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
-    },
-    {
-      artist_name: "Twice",
-      artist_logo: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
-      artist_banner: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
-    },
-  ];
-  const jsonData = [
-    {
-      product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-      discount_price: 400000,
-      sell_price: 500000,
-      img_product: img_product
-    },
-    {
-      product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-      discount_price: 400000,
-      sell_price: 500000,
-      img_product: img_product
-    },
-    {
-      product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-      discount_price: 400000,
-      sell_price: 500000,
-      img_product: img_product
-    },
-    {
-      product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-      discount_price: 400000,
-      sell_price: 500000,
-      img_product: img_product
-    },
-    {
-      product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-      discount_price: 400000,
-      sell_price: 500000,
-      img_product: img_product
-    },
-    // Add more items as needed
-  ];
+  const [artist, setArtist] = useState([]);
+  const [products, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/test_product');
+        const result = await response.json();
+        setProduct(result);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []); // The empty array ensures that this effect runs only once, like componentDidMount
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
   return (
     <div className="App">
       <h2>Danh mục sản phẩm</h2>
@@ -177,7 +152,7 @@ function HomePage() {
         <div className="product">
           <HorizontalPagination
             gap={10} // Adjust the gap between items as needed
-            items={jsonData.map((item, index) => (
+            items={products.map((item, index) => (
               <HomepageProductItem
                 key={index}
                 data={{
@@ -202,7 +177,7 @@ function HomePage() {
         <div className="product">
           <HorizontalPagination
             gap={10} // Adjust the gap between items as needed
-            items={jsonData.map((item, index) => (
+            items={products.map((item, index) => (
               <HomepageProductItem
                 key={index}
                 data={{
@@ -224,7 +199,7 @@ function HomePage() {
         <h6>Xem tất cả nghệ sĩ<a href="#"><Arrow /></a></h6>
         <div className="artist">
           <Row xs={1} md={2} className="g-4">
-            {artist_card_data.map((data, index) => (
+            {artist.map((data, index) => (
               <Col key={index}>
                 <ArtistCardItem
                   data={data}

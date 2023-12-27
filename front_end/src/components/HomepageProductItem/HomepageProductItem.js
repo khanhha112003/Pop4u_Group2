@@ -1,7 +1,6 @@
 import React from 'react';
 import "react-bootstrap"
 import "./HomepageProductItem.css";
-import img_product from './icons/img_product.png'
 import RatingBar from '../RatingBar/RatingBar';
 
 const HomepageProductItem = ({ data, onClickHandler, margin, padding }) => {
@@ -11,7 +10,7 @@ const HomepageProductItem = ({ data, onClickHandler, margin, padding }) => {
       };
     return (
         <div onClick={onClickHandler} style={{margin: margin, padding: padding}}>
-            <img src={img_product} alt="Product Image" />
+            <img src={data.img_product} alt="Product Image" />
             <div style={ {marginTop : "10px"}}>
                 <span className="tag">Mới</span>
                 <span className="tag">Freeship</span>
