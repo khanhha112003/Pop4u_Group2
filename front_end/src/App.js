@@ -1,10 +1,10 @@
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
-import { HomePage } from './screens/HomePage/HomePage'
+// import { HomePage } from './screens/HomePage/HomePage'
 // import { ProductDetail } from './screens/ProductDetail'
 // import { Cart } from './screens/Cart'
-import {ProductPage} from './screens/ProductPage/ProductPage'
-import {Artistlist} from './screens/Artist/Artist'
+// import {ProductPage} from './screens/ProductPage/ProductPage'
+import {ArtistList} from './screens/Artist/Artist'
 function App() {
   return (
     <div className="App">
