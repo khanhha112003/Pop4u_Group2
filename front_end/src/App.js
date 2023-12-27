@@ -20,6 +20,7 @@ function App() {
       {/* <ProductDetail></ProductDetail> */}
        {/* <ProductDetail></ProductDetail> */}
        {/* <Cart></Cart> */}
+      <Footer/>
     </div>
   );
 }

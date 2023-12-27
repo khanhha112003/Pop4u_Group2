@@ -1,4 +1,3 @@
-import { Button } from "bootstrap";
 import "./HomePage.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ReactComponent as Music } from './icons/icon_album.svg';
@@ -11,11 +10,32 @@ import img_product from './icons/img_product.png'
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
-import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 function HomePage() {
+  const artist_card_data = [
+    {
+      artist_name: "BTS",
+      artist_logo: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
+      artist_banner: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
+    },
+    {
+      artist_name: "BlackPink",
+      artist_logo: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
+      artist_banner: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
+    },
+    {
+      artist_name: "Red Velvet",
+      artist_logo: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
+      artist_banner: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
+    },
+    {
+      artist_name: "Twice",
+      artist_logo: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
+      artist_banner: "https://i.pinimg.com/originals/4b/9a/7a/4b9a7a2f3f0a4f3f5f5a9a8a1c5f2b4c.jpg",
+    },
+  ];
   const jsonData = [
     {
       product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
@@ -166,7 +186,7 @@ function HomePage() {
                   sell_price: item.sell_price,
                   img_product: item.img_product,
                 }}
-                onClickHandler={() => {}}
+                onClickHandler={() => { }}
               />
             ))}
             itemWidth={250} // Set the width of each item as needed
@@ -191,7 +211,7 @@ function HomePage() {
                   sell_price: item.sell_price,
                   img_product: item.img_product,
                 }}
-                onClickHandler={() => {}}
+                onClickHandler={() => { }}
               />
             ))}
             itemWidth={250} // Set the width of each item as needed
@@ -203,17 +223,16 @@ function HomePage() {
         <h2>Idol siêu chất, nổi bần bật</h2>
         <h6>Xem tất cả nghệ sĩ<a href="#"><Arrow /></a></h6>
         <div className="artist">
-        <Row xs={1} md={2} className="g-4">
-          {Array.from({ length: 4 }).map((_, idx) => (
-            <Col key={idx}>
-              <Card>
-                <Card.Body>
-                <ArtistCardItem />
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+          <Row xs={1} md={2} className="g-4">
+            {artist_card_data.map((data, index) => (
+              <Col key={index}>
+                <ArtistCardItem
+                  data={data}
+                  onMoreInfoClick={() => { /* Your click handler logic here */ }}
+                />
+              </Col>
+            ))}
+          </Row>
         </div>
       </div>
     </div>
