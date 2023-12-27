@@ -1,11 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import Blgdata from '../data.jsx';
 import './SinglePost.css';
-import HeaderImg from '../../Blog/img/blog-bg.png';
 import ContentImg from '../img/contentimg.png';
-import { ReactComponent as XIcon } from '../img/X-icon.svg';
-import { ReactComponent as FBIcon } from '../img/FB-icon.svg';
-import { ReactComponent as IGIcon } from '../img/IG-icon.svg';
+import FBicon from '../img/FB-icon.png';
+import IGicon from '../img/IG-icon.png';
+import Xicon from '../img/X-icon.png';
 import { ReactComponent as PreIcon } from '../img/chevron_left.svg';
 import { ReactComponent as NextIcon } from '../img/chevron_right.svg';
 import { ReactComponent as OutIcon } from '../img/arrow_outward.svg';
@@ -15,29 +14,26 @@ export default function SinglePost(){
         <div className="BlgLst">
             <div className="container-fluid text-center">
                 <div className="row">
-                    <div className="col-12 header position-relative">
-                        <img src={HeaderImg} alt="HeaderImg" className="img-fluid" />
-                        <h2 className="title position-absolute top-50 start-50 translate-middle">Bài Viết</h2>
-                    </div>
+                <div className="col-12 header position-relative">
+                    {
+                        Blgdata.BlgBanner.map ((BannerImg) => (
+                        <div>
+                            <img src={BannerImg.Image} className="img-fluid"/>
+                        </div>
+                        ))
+                    }
+                    <h2 className="title position-absolute top-50 start-50 translate-middle">Bài Viết</h2>  
                 </div>
-            </div>
+                </div>
+                </div>
 
             <div className='Postcontent'>
                 <div className='container'>
                 <div className='PostHeader'>
                     <div className='PostTag'style={{ marginBottom: '20px' ,marginTop:'20px'}}>
-                    <div className="row">
-                    <div className="col-12">
-                        <div className="outerTag">
-                        <div className="innerTag" style={{ background: '#D8E2FF' }}>
-                            <div className="textTag">Tin tức</div>
-                        </div>
-                        <div className="innerTag" style={{ background: '#D8E2FF' }}>
-                            <div className="textTag">Thời trang</div>
-                        </div>
-                    </div>
-                    </div>
-                    </div>
+                    <div style={{ display: 'inline-block', marginRight: '10px' }}>Thời trang</div>
+                    <div style={{ display: 'inline-block' }}>Tin tức</div>
+                   
                     </div>
                     <div className='PostTitle'>
                         <h1>Lorem ipsum dolor sit amet</h1>
@@ -87,9 +83,9 @@ export default function SinglePost(){
                 <div className='SharePost' style={{ marginTop: '40px'}}>
                     <div className='spTitle'>Chia sẻ bài viết</div>
                     <div className='spIcon' style={{ marginTop: '20px'}}>
-                        <FBIcon></FBIcon>
-                        <IGIcon></IGIcon>
-                        <XIcon></XIcon>
+                    <img src={FBicon}  className="img-fluid" />
+                    <img src={IGicon}  className="img-fluid" />
+                    <img src={Xicon}  className="img-fluid" />
                     </div>
                 </div>
 
