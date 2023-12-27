@@ -2,7 +2,11 @@ import React from "react";
 import { Carousel, Card, Stack } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const HorizontalPagination = ({ gap, items, itemWidth, itemHeight, padding }) => {
+// Import your custom SVG icons
+import { ReactComponent as CustomNextIcon } from "./icons/arrow_right.svg";
+import { ReactComponent as CustomPrevIcon } from "./icons/arrow_left.svg";
+
+const HorizontalPagination = ({ gap, items, itemWidth, itemHeight, paddingItem }) => {
   const getItemsPerPage = () => {
     // Define the number of items to display based on window width
     const windowWidth = window.innerWidth;
@@ -20,7 +24,10 @@ const HorizontalPagination = ({ gap, items, itemWidth, itemHeight, padding }) =>
   return (
     <Carousel
       interval={null}
-      style={{ height: itemHeight }}
+      indicators={false}
+      style={{ height: itemHeight, margin: `0 -${gap / 2}px` }} // Set negative margin for gap
+      nextIcon={<CustomNextIcon/>} // Use custom SVG for next arrow
+      prevIcon={<CustomPrevIcon/>} // Use custom SVG for prev arrow
     >
       {Array.from({ length: Math.ceil(items.length / itemsPerPage) }).map((_, index) => (
         <Carousel.Item key={index} style={{ height: itemHeight }}>
@@ -32,14 +39,9 @@ const HorizontalPagination = ({ gap, items, itemWidth, itemHeight, padding }) =>
             {items
               .slice(index * itemsPerPage, (index + 1) * itemsPerPage)
               .map((item, i) => (
-                <Card key={i} style={{ width: itemWidth }}>
+                <Card key={i} style={{ width: itemWidth , margin: paddingItem}}>
                   <Card.Body>{item}</Card.Body>
                 </Card>
-              ))}
-            {items
-              .slice(index * itemsPerPage, (index + 1) * itemsPerPage)
-              .map((item, i) => (
-                console.log(item)
               ))}
           </Stack>
         </Carousel.Item>

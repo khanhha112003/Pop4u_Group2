@@ -166,9 +166,9 @@ function HomePage() {
                 onClickHandler={() => {}}
               />
             ))}
-            itemWidth={200} // Set the width of each item as needed
+            itemWidth={250} // Set the width of each item as needed
             itemHeight={550} // Set the height of each item as needed
-            padding={20} // Set the padding as needed
+            paddingItem={20} // Set the padding as needed
           />
         </div>
 
@@ -177,47 +177,24 @@ function HomePage() {
         <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
 
         <div className="product">
-          <div className="row" >
-            <HomepageProductItem
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400.000,
-                  sell_price: 500.000,
-                  img_product: img_product
+          <HorizontalPagination
+            gap={10} // Adjust the gap between items as needed
+            items={jsonData.map((item, index) => (
+              <HomepageProductItem
+                key={index}
+                data={{
+                  product_name: item.product_name,
+                  discount_price: item.discount_price,
+                  sell_price: item.sell_price,
+                  img_product: item.img_product,
                 }}
-              onClickHandler={() => { }} />
-            <HomepageProductItem  // them 1 item hehe ma e nho hoi nay a co gui cai vong for k
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-
-            <HomepageProductItem  // them 1 item hehe ma e nho hoi nay a co gui cai vong for k
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-
-            <HomepageProductItem  // them 1 item hehe ma e nho hoi nay a co gui cai vong for k
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-
-          </div>
+                onClickHandler={() => {}}
+              />
+            ))}
+            itemWidth={250} // Set the width of each item as needed
+            itemHeight={550} // Set the height of each item as needed
+            paddingItem={20} // Set the padding as needed
+          />
         </div>
 
         <h2>Idol siêu chất, nổi bần bật</h2>

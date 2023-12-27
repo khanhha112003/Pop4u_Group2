@@ -4,13 +4,13 @@ import "./HomepageProductItem.css";
 import img_product from './icons/img_product.png'
 import RatingBar from '../RatingBar/RatingBar';
 
-const HomepageProductItem = ({ data, onClickHandler }) => {
+const HomepageProductItem = ({ data, onClickHandler, margin, padding }) => {
     const handleRatingChange = (newRating) => {
         console.log(`Rated: ${newRating}`);
         // You can perform additional actions when the rating changes, e.g., update state or send data to the server.
       };
     return (
-        <div onClick={onClickHandler}>
+        <div onClick={onClickHandler} style={{margin: margin, padding: padding}}>
             <img src={img_product} alt="Product Image" />
             <div style={ {marginTop : "10px"}}>
                 <span className="tag">Mới</span>
