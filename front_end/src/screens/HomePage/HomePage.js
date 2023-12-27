@@ -15,8 +15,61 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 function HomePage() {
-  const [artist, setArtist] = useState([]);
-  const [products, setProduct] = useState(null);
+  const dummy_product = [
+    {
+      product_name: "BTS Photocard",
+      discount_price: 0,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 100,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 0,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 100,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 0,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 10,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 200,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 1,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+  ]
+
+  const dummy_artist = [
+    {
+      artist_name: "BTS",
+      img_artist: "https://i.pinimg.com/originals/6a/6e/9e/6a6e9e0b6b5b9b0b9b0b9b0b9b0b9b0b.jpg",
+    },
+    {
+      artist_name: "BTS",
+      img_artist: "https://i.pinimg.com/originals/6a/6e/9e/6a6e9e0b6b5b9b0b9b0b9b0b9b0b9b0b.jpg",
+    },
+    {
+      artist_name: "BTS",
+      img_artist: "https://i.pinimg.com/originals/6a/6e/9e/6a6e9e0b6b5b9b0b9b0b9b0b9b0b9b0b.jpg",
+    },
+    {
+      artist_name: "BTS",
+      img_artist: "https://i.pinimg.com/originals/6a/6e/9e/6a6e9e0b6b5b9b0b9b0b9b0b9b0b9b0b.jpg",
+    },
+    ]
+  const [artist, setArtist] = useState(dummy_artist);
+  const [products, setProduct] = useState(dummy_product);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
@@ -27,7 +80,7 @@ function HomePage() {
         const result = await response.json();
         setProduct(result);
       } catch (error) {
-        setError(error);
+        // setError(error);
       } finally {
         setLoading(false);
       }
@@ -160,8 +213,10 @@ function HomePage() {
                   discount_price: item.discount_price,
                   sell_price: item.sell_price,
                   img_product: item.img_product,
+                  numOfRating: item.numOfRating,
+                  rating: item.rating,
                 }}
-                onClickHandler={() => { }}
+                onClickHandler={() => { console.log("click") }}
               />
             ))}
             itemWidth={250} // Set the width of each item as needed

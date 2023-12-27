@@ -26,8 +26,8 @@ const HorizontalPagination = ({ gap, items, itemWidth, itemHeight, paddingItem }
       interval={null}
       indicators={false}
       style={{ height: itemHeight, margin: `0 -${gap / 2}px` }} // Set negative margin for gap
-      nextIcon={<CustomNextIcon/>} // Use custom SVG for next arrow
-      prevIcon={<CustomPrevIcon/>} // Use custom SVG for prev arrow
+      nextIcon={<CustomNextIcon />} // Use custom SVG for next arrow
+      prevIcon={<CustomPrevIcon />} // Use custom SVG for prev arrow
     >
       {Array.from({ length: Math.ceil(items.length / itemsPerPage) }).map((_, index) => (
         <Carousel.Item key={index} style={{ height: itemHeight }}>
@@ -39,8 +39,10 @@ const HorizontalPagination = ({ gap, items, itemWidth, itemHeight, paddingItem }
             {items
               .slice(index * itemsPerPage, (index + 1) * itemsPerPage)
               .map((item, i) => (
-                <Card key={i} style={{ width: itemWidth , margin: paddingItem}}>
-                  <Card.Body>{item}</Card.Body>
+                <Card key={i} style={{ width: itemWidth, margin: paddingItem, padding: 0 }}>
+                  <Card.Body style={{padding: 0}}>
+                    {item}
+                  </Card.Body>
                 </Card>
               ))}
           </Stack>

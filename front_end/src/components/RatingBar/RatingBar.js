@@ -3,8 +3,8 @@ import { ReactComponent as ActiveStar } from './icons/icon_star.svg';
 import { ReactComponent as InactiveStar } from './icons/icon_inactive_star.svg';
 import { ReactComponent as HalfStar } from './icons/icon_half_star.svg';
 
-const RatingBar = ({ rating, isDisabled, onChangeValue }) => {
-  const [currentRating, setRating] = useState(rating);
+const RatingBar = ({ data, isDisabled, onChangeValue }) => {
+  const [currentRating, setRating] = useState(data.rating);
 
   const handleStarClick = (starIndex) => {
     if (!isDisabled) {
@@ -21,7 +21,7 @@ const RatingBar = ({ rating, isDisabled, onChangeValue }) => {
 
   const renderStars = () => {
     const stars = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < currentRating; i++) {
       const isFull = i + 1 <= currentRating;
       const isHalf = i < currentRating && i + 1 > currentRating;
 
@@ -31,7 +31,7 @@ const RatingBar = ({ rating, isDisabled, onChangeValue }) => {
           onClick={() => handleStarClick(i)}
           onMouseEnter={() => handleStarHover(i)}
           style={{
-            cursor: isDisabled ? 'not-allowed' : 'pointer',
+            cursor: isDisabled ? '' : 'pointer',
             display: 'inline-block',
             fontSize: '24px', // Adjust the size as needed
             margin: '0 5px', // Add margin between stars
@@ -41,6 +41,20 @@ const RatingBar = ({ rating, isDisabled, onChangeValue }) => {
           {isFull ? <ActiveStar /> : isHalf ? <HalfStar /> : <InactiveStar />}
         </span>
       );
+    }
+    if (data.numOfRating > 0) {
+      stars.push(
+        <span
+          key={5}
+          style={{
+            color: '#6c757d',
+            fontSize: '12px',
+            margin: '0 5px',
+          }}
+        >
+          {data.numOfRating} +
+        </span>
+      )
     }
     return stars;
   };
