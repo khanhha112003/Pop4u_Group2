@@ -1,7 +1,7 @@
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 // import { HomePage } from './screens/HomePage/HomePage';
-import SinglePost from './screens/Blog/SinglePost/SinglePost';
+// import SinglePost from './screens/Blog/SinglePost/SinglePost';
 // import BlgFilter from './screens/Blog/BlgFilter/BlgFilter'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div className="App">
        <Navbar></Navbar>
         {/* <HomePage></HomePage> */}
-        <SinglePost></SinglePost>
+        {/* <SinglePost></SinglePost> */}
         {/* <BlgFilter></BlgFilter> */}
       <Footer></Footer>
     </div>
