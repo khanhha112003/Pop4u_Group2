@@ -20,7 +20,7 @@ const HomepageProductItem = ({ data, onClickHandler }) => {
                         </a>
                     </h4>
                 </div>
-                <Star /> <Star /> <Star /> <Star /> <Star />
+                <Star /> <Star /> <Star /> <Star /> <Star /> (12)
                 <div className="product-box-price d-flex align-items-center">
                     {data.discount_price !== 0 && (
                         <div className="price-sale">
