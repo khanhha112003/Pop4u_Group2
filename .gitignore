@@ -6,3 +6,5 @@ node_modules
 # production
 build
 back_end/app/.env
+__pycache__
+env
