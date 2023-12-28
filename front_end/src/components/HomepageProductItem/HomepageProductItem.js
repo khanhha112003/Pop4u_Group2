@@ -7,12 +7,12 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 const HomepageProductItem = ({ data, onClickHandler, margin, padding }) => {
     const price_element = data.discount_price !== 0 ? (
-        <>
+        <div style={{display: 'flex',flexDirection: 'row'}}>
             <div className="price-sale">
                 <span className="price-inner">{data.discount_price}</span>
             </div>
             <del className="price-del">{data.sell_price}</del>
-        </>
+        </div>
     ) : (
         <div className="price-sale">
             <span className="price-inner">{data.sell_price}</span>
@@ -49,7 +49,6 @@ const HomepageProductItem = ({ data, onClickHandler, margin, padding }) => {
                                 rating: data.rating,
                                 numOfRating: data.numOfRating
                             }
-                        
                         }
                          />
                 </ListGroup.Item>

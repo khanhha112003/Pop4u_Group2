@@ -21,10 +21,16 @@ const RatingBar = ({ data, isDisabled, onChangeValue }) => {
 
   const renderStars = () => {
     const stars = [];
-    for (let i = 0; i < currentRating; i++) {
-      const isFull = i + 1 <= currentRating;
-      const isHalf = i < currentRating && i + 1 > currentRating;
-
+    for (let i = 0; i < 5; i++) {
+      var isFull = false;
+      var isHalf = false;
+      if (i + 1 > currentRating && i < currentRating) {
+        isFull = false;
+        isHalf = true;
+      } else if (i + 1 < currentRating) {
+        isFull = true;
+        isHalf = false;
+      }
       stars.push(
         <span
           key={i}

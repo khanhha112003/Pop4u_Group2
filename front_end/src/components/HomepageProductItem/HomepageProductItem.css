@@ -65,3 +65,18 @@ h4 {
     font-size: 20px !important;
   }
 }
+
+.price-del {
+  text-decoration: line-through;
+  text-align: center;
+  padding: 2px 5px;
+  margin: 0 5px;
+  height: 100%;
+}
+
+.price-inner {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
