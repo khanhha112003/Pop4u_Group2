@@ -49,11 +49,22 @@ h2,h6 {
 }
 .col-md-3 {
   flex: 1;
-  margin: 1px;
+  margin: 20px;
   text-align: left;
-  width: 50%;
+  width: 100%;
 }
 
 .product-box-title{
-  width: 80%;
+  width: 100%;
+  
+}
+
+
+/* Optionally, you can add some styling to the items within the row */
+.product > * {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent line breaks for inline elements */
+  height: 494px;
+  margin-right: 10px; /* Add margin between items for spacing */
 }
