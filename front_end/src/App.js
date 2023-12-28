@@ -5,7 +5,8 @@ import { ArtistList }  from './screens/Artist/Artist';
 import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
-import {ProductDetail} from './screens/ProductDetail.js'
+import {ProductDetail} from './screens/ProductDetail.js';
+import { Payment } from './screens/Payment/Payment.js';
 
 // import { HomePage } from './screens/HomePage'
 
@@ -13,12 +14,13 @@ function App() {
   return (
     <div className="App">
       <Navbar></Navbar>
-      <AboutUs></AboutUs>
-      {/* <ArtistList></ArtistList> */}
+      {/* <AboutUs></AboutUs> */}
+      <ArtistList></ArtistList>
       {/* <SignIn></SignIn> */}
       {/* <SignUp></SignUp> */}
-      <HomePage></HomePage>
-      <ProductDetail></ProductDetail>
+      {/* <HomePage></HomePage> */}
+      {/* <ProductDetail></ProductDetail> */}
+      <Payment></Payment>
       <Footer></Footer>
     </div>
   );

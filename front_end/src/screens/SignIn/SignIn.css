@@ -8,6 +8,7 @@ body{
     margin-bottom: 5em;
     margin-top: 3em;
     text-align: center;
+    color: var(--color-primary-light);
 }
 
 .sign-in-title h5, .sign-in-title .body-small {

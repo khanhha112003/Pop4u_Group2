@@ -31,7 +31,7 @@ function ProductDetailComponent () {
       setIndex(selectedIndex);
     };
   
-    const [option, setOption] = useState('Main');
+  const [option, setOption] = useState('Main');
   const [index, setIndex] = useState(0);
   const [activeVersion, setActiveVersion] = useState(option); // Track active version
 

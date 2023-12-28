@@ -1,0 +1,86 @@
+@import url(../../theme/theme.css);
+
+.payment-info, .payment-amount {
+    padding: 3em;
+    border-radius: 2em;
+}
+
+.payment-amount {
+    border: 0.15em solid var(--color-tertiary-light);
+}
+
+.payment-info {
+    border: 0.15em solid var(--color-primary-light);
+}
+.button-back a .icon-back {
+    margin-right: 1em;
+}
+
+.button-back a span {
+    line-height: 0.75;
+    margin: 0; /* Đưa cả khoảng cách trên và dưới về 0 */
+
+}
+
+.payment-title {
+    margin-bottom: 5em;
+    margin-top: 3em;
+    text-align: center;
+}
+
+.payment-title .head4 {
+    color: var(--color-primary-light);
+    text-align: center;
+}
+
+.payment-field {
+    padding-left: 3.5em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-right: 2em;
+    border: 0.1em solid var(--color-surface-tint-light);
+    border-radius: 1em;
+    outline: none; 
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+    color: var( --color-on-surface-variant-light);
+    height: 3.5em;
+}
+
+.shippping-address {
+    margin-bottom: 2em;
+}
+
+.shippping-address h6, .payment-method h6, .payment-amount h6{
+    text-align: left;
+    margin-bottom: 1.25em;
+    padding-left: 0.25em;
+    color: var(--color-primary-light);
+}
+
+.payment-method label {
+    margin-bottom: 2em;
+}
+
+.payment-method label span {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.payment-method label span:hover {
+    color: var(--color-primary-light);
+}
+
+.payment-method-icon {
+    width: 2em;
+    
+}
+
+input[type="radio"] {
+    transform: scale(1.5);
+    color: var(--color-on-primary-fixed-light);
+}
+
+input[type="radio"]:checked {
+    color: #e74c3c; /* Màu sắc của radio button khi được chọn */
+  }
+  
