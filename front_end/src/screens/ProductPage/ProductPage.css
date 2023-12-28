@@ -1,0 +1,152 @@
+@import url(../../theme/theme.css);
+
+.container {
+    background-size: cover;
+    max-width: 100%;
+    height: auto;
+}
+.tag {
+    border-radius: 10px;
+    padding: 2px 5px;
+    background: #D8E2FF;
+    margin-right: 10px;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 20rem;
+    margin-top: 2rem;
+    z-index: -2;
+  }
+    .card {
+    margin: 20px;
+    border: 2px solid #ededed;
+    padding: 20px;
+    cursor: pointer;
+    }
+    .card-details {
+        width: 13rem;
+    }
+    .card-img {
+        width: 13rem;
+        margin-bottom: 1rem;
+    }
+    .card-title {
+        margin-bottom:  1rem;
+    }
+    .card-reviews {
+        margin-bottom:  1rem;
+        display: flex;
+    }
+    .rating-start {
+        color: #d5ab55;
+
+    }
+
+    .rating {
+        font-size: 0.9 rem;
+        margin-left: 10px;
+    }
+    .product-box-price {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .product-box-price .price-inner {
+        font-weight: bold;
+        margin-right: 10px;
+      }
+    .product-box-price .price-del {
+        color: #888; 
+      }
+    .filtering {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-top: 12px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+
+    .checkmark {
+        font-size: 20px;
+    }
+    .mycheckbox {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #333;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 8px;
+    }
+    .sidebar-title {
+        font-size: 22px;
+        font-weight: strong;
+        margin-bottom: 20px;
+    }
+    
+    /* Style Card */
+    
+    .tag {
+        border-radius: 10px;
+        padding: 2px 5px;
+        background: #D8E2FF;
+        margin-right: 10px;
+    }
+
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 20rem;
+        margin-top: 2rem;
+        z-index: -2;
+    }
+        .card {
+        margin: 20px;
+        border: 2px solid #ededed;
+        padding: 20px;
+        cursor: pointer;
+        }
+        .card-details {
+            width: 13rem;
+        }
+        .card-img {
+            width: 13rem;
+            margin-bottom: 1rem;
+        }
+        .card-title {
+            margin-bottom:  1rem;
+        }
+        .card-reviews {
+            margin-bottom:  1rem;
+            display: flex;
+        }
+        .rating-start {
+            color: #d5ab55;
+
+        }
+
+        .rating {
+            font-size: 0.9 rem;
+            margin-left: 10px;
+        }
+        .product-box-price {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .product-box-price .price-inner {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .product-box-price .price-del {
+            color: #888; 
+        }
+        
+
+        
