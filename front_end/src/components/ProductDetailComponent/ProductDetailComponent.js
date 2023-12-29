@@ -243,21 +243,21 @@ function ProductDetailComponent() {
                 </div>
                 <del className="price-del">500.000₫</del>
               </div>
-              </div>
             </div>
+          </div>
 
-            <div className="col-md-3 product_1">
-              <img src={img_product} alt="Product Image" />
-                <div>
-                  <span className="tag">Mới</span>
-                  <span className="tag">Freeship</span>
-                <div className="product-box-title">
-                  <h4>
-                    <a href="" title="j-hope (BTS) 'Jack In The Box' (HOPE Edition)">
-                      j-hope (BTS) 'Jack In The Box' (HOPE Edition)
-                    </a>
-                  </h4>
-                </div>
+          <div className="col-md-3 product_1">
+            <img src={img_product} alt="Product Image" />
+            <div>
+              <span className="tag">Mới</span>
+              <span className="tag">Freeship</span>
+              <div className="product-box-title">
+                <h4>
+                  <a href="" title="j-hope (BTS) 'Jack In The Box' (HOPE Edition)">
+                    j-hope (BTS) 'Jack In The Box' (HOPE Edition)
+                  </a>
+                </h4>
+              </div>
               <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> (12)
               <div className="product-box-price d-flex align-items-center">
                 <div className="price-sale">
