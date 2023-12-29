@@ -8,6 +8,8 @@ import { HomePage } from './screens/HomePage/HomePage';
 import { ProductDetail } from './screens/ProductDetail';
 // import { ProductDetail } from './screens/ProductDetail'
 // import { Cart } from './screens/Cart'
+import { ProductListAdmin } from './screens/Admin/Product/ProductListAdmin'
+import { AddProduct } from './screens/Admin/Product/AddProduct';
 function App() {
   return (
     <div className="App">
@@ -18,8 +20,10 @@ function App() {
       {/* <SignUp></SignUp> */}
       {/* <HomePage></HomePage> */}
       {/* <ProductDetail></ProductDetail> */}
-       <ProductDetail></ProductDetail>
+       {/* <ProductDetail></ProductDetail> */}
        {/* <Cart></Cart> */}
+       <ProductListAdmin></ProductListAdmin>
+       {/* <AddProduct></AddProduct> */}
     </div>
   );
 }
