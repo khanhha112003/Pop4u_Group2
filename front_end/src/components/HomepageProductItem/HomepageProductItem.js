@@ -1,36 +1,66 @@
 import React from 'react';
 import "react-bootstrap"
 import "./HomepageProductItem.css";
-import img_product from './icons/img_product.png'
 import RatingBar from '../RatingBar/RatingBar';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 
-const HomepageProductItem = ({ data, onClickHandler }) => {
-    const handleRatingChange = (newRating) => {
-        console.log(`Rated: ${newRating}`);
-        // You can perform additional actions when the rating changes, e.g., update state or send data to the server.
-      };
-    return (
-        <div onClick={onClickHandler}>
-            <img src={img_product} alt="Product Image" />
-            <div style={ {marginTop : "10px"}}>
-                <span className="tag">Mới</span>
-                <span className="tag">Freeship</span>
-                <div className="product-box-title">
-                    <h4 className="product-name">
-                    {data.product_name}
-                    </h4>
-                </div>
-                <RatingBar isDisabled={false} rating={3} rateAction={handleRatingChange} />
-                <div className="product-box-price d-flex align-items-center">
-                    {data.discount_price !== 0 && (
-                        <div className="price-sale">
-                            <span className="price-inner">{data.discount_price}</span>
-                        </div>
-                    )}
-                    <del className="price-del">{data.sell_price}</del>
-                </div>
+import { Link } from 'react-router-dom'
+
+const HomepageProductItem = ({ data, margin, padding }) => {
+    const price_element = data.discount_price !== 0 ? (
+        <div style={{display: 'flex',flexDirection: 'row'}}>
+            <div className="price-sale">
+                <span className="price-inner">{data.discount_price}</span>
             </div>
+            <del className="price-del">{data.sell_price}</del>
         </div>
+    ) : (
+        <div className="price-sale">
+            <span className="price-inner">{data.sell_price}</span>
+        </div>
+    );
+    const speical_tag = ["Mới", "Freeship"]
+    // const special_tag = data.special_tag.length > 0 ? (
+    const special_tag_element = speical_tag.length > 0 ? (
+        speical_tag.map((item, index) => (
+            <span key={index} className="tag">{item}</span>
+        ))
+    ) : (
+        <></>
+    );
+
+    return (
+        <Link to="/product_detail" style={{ width: '100%', height: '100%', cursor: 'pointer' }}>
+        <Card style={{ width: '100%', height: '100%'}}>
+            <Card.Img variant="top" src={data.img_product} />
+            <Card.Body className='product_title'>
+                <Card.Title>
+                    {data.product_name}
+                </Card.Title>
+            </Card.Body>
+            <ListGroup style={{border: 0}}>
+                <ListGroup.Item style={{border: 0}}>
+                    {special_tag_element}
+                </ListGroup.Item>
+                <ListGroup.Item style={{border: 0}}>
+                    <RatingBar 
+                        isDisabled={true}  
+                        numOfRating={data.numOfRating}
+                        data={
+                            {
+                                rating: data.rating,
+                                numOfRating: data.numOfRating
+                            }
+                        }
+                         />
+                </ListGroup.Item>
+            </ListGroup>
+            <Card.Body>
+                {price_element}
+            </Card.Body>
+        </Card>
+        </Link>
     );
 };
 
