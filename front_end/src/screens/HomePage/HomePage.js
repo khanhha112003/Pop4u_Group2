@@ -50,6 +50,38 @@ function HomePage() {
       numOfRating: 1,
       img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
     },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 200,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 1,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 200,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 1,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 200,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 1,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 200,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 1,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
   ]
 
   const dummy_artist = [
@@ -82,7 +114,7 @@ function HomePage() {
         const result = await response.json();
         setProduct(result);
       } catch (error) {
-        setError(error);
+        // setError(error);
       } finally {
         setLoading(false);
       }
