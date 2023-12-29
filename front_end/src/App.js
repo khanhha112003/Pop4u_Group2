@@ -22,7 +22,7 @@ function App() {
       {/* <ProductDetail></ProductDetail> */}
        {/* <ProductDetail></ProductDetail> */}
        {/* <Cart></Cart> */}
-       <ProductListAdmin></ProductListAdmin>
+       {/* <ProductListAdmin></ProductListAdmin> */}
        {/* <AddProduct></AddProduct> */}
     </div>
   );
