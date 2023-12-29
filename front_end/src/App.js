@@ -5,6 +5,28 @@ import { ArtistList } from './screens/Artist/Artist';
 import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
+<<<<<<< HEAD
+import { ProductDetail } from './screens/ProductDetail';
+// import { ProductDetail } from './screens/ProductDetail'
+// import { Cart } from './screens/Cart'
+import { ProductListAdmin } from './screens/Admin/Product/ProductListAdmin'
+import { AddProduct } from './screens/Admin/Product/AddProduct';
+function App() {
+  return (
+    <div className="App">
+      <Navbar></Navbar>
+      {/* <AboutUs></AboutUs> */}
+      {/* <ArtistList></ArtistList> */}
+      {/* <SignIn></SignIn> */}
+      {/* <SignUp></SignUp> */}
+      {/* <HomePage></HomePage> */}
+      {/* <ProductDetail></ProductDetail> */}
+       {/* <ProductDetail></ProductDetail> */}
+       {/* <Cart></Cart> */}
+       {/* <ProductListAdmin></ProductListAdmin> */}
+       {/* <AddProduct></AddProduct> */}
+    </div>
+=======
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import {
   BrowserRouter as Router,
@@ -29,6 +51,7 @@ function App() {
       </div>
     </Router>
 
+>>>>>>> main
   );
 }
 

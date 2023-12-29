@@ -1,0 +1,12 @@
+@import url(../../../theme/theme.css); 
+.section-frame {
+    flex: 0 0 30%;
+    padding: 20px;
+    border-radius: 40px;
+    border: 1px solid var(--theme-secondary3, #11448F);
+  }
+
+  .margin {
+    margin: 10px;
+  }
+
