@@ -18,7 +18,6 @@
 a {
     text-decoration: none;
     color: var(--color-on-background-light);
-
 }
 
 a :hover {
@@ -41,4 +40,3 @@ a :active {
 .nav-list-icons ul li :last-child {
     margin-left: 0;
 }
-
