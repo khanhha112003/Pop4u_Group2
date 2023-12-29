@@ -65,6 +65,12 @@ a :active {
     text-align: right;
 }
 
+@media (max-width: 768px) {
+    .copy-right {
+        text-align: left;
+    }
+}
+
 .footer-line {
     margin-bottom: 20px;
 }
@@ -76,4 +82,5 @@ a :active {
 .footer-list-social-icon {
     padding-bottom: 24px;
 }
+
 

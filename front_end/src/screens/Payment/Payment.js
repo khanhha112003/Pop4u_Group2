@@ -7,6 +7,8 @@ import {ReactComponent as CreditCard} from '../Payment/images/credit_card.svg'
 import {ReactComponent as COD} from '../Payment/images/local_shipping.svg'
 import {ReactComponent as Momo} from '../Payment/images/momo_icon_square_pinkbg.svg'
 
+import AnhSanPham from '../../theme/images/Blackpink-The_Album.png'
+
 
 
 function Payment() {
@@ -40,9 +42,9 @@ function Payment() {
                     <div className='payment-info'>
                         <div className='shippping-address'>
                             <h6 className='head6'>Địa chỉ giao hàng</h6>
-                            <div className='sign-in-input text-center'>
+                            <div className='payment-input text-center'>
                                 <input
-                                className='body-small sign-in-field'
+                                className='body-small payment-field'
                                 type="text"
                                 id="name"
                                 // value={username}
@@ -51,9 +53,9 @@ function Payment() {
                                 // onChange={handleUsername}
                                 />
                             </div>
-                            <div className='sign-in-input text-center'>
+                            <div className='payment-input text-center'>
                                 <input
-                                className='body-small sign-in-field'
+                                className='body-small payment-field'
                                 type="text"
                                 id="email"
                                 // value={username}
@@ -62,9 +64,9 @@ function Payment() {
                                 // onChange={handleUsername}
                                 />
                             </div>
-                            <div className='sign-in-input text-center'>
+                            <div className='payment-input text-center'>
                                 <input
-                                className='body-small sign-in-field'
+                                className='body-small payment-field'
                                 type="text"
                                 id="phone"
                                 // value={username}
@@ -73,7 +75,8 @@ function Payment() {
                                 // onChange={handleUsername}
                                 />
                             </div>
-                            <div className='sign-in-input text-center'>
+                            <div className='address-input'>
+                            <div className='payment-input text-center'>
                                 <select id='province' className='body-small payment-field' placeholder='Tỉnh/ Thành phố'> 
                                     <option value="" disabled hidden>Tỉnh/ Thành phố</option>
                                     <option value="option1">Option 1</option>
@@ -81,7 +84,7 @@ function Payment() {
                                     <option value="option3">Option 3</option>
                                 </select>
                             </div>
-                            <div className='sign-in-input text-center'>
+                            <div className='payment-input text-center'>
                                 <select id='district' className='body-small payment-field'> 
                                     <option value="">Quận/ Huyện</option>
                                     <option value="option1">Option 1</option>
@@ -89,17 +92,18 @@ function Payment() {
                                     <option value="option3">Option 3</option>
                                 </select>
                             </div>
-                            <div className='sign-in-input text-center'>
-                                <select id='district' className='body-small payment-field'> 
+                            <div className='payment-input text-center'>
+                                <select id='ward' className='body-small payment-field'> 
                                     <option value="">Phường/ Xã</option>
                                     <option value="option1">Option 1</option>
                                     <option value="option2">Option 2</option>
                                     <option value="option3">Option 3</option>
                                 </select>
                             </div>
-                            <div className='sign-in-input text-center'>
+                            </div>
+                            <div className='payment-input text-center'>
                                 <input
-                                className='body-small sign-in-field'
+                                className='body-small payment-field'
                                 type="text"
                                 id="detail-address"
                                 // value={username}
@@ -108,7 +112,6 @@ function Payment() {
                                 // onChange={handleUsername}
                                 />
                             </div>
-
                         </div>
                         <div className='payment-method'>
                             <h6 className='head6'>Phương thức thanh toán</h6>
@@ -149,7 +152,50 @@ function Payment() {
                 <div className='col-xs-12 col-sm-12 col-md-12 col-xl-5 col-lg-5'>
                     <div className='payment-amount'>
                         <h6 className='head6'>Đơn hàng của bạn</h6>
+                        <div className='payment-product-list'>
+                            <div className='sub-title d-flex justify-content-between'>
+                                <span className='body-medium'>Sản phẩm</span>
+                                <span className='body-medium product-total'>Tổng cộng</span>
+                            </div>
+                            <div className='payment-product'>
+                                <div className='product-pic'>
+                                    <img src={AnhSanPham} alt=''/>
+                                </div>
+                                <div className='product-des'>
+                                    <p className='body-medium'>j-hope (BTS) 'Jack In The Box' (HOPE Edition)</p>
+                                    <p className='body-small'>Số lượng: × <span></span></p>
+                                    <div className='product-option'>
+                                        <p className='label-m'>Đen</p>                        
+                                    </div>
+                                    <p className='product-price'>
+                                        <span className='price'>500.000</span>
+                                        <span className='old-price'>550.000</span>
+                                    </p>
+                                </div>
+                                <div className='product-total'>
+                                    <p className='price'>500.000đ</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='total-amount'>
+                            <div className='total-price d-flex justify-content-between'>
+                                <span className='body-medium'>Tổng tiền sản phẩm</span>
+                                <span className='price'>500.000đ</span>
+                            </div>
+                            <div className='total-discount d-flex justify-content-between'>
+                                <span className='body-medium'>Giảm giá</span>
+                                <span className='price'>20.000đ</span>
+                            </div>
+                            <div className='total-shipping d-flex justify-content-between'>
+                                <span className='body-medium'>Phí vận chuyển</span>
+                                <span className='price'>20.000đ</span>
+                            </div>
+                        </div>
+                        <div className='total-bill d-flex justify-content-between'>
+                            <span className='body-medium'>Số tiền thanh toán </span>
+                            <span className='price'>20.000đ</span>
 
+                        </div>
                     </div>
                 </div>
             </div>
