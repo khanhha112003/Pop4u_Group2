@@ -5,7 +5,9 @@ import RatingBar from '../RatingBar/RatingBar';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-const HomepageProductItem = ({ data, onClickHandler, margin, padding }) => {
+import { Link } from 'react-router-dom'
+
+const HomepageProductItem = ({ data, margin, padding }) => {
     const price_element = data.discount_price !== 0 ? (
         <div style={{display: 'flex',flexDirection: 'row'}}>
             <div className="price-sale">
@@ -29,7 +31,8 @@ const HomepageProductItem = ({ data, onClickHandler, margin, padding }) => {
     );
 
     return (
-        <Card style={{ width: '100%', height: '100%', cursor: 'pointer' }} onClick={onClickHandler}>
+        <Link to="/product_detail" style={{ width: '100%', height: '100%', cursor: 'pointer' }}>
+        <Card style={{ width: '100%', height: '100%'}}>
             <Card.Img variant="top" src={data.img_product} />
             <Card.Body className='product_title'>
                 <Card.Title>
@@ -57,6 +60,7 @@ const HomepageProductItem = ({ data, onClickHandler, margin, padding }) => {
                 {price_element}
             </Card.Body>
         </Card>
+        </Link>
     );
 };
 

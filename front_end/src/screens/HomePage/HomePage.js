@@ -216,7 +216,6 @@ function HomePage() {
                   numOfRating: item.numOfRating,
                   rating: item.rating,
                 }}
-                onClickHandler={() => { console.log("click") }}
               />
             ))}
             itemWidth={250} // Set the width of each item as needed
@@ -241,7 +240,6 @@ function HomePage() {
                   sell_price: item.sell_price,
                   img_product: item.img_product,
                 }}
-                onClickHandler={() => { }}
               />
             ))}
             itemWidth={250} // Set the width of each item as needed

@@ -5,15 +5,13 @@ import { ArtistList } from './screens/Artist/Artist';
 import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
-import { ProductDetail } from './screens/ProductDetail';
+import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useParams
 } from "react-router-dom";
-// import { ProductDetail } from './screens/ProductDetail'
-// import { Cart } from './screens/Cart'
 function App() {
   return (
     <Router>
@@ -25,7 +23,7 @@ function App() {
           <Route path="/artists" element={<ArtistList />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signun" element={<SignUp />} />
-          {/* <Route path="/products" children={<ProductDetail />} /> */}
+          <Route path="/product_detail" element={<ProductDetail />} />
         </Routes>
         <Footer/>
       </div>
