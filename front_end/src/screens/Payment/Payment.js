@@ -75,10 +75,10 @@ function Payment() {
                                 // onChange={handleUsername}
                                 />
                             </div>
-                            <div className='address-input'>
+                        <div className='address-input'>
                             <div className='payment-input text-center'>
                                 <select id='province' className='body-small payment-field' placeholder='Tỉnh/ Thành phố'> 
-                                    <option value="" disabled hidden>Tỉnh/ Thành phố</option>
+                                    <option value="" disabled>Tỉnh/ Thành phố</option>
                                     <option value="option1">Option 1</option>
                                     <option value="option2">Option 2</option>
                                     <option value="option3">Option 3</option>
@@ -86,7 +86,7 @@ function Payment() {
                             </div>
                             <div className='payment-input text-center'>
                                 <select id='district' className='body-small payment-field'> 
-                                    <option value="">Quận/ Huyện</option>
+                                    <option value="" disabled>Quận/ Huyện</option>
                                     <option value="option1">Option 1</option>
                                     <option value="option2">Option 2</option>
                                     <option value="option3">Option 3</option>
@@ -94,25 +94,37 @@ function Payment() {
                             </div>
                             <div className='payment-input text-center'>
                                 <select id='ward' className='body-small payment-field'> 
-                                    <option value="">Phường/ Xã</option>
+                                    <option value="" disabled>Phường/ Xã</option>
                                     <option value="option1">Option 1</option>
                                     <option value="option2">Option 2</option>
                                     <option value="option3">Option 3</option>
                                 </select>
                             </div>
-                            </div>
-                            <div className='payment-input text-center'>
-                                <input
-                                className='body-small payment-field'
-                                type="text"
-                                id="detail-address"
-                                // value={username}
-                                placeholder="Số nhà, tên đường"
-                                required
-                                // onChange={handleUsername}
-                                />
-                            </div>
                         </div>
+                        <div className='payment-input text-center'>
+                            <input
+                            className='body-small payment-field'
+                            type="text"
+                            id="detail-address"
+                            // value={username}
+                            placeholder="Số nhà, tên đường"
+                            required
+                            // onChange={handleUsername}
+                            />
+                        </div>
+                        <div className='payment-input text-center'>
+                            <input
+                            className='body-small payment-field'
+                            type="text"
+                            id="note"
+                            // value={username}
+                            placeholder="Ghi chú..."
+                            required
+                            // onChange={handleUsername}
+                            />
+                        </div>
+
+                    </div>
                         <div className='payment-method'>
                             <h6 className='head6'>Phương thức thanh toán</h6>
                             <label>

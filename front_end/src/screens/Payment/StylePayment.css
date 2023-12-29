@@ -110,6 +110,12 @@ body{
 
 }
 
+#note {
+    height: 7.5em;
+    background: transparent url("../../theme/images/add_notes.svg") no-repeat 1em;
+
+}
+
 @media (max-width: 992px) {
     #province, #district, #ward {
         width: 100%;
