@@ -1,4 +1,3 @@
-import { Button } from "bootstrap";
 import "./HomePage.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ReactComponent as Music } from './icons/icon_album.svg';
@@ -7,14 +6,97 @@ import { ReactComponent as Vinyl } from './icons/icon_vinyl.svg';
 import { ReactComponent as Photobook } from './icons/icon_photobook.svg';
 import { ReactComponent as Lightstick } from './icons/icon_lightstick.svg';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
-import img_product from './icons/img_product.png'
-import img_blackpink from './icons/img_blackpink.png'
-import logo_blackpink from './icons/logo_blackpink.png'
-import icon_bestprice from './icons/icon_bestprice.png'
+
+import React, { useState, useEffect } from 'react';
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
+import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
+import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 function HomePage() {
-  // const buttonRef = useRef(null);
+  const dummy_product = [
+    {
+      product_name: "BTS Photocard",
+      discount_price: 0,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 100,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 0,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 100,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 0,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 10,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 200,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 1,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+  ]
+
+  const dummy_artist = [
+    {
+      artist_name: "BTS",
+      img_artist: "https://i.pinimg.com/originals/6a/6e/9e/6a6e9e0b6b5b9b0b9b0b9b0b9b0b9b0b.jpg",
+    },
+    {
+      artist_name: "BTS",
+      img_artist: "https://i.pinimg.com/originals/6a/6e/9e/6a6e9e0b6b5b9b0b9b0b9b0b9b0b9b0b.jpg",
+    },
+    {
+      artist_name: "BTS",
+      img_artist: "https://i.pinimg.com/originals/6a/6e/9e/6a6e9e0b6b5b9b0b9b0b9b0b9b0b9b0b.jpg",
+    },
+    {
+      artist_name: "BTS",
+      img_artist: "https://i.pinimg.com/originals/6a/6e/9e/6a6e9e0b6b5b9b0b9b0b9b0b9b0b9b0b.jpg",
+    },
+    ]
+  const [artist, setArtist] = useState(dummy_artist);
+  const [products, setProduct] = useState(dummy_product);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/test_product');
+        const result = await response.json();
+        setProduct(result);
+      } catch (error) {
+        // setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []); // The empty array ensures that this effect runs only once, like componentDidMount
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
   return (
     <div className="App">
       <h2>Danh mục sản phẩm</h2>
@@ -121,46 +203,25 @@ function HomePage() {
         <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
 
         <div className="product">
-          <div className="row">
-            <HomepageProductItem
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
+          <HorizontalPagination
+            gap={10} // Adjust the gap between items as needed
+            items={products.map((item, index) => (
+              <HomepageProductItem
+                key={index}
+                data={{
+                  product_name: item.product_name,
+                  discount_price: item.discount_price,
+                  sell_price: item.sell_price,
+                  img_product: item.img_product,
+                  numOfRating: item.numOfRating,
+                  rating: item.rating,
                 }}
-              onClickHandler={() => { }} />
-            <HomepageProductItem
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-
-            <HomepageProductItem
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-
-            <HomepageProductItem
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-          </div>
+              />
+            ))}
+            itemWidth={250} // Set the width of each item as needed
+            itemHeight={550} // Set the height of each item as needed
+            paddingItem={20} // Set the padding as needed
+          />
         </div>
 
 
@@ -168,91 +229,38 @@ function HomePage() {
         <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
 
         <div className="product">
-          <div className="row" >
-            <HomepageProductItem
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
+          <HorizontalPagination
+            gap={10} // Adjust the gap between items as needed
+            items={products.map((item, index) => (
+              <HomepageProductItem
+                key={index}
+                data={{
+                  product_name: item.product_name,
+                  discount_price: item.discount_price,
+                  sell_price: item.sell_price,
+                  img_product: item.img_product,
                 }}
-              onClickHandler={() => { }} />
-            <HomepageProductItem
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-
-            <HomepageProductItem  // them 1 item hehe ma e nho hoi nay a co gui cai vong for k
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-
-            <HomepageProductItem  // them 1 item hehe ma e nho hoi nay a co gui cai vong for k
-              data={
-                {
-                  product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
-                  discount_price: 400000,
-                  sell_price: 500000,
-                  img_product: img_product
-                }}
-              onClickHandler={() => { }} />
-
-          </div>
+              />
+            ))}
+            itemWidth={250} // Set the width of each item as needed
+            itemHeight={550} // Set the height of each item as needed
+            paddingItem={20} // Set the padding as needed
+          />
         </div>
 
         <h2>Idol siêu chất, nổi bần bật</h2>
         <h6>Xem tất cả nghệ sĩ<a href="#"><Arrow /></a></h6>
         <div className="artist">
-          <div className="row">
-            <div className="col-6">
-              <div className="blackpink row">
-                <div className="col-md-6">
-                  <img src={img_blackpink} alt="Blackpink Image" />
-                </div>
-                <div className="col-6">
-                  <img src={logo_blackpink} alt="Blackpink Logo" />
-                  <h3>BLACKPINK</h3>
-                  <h6>Xem sản phẩm<a href="#"><Arrow /></a></h6>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-6">
-              <div className="blackpink row">
-                <div className="col-md-6">
-                  {/* Left column for img_blackpink */}
-                  <img src={img_blackpink} alt="Blackpink Image" />
-                </div>
-                <div className="col-md-6">
-                  {/* Right column for logo_blackpink, h3, h6 */}
-                  <img src={logo_blackpink} alt="Blackpink Logo" />
-                  <h3>BLACKPINK</h3>
-                  <h6>Xem sản phẩm<a href="#"><Arrow /></a></h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <h2>Mua hàng tự tin. Dẹp đi vặt rãnh.</h2>
-        <div className="row">
-          <div className="col-3 Bestprice">
-            <img src={icon_bestprice} alt="" />
-            <h5>Gía tốt nhất</h5>
-            <h6>Tham khảo <a href="#"><Arrow /></a></h6>
-          </div>
-
+          <Row xs={1} md={2} className="g-4">
+            {artist.map((data, index) => (
+              <Col key={index}>
+                <ArtistCardItem
+                  data={data}
+                  onMoreInfoClick={() => { /* Your click handler logic here */ }}
+                />
+              </Col>
+            ))}
+          </Row>
         </div>
       </div>
     </div>

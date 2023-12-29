@@ -29,4 +29,3 @@ app.include_router(artist.router, tags=['Artist'], prefix='/api/artist')
 @app.get("/api/healthchecker")
 def root():
     return {"message": "Welcome to FastAPI with MongoDB"}
-
