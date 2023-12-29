@@ -14,6 +14,7 @@ import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import NotFoundPage from "../Error/NotFoundError";
 
 function HomePage() {
   const dummy_product = [
@@ -81,7 +82,7 @@ function HomePage() {
         const result = await response.json();
         setProduct(result);
       } catch (error) {
-        // setError(error);
+        setError(error);
       } finally {
         setLoading(false);
       }
@@ -95,7 +96,7 @@ function HomePage() {
   }
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return <NotFoundPage/>
   }
 
   return (
