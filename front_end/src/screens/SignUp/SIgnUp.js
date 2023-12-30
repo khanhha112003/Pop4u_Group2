@@ -146,7 +146,6 @@ function SignUp() {
                     </div>
                 </div>
             </div>
-
             <div className='row'>
                 <div className='col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xs-10 mx-auto'>
                     <div className='sign-in-input text-center'>
