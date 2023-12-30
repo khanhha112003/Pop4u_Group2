@@ -49,5 +49,6 @@ Sau khi thực hiện những bước trên, từ giờ trở đi chỉ cần th
 
 Ghi chú
 --------------------
-Câu lệnh `cd` dùng để change directory, sau những câu lệnh cd, chú ý xem path hiện tại có đúng hay chưa, nếu như chưa đúng thì phải cd lại cho đúng. Trên terminal sẽ thấy path luôn
-![alt text](http://url/to/img.png)
+Câu lệnh `cd` dùng để change directory, sau những câu lệnh cd, chú ý xem path hiện tại có đúng hay chưa, nếu như chưa đúng thì phải cd lại cho đúng. Trên terminal sẽ thấy path 
+
+![alt text](https://github.com/khanhha112003/Pop4u_Group2/blob/main/terminal_img.png)
