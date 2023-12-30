@@ -52,18 +52,18 @@ function Footer() {
                 <div className="footer-head"><span className="link-list-title label-xl">Liên hệ</span></div>
                 <ul className="link-list">
                     <li><div className="label-link-icon">
-                        <PhoneIcon/>
+                        <PhoneIcon className='label-icon'/>
                         {/* <img src="public\images\ad-units.svg" alt="Phone"/> */}
                         <span className="label-s">0904944193</span>
                     </div></li>
                     <li><div className="label-link-icon">
                         {/* <img src="public\images\drafts.svg" alt="Mail"/> */}
-                        <MailIcon/>
+                        <MailIcon className='label-icon'/>
                         <span className="label-s">pop4u@gmail.com</span>
                     </div></li>
                     <li><a href="https://maps.app.goo.gl/vjQBUCLQBN6U1fxY7" target='_blank'><div className="label-link-icon">
                         {/* <img src="public\images\apartment.svg" alt="Mail"/> */}
-                        <ApartmentIcon/>
+                        <ApartmentIcon className='label-icon'/>
                         <span className="label-s">669 QL1A, khu phố 3, Thủ Đức, Thành phố Hồ Chí Minh</span>
                     </div></a></li>
                 </ul>
