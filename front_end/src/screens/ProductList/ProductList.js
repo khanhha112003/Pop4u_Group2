@@ -6,6 +6,7 @@ import { ReactComponent as Star } from './images/grade.svg'
 import img_album from './images/img_album.png'
 import Carousel from 'react-bootstrap/Carousel';
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
+import data from './data.js'
 // import Category from "./Category";
 // import Card from "./Card/Card";
 
@@ -15,16 +16,46 @@ function ProductList() {
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
     };
-
+    const [filterName, setFilterName] = useState('');
+    const [searchTimeout, setSearchTimeout] = useState(null);
+    const [filteredData, setFilteredData] = useState(data);
+  
+    const handleFilterChange = event => {
+      const inputValue = event.target.value;
+      setFilterName(inputValue);
+  
+      // Clear previous timeout
+      if (searchTimeout) {
+        clearTimeout(searchTimeout);
+      }
+  
+      // Set new timeout for 2 seconds
+      const newTimeout = setTimeout(() => {
+        const newFilteredData = data.filter(artist =>
+          artist.name.toLowerCase().includes(inputValue.toLowerCase())
+        );
+        setFilteredData(newFilteredData);
+      }, 150);
+  
+      // Save the new timeout ID
+      setSearchTimeout(newTimeout);
+    };
+    
     return (
 
 
         <div className="container">
             <div className="row">
                 <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
-                    <Carousel activeIndex={index} onSelect={handleSelect}>
+                    <div className='banner-product'>
+                        <span className='head3'>Sản phẩm của chúng tôi</span>
+                    </div>
+                </div>
+            </div>
+                   
+                    {/* <Carousel activeIndex={index} onSelect={handleSelect}>
                         <Carousel.Item>
-                            <div className='banner-artist'>
+                            <div className='banner-artist col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center'>
                                 <Carousel.Caption>
                                     <span className='head3'>Sản phẩm của chúng tôi</span>
                                 </Carousel.Caption>
@@ -32,12 +63,12 @@ function ProductList() {
                         </Carousel.Item>
                         <Carousel.Item>
                             <img className="banner_tet d-block w-100" src={banner_tet} alt='second_banner' />
-                            {/* <Carousel.Caption>
+                            <Carousel.Caption>
                     <h3>Second slide label</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </Carousel.Caption> */}
+                    </Carousel.Caption>
                         </Carousel.Item>
-                        {/* <Carousel.Item>
+                        <Carousel.Item>
                 <img className="d-block w-100" src={banner_tet} alt='banner' />
                     <Carousel.Caption>
                     <h3>Third slide label</h3>
@@ -45,23 +76,27 @@ function ProductList() {
                         Praesent commodo cursus magna, vel scelerisque nisl consectetur.
                     </p>
                     </Carousel.Caption>
-                </Carousel.Item> */}
-                    </Carousel>
-
-                </div>
-
-                <div >
-
-                </div>
-            </div>
-
+                </Carousel.Item>
+                    </Carousel> */}
 
             <div className="row">
-                <div className="recommend justify-content-right justify-content-md-center">
-                    <input type="text" className="searchbar" placeholder="Nhập tên sản phẩm" ></input>
+                <div className='search-product'>
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
+                        <label htmlFor="filterInput" className='label-xxxl search-label'>Bạn Muốn Tìm Sản Phẩm Nào?</label>
+                    </div>
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
+                        <input
+                        className='label-m'
+                        type="text"
+                        id="filterInput"
+                        value={filterName}
+                        onChange={handleFilterChange}
+                        placeholder="Hãy điền tên sản phẩm vào đây..."
+                        />
+                    </div>
                 </div>
 
-                <div className="buttons row justify-content-right justify-content-md-center">
+                <div className="buttons col-sm-12 col-md-12 col-lg-12 col-xl-12 row justify-content-right justify-content-md-center">
                     <button className="rec-btn">BTS</button>
                     <button className="rec-btn">NCT</button>
                     <button className="rec-btn">Blackpink</button>
