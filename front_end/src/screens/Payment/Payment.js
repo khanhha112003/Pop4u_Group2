@@ -206,7 +206,9 @@ function Payment() {
                         <div className='total-bill d-flex justify-content-between'>
                             <span className='body-medium'>Số tiền thanh toán </span>
                             <span className='price'>20.000đ</span>
-
+                        </div>
+                        <div>
+                            <button className='payment-button label-xl' type="submit">Tiếp tục thanh toán</button>
                         </div>
                     </div>
                 </div>

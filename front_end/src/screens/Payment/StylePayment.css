@@ -258,3 +258,23 @@ p {
 .total-bill .price {
     margin-left: 0.5em;
 }
+
+.payment-button {
+    border: 0.1em solid var(--color-surface-tint-light);
+    border-radius: 5em;
+    outline: none;
+    transition: box-shadow 0.3s;
+    height: 3.5em; 
+    box-sizing: border-box; 
+    color: var(--color-on-primary-light);
+    background-color: var(--color-primary-light);
+    width: 100%;
+    margin-top: 3em;
+    margin-bottom: 1.5em;
+    transition: background 0.5s ease-in-out;
+}
+
+.payment-button:hover {
+    background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%);
+    border: 0; 
+}

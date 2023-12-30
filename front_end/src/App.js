@@ -7,7 +7,6 @@ import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
 import {ProductDetail} from './screens/ProductDetail.js';
 import { Payment } from './screens/Payment/Payment.js';
-import {}
 
 // import { HomePage } from './screens/HomePage'
 
