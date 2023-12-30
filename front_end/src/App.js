@@ -6,6 +6,8 @@ import { ArtistList } from './screens/Artist/Artist';
 import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
+import { ProductListAdmin } from './screens/Admin/Product/ProductListAdmin'
+import { AddProduct } from './screens/Admin/Product/AddProduct';
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import { ProductList } from './screens/ProductList/ProductList';
 import {
