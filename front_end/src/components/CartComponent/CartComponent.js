@@ -4,7 +4,7 @@ import 'react-bootstrap';
 import { ReactComponent as Plus } from '../../theme/images/icon_plus.svg';
 import { ReactComponent as Minus } from '../../theme/images/icon_minus.svg';
 import { ReactComponent as Remove } from '../../theme/images/icon_remove.svg';
-import '../ProductDetailComponent/ProductDetailComponent.css'
+import './style.css'
 
 const CartPage = () => {
   const initialCart = [

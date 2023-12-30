@@ -8,11 +8,12 @@ import { ReactComponent as Lightstick } from './icons/icon_lightstick.svg';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
 
 import React, { useState, useEffect } from 'react';
+import LoadingPage from "../Loading/LoadingPage";
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import {Col, Row, Button} from 'react-bootstrap';
+import NotFoundPage from "../Error/NotFoundError";
 
 function HomePage() {
   const dummy_product = [
@@ -38,6 +39,38 @@ function HomePage() {
       sell_price: 300,
       rating: 4,
       numOfRating: 10,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 200,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 1,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 200,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 1,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 200,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 1,
+      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
+    },
+    {
+      product_name: "BTS Photocard",
+      discount_price: 200,
+      sell_price: 300,
+      rating: 4,
+      numOfRating: 1,
       img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
     },
     {
@@ -90,11 +123,11 @@ function HomePage() {
   }, []); // The empty array ensures that this effect runs only once, like componentDidMount
 
   if (loading) {
-    return <p>Loading...</p>;
+    return  <LoadingPage/>;
   }
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return <NotFoundPage/>
   }
 
   return (
@@ -107,16 +140,20 @@ function HomePage() {
               <div className="content">
                 <h3>Album</h3>
                 <p>Khám phá album từ những nghệ sĩ hàng đầu</p>
-                <button
-                  onClick={() => console.log('View Album')}
-                  type="button"
-                  className="btn btn-default"
-                >
-                  <i className="fa fa-album" />
-                  Xem ngay
-                </button>
+                <Button 
+                  href="/product_list/album"
+                  style={{
+                    color: "black",
+                    borderRadius: 20,
+                    border: '1px solid var(--color-primary-light)'
+                  }}
+                  variant="outline-primary"
+                  >Xem ngay
+                </Button>
               </div>
-              <a href="#"><Music /></a>
+              <div>
+              <Music/>
+              </div>
             </div>
           </div>
 
@@ -125,16 +162,20 @@ function HomePage() {
               <div className="content">
                 <h3>Merch</h3>
                 <p>Vật phẩm ghi dấu thương hiệu, mang đầy cảm xúc</p>
-                <button
-                  onClick={() => console.log('View Merch')}
-                  type="button"
-                  className="btn btn-default"
-                >
-                  <i className="fa fa-merch" />
-                  Xem ngay
-                </button>
+                <Button 
+                  href="/product_list/merch"
+                  style={{
+                    color: "black",
+                    borderRadius: 20,
+                    border: '1px solid var(--color-primary-light)'
+                  }}
+                  variant="outline-primary"
+                  >Xem ngay
+                </Button>
               </div>
-              <a href="#"><Merch /></a>
+              <div>
+              <Merch/>
+              </div>
             </div>
           </div>
 
@@ -143,16 +184,20 @@ function HomePage() {
               <div className="content">
                 <h3>Vinyl</h3>
                 <p>Đĩa than retro, dành cho người "sành" hướng về xưa cũ</p>
-                <button
-                  onClick={() => console.log('View Vinyl')}
-                  type="button"
-                  className="btn btn-default"
-                >
-                  <i className="fa fa-vinyl" />
-                  Xem ngay
-                </button>
+                <Button 
+                  href="/product_list/vynil"
+                  style={{
+                    color: "black",
+                    borderRadius: 20,
+                    border: '1px solid var(--color-primary-light)'
+                  }}
+                  variant="outline-primary"
+                  >Xem ngay
+                </Button>
               </div>
-              <a href="#"><Vinyl /></a>
+              <div>
+              <Vinyl/>
+              </div>
             </div>
           </div>
         </div>
@@ -163,17 +208,19 @@ function HomePage() {
               <div>
                 <h3>Photobook</h3>
                 <p>Những concept siêu đỉnh do các idol thể hiện qua các dịp quan trọng</p>
-                <button
-                  onClick={() => console.log('View Photobook')}
-                  type="button"
-                  className="btn btn-default"
-                >
-                  <i className="fa fa-photobook" />
-                  Xem ngay
-                </button>
+                <Button 
+                  href="/product_list/photobook"
+                  style={{
+                    color: "black",
+                    borderRadius: 20,
+                    border: '1px solid var(--color-primary-light)'
+                  }}
+                  variant="outline-primary"
+                  >Xem ngay
+                </Button>
               </div>
               <div>
-                <a href="#"><Photobook /></a>
+                <Photobook />
               </div>
             </div>
           </div>
@@ -183,17 +230,19 @@ function HomePage() {
               <div>
                 <h3>Lightstick</h3>
                 <p>Đẹp lỗng lẫy, sáng rạng ngời, một tình yêu với idol mãi</p>
-                <button
-                  onClick={() => console.log('View Lightstick')}
-                  type="button"
-                  className="btn btn-default"
-                >
-                  <i className="fa fa-lightstick" />
-                  Xem ngay
-                </button>
+                <Button 
+                  href="/product_list/lightstick"
+                  style={{
+                    color: "black",
+                    borderRadius: 20,
+                    border: '1px solid var(--color-primary-light)'
+                  }}
+                  variant="outline-primary"
+                  >Xem ngay
+                </Button>
               </div>
               <div>
-                <a href="#"><Lightstick /></a>
+                <Lightstick />
               </div>
             </div>
           </div>

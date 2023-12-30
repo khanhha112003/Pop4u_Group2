@@ -6,8 +6,12 @@ import { ArtistList } from './screens/Artist/Artist';
 import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
+
+import { ProductListAdmin } from './screens/Admin/Product/ProductListAdmin'
+import { AddProduct } from './screens/Admin/Product/AddProduct';
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
-import { ProductPage } from './screens/ProductPage/ProductPage';
+import { ProductList } from './screens/ProductList/ProductList';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -40,8 +44,9 @@ function App() {
           <Route path="/signun" element={<SignUp />} />
           <Route path="/product_detail" element={<ProductDetail />} />
           <Route path="/product_list">
-            <Route path=":sort" element={<ProductPage />} />
-            <Route path="" element={<ProductPage />} />
+
+            <Route path=":sort" element={<ProductList />} />
+            <Route path="" element={<ProductList />} />
           </Route>
         </Routes>
         <Footer />
