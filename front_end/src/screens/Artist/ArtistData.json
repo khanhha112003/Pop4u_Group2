@@ -1,103 +1,135 @@
 [
     {
-      "id": 1,
+      "_id": 1,
       "name": "BTS",
+      "artist_code": "BT01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/88b0601c7d5a06f90bfec4b0dfe92dbf.jpg?q=95&w=512"
     },
     {
-      "id": 2,
+      "_id": 2,
       "name": "BLACKPINK",
+      "artist_code": "BP01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/b5d47b7be6a10edef21b0c0fd540070a.png?q=95&w=512"
     },
     {
-      "id": 3,
+      "_id": 3,
       "name": "AKMU",
+      "artist_code": "AK01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/a71dfd00d885900028b2a5eff299cac0.png?q=95&w=512"
     },
     {
-      "id": 4,
+      "_id": 4,
       "name": "aespa",
+      "artist_code": "AE01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/172e79184516dec7a6f118819cec8ca8.jpg?q=95&w=512"
     },
     {
-      "id": 5,
+      "_id": 5,
       "name": "Red Velvet",
+      "artist_code": "RV01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/9db30ee4beee84ccfa34cc666dd9bab2.jpg?q=95&w=512"
     },
     {
-      "id": 6,
+      "_id": 6,
       "name": "ENHYPEN",
+      "artist_code": "EN01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/f462ef5ce093216a406278be185251de.jpg?q=95&w=512"
     },
     {
-      "id": 7,
+      "_id": 7,
       "name": "SEVENTEEN",
+      "artist_code": "SV01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/273ee7353a1620265d6de139e701c436.jpg?q=95&w=512"
     },
     {
-      "id": 8,
+      "_id": 8,
       "name": "LE SSERAFIM",
+      "artist_code": "LS02",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/ab48196091bf17320c8bff2218584387.png?q=95&w=512"
     },
     {
-      "id": 9,
+      "_id": 9,
       "name": "NewJeans",
+      "artist_code": "NJ01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/75e08c44ce98ea4f1b0604ac36228512.jpg?q=95&w=512"
     },
     {
-      "id": 10,
+      "_id": 10,
       "name": "SUNMI",
+      "artist_code": "SU01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/9154faaa1050dbc55829e92e54856393.png?q=95&w=512"
     },
     {
-      "id": 11,
+      "_id": 11,
       "name": "OH MY GIRL",
+      "artist_code": "OM01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/eefcd551089d3a588ca2fcd20800f346.png?q=95&w=512"
     },
     {
-      "id": 12,
+      "_id": 12,
       "name": "EXO",
+      "artist_code": "EX01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/08e1a9f51aac3bf43e3d381163507f05.jpg?q=95&w=512"
     },
     {
-      "id": 13,
+      "_id": 13,
       "name": "NCT 127",
+      "artist_code": "NC01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/2cfe5977d532c68f99c08cd62ef2fae6.jpg?q=95&w=512"
     },
     {
-      "id": 14,
+      "_id": 14,
       "name": "SUPER JUNIOR",
+      "artist_code": "SJ01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/cf722fbd074ae9b2828e92971f49178a.jpg?q=95&w=512"
     },
     {
-      "id": 15,
+      "_id": 15,
       "name": "TREASURE",
+      "artist_code": "TS01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/393f7042c383d1a82deb7e865abb5dec.png?q=95&w=512"
     },
     {
-      "id": 16,
+      "_id": 16,
       "name": "WINNER",
+      "artist_code": "WN01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/7e438920daa6bfc9a1897851bd058a17.png?q=95&w=512"
     },
     {
-      "id": 17,
+      "_id": 17,
       "name": "EVERGLOW",
+      "artist_code": "EV01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/7fa748dd30c94ac5c0567ee73c9d1657.png?q=95&w=512"
     },
     {
-      "id": 18,
+      "_id": 18,
       "name": "(G)I-DLE",
+      "artist_code": "GI01",
       "pic": "https://cdn-contents.weverseshop.io/public/shop/162aaf70b2bb514aab85863ee4d89f66.jpg?q=95&w=512"
     },
     {
-      "id": 19,
+      "_id": 19,
       "name": "TWICE",
+      "artist_code": "TW01",
       "pic": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d082a537-9a45-4512-af54-08c87b335298/dbliral-2294cde8-78db-4be6-8a53-0f1e7fd5fee2.png/v1/fill/w_856,h_933/_twice__logo___png_by_tsukinofleur_dbliral-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MjAyMSIsInBhdGgiOiJcL2ZcL2QwODJhNTM3LTlhNDUtNDUxMi1hZjU0LTA4Yzg3YjMzNTI5OFwvZGJsaXJhbC0yMjk0Y2RlOC03OGRiLTRiZTYtOGE1My0wZjFlN2ZkNWZlZTIucG5nIiwid2lkdGgiOiI8PTE4NTUifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.VvYLaYtREwN8Xmyq9zVpQvbjiSTs2u8a7X2Z5_Zli8Y"
     },
     {
-      "id": 20,
+      "_id": 20,
       "name": "Stray Kids",
+      "artist_code": "SK01",
       "pic": "https://i.pinimg.com/originals/88/12/72/881272bc899c59771fc6884f3c5a9347.jpg"
+    },
+    {
+      "_id": 21,
+      "name": "LISA",
+      "artist_code": "LS01",
+      "pic": "https://thanhnien.mediacdn.vn/Uploaded/trucdl/2021_12_30/moneycualisalapkyluc3-8661.png"
+    },
+    {
+      "_id": 22,
+      "name": "JISOO",
+      "artist_code": "JS01",
+      "pic": "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/9/29/1099051/209419948_8601681615.jpg"
     }
   ]
   

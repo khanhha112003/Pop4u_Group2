@@ -32,13 +32,18 @@ a :active {
 }
 
 .label-link-icon {
-    display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử con */
-    align-items: center; /* Căn chỉnh theo trục đứng */  
+    display: flex; 
+    align-items: center; 
+}
+
+.label-link-icon .label-icon {
+    margin-right: 1em;
 }
 
 .label-link-icon .img-icon {
     margin-right: 40px;
 }
+
 .img-icon{
     margin-bottom: 20px;
 }
@@ -60,6 +65,12 @@ a :active {
     text-align: right;
 }
 
+@media (max-width: 768px) {
+    .copy-right {
+        text-align: left;
+    }
+}
+
 .footer-line {
     margin-bottom: 20px;
 }
@@ -71,4 +82,5 @@ a :active {
 .footer-list-social-icon {
     padding-bottom: 24px;
 }
+
 

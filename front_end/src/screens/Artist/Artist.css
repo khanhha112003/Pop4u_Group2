@@ -8,10 +8,10 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 15em; 
+    height: 25em; 
     background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%); 
     color: white; 
-    font-size: 24px; 
+
     border-radius: 1em;
     margin-bottom: 3em;
 }
@@ -78,7 +78,7 @@ body{
     text-align: center;
     width: 10em;
     height: 10em;
-  
+    object-fit: cover;  
 }
 
 .artist-name {

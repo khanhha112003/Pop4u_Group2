@@ -68,10 +68,11 @@ body{
     border-radius: 2em;
 }
 
-#main-des {
+.main-des {
+    height: 15em;
     text-align: center;
     font-weight: var(--font-semibold);
-    color: var(--color-on-background-light);
+    color: var(--color-on-surface-light);
 }
 
 #core-value > * {
@@ -79,7 +80,6 @@ body{
 }
 
 #core-value > * last-child {
-    margin-bottom: 24px;
     margin-bottom: 0;
 }
 
