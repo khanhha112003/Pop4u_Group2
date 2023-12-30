@@ -1,0 +1,85 @@
+.BannerTitle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    color: #ffff;
+}
+.title{
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    color: #ffff;
+    font-size: 56px;
+    font-weight: 700;
+}
+.posttitle{
+    color: #1B1B1F;
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 700;
+    word-wrap: break-word;
+    margin-top: 20px;
+}
+
+.postdes{
+    color: #4D4D4D;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word
+}
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+.button {
+    border: 1px #325DA8 solid;
+    background: white;
+    margin: 5px 5px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 14px;
+    font-family: Inter;
+    font-weight: 500;
+}
+  
+.button:hover {
+    border: 1px #325DA8 solid;
+    background-color: #D8E2FF;
+    color: black;
+}
+
+.active {
+    border: 1px #D8E2FF solid;
+    background-color: #D8E2FF;
+    color: black;
+}
+.postcategory{
+    display: inline-block;
+    border: 1px #D8E2FF solid;
+    background: #D8E2FF;
+    margin: 5px 5px;
+    border-radius: 5px;
+    padding: 5px 5px;
+    font-size: 14px;
+    font-family: Inter;
+    font-weight: 500;
+    margin-top: 12px;
+}
+.LoadButton{
+    display: inline-block;
+    background: #325DA8;
+    margin: 5px 5px;
+    border-radius: 20px;
+    padding: 12px 24px;
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 500;
+    margin-top: 12px;
+    color: white;
+
+
+}
