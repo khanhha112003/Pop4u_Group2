@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { ReactComponent as LogoIcon } from './icons/logo.svg';
 import { ReactComponent as PhoneIcon } from './icons/icon_phone.svg';
-import { ReactComponent as ApartmentIcon } from './icons/domain.svg';
+import { ReactComponent as ApartmentIcon } from './icons/icon_house.svg';
 import { ReactComponent as MailIcon } from './icons/icon_mail.svg';
 import { ReactComponent as YoutubeIcon } from './icons/icon_youtube.svg';
 import { ReactComponent as InstagramIcon } from './icons/icon_insta.svg';

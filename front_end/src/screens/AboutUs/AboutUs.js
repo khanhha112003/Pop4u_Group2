@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react'
 import "./StyleAboutUs.css"
 import "react-bootstrap"
 
@@ -16,32 +16,7 @@ console.log(Inclusion2);
 
 
 function AboutUs() {
-    const TypingEffect = ({ text, loop }) => {
-        const [displayText, setDisplayText] = useState('');
-        const [currentIndex, setCurrentIndex] = useState(0);
-      
-        useEffect(() => {
-          let interval;
-          if (currentIndex < text.length) {
-            interval = setInterval(() => {
-              setDisplayText((prevText) => prevText + text[currentIndex]);
-              setCurrentIndex((prevIndex) => prevIndex + 1);
-            }, 20); // Điều chỉnh tốc độ ở đây
-          } else {
-            if (loop) {
-              setTimeout(() => {
-                setDisplayText('');
-                setCurrentIndex(0);
-              }, 5000); 
-            }
-          }
-      
-          return () => clearInterval(interval);
-        }, [currentIndex, text, loop]);
-      
-        return <span>{displayText}</span>;
-      };
-    return (
+  return (
     <div>
         <div className="container">
             <div className="row justify-content-center section-1">
@@ -55,21 +30,12 @@ function AboutUs() {
                     Together.</h1>
                 </div>
                 <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12">
-                    {/* <p className="body-large" id="main-des">
+                    <p className="body-large" id="main-des">
                         Pop4u đã được 1 tuổi. Mang 
                         sứ mệnh phục vụ đến hàng triệu bạn trẻ 
                         Việt Nam, tạo ra giá trị tinh thần mạnh mẽ cho Gen Z.
                         Chúng tôi mang đầy hoài bão của tuổi trẻ 20 như các bạn.
-                    </p> */}
-                    <div className='main-des'>
-                        <p className="body-large" id="main-des">
-                        {' '}
-                        <TypingEffect
-                            text="Pop4u đã được 1 tuổi. Mang sứ mệnh phục vụ đến hàng triệu bạn trẻ Việt Nam, tạo ra giá trị tinh thần mạnh mẽ cho Gen Z. Chúng tôi mang đầy hoài bão của tuổi trẻ 20 như các bạn."
-                            loop={true} 
-                        />
-                        </p>                
-                    </div>
+                    </p>
                 </div>
             </div>
             <div className="row justify-content-center section-2">
