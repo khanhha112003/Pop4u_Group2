@@ -31,15 +31,12 @@
     --color-error-container-light: #FFDAD6;
     --color-on-error-container-light: #410002;
     --color-outline-light: #757680;
+    /* mau background */
     --color-background-light: #FEFBFF;
-    --color-on-background-light: #1B1B1F;
-
-        /* mau background */
+    /* mau chu tren background */
+    --color-on-background-light: #1B1B1F; 
     --color-surface-light: #FBF8FD;
-
-        /* mau chu tren background */
     --color-on-surface-light: #1B1B1F;
-    
     --color-surface-variant-light: #E2E2EC;
     --color-on-surface-variant-light: #45464F;
     --color-inverse-surface-light: #303034;
