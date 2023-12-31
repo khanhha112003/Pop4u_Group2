@@ -212,7 +212,10 @@ function ProductList() {
                                                 product_name: "j-hope (BTS) 'Jack In The Box' (HOPE Edition)",
                                                 discount_price: 400000,
                                                 sell_price: 500000,
-                                                img_product: img_album
+                                                img_product: img_album,
+                                                rating_detail: "",
+                                                rating: 4.3,
+                                                special_badge: []
                                             }}
                                         onClickHandler={() => { }} />
                                 </div>

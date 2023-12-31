@@ -20,20 +20,11 @@ const HomepageProductItem = ({ data }) => {
             <span className="price-inner">{data.sell_price}</span>
         </div>
     );
-    const speical_tag = ["Mới", "Freeship"]
-    // const special_tag = data.special_tag.length > 0 ? (
-    const special_tag_element = speical_tag.length > 0 ? (
-        speical_tag.map((item, index) => (
-            <span key={index} className="tag">{item}</span>
-        ))
-    ) : (
-        <></>
-    );
 
     return (
         <Link to="/product_detail" style={{ width: '100%', height: '100%', cursor: 'pointer' }}>
-        <Card style={{ width: '100%', height: '100%'}}>
-            <Card.Img variant="top" src={data.img_product} />
+        <Card style={{ width: '100%', height: '100%', padding: '10px 0'}}>
+            <Card.Img style={{height: 180, objectFit: 'contain'}} variant="top" src={data.img_product} />
             <Card.Body className='product_title'>
                 <Card.Title>
                     {data.product_name}
@@ -42,7 +33,7 @@ const HomepageProductItem = ({ data }) => {
             <ListGroup style={{border: 0}}>
                 <ListGroup.Item style={{border: 0}}>
                     {
-                        data.special_badge.length > 0 
+                        data.special_badge !== null
                         ? ( 
                             data.special_badge.map((item, index) => (
                                 <span key={index} className="tag">{item}</span>

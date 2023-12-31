@@ -193,9 +193,9 @@ function HomePage() {
                 }}
               />
             ))}
-            itemWidth={250} // Set the width of each item as needed
-            itemHeight={600} // Set the height of each item as needed
-            paddingItem={20} // Set the padding as needed
+            itemWidth={250} 
+            itemHeight={600} 
+            paddingItem={10} 
           />
         </div>
 
