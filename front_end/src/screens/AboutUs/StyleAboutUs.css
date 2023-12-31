@@ -4,6 +4,7 @@ body{
     padding-bottom: em;
 }
 
+   
 .section-1, 
 .section-2, 
 .section-3, 
@@ -49,6 +50,21 @@ body{
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     display: flex;
+}
+
+.head1 {
+    animation: blurToClear 0.75s ease-in-out forwards;
+   }
+   
+   @keyframes blurToClear {
+     0% {
+       filter: blur(1em);
+       opacity: 0;
+    }
+     100% {
+       filter: blur(0px);
+       opacity: 1;
+    }
 }
 
 #main-des {

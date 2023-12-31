@@ -16,6 +16,7 @@ console.log(Inclusion2);
 
 
 function AboutUs() {
+   
     const TypingEffect = ({ text, loop }) => {
         const [displayText, setDisplayText] = useState('');
         const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,7 +27,7 @@ function AboutUs() {
             interval = setInterval(() => {
               setDisplayText((prevText) => prevText + text[currentIndex]);
               setCurrentIndex((prevIndex) => prevIndex + 1);
-            }, 20); // Điều chỉnh tốc độ ở đây
+            }, 20); 
           } else {
             if (loop) {
               setTimeout(() => {
