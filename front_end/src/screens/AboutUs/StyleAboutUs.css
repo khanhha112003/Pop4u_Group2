@@ -67,7 +67,8 @@
 #main-des {
     text-align: center;
     font-weight: var(--font-semibold);
-    color: var(--color-on-background-light);
+    color: var(--color-on-surface-light);
+    height: 5em;
 }
 
 #core-value > * {
