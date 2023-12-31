@@ -3,7 +3,7 @@ import { ReactComponent as ActiveStar } from './icons/icon_star.svg';
 import { ReactComponent as InactiveStar } from './icons/icon_inactive_star.svg';
 import { ReactComponent as HalfStar } from './icons/icon_half_star.svg';
 
-const RatingBar = ({ data, isDisabled, onChangeValue }) => {
+const RatingBar = ({style, data, isDisabled, onChangeValue }) => {
   const [currentRating, setRating] = useState(data.rating);
 
   const handleStarClick = (starIndex) => {
@@ -39,8 +39,9 @@ const RatingBar = ({ data, isDisabled, onChangeValue }) => {
           style={{
             cursor: isDisabled ? '' : 'pointer',
             display: 'inline-block',
-            fontSize: '24px', // Adjust the size as needed
-            margin: '0 5px', // Add margin between stars
+            height: "15%",
+            width: "15%",
+            margin: '0 1px', // Add margin between stars
             transition: 'color 0.3s', // Add color transition on hover
           }}
         >
@@ -48,17 +49,21 @@ const RatingBar = ({ data, isDisabled, onChangeValue }) => {
         </span>
       );
     }
-    if (data.numOfRating > 0) {
+    if (data.rating_detail !== null) {
       stars.push(
         <span
           key={5}
           style={{
             color: '#6c757d',
             fontSize: '12px',
-            margin: '0 5px',
+            marginLeft: 10,
+            width: '30%',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
           }}
         >
-          {data.numOfRating} +
+          {data.rating_detail}
         </span>
       )
     }
@@ -66,8 +71,13 @@ const RatingBar = ({ data, isDisabled, onChangeValue }) => {
   };
 
   return (
-    <div>
-      <div>{renderStars()}</div>
+    <div style={style}>
+      <div style={{
+            width: '100%',
+            display: 'inline-flex',
+            alignItems: 'center',
+            flexDirection: 'row',
+      }}>{renderStars()}</div>
     </div>
   );
 };
