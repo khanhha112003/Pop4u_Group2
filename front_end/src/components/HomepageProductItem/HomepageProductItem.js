@@ -25,13 +25,13 @@ const HomepageProductItem = ({ data }) => {
         <Link to="/product_detail" style={{ width: '100%', height: '100%', cursor: 'pointer' }}>
         <Card style={{ width: '100%', height: '100%', padding: '10px 0'}}>
             <Card.Img style={{height: 180, objectFit: 'contain'}} variant="top" src={data.img_product} />
-            <Card.Body className='product_title'>
+            <Card.Body className='product_title' style={{paddingTop: 5, paddingBottom: 5}}>
                 <Card.Title>
                     {data.product_name}
                 </Card.Title>
             </Card.Body>
-            <ListGroup style={{border: 0}}>
-                <ListGroup.Item style={{border: 0}}>
+            <ListGroup style={{border: 0, marginTop: 'auto'}}>
+                <ListGroup.Item style={{border: 0, paddingTop: 5, paddingBottom: 5}}>
                     {
                         data.special_badge !== null
                         ? ( 
@@ -42,7 +42,7 @@ const HomepageProductItem = ({ data }) => {
                         : (<div></div>)
                     }
                 </ListGroup.Item>
-                <ListGroup.Item style={{border: 0}}>
+                <ListGroup.Item style={{border: 0, paddingTop: 5, paddingBottom: 5}}>
                     <RatingBar 
                         isDisabled={true}  
                         data={
@@ -54,7 +54,7 @@ const HomepageProductItem = ({ data }) => {
                          />
                 </ListGroup.Item>
             </ListGroup>
-            <Card.Body>
+            <Card.Body style={{paddingTop: 5, paddingBottom: 5, height: 40}}>
                 {price_element}
             </Card.Body>
         </Card>

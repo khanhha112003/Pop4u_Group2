@@ -177,6 +177,7 @@ function HomePage() {
 
         <div className="product" style={{ marginBottom: 40 }}>
           <HorizontalPagination
+            key={"sale_product"}
             gap={10} // Adjust the gap between items as needed
             background_color="white"
             items={content.sale_product.map((item, index) => (
@@ -194,7 +195,7 @@ function HomePage() {
               />
             ))}
             itemWidth={250} 
-            itemHeight={600} 
+            itemHeight={450} 
             paddingItem={10} 
           />
         </div>
@@ -205,6 +206,7 @@ function HomePage() {
 
         <div className="product" style={{ marginBottom: 30 }}>
           <HorizontalPagination
+            key={"hot_product"}
             gap={10} // Adjust the gap between items as needed
             background_color="white"
             items={content.new_product.map((item, index) => (
@@ -221,9 +223,9 @@ function HomePage() {
                 }}
               />
             ))}
-            itemWidth={250} // Set the width of each item as needed
-            itemHeight={600} // Set the height of each item as needed
-            paddingItem={20} // Set the padding as needed
+            itemWidth={250} 
+            itemHeight={450} 
+            paddingItem={20}
           />
         </div>
 
@@ -242,7 +244,7 @@ function HomePage() {
           </Row>
         </div>
         <h2>Mua hàng tự tin, dẹp đi vặt vãnh</h2>
-        <CardGroup style={{height: 150}}>
+        <CardGroup style={{height: 150}} key={"bread_crub"}>
           {
           [
             {
@@ -262,7 +264,7 @@ function HomePage() {
               img_src: ChangeIcon
             }
           ].map((variant) => (
-          <Card key={variant} 
+          <Card key={'card_' + variant.title} 
                 style={
                   {
                     width: '100%', 
@@ -275,7 +277,6 @@ function HomePage() {
                 }>
             <Col 
                 md={6} 
-                key={variant} 
                 style={{ 
                   backgroundColor: '#D8E2FF', 
                   width: '100%',
@@ -285,7 +286,8 @@ function HomePage() {
                   justifyContent: 'center' 
                 }}
               >
-              <div style={{ textAlign: 'center' }}>
+              <div
+                style={{ textAlign: 'center' }}>
                 <img
                   src={variant.img_src}
                   alt={variant.img_src}
@@ -296,7 +298,8 @@ function HomePage() {
                     marginBottom: '10px',
                   }}
                 />
-                <h6 style={{ fontWeight: 600 }}>
+                <h6
+                  style={{ fontWeight: 600 }}>
                   {variant.title}
                 </h6>   
                 <p style={{fontSize: 14}}>

@@ -156,7 +156,7 @@ list_all_product = [
     },
     {
         "product_id": 11,
-        "product_name": "new product",
+        "product_name": "new product new productnew productnew productnew productnew productnew productnew productnew productnew productnew productnew productnew productnew productnew productnew productnew productnew productnew product",
         "sell_price": 100,
         "options": [],
         "description": 'CD; OUT BOX; PHOTOBOOK : 52p; ACCORDION LYRICS BOOK : 10p; DOUBLE SIDE FOLDED POSTER : Random 1p out of 4p; POLAROID PHOTOCARD : Random 1p out of 8p; PHOTO ZINE : 16p; SITKCER SET : 6sheet; PHOTO CARD SET : 4p',
