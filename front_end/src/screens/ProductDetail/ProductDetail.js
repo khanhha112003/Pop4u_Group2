@@ -1,4 +1,5 @@
 
+
 import './ProductDetail.css'
 import React, { useState } from 'react';
 import 'react-bootstrap';
@@ -9,12 +10,17 @@ import { ReactComponent as Plus } from './icons/icon_plus.svg';
 import { ReactComponent as Minus } from './icons/icon_minus.svg';
 
 
+
+
 import img_product from './icons/img_product.png';
 import ImageProductMain from './icons/Blackpink-The_Album.png'
 import ImageProductv1 from './icons/TA_v1.jpg'
 import ImageProductv2 from './icons/TA_v2.jfif'
 import ImageProductv3 from './icons/TA_v3.jpg'
 import ImageProductv4 from './icons/TA_v4.jpg'
+
+
+
 
 
 
@@ -29,17 +35,21 @@ function ProductDetail() {
         setQuantity(quantity + 1);
     };
 
+
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
     };
+
 
     const [option, setOption] = useState('Main');
     const [index, setIndex] = useState(0);
     const [activeVersion, setActiveVersion] = useState(option); // Track active version
 
+
     const handleOptionSelection = (selectedOption) => {
         setOption(selectedOption);
         setActiveVersion(selectedOption); // Update active version
+
 
         switch (selectedOption) {
             case 'Main':
@@ -63,6 +73,7 @@ function ProductDetail() {
         }
     };
 
+
     return (
         <div className="container">
             <div className="row">
@@ -85,6 +96,7 @@ function ProductDetail() {
                                 <img className="d-block w-100" src={ImageProductv4} alt="V4" />
                             </Carousel.Item>
                         </Carousel>
+
 
                         <div style={{ marginTop: '3px', display: 'flex', justifyContent: 'center' }}>
                             <img
@@ -120,24 +132,19 @@ function ProductDetail() {
                         </div>
                     </div>
                 </div>
-
-                <div className="col-md-3 product_1">
-                    <img src={img_product} alt="Product Image" />
-                    <div>
-                        <span className="tag">Mới</span>
-                        <span className="tag">Freeship</span>
-                        <div className="product-box-title">
-                            <h4>
-                                <a href="" title="j-hope (BTS) 'Jack In The Box' (HOPE Edition)">
-                                    j-hope (BTS) 'Jack In The Box' (HOPE Edition)
-                                </a>
-                            </h4>
-                        </div>
-                        <div className="margin">
-                            <label class="tag">New</label>
-                            <label class="tag">Freeship</label>
-                        </div>
-                        <a href="#" ><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> (12)
+                <div className="col-md-6 col-sm-12">
+                <h2 className="">BLACKPINK - 1st FULL ALBUM [THE ALBUM]</h2>
+              <div>
+                <div className="price-sale margin">
+                  <span className="price-inner">400.000 VND</span>
+                  <del className="price-del">500.000 VND</del>
+                </div>
+              </div>
+              <div className="margin">
+                <label class="tag">New</label>
+                <label class="tag">Freeship</label>
+              </div>
+              <a href="#" ><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> (12)
                         <hr></hr>
                         <div>
                             <h5 className="margin">Ver:</h5>
@@ -204,27 +211,6 @@ function ProductDetail() {
                             </div>
                         </div>
 
-                        <div className="col-md-3 product_1">
-                            <img src={img_product} alt="Product Image" />
-                            <div>
-                                <span className="tag">Mới</span>
-                                <span className="tag">Freeship</span>
-                                <div className="product-box-title">
-                                    <h4>
-                                        <a href="" title="j-hope (BTS) 'Jack In The Box' (HOPE Edition)">
-                                            j-hope (BTS) 'Jack In The Box' (HOPE Edition)
-                                        </a>
-                                    </h4>
-                                </div>
-                                <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> (12)
-                                <div className="product-box-price d-flex align-items-center">
-                                    <div className="price-sale">
-                                        <span className="price-inner">400.000₫</span>
-                                    </div>
-                                    <del className="price-del">500.000₫</del>
-                                </div>
-                            </div>
-                        </div>
 
                         <div className="col-md-3 product_1">
                             <img src={img_product} alt="Product Image" />
@@ -247,6 +233,30 @@ function ProductDetail() {
                                 </div>
                             </div>
                         </div>
+
+
+                        <div className="col-md-3 product_1">
+                            <img src={img_product} alt="Product Image" />
+                            <div>
+                                <span className="tag">Mới</span>
+                                <span className="tag">Freeship</span>
+                                <div className="product-box-title">
+                                    <h4>
+                                        <a href="" title="j-hope (BTS) 'Jack In The Box' (HOPE Edition)">
+                                            j-hope (BTS) 'Jack In The Box' (HOPE Edition)
+                                        </a>
+                                    </h4>
+                                </div>
+                                <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> (12)
+                                <div className="product-box-price d-flex align-items-center">
+                                    <div className="price-sale">
+                                        <span className="price-inner">400.000₫</span>
+                                    </div>
+                                    <del className="price-del">500.000₫</del>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div className="col-md-3 product_1">
                             <img src={img_product} alt="Product Image" />
@@ -273,11 +283,20 @@ function ProductDetail() {
                 </div>
             </div>
 
-        </div>
+
+
+
+
 
 
 
     );
 };
 
+
 export { ProductDetail };
+
+
+
+
+
