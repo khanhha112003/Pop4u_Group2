@@ -65,3 +65,11 @@ h2,h6 {
   height: 494px;
   margin-right: 10px; /* Add margin between items for spacing */
 }
+
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}

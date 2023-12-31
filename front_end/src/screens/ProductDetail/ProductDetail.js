@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import 'react-bootstrap';
 import { Carousel } from 'react-bootstrap';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
-import { ReactComponent as Star } from './icons/icon_star.svg';
 import { ReactComponent as Plus } from './icons/icon_plus.svg';
 import { ReactComponent as Minus } from './icons/icon_minus.svg';
 import RatingBar from '../../components/RatingBar/RatingBar';
