@@ -48,7 +48,7 @@ const RatingBar = ({ data, isDisabled, onChangeValue }) => {
         </span>
       );
     }
-    if (data.numOfRating > 0) {
+    if (data.rating_detail !== null) {
       stars.push(
         <span
           key={5}
@@ -58,7 +58,7 @@ const RatingBar = ({ data, isDisabled, onChangeValue }) => {
             margin: '0 5px',
           }}
         >
-          {data.numOfRating} +
+          {data.rating_detail}
         </span>
       )
     }

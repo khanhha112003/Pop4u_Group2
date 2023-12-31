@@ -28,7 +28,7 @@ const HorizontalPagination = ({ gap, items, itemWidth, itemHeight, paddingItem, 
             {items
               .slice(index * itemsPerPage, (index + 1) * itemsPerPage)
               .map((item, i) => (
-                <Card key={i} style={{ width: itemWidth, margin: paddingItem, padding: 0 }}>
+                <Card key={i} style={{ width: itemWidth, margin: paddingItem, padding: 0, height: "100%" }}>
                   <Card.Body style={{padding: 0}}>
                     {item}
                   </Card.Body>

@@ -6,14 +6,14 @@ import { ReactComponent as Vinyl } from './icons/icon_vinyl.svg';
 import { ReactComponent as Photobook } from './icons/icon_photobook.svg';
 import { ReactComponent as Lightstick } from './icons/icon_lightstick.svg';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
-
 import React, { useState, useEffect } from 'react';
-import LoadingPage from "../Loading/LoadingPage";
-import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
-import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
-import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
+
 import { Col, Row, Button } from 'react-bootstrap';
+import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
+import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
+import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
 import NotFoundPage from "../Error/NotFoundError";
+import LoadingPage from "../Loading/LoadingPage";
 
 import { basicGetRequets, combineMultipleRequests } from "../../app_logic/APIHandler";
 
@@ -40,7 +40,7 @@ function HomePage() {
         setLoading(false);
       });
 
-  }, []); // The empty array ensures that this effect runs only once, like componentDidMount
+  }, []); 
 
   if (loading) {
     return <LoadingPage />;
@@ -183,8 +183,9 @@ function HomePage() {
                   discount_price: item.discount_price,
                   sell_price: item.sell_price,
                   img_product: item.img_product,
-                  numOfRating: item.numOfRating,
+                  rating_detail: item.rating_detail,
                   rating: item.rating,
+                  special_badge: item.special_badge
                 }}
               />
             ))}
@@ -210,6 +211,9 @@ function HomePage() {
                   discount_price: item.discount_price,
                   sell_price: item.sell_price,
                   img_product: item.img_product,
+                  rating_detail: item.rating_detail,
+                  rating: item.rating,
+                  special_badge: item.special_badge
                 }}
               />
             ))}

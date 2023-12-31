@@ -7,7 +7,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 import { Link } from 'react-router-dom'
 
-const HomepageProductItem = ({ data, margin, padding }) => {
+const HomepageProductItem = ({ data }) => {
     const price_element = data.discount_price !== 0 ? (
         <div style={{display: 'flex',flexDirection: 'row'}}>
             <div className="price-sale">
@@ -41,16 +41,23 @@ const HomepageProductItem = ({ data, margin, padding }) => {
             </Card.Body>
             <ListGroup style={{border: 0}}>
                 <ListGroup.Item style={{border: 0}}>
-                    {special_tag_element}
+                    {
+                        data.special_badge.length > 0 
+                        ? ( 
+                            data.special_badge.map((item, index) => (
+                                <span key={index} className="tag">{item}</span>
+                            ))
+                        ) 
+                        : (<div></div>)
+                    }
                 </ListGroup.Item>
                 <ListGroup.Item style={{border: 0}}>
                     <RatingBar 
                         isDisabled={true}  
-                        numOfRating={data.numOfRating}
                         data={
                             {
                                 rating: data.rating,
-                                numOfRating: data.numOfRating
+                                rating_detail: data.rating_detail
                             }
                         }
                          />
