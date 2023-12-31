@@ -182,11 +182,11 @@ function ProductDetail() {
                         </div>
                     </div>
                 </div>
-                <p className='center'
+                <div className='center'
                     style={{ marginTop: '60px', cursor: 'pointer' }}>
                     <h3 >Sản phẩm liên quan </h3>
                     <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
-                </p>
+                </div>
                 <div className="product">
                     <div className="row">
                         <div className="col-md-3 product_1">

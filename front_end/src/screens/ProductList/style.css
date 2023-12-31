@@ -1,10 +1,5 @@
 @import url(../../theme/theme.css);
 
-body {
-    /* padding-bottom: em; */
-    background-color: var(--color-surface-light);
-}
-
 .banner-product {
     display: flex;
     align-items: center;

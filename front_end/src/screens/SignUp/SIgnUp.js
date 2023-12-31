@@ -2,7 +2,7 @@ import React, { useState }  from 'react';
 import "./SignUp.css"
 import { ReactComponent as ArrowUp } from './images/arrow_outward.svg';
 import { ReactComponent as HandShake } from './images/handshake.svg';
-
+import { Link } from 'react-router-dom';
 
 
 function SignUp() {
@@ -146,7 +146,6 @@ function SignUp() {
                     </div>
                 </div>
             </div>
-
             <div className='row'>
                 <div className='col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xs-10 mx-auto'>
                     <div className='sign-in-input text-center'>
@@ -205,10 +204,10 @@ function SignUp() {
                     <p>
                         <span className='body-small'>Bạn đã có tài khoản tại Pop4u? </span>
                         <span className='label-m'>
-                            <a href='#'>
-                                <span className=''>Đăng nhập ngay bây giờ.</span>
-                                <ArrowUp></ArrowUp>
-                            </a>
+                          <Link to="/signin">
+                            <span className=''>Đăng nhập ngay bây giờ.</span>
+                            <ArrowUp></ArrowUp>
+                          </Link>
                         </span>
                     </p>
                   </div>
