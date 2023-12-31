@@ -5,7 +5,7 @@ import './BlgFilter.css'
 import { ReactComponent as FilterIcon } from '../img/filtericon.svg';
 import { ReactComponent as LoadIcon } from '../img/loadm-icon.svg';
 
-export default function BlgFilter(){
+export function Blog(){
     const [selectedFilters, setSelectedFilters] = useState([]);
     const [filteredBlgPosts, setFilteredBlgPosts] = useState(Blgdata.BlgPosts);
     const [visiblePosts, setVisiblePosts] = useState(6); // Number of initially visible posts

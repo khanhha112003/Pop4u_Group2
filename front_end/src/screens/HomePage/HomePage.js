@@ -12,122 +12,42 @@ import LoadingPage from "../Loading/LoadingPage";
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
-import {Col, Row, Button} from 'react-bootstrap';
+import { Col, Row, Button } from 'react-bootstrap';
 import NotFoundPage from "../Error/NotFoundError";
 
-function HomePage() {
-  const dummy_product = [
-    {
-      product_name: "BTS Photocard",
-      discount_price: 0,
-      sell_price: 300,
-      rating: 4,
-      numOfRating: 100,
-      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
-    },
-    {
-      product_name: "BTS Photocard",
-      discount_price: 0,
-      sell_price: 300,
-      rating: 4,
-      numOfRating: 100,
-      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
-    },
-    {
-      product_name: "BTS Photocard",
-      discount_price: 0,
-      sell_price: 300,
-      rating: 4,
-      numOfRating: 10,
-      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
-    },
-    {
-      product_name: "BTS Photocard",
-      discount_price: 200,
-      sell_price: 300,
-      rating: 4,
-      numOfRating: 1,
-      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
-    },
-    {
-      product_name: "BTS Photocard",
-      discount_price: 200,
-      sell_price: 300,
-      rating: 4,
-      numOfRating: 1,
-      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
-    },
-    {
-      product_name: "BTS Photocard",
-      discount_price: 200,
-      sell_price: 300,
-      rating: 4,
-      numOfRating: 1,
-      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
-    },
-    {
-      product_name: "BTS Photocard",
-      discount_price: 200,
-      sell_price: 300,
-      rating: 4,
-      numOfRating: 1,
-      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
-    },
-    {
-      product_name: "BTS Photocard",
-      discount_price: 200,
-      sell_price: 300,
-      rating: 4,
-      numOfRating: 1,
-      img_product: "https://product.hstatic.net/200000416387/product/upload_77d2eeab8b3a4a68b72b716e4558938a_master.jpg",
-    },
-  ]
+import { basicGetRequets, combineMultipleRequests } from "../../app_logic/APIHandler";
 
-  const dummy_artist = [
-    {
-      artist_name: "BTS",
-      img_artist: "https://i.pinimg.com/originals/6a/6e/9e/6a6e9e0b6b5b9b0b9b0b9b0b9b0b9b0b.jpg",
-    },
-    {
-      artist_name: "BTS",
-      img_artist: "https://i.pinimg.com/originals/6a/6e/9e/6a6e9e0b6b5b9b0b9b0b9b0b9b0b9b0b.jpg",
-    },
-    {
-      artist_name: "BTS",
-      img_artist: "https://i.pinimg.com/originals/6a/6e/9e/6a6e9e0b6b5b9b0b9b0b9b0b9b0b9b0b.jpg",
-    },
-    {
-      artist_name: "BTS",
-      img_artist: "https://i.pinimg.com/originals/6a/6e/9e/6a6e9e0b6b5b9b0b9b0b9b0b9b0b9b0b.jpg",
-    },
-    ]
-  const [artist, setArtist] = useState(dummy_artist);
-  const [products, setProduct] = useState(dummy_product);
+function HomePage() {
+  const [content, setContent] = useState({ new_product: [], sale_product: [], hot_artits: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://127.0.0.1:8000/test_product');
-        const result = await response.json();
-        setProduct(result);
-      } catch (error) {
-        // setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    fetchData();
+  useEffect(() => {
+    const newProductRequest = basicGetRequets("/product_list", { type: "new" });
+    const saleProductRequest = basicGetRequets("/product_list", { type: "sale" });
+    const hotArtistRequest = basicGetRequets("/artist_list", { type: "hot" });
+    const result = combineMultipleRequests([newProductRequest, saleProductRequest, hotArtistRequest])
+      .then((responses) => {
+        let data = {
+          new_product: responses[0].data,
+          sale_product: responses[1].data,
+          hot_artits: responses[2].data
+        }
+        setContent(data)
+      }).catch(error => {
+        setError(error);
+      }).finally(() => {
+        setLoading(false);
+      });
+
   }, []); // The empty array ensures that this effect runs only once, like componentDidMount
 
   if (loading) {
-    return  <LoadingPage/>;
+    return <LoadingPage />;
   }
 
   if (error) {
-    return <NotFoundPage/>
+    return <NotFoundPage />
   }
 
   return (
@@ -140,7 +60,7 @@ function HomePage() {
               <div className="content">
                 <h3>Album</h3>
                 <p>Khám phá album từ những nghệ sĩ hàng đầu</p>
-                <Button 
+                <Button
                   href="/product_list/album"
                   style={{
                     color: "black",
@@ -148,11 +68,11 @@ function HomePage() {
                     border: '1px solid var(--color-primary-light)'
                   }}
                   variant="outline-primary"
-                  >Xem ngay
+                >Xem ngay
                 </Button>
               </div>
               <div>
-              <Music/>
+                <Music />
               </div>
             </div>
           </div>
@@ -162,7 +82,7 @@ function HomePage() {
               <div className="content">
                 <h3>Merch</h3>
                 <p>Vật phẩm ghi dấu thương hiệu, mang đầy cảm xúc</p>
-                <Button 
+                <Button
                   href="/product_list/merch"
                   style={{
                     color: "black",
@@ -170,11 +90,11 @@ function HomePage() {
                     border: '1px solid var(--color-primary-light)'
                   }}
                   variant="outline-primary"
-                  >Xem ngay
+                >Xem ngay
                 </Button>
               </div>
               <div>
-              <Merch/>
+                <Merch />
               </div>
             </div>
           </div>
@@ -184,7 +104,7 @@ function HomePage() {
               <div className="content">
                 <h3>Vinyl</h3>
                 <p>Đĩa than retro, dành cho người "sành" hướng về xưa cũ</p>
-                <Button 
+                <Button
                   href="/product_list/vynil"
                   style={{
                     color: "black",
@@ -192,11 +112,11 @@ function HomePage() {
                     border: '1px solid var(--color-primary-light)'
                   }}
                   variant="outline-primary"
-                  >Xem ngay
+                >Xem ngay
                 </Button>
               </div>
               <div>
-              <Vinyl/>
+                <Vinyl />
               </div>
             </div>
           </div>
@@ -208,7 +128,7 @@ function HomePage() {
               <div>
                 <h3>Photobook</h3>
                 <p>Những concept siêu đỉnh do các idol thể hiện qua các dịp quan trọng</p>
-                <Button 
+                <Button
                   href="/product_list/photobook"
                   style={{
                     color: "black",
@@ -216,7 +136,7 @@ function HomePage() {
                     border: '1px solid var(--color-primary-light)'
                   }}
                   variant="outline-primary"
-                  >Xem ngay
+                >Xem ngay
                 </Button>
               </div>
               <div>
@@ -230,7 +150,7 @@ function HomePage() {
               <div>
                 <h3>Lightstick</h3>
                 <p>Đẹp lỗng lẫy, sáng rạng ngời, một tình yêu với idol mãi</p>
-                <Button 
+                <Button
                   href="/product_list/lightstick"
                   style={{
                     color: "black",
@@ -238,7 +158,7 @@ function HomePage() {
                     border: '1px solid var(--color-primary-light)'
                   }}
                   variant="outline-primary"
-                  >Xem ngay
+                >Xem ngay
                 </Button>
               </div>
               <div>
@@ -248,13 +168,14 @@ function HomePage() {
           </div>
         </div>
 
-        <h2>Sale đến "ngất"</h2>
+        <h2 style={{marginTop: 40}}>Sale đến "ngất"</h2>
         <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
 
-        <div className="product">
+        <div className="product" style={{marginBottom: 40}}>
           <HorizontalPagination
             gap={10} // Adjust the gap between items as needed
-            items={products.map((item, index) => (
+            background_color="white"
+            items={content.sale_product.map((item, index) => (
               <HomepageProductItem
                 key={index}
                 data={{
@@ -268,7 +189,7 @@ function HomePage() {
               />
             ))}
             itemWidth={250} // Set the width of each item as needed
-            itemHeight={550} // Set the height of each item as needed
+            itemHeight={600} // Set the height of each item as needed
             paddingItem={20} // Set the padding as needed
           />
         </div>
@@ -277,10 +198,11 @@ function HomePage() {
         <h2>Mới ra mắt. Nóng cả tay</h2>
         <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
 
-        <div className="product">
+        <div className="product" style={{marginBottom: 30}}>
           <HorizontalPagination
             gap={10} // Adjust the gap between items as needed
-            items={products.map((item, index) => (
+            background_color="white"
+            items={content.new_product.map((item, index) => (
               <HomepageProductItem
                 key={index}
                 data={{
@@ -292,7 +214,7 @@ function HomePage() {
               />
             ))}
             itemWidth={250} // Set the width of each item as needed
-            itemHeight={550} // Set the height of each item as needed
+            itemHeight={600} // Set the height of each item as needed
             paddingItem={20} // Set the padding as needed
           />
         </div>
@@ -301,7 +223,7 @@ function HomePage() {
         <h6>Xem tất cả nghệ sĩ<a href="#"><Arrow /></a></h6>
         <div className="artist">
           <Row xs={1} md={2} className="g-4">
-            {artist.map((data, index) => (
+            {content.hot_artits.map((data, index) => (
               <Col key={index}>
                 <ArtistCardItem
                   data={data}

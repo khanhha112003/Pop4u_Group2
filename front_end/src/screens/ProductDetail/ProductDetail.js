@@ -134,8 +134,8 @@ function ProductDetail() {
                             </h4>
                         </div>
                         <div className="margin">
-                            <label class="tag">New</label>
-                            <label class="tag">Freeship</label>
+                            <label className="tag">New</label>
+                            <label className="tag">Freeship</label>
                         </div>
                         <a href="#" ><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> <a href="#"><Star /></a> (12)
                         <hr></hr>
@@ -175,11 +175,11 @@ function ProductDetail() {
                         </div>
                     </div>
                 </div>
-                <p className='center'
+                <div className='center'
                     style={{ marginTop: '60px', cursor: 'pointer' }}>
                     <h3 >Sản phẩm liên quan </h3>
                     <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
-                </p>
+                </div>
                 <div className="product">
                     <div className="row">
                         <div className="col-md-3 product_1">
