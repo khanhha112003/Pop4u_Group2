@@ -1,9 +1,5 @@
 @import url(../../theme/theme.css);
 
-body{
-    background-color: var(--color-surface-light);
-}
-
 .sign-in-title{
     margin-bottom: 5em;
     margin-top: 3em;
@@ -71,12 +67,6 @@ body{
     background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%);
     border: 0; 
 }
-
-.sign-in-button:active {
-    
-}
-
-
 
 .sign-in-support {
     margin-bottom: 3em;

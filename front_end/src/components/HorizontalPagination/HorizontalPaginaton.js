@@ -19,7 +19,7 @@ const HorizontalPagination = ({ gap, items, itemWidth, itemHeight, paddingItem }
       prevIcon={<CustomPrevIcon />} // Use custom SVG for prev arrow
     >
       {Array.from({ length: Math.ceil(items.length / itemsPerPage) }).map((_, index) => (
-        <Carousel.Item key={index} style={{ height: itemHeight }}>
+        <Carousel.Item key={index} style={{ height: itemHeight, backgroundColor: 'var(--color-surface-light)', border: 'none' }}>
           <Stack
             direction="horizontal"
             className="h-100 justify-content-center align-items-center"
