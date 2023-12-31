@@ -120,8 +120,10 @@ function ProductDetail(product_id) {
                         <Carousel activeIndex={imageIndex} onSelect={handleImageSelect}>
                             {
                                 content.product_data.list_product_image.map((imageSrc, index) => (
-                                    <Carousel.Item>
-                                        <img className="d-block w-100" src={imageSrc} alt={"image_" + index} />
+                                    <Carousel.Item key={"image_carou" + index}>
+                                        <img 
+                                            key={"image_tag" + index} className="d-block w-100" 
+                                            src={imageSrc} alt={"image_" + index} />
                                     </Carousel.Item>
                                 ))
                             }
@@ -131,6 +133,7 @@ function ProductDetail(product_id) {
                             {
                                 content.product_data.list_product_image.map((imageSrc, index) => (
                                     <img
+                                        key={"image_tag_banter" + index}
                                         src={imageSrc}
                                         alt={"image_" + index}
                                         style={{ width: '20%', marginRight: '1px', cursor: 'pointer' }}
@@ -187,6 +190,7 @@ function ProductDetail(product_id) {
                                             {
                                                 content.product_data.options.map((optionName, index) => (
                                                     <button
+                                                        key={"option" + index}
                                                         className={`btn option-box ${index === option ? 'active' : ''}`}
                                                         onClick={() => handleOptionSelection(index)}
                                                     >
