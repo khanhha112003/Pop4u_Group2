@@ -13,8 +13,8 @@ import { ReactComponent as SearchOrderIcon } from './icons/icon_order_search.svg
 import { ReactComponent as SearchIcon } from './icons/icon_search.svg';
 function CustomNavbar() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container fluid>
+    <Navbar expand="xxl" style={{backgroundColor: 'var(--bs-body-bg)', paddingTop: 0, paddingBottom: 0}}>
+      <Container  className="bg-body-tertiary" >
         <Navbar.Brand className='d-flex w-50 me-auto' href="/">
           <LogoIcon />
         </Navbar.Brand>
