@@ -35,7 +35,7 @@ function CustomNavbar() {
                 Merch
               </NavDropdown.Item>
               <NavDropdown.Item href="/product_list/vynil">
-                Vynil
+                Vinyl
               </NavDropdown.Item>
               <NavDropdown.Item href="/product_list/photobook">
                 Photobook
