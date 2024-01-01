@@ -21,7 +21,7 @@ const ArtistCardItem = ({ data, onMoreInfoClick }) => {
                                 }}
                             >
                                 <img
-                                    src={data.artist_avatar}
+                                    src={data.pic}
                                     alt="Your Image"
                                     style={{
                                         width: '100%',
@@ -35,7 +35,7 @@ const ArtistCardItem = ({ data, onMoreInfoClick }) => {
                         <Col md={6} style={{ backgroundColor: '#D8E2FF', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <div style={{ textAlign: 'center' }}>
                                 <img
-                                    src={data.artist_logo}
+                                    src={data.pic}
                                     alt="Avatar"
                                     style={{
                                         width: '100px',

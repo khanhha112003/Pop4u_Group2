@@ -27,9 +27,9 @@ function HomePage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const newProductRequest = basicGetRequets("/product_list", { type: "new" });
-    const saleProductRequest = basicGetRequets("/product_list", { type: "sale" });
-    const hotArtistRequest = basicGetRequets("/artist_list", { type: "hot" });
+    const newProductRequest = basicGetRequets("/product/product_list", { type_filter: "new" });
+    const saleProductRequest = basicGetRequets("/product/product_list", { type_filter: "sale" });
+    const hotArtistRequest = basicGetRequets("/artist/artist_list", { type_filter: "hot" });
     const result = combineMultipleRequests([newProductRequest, saleProductRequest, hotArtistRequest])
       .then((responses) => {
         let data = {
@@ -187,7 +187,7 @@ function HomePage() {
                   product_name: item.product_name,
                   discount_price: item.discount_price,
                   sell_price: item.sell_price,
-                  img_product: item.img_product,
+                  img_product: item.list_product_image[0],
                   rating_detail: item.rating_detail,
                   rating: item.rating,
                   special_badge: item.special_badge
@@ -216,7 +216,7 @@ function HomePage() {
                   product_name: item.product_name,
                   discount_price: item.discount_price,
                   sell_price: item.sell_price,
-                  img_product: item.img_product,
+                  img_product: item.list_product_image[0],
                   rating_detail: item.rating_detail,
                   rating: item.rating,
                   special_badge: item.special_badge

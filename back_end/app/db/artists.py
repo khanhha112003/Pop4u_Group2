@@ -36,6 +36,14 @@ def get_total_artist(alphabet: Optional[str] = None):
         total_artist = collection.count_documents({})
     return total_artist
 
+def get_list_artist_with_special_filter(type_filter: str, limit: int):
+    collection = db['Artist']
+    if type_filter == "hot":
+        list_artist = collection.find({"is_hot": True}).limit(limit)
+    elif type_filter == "new":
+        list_artist = collection.find({}).sort("created_at", -1).limit(limit)
+    return list(list_artist)
+
 def get_artist_by_id(artist_code: str) :
     collection = db['Artists']
     artist = collection.find_one({"artist_code": artist_code})
