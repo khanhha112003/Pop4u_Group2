@@ -1,9 +1,5 @@
 @import url(../../theme/theme.css);
 
-body{
-    background-color: var(--color-surface-light);
-}
-
 .banner-artist {
     display: flex;
     align-items: center;

@@ -2,7 +2,7 @@ import React, { useState, useEffect }  from 'react';
 import "./SignIn.css";
 import "react-bootstrap";
 import { ReactComponent as ArrowUp } from './images/arrow_outward.svg';
-
+import { Link } from 'react-router-dom';
 
 function SignIn() {
     const [username, setUsername] = useState('');
@@ -118,10 +118,10 @@ function SignIn() {
                             <p>
                                 <span className='body-small'>Bạn chưa có tài khoản tại Pop4u? </span>
                                 <span className='label-m'>
-                                    <a href='#'>
+                                    <Link to="/signup">
                                         <span className=''>Tạo tài khoản của bạn ngay bây giờ.</span>
                                         <ArrowUp></ArrowUp>
-                                    </a>
+                                    </Link>
                                 </span>
                             </p>
                         </div>

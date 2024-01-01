@@ -15,14 +15,12 @@ function CustomNavbar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#">
-          <Link to="/">
-            <LogoIcon />
-          </Link>
+        <Navbar.Brand className='d-flex w-50 me-auto' href="/">
+          <LogoIcon />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav className="m-auto" activeKey="/home">
+        <Navbar.Collapse className='w-100' id="navbarScroll">
+          <Nav className="w-100 justify-content-center" activeKey="/home">
             <NavDropdown className="label-m" title="Sản phẩm" id="navbarScrollingDropdown">
               <NavDropdown.Item href="/product_list/album">
                 Tất cả
@@ -48,22 +46,23 @@ function CustomNavbar() {
             <Nav.Link className="label-m" href="/about">Về chúng tôi</Nav.Link>
             <Nav.Link className="label-m" href="/blog">Blog</Nav.Link>
           </Nav>
+          <Nav className='ms-auto w-100 justify-content-end'>
           <Form className="d-flex justify-content-center align-items-center">
-  <div style={{margin: '0px !important'}}> {/* Centered div */}
-    <InputGroup>
-      <Form.Control
-        placeholder="Search"
-        aria-label="Search"
-        aria-describedby="basic-addon2"
-        style={{ borderRadius: '20px 0 0 20px' }} // Adjust border-radius as needed
-      />
-      <InputGroup.Text style={{ borderRadius: '0 20px 20px 0' }}>
-        {/* Adjust border-radius as needed */}
-        <SearchIcon />
-      </InputGroup.Text>
-    </InputGroup>
-  </div>
-</Form>
+            <div style={{ margin: '0px !important' }}> {/* Centered div */}
+              <InputGroup>
+                <Form.Control
+                  placeholder="Search"
+                  aria-label="Search"
+                  aria-describedby="basic-addon2"
+                  style={{ borderRadius: '20px 0 0 20px' }} // Adjust border-radius as needed
+                />
+                <InputGroup.Text style={{ borderRadius: '0 20px 20px 0' }}>
+                  {/* Adjust border-radius as needed */}
+                  <SearchIcon />
+                </InputGroup.Text>
+              </InputGroup>
+            </div>
+          </Form>
 
           <div className="ml-lg-4">
             <Button href='/' variant="outline-success">
@@ -76,6 +75,7 @@ function CustomNavbar() {
               <AccountIcon />
             </Button>
           </div>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
