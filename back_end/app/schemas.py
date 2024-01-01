@@ -42,29 +42,33 @@ class ProductReview(BaseModel):
     review: Optional[str]
     rating: Optional[float]
 
-    {"_id":{"$oid":"6586cde738184d0acd47e770"},
-    "review":[],"photo":[],"created_at":{"$date":{"$numberLong":"1703358551363"}},"updated_at":{"$date":{"$numberLong":"1703358551363"}}}
-
 class Product(BaseModel):
+    _id: int
     product_name: str 
+    product_code: str 
     description: str 
     artist: str
-    discount_price: Optional[float] = None 
+    artist_code: str
     sell_price: float 
+    discount_price: Optional[float] = None 
     stock: int = 0
     category: Optional[str] = None  
-    photo: List[str] = None
-    options: Optional[str] = None 
+    list_product_image: List[str] = None
+    options: List[str] = None 
     rating: Optional[float] = None
+    rating_detail: str
+    special_badge: List
+    special_type: List
     num_of_rating: Optional[int] = None
     reviews: Optional[List[ProductReview]] = None
 
 # Artist
 class Artist(BaseModel):
     artist_code: str
-    artist_name: str
-    description: str
-    photo: str
+    name: str
+    description: Optional[str] = None
+    is_hot: bool
+    pic: str
 
 # Cart
 class CartItem(BaseModel):
