@@ -53,16 +53,16 @@ body{
 }
 
 .head1 {
-    animation: blurToClear 0.75s ease-in-out forwards;
+    animation: blurToClear 1s ease-in-out forwards;
    }
    
    @keyframes blurToClear {
      0% {
-       filter: blur(1em);
-       opacity: 0;
+       filter: blur(0.75em);
+       opacity: 0.7;
     }
      100% {
-       filter: blur(0px);
+       filter: blur(0em);
        opacity: 1;
     }
 }
