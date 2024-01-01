@@ -6,7 +6,15 @@ import "./style.css";
 import { ReactComponent as CustomNextIcon } from "./icons/arrow_right.svg";
 import { ReactComponent as CustomPrevIcon } from "./icons/arrow_left.svg";
 
-const HorizontalPagination = ({ gap, items, itemWidth, itemHeight, paddingItem, background_color= 'var(--color-surface-light)' }) =>  {
+const HorizontalPagination = (
+  { gap, 
+    items, 
+    itemWidth, 
+    itemHeight, 
+    paddingItem, 
+    background_color= 'var(--color-surface-light)' ,
+    innerPadding = 0
+  }) =>  {
 
   const itemsPerPage = 4;
 
@@ -19,7 +27,14 @@ const HorizontalPagination = ({ gap, items, itemWidth, itemHeight, paddingItem, 
       prevIcon={<CustomPrevIcon />} // Use custom SVG for prev arrow
     >
       {Array.from({ length: Math.ceil(items.length / itemsPerPage) }).map((_, index) => (
-        <Carousel.Item key={index} style={{ height: itemHeight, backgroundColor: background_color, border: 'none' }}>
+        <Carousel.Item 
+          key={index} 
+          style={{ 
+            padding: innerPadding,
+            height: itemHeight, 
+            backgroundColor: background_color, 
+            border: 'none' }}
+        >
           <Stack
             direction="horizontal"
             className="h-100 justify-content-center align-items-center"
@@ -28,7 +43,7 @@ const HorizontalPagination = ({ gap, items, itemWidth, itemHeight, paddingItem, 
             {items
               .slice(index * itemsPerPage, (index + 1) * itemsPerPage)
               .map((item, i) => (
-                <Card key={i} style={{ width: itemWidth, margin: paddingItem, padding: 0 }}>
+                <Card key={i} style={{ width: itemWidth, margin: paddingItem, padding: 0, height: "100%" }}>
                   <Card.Body style={{padding: 0}}>
                     {item}
                   </Card.Body>

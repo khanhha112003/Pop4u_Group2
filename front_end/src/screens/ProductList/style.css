@@ -123,8 +123,7 @@
     font-size: 18px;
 }
 .mytable {
-    border-color: none;
-    background-color: none;
+    border: none;
 }
 .buttons :hover {
     background: var(--color-tertiary-container-light);
@@ -197,4 +196,10 @@
 
 .product-box-price .price-del {
     color: #888;
+}
+
+td {
+    padding: 0.5rem;
+    background-color: var(--color-on-primary-light);
+    border: none;
 }
