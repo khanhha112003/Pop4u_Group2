@@ -62,7 +62,8 @@ def get_product_by_name(product_name: str) :
     product = collection.find_one({"product_name": product_name})
     return product
 
-def get_product_list(page: int, 
+def get_product_list(
+                    page: int,
                     limit: int, 
                     order: str = "asc",
                     artist_code: Optional[str] = None,
@@ -94,6 +95,25 @@ def get_product_list(page: int,
     else:
         list_product = collection.find({"sell_price": {"$gte": price_range_start, "$lte": price_range_end}, "rating": {"$gte": rating}}).sort("sell_price", -1).skip((page-1)*limit).limit(limit)
     return list(list_product)
+
+def get_list_product_with_special_filter(filterType: str, artist_code: str, limit):
+    if filterType == "related":
+        collection = db['Products']
+        list_product = collection.find({"artist_code": artist_code}).limit(limit)
+        return list(list_product)
+    elif filterType == "hot":
+        collection = db['Products']
+        list_product = collection.find({"special_type": {"$in": ["hot"]}}).limit(limit)
+        return list(list_product)
+    elif filterType == "sale":
+        collection = db['Products']
+        print("sale")
+        list_product = collection.find({"special_type": {"$in": ["sale"]}}).limit(limit)
+        return list(list_product)
+    elif filterType == "new":
+        collection = db['Products']
+        list_product = collection.find({"special_type": {"$in": ["new"]}}).limit(limit)
+        return list(list_product)
 
 def update_product_review(product_name, review: ProductReview):
     collection = db['Products']
