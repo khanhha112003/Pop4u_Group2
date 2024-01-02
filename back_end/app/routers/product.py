@@ -38,7 +38,7 @@ def get_list_product(page: int = 1,
         #                 "rating":rating,
         #                 "artist_code":artist_code
         #               })
-    if type_filter == "normal":
+    if type_filter == "all":
         total = get_total_product(category, artist_code, p_start, p_end, rating)
         list_product = get_product_list(page, 
                                         limit,
@@ -52,12 +52,15 @@ def get_list_product(page: int = 1,
             return {"total": 0, "list_product": []}
         return {"total":total, "list_product": listProductSerializer(list_product)}
     else:
-        list_product = {}
+        list_product = []
         if type_filter == "related" and artist_code != None:
-            list_product = get_list_product_with_special_filter(type_filter, artist_code, limit)
+            list_product = get_list_product_with_special_filter(type_filter, artist_code, 12)
         else:
             list_product = get_list_product_with_special_filter(type_filter, "", limit)
-        return listProductSerializer(list_product)
+        if list_product:
+            return listProductSerializer(list_product)
+        else:
+            return []
 
 @router.get('/product_detail', response_model=Product)
 def get_product_detail(product_code: str, usr = Depends(get_user_or_none)):

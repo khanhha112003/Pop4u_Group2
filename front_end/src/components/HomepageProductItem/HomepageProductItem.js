@@ -24,7 +24,7 @@ const HomepageProductItem = ({ data }) => {
 
     return (
         <Link 
-            to={`/product_detail?product_code=${data.product_code}`}
+            to={`/product_detail?product_code=${data.product_code}&artist_code=${data.artist_code}`}
             style={{ width: '100%', height: '100%', cursor: 'pointer' }}
         >
         <Card style={{ width: '100%', height: '100%', padding: '10px 0'}}>
