@@ -36,26 +36,30 @@ class TokenData(BaseModel):
 
 # Product
 class ProductReview(BaseModel):
-    product_id: str
-    username: str
-    create_date: str
-    review: Optional[str]
-    rating: Optional[float]
-
-    {"_id":{"$oid":"6586cde738184d0acd47e770"},
-    "review":[],"photo":[],"created_at":{"$date":{"$numberLong":"1703358551363"}},"updated_at":{"$date":{"$numberLong":"1703358551363"}}}
+    product_code: str
+    username: Optional[str] = None
+    create_date: Optional[str] = None
+    review: Optional[str] = None
+    rating: Optional[float] = None
 
 class Product(BaseModel):
-    product_name: str 
-    description: str 
+    _id: int
+    category: Optional[str] = None  
+    artist_code: str
     artist: str
+    product_name: str 
+    product_code: str 
+    is_hot: bool
+    is_new: bool
+    is_sale: bool
+    is_freeship: bool
     discount_price: Optional[float] = None 
     sell_price: float 
-    stock: int = 0
-    category: Optional[str] = None  
-    photo: List[str] = None
-    options: Optional[str] = None 
+    product_stock: int = 0
+    description: str 
+    list_product_image: List[str] 
     rating: Optional[float] = None
+    rating_detail: str
     num_of_rating: Optional[int] = None
     reviews: Optional[List[ProductReview]] = None
 
@@ -63,15 +67,17 @@ class Product(BaseModel):
 class Artist(BaseModel):
     artist_code: str
     artist_name: str
-    description: str
-    photo: str
+    description: Optional[str] = None
+    is_hot: bool
+    artist_logo: str
+    artist_avatar: str
 
 # Cart
 class CartItem(BaseModel):
     quantity: int
     discount_price: float
     sell_price: float
-    product_name: str
+    product_code: str
 
 class Cart(BaseModel):
     username: str

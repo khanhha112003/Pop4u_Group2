@@ -36,6 +36,10 @@ a :active {
     align-items: center; /* Căn chỉnh theo trục đứng */  
 }
 
+.label-link-icon .label-icon {
+    margin-right: 1em;
+}
+
 .label-link-icon .img-icon {
     margin-right: 40px;
 }
@@ -58,6 +62,16 @@ a :active {
 .copy-right {
     margin-bottom: 64px;
     text-align: right;
+}
+
+@media (max-width: 768px) {
+    .copy-right {
+        text-align: center;
+    }
+
+    .footer-list-social-icon {
+        text-align: center;
+    }
 }
 
 .footer-line {

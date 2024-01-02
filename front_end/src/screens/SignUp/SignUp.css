@@ -1,9 +1,5 @@
 @import url(../../theme/theme.css);
 
-body{
-    background-color: var(--color-surface-light);
-}
-
 .sign-in-title{
     margin-bottom: 5em;
     margin-top: 3em;

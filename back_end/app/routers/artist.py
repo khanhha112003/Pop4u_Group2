@@ -11,20 +11,27 @@ router = APIRouter()
 def tracking_user(username, action, data):
     pass
 
-@router.get('/list_artist')
-def get_list_artist(page: int, 
+@router.get('/artist_list')
+def get_list_artist(page: int = 1, 
                     limit: int = 10, 
+                    type_filter: str = "normal",
                     alphabet: Optional[str] = None, 
                     usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException or usr == None :
         print("no user") 
     else:
         tracking_user(usr.username, "get_list_artist", {"page":page, "limit":limit, "alphabet":alphabet})
-    total = get_total_artist(alphabet)
-    list_artist = get_artist_list(page, limit, alphabet)
-    if total == 0:
-        return {"total": 0, "list_artist": []}
-    return {"total":total, "list_artist": artistSerializer(list_artist)}
+    if page < 1:
+        page = 1
+    if type_filter == "normal":
+        total = get_total_artist(alphabet)
+        list_artist = get_artist_list(page, limit, alphabet)
+        if total == 0:
+            return {"total": 0, "list_artist": []}
+        return {"total":total, "list_artist": listArtistSerializer(list_artist)}
+    else:
+        list_artist = get_list_artist_with_special_filter(type_filter, 4)
+        return listArtistSerializer(list_artist)
 
 @router.get('/artist', response_model=Artist)
 def get_artist(artist_code):
