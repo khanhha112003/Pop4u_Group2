@@ -22,15 +22,9 @@ const RatingBar = ({style, data, isDisabled, onChangeValue }) => {
   const renderStars = () => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
-      var isFull = false;
-      var isHalf = false;
-      if (i + 1 > currentRating && i < currentRating) {
-        isFull = false;
-        isHalf = true;
-      } else if (i + 1 < currentRating) {
-        isFull = true;
-        isHalf = false;
-      }
+      const isFull = i + 1 <= currentRating;
+      const isHalf = i < currentRating && i + 1 > currentRating;
+
       stars.push(
         <span
           key={i}
@@ -49,35 +43,28 @@ const RatingBar = ({style, data, isDisabled, onChangeValue }) => {
         </span>
       );
     }
-    if (data.rating_detail !== null) {
-      stars.push(
-        <span
-          key={5}
-          style={{
-            color: '#6c757d',
-            fontSize: '12px',
-            marginLeft: 10,
-            width: '30%',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-          }}
-        >
-          {data.rating_detail}
-        </span>
-      )
-    }
+    stars.push(
+      <span
+        key={5}
+        style={{
+          color: '#6c757d',
+          fontSize: '12px',
+          marginLeft: 10,
+          width: '30%',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}
+      >
+        {data.rating_detail}
+      </span>
+    )
     return stars;
   };
 
   return (
     <div style={style}>
-      <div style={{
-            width: '100%',
-            display: 'inline-flex',
-            alignItems: 'center',
-            flexDirection: 'row',
-      }}>{renderStars()}</div>
+      <div>{renderStars()}</div>
     </div>
   );
 };
