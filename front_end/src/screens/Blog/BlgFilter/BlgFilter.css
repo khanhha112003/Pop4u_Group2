@@ -35,6 +35,13 @@
     font-weight: 400;
     word-wrap: break-word
 }
+.postdate{
+    color: #1B1B1F;
+    font-size: 12px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word
+}
 .buttons-container {
     display: flex;
     justify-content: center;
@@ -87,6 +94,7 @@
     font-weight: 500;
     margin-top: 12px;
     color: white;
-
-
 }
+.LoadButton {
+    cursor: pointer;
+  }
