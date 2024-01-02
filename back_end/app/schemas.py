@@ -77,7 +77,7 @@ class CartItem(BaseModel):
     quantity: int
     discount_price: float
     sell_price: float
-    product_name: str
+    product_code: str
 
 class Cart(BaseModel):
     username: str

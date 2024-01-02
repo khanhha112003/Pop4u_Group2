@@ -57,9 +57,9 @@ def get_product_list_by_name(keyword: str):
     list_product = collection.find({"product_name": {"$regex": keyword, "$options": "i"}})
     return list(list_product)
 
-def get_product_by_name(product_name: str) :
+def get_product_detail_by_code(product_code: str) :
     collection = db['Products']
-    product = collection.find_one({"product_name": product_name})
+    product = collection.find_one({"product_code": product_code})
     return product
 
 def get_product_list(
