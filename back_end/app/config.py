@@ -8,9 +8,6 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ACCESS_TOKEN_EXPIRES_IN: int
     ALGORITHM: str
-
-    CLIENT_ORIGIN: str
-
     class Config:
         env_file = './.env'
 

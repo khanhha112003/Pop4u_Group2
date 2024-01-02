@@ -6,13 +6,10 @@ from routers import auth, user, product, order, artist
 
 app = FastAPI()
 
-origins = [
-    settings.CLIENT_ORIGIN,
-]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
