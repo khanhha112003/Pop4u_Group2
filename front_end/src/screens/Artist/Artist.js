@@ -14,12 +14,10 @@ function ArtistList() {
     const inputValue = event.target.value;
     setFilterName(inputValue);
 
-    // Clear previous timeout
     if (searchTimeout) {
       clearTimeout(searchTimeout);
     }
 
-    // Set new timeout for 2 seconds
     const newTimeout = setTimeout(() => {
       const newFilteredData = data.filter(artist =>
         artist.name.toLowerCase().includes(inputValue.toLowerCase())
@@ -27,7 +25,6 @@ function ArtistList() {
       setFilteredData(newFilteredData);
     }, 150);
 
-    // Save the new timeout ID
     setSearchTimeout(newTimeout);
   };
 

@@ -1,3 +1,10 @@
+.banner-image {
+    max-width: 100%;
+    width: 100vw; /* Set the image width relative to the viewport width */
+    height: auto;
+    display: block;
+    
+  }
 .BannerTitle{
     display: flex;
     flex-direction: column;
@@ -9,7 +16,7 @@
     position: absolute;
     font-family: 'Inter', sans-serif;
     color: #ffff;
-    font-size: 56px;
+    font-size: 48px;
     font-weight: 700;
 }
 .posttitle{
@@ -24,6 +31,13 @@
 .postdes{
     color: #4D4D4D;
     font-size: 16px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word
+}
+.postdate{
+    color: #1B1B1F;
+    font-size: 12px;
     font-family: Inter;
     font-weight: 400;
     word-wrap: break-word
@@ -80,6 +94,7 @@
     font-weight: 500;
     margin-top: 12px;
     color: white;
-
-
 }
+.LoadButton {
+    cursor: pointer;
+  }

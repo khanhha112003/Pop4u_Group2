@@ -72,12 +72,12 @@ function ProductList() {
                     </div>
                     <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
                         <input
-                            className='label-m'
-                            type="text"
-                            id="filterInput"
-                            value={filterName}
-                            onChange={handleFilterChange}
-                            placeholder="Hãy điền tên sản phẩm vào đây..."
+                        className='label-m'
+                        type="text"
+                        id="filterInput"
+                        value={filterName}
+                        onChange={handleFilterChange}
+                        placeholder="Tên sản phẩm..."
                         />
                     </div>
                 </div>

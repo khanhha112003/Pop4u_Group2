@@ -16,6 +16,7 @@ console.log(Inclusion2);
 
 
 function AboutUs() {
+   
     const TypingEffect = ({ text, loop }) => {
         const [displayText, setDisplayText] = useState('');
         const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,7 +27,7 @@ function AboutUs() {
             interval = setInterval(() => {
               setDisplayText((prevText) => prevText + text[currentIndex]);
               setCurrentIndex((prevIndex) => prevIndex + 1);
-            }, 20); // Điều chỉnh tốc độ ở đây
+            }, 20); 
           } else {
             if (loop) {
               setTimeout(() => {
@@ -41,6 +42,35 @@ function AboutUs() {
 
         return <span>{displayText}</span>;
     };
+
+    const employees = [
+        { name: 'Khánh Hà', position: 'CEO', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'},
+        { name: 'Thanh Lực', position: 'Chief Strategy Officer', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'},
+        { name: 'Xuân Thiều', position: 'Chief Financial Officer', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'},
+        { name: 'Anh Thuy', position: 'Chief compliance officer', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'},
+        { name: 'Thanh Tâm', position: 'Chief Digital Officer', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'}
+    ];
+
+    // const [isVisible, setIsVisible] = useState(false);
+
+    // useEffect(() => {
+    //   const handleScroll = () => {
+    //     const currentScrollPos = window.pageYOffset;
+  
+    //     const threshold = 300;
+  
+    //     setIsVisible(currentScrollPos > threshold);
+    //   };
+  
+    //   window.addEventListener('scroll', handleScroll);
+  
+    //   // Remove the event listener when the component unmounts
+    //   return () => {
+    //     window.removeEventListener('scroll', handleScroll);
+    //   };
+    // }, []);
+  
+     
   return (
     <div>
         <div className="container">
@@ -51,16 +81,10 @@ function AboutUs() {
                     </div>
                 </div>
                 <div className="col-12 section-content-main">
-                    <h1 className="main-statement">By your side. 
+                    <h1 className="head1 main-statement">By your side. 
                     Together.</h1>
                 </div>
                 <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12">
-                    {/* <p className="body-large" id="main-des">
-                        Pop4u đã được 1 tuổi. Mang 
-                        sứ mệnh phục vụ đến hàng triệu bạn trẻ 
-                        Việt Nam, tạo ra giá trị tinh thần mạnh mẽ cho Gen Z.
-                        Chúng tôi mang đầy hoài bão của tuổi trẻ 20 như các bạn.
-                    </p> */}
                     <div className='main-des'>
                         <p className="body-large" id="main-des">
                         {' '}
@@ -75,18 +99,20 @@ function AboutUs() {
             <div className="row justify-content-center section-2">
                 <div className="col-12">
                     <div className="music-spectrum">
-                        <MusicSpectrum></MusicSpectrum>
+                        <MusicSpectrum ></MusicSpectrum>
                     </div>
                 </div>
             </div>
             <div className="row align-items-center section-3">
                 <div className="col-lg-5 col-xl-5 col-sm-12 col-md-12">
-                    <h5 className="h5 heading-about-us-left">Pop4u là Ai?</h5>
-                    <p className="body-medium">Pop4u là một doanh nghiệp trẻ phân phối các sản phẩm KPop tại Việt Nam. 
-                        Chúng tôi, có thể nói, là doanh nghiệp đầu tiên phân phối đa dạng và chính hãng tất
-                        cả các sản phẩm của những công ty giải trí hàng đầu.</p>
-                    <p className="body-medium">Chúng tôi nhận thức được mục đích hoạt động tiên quyết là mang tới cơ hội tiếp cận các sản phẩm 
-                        đặc biệt tới các bạn với mức giá linh hoạt nhất.</p>
+                    <div>
+                        <h5 className="h5 heading-about-us-left">Pop4u là Ai?</h5>
+                        <p className="body-medium">Pop4u là một doanh nghiệp trẻ phân phối các sản phẩm KPop tại Việt Nam. 
+                            Chúng tôi, có thể nói, là doanh nghiệp đầu tiên phân phối đa dạng và chính hãng tất
+                            cả các sản phẩm của những công ty giải trí hàng đầu.</p>
+                        <p className="body-medium">Chúng tôi nhận thức được mục đích hoạt động tiên quyết là mang tới cơ hội tiếp cận các sản phẩm 
+                            đặc biệt tới các bạn với mức giá linh hoạt nhất.</p>
+                    </div>
                 </div>
                 <div className="col-sm-0 col-md-0 col-lg-1 col-xl-1"></div>
                 <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">
@@ -101,10 +127,10 @@ function AboutUs() {
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12" id="core-value">
                     <div className="core-value-card">
-                        <h4>Inclusivity.</h4>
+                        <span className='head4'>Inclusivity.</span>
                     </div>
                     <div className="core-value-card">
-                        <h4>Trust.</h4>
+                        <span className='head4'>Trust.</span>
                     </div>
                     <div className="side-img">
                         <img src={Inclusion1} alt="Ảnh Inclusion 1"/>                  
@@ -115,10 +141,10 @@ function AboutUs() {
                     <img src={Inclusion2} alt="Ảnh Inclusion 2"/>                  
                     </div>
                     <div className="core-value-card">
-                        <h4>Connectivity.</h4>
+                        <span className='head4'>Connectivity.</span>
                     </div>
                     <div className="core-value-card">
-                        <h4>Novelty.</h4>
+                        <span className='head4'>Novelty.</span>
                     </div>
                 </div>
             </div>
@@ -150,12 +176,27 @@ function AboutUs() {
                     <div className="section-esg">
                         <h5 className="h5 heading-about-us-center">Trách Nhiệm Xã Hội</h5>
                         <div className="esg">
-                            <h4 className="h4 statement-script-center">Mang trong mình sức trẻ, Pop4u biết mình phải làm gì để cống hiến cho môi trường, xã hội và những giá trị nội bộ.</h4>    
+                            <h4 className="head4 statement-script-center">Mang trong mình sức trẻ, Pop4u biết mình phải làm gì để cống hiến cho môi trường, xã hội và những giá trị nội bộ.</h4>    
                         </div>
-                        {/* <div className="dark-gradient-overlay"></div> */}
                     </div>
                 </div>
             </div> 
+            <div className='row mx-auto justify-content-center section-9'>
+                <div className='col-12'>
+                    <h5 className="h5 heading-about-us-center">Gặp Gỡ Chúng Tôi - POP4U TEAM</h5>
+                </div>
+                {employees.map((employee, name) =>
+                    <div key={name} className="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                        <div className="employee-card">
+                            <div className='employee-img'> 
+                                <img src={employee.img} alt={employee.name}/>
+                            </div>
+                            <span className='head5 employee-name'>{employee.name}</span>
+                            <p className='body-medium employee-pos'>{employee.position}</p>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     </div>
 
