@@ -30,7 +30,7 @@ def get_list_artist(page: int = 1,
             return {"total": 0, "list_artist": []}
         return {"total":total, "list_artist": listArtistSerializer(list_artist)}
     else:
-        list_artist = get_list_artist_with_special_filter(type_filter, limit)
+        list_artist = get_list_artist_with_special_filter(type_filter, 4)
         return listArtistSerializer(list_artist)
 
 @router.get('/artist', response_model=Artist)

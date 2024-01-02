@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { ReactComponent as EmptyAvatar } from './icons/icon_empty_avatar.svg';
 
-const ArtistCardItem = ({ data, onMoreInfoClick }) => {
+export const ArtistCardItem = ({ data, onMoreInfoClick }) => {
     return (
         <Card style={{ padding: 0, borderRadius: 40, overflow: 'clip', height: 300 }}>
             <Card.Body style={{ padding: 0, height: '100%' }}>
@@ -21,7 +21,7 @@ const ArtistCardItem = ({ data, onMoreInfoClick }) => {
                                 }}
                             >
                                 <img
-                                    src={data.pic}
+                                    src={data.artist_avatar}
                                     alt="Your Image"
                                     style={{
                                         width: '100%',
@@ -35,7 +35,7 @@ const ArtistCardItem = ({ data, onMoreInfoClick }) => {
                         <Col md={6} style={{ backgroundColor: '#D8E2FF', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <div style={{ textAlign: 'center' }}>
                                 <img
-                                    src={data.pic}
+                                    src={data.artist_logo}
                                     alt="Avatar"
                                     style={{
                                         width: '100px',
@@ -67,4 +67,3 @@ const ArtistCardItem = ({ data, onMoreInfoClick }) => {
     );
 };
 
-export default ArtistCardItem;
