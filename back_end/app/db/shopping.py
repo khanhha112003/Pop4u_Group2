@@ -1,15 +1,15 @@
 from typing import Optional
 from database import db
 from schemas import Cart, Order, Product, CartItem
-from db.products import get_product_by_name
+from db.products import get_product_detail_by_code
 from serializer.product_serializer import productSerializer
 
 def update_cart_by_username(username:str, 
-                   product_name:str, 
+                   product_code:str, 
                    quantity:int):
     collection = db['Carts']
-    product = productSerializer(get_product_by_name(product_name))
-    item = CartItem(product_name=product_name,
+    product = productSerializer(get_product_detail_by_code(product_code))
+    item = CartItem(product_code=product_code,
                     quantity=quantity,
                     discount_price=product.discount_price,
                     sell_price=product.sell_price)
@@ -19,7 +19,7 @@ def update_cart_by_username(username:str,
             existing_user_cart['products'].append(item.__dict__)
         else:
             for i in range(len(existing_user_cart['products'])):
-                if existing_user_cart['products'][i]['product_name'] == product_name:
+                if existing_user_cart['products'][i]['product_code'] == product_code:
                     existing_user_cart['products'][i]['quantity'] += quantity
                     break
         existing_user_cart = calculate_total_price(existing_user_cart)
@@ -38,13 +38,13 @@ def get_cart_by_username(username: str):
     cart = collection.find_one({"username": username})
     return cart
 
-def delete_item_from_cart(username: str, product_name: str, quantity: int):
+def delete_item_from_cart(username: str, product_code: str, quantity: int):
     collection = db['Carts']
     cart = collection.find_one({"username": username})
     if not cart:
         return
     for i in range(len(cart['products'])):
-        if cart['products'][i]['product_name'] == product_name:
+        if cart['products'][i]['product_code'] == product_code:
             cart['products'][i]['quantity'] -= quantity
             if cart['products'][i]['quantity'] <= 0:
                 cart['products'].pop(i)
@@ -81,7 +81,7 @@ def create_order(username: str,
     cart = get_cart_by_username(username)
     if not cart:
         return None
-    list_product = [productSerializer(get_product_by_name(item['product_name'])).__dict__ for item in cart['products']]
+    list_product = [productSerializer(get_product_detail_by_code(item['product_code'])).__dict__ for item in cart['products']]
 
     order = Order(username=username,
                   order_date="",

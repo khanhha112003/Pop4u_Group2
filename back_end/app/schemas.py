@@ -36,11 +36,11 @@ class TokenData(BaseModel):
 
 # Product
 class ProductReview(BaseModel):
-    product_id: str
-    username: str
-    create_date: str
-    review: Optional[str]
-    rating: Optional[float]
+    product_code: str
+    username: Optional[str] = None
+    create_date: Optional[str] = None
+    review: Optional[str] = None
+    rating: Optional[float] = None
 
 class Product(BaseModel):
     _id: int
@@ -77,7 +77,7 @@ class CartItem(BaseModel):
     quantity: int
     discount_price: float
     sell_price: float
-    product_name: str
+    product_code: str
 
 class Cart(BaseModel):
     username: str

@@ -57,9 +57,9 @@ def get_product_list_by_name(keyword: str):
     list_product = collection.find({"product_name": {"$regex": keyword, "$options": "i"}})
     return list(list_product)
 
-def get_product_by_name(product_name: str) :
+def get_product_detail_by_code(product_code: str) :
     collection = db['Products']
-    product = collection.find_one({"product_name": product_name})
+    product = collection.find_one({"product_code": product_code})
     return product
 
 def get_product_list(
@@ -114,9 +114,9 @@ def get_list_product_with_special_filter(filterType: str, artist_code: str, limi
         list_product = collection.find({"is_new": True}).limit(limit)
         return list(list_product)
 
-def update_product_review(product_name, review: ProductReview):
+def update_product_review(product_code, review: ProductReview):
     collection = db['Products']
-    product = collection.find_one({"product_name": product_name})
+    product = collection.find_one({"product_code": product_code})
     if product is None:
         return False
     else:
@@ -130,5 +130,13 @@ def update_product_review(product_name, review: ProductReview):
             product["num_of_rating"] += 1
             product["rating"] = (product["rating"]*(product["num_of_rating"]-1) + review.rating)/product["num_of_rating"]
         review.re
-        result = collection.update_one({"product_name": product_name}, {"$set": product})
+        result = collection.update_one({"product_code": product_code}, {"$set": product})
         return result
+
+def get_product_review(product_code: str, username: str):
+    collection = db['ProductReviews']
+    product = collection.find_one({"product_code": product_code, "username": username})
+    if product is None:
+        return None
+    else:
+        return product["reviews"]
