@@ -103,16 +103,15 @@ def get_list_product_with_special_filter(filterType: str, artist_code: str, limi
         return list(list_product)
     elif filterType == "hot":
         collection = db['Products']
-        list_product = collection.find({"special_type": {"$in": ["hot"]}}).limit(limit)
+        list_product = collection.find({"is_hot": True}).limit(limit)
         return list(list_product)
     elif filterType == "sale":
         collection = db['Products']
-        print("sale")
-        list_product = collection.find({"special_type": {"$in": ["sale"]}}).limit(limit)
+        list_product = collection.find({"is_sale": True}).limit(limit)
         return list(list_product)
     elif filterType == "new":
         collection = db['Products']
-        list_product = collection.find({"special_type": {"$in": ["new"]}}).limit(limit)
+        list_product = collection.find({"is_new": True}).limit(limit)
         return list(list_product)
 
 def update_product_review(product_name, review: ProductReview):

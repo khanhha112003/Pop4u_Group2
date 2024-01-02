@@ -21,7 +21,10 @@ function ProductDetail(product_id) {
                 product_id: 0,
                 product_name: "",
                 options: [],
-                special_badge: [],
+                is_new: false,
+                is_hot: false,
+                is_freeship: false,
+                is_sale: false,
                 list_product_image: [],
                 description: '',
                 discount_price: 0,
@@ -29,7 +32,6 @@ function ProductDetail(product_id) {
                 rating: 0,
                 num_of_rating: 0,
                 rating_detail: "",
-                img_product: "",
             },
             related_product: []
         });
@@ -237,15 +239,7 @@ function ProductDetail(product_id) {
                                     items={content.related_product.map((item, index) => (
                                         <HomepageProductItem
                                             key={index}
-                                            data={{
-                                                product_name: item.product_name,
-                                                discount_price: item.discount_price,
-                                                sell_price: item.sell_price,
-                                                img_product: item.img_product,
-                                                rating_detail: item.rating_detail,
-                                                rating: item.rating,
-                                                special_badge: item.special_badge
-                                            }}
+                                            data={item}
                                         />
                                     ))}
                                     itemWidth={250} // Set the width of each item as needed
