@@ -91,7 +91,7 @@ function ProductList() {
                         id="filterInput"
                         value={filterName}
                         onChange={handleFilterChange}
-                        placeholder="Hãy điền tên sản phẩm vào đây..."
+                        placeholder="Tên sản phẩm..."
                         />
                     </div>
                 </div>

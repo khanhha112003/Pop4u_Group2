@@ -49,20 +49,21 @@ export function Blog(){
     
     return(
         <div className="BlgLst">
-                <div className="container-fluid text-center">
+            <div className="container">
                 <div className="row">
                 <div className="col-12 header position-relative">
                     {
                         Blgdata.BlgBanner.map ((BannerImg) => (
                         <div>
-                            <img src={BannerImg.Image} className="img-fluid"/>
+                            <img src={BannerImg.Image} className="banner-image" alt="Banner Image" />
                         </div>
                         ))
                     }
-                    <h2 className="title position-absolute top-50 start-50 translate-middle">Bài Viết</h2>  
+                    <h2 className="title position-absolute top-50 start-50 translate-middle">Bài Viết</h2>   
                 </div>
                 </div>
                 </div>
+            
                
                 <div className='FilterBar' style={{marginTop:'20px'}}  >
                 <div className="container">
@@ -124,5 +125,6 @@ export function Blog(){
             )}
          </div>
         </div>
+        
     )
 }

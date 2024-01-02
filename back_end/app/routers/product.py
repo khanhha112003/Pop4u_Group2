@@ -11,8 +11,9 @@ def tracking_user(username, action, data):
     
 
 router = APIRouter()
-@router.get('/list_product')
-def get_list_product(page: int, 
+@router.get('/product_list')
+def get_list_product(page: int = 1, 
+                     type_filter: str = "normal",
                      order: str = "asc",
                      limit: int = 10, 
                      p_start: Optional[float] = None,
@@ -23,29 +24,40 @@ def get_list_product(page: int,
                      usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException or usr == None :
         print("no user") 
+    if page < 1:
+        page = 1
     else:
-        tracking_user(usr.username, 
-                      "get_list_product", 
-                      { "page":page, 
-                        "limit":limit, 
-                        "category":category,
-                        "p_start":p_start,
-                        "p_end":p_end,
-                        "rating":rating,
-                        "artist_code":artist_code
-                      })
-    total = get_total_product(category, artist_code, p_start, p_end, rating)
-    list_product = get_product_list(page, 
-                                    limit,
-                                    order, 
-                                    artist_code, 
-                                    category, 
-                                    p_start, 
-                                    p_end, 
-                                    rating)
-    if total == 0:
-        return {"total": 0, "list_product": []}
-    return {"total":total, "list_product": listProductSerializer(list_product)}
+        pass
+        # tracking_user(usr.username, 
+        #               "get_list_product", 
+        #               { "page":page, 
+        #                 "limit":limit, 
+        #                 "category":category,
+        #                 "p_start":p_start,
+        #                 "p_end":p_end,
+        #                 "rating":rating,
+        #                 "artist_code":artist_code
+        #               })
+    if type_filter == "normal":
+        total = get_total_product(category, artist_code, p_start, p_end, rating)
+        list_product = get_product_list(page, 
+                                        limit,
+                                        order, 
+                                        artist_code, 
+                                        category, 
+                                        p_start, 
+                                        p_end, 
+                                        rating)
+        if total == 0:
+            return {"total": 0, "list_product": []}
+        return {"total":total, "list_product": listProductSerializer(list_product)}
+    else:
+        list_product = {}
+        if type_filter == "related" and artist_code != None:
+            list_product = get_list_product_with_special_filter(type_filter, artist_code, limit)
+        else:
+            list_product = get_list_product_with_special_filter(type_filter, "", limit)
+        return listProductSerializer(list_product)
 
 @router.get('/product_by_name', response_model=Product)
 def get_list_product(product_name):
