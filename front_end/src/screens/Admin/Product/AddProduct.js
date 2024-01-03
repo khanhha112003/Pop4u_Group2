@@ -11,58 +11,16 @@ const AddProduct = () => {
     product_name: '',
     discount_price: 0,
     sell_price: 0,
-    option: [],
     description: '',
     rating: 0,
     photo: [],
     product_code: '',
     stock: 0,
-    options: [{ size: '', quantity: 0 }],
 
   });
 
 
-  const addOption = () => {
-    setProduct({
-      ...product,
-      options: [...product.options, { size: '', quantity: 0 }],
-    });
-  };
 
-  // Xóa option
-  const deleteOption = (index) => {
-    const newOptions = [...product.options];
-    newOptions.splice(index, 1);
-    setProduct({
-      ...product,
-      options: newOptions,
-    });
-  };
-
-  // Cập nhật thông tin của option
-
-  const handleOptionChange = (index, event) => {
-    const { name, value } = event.target;
-    const updatedOptions = [...product.options];
-    updatedOptions[index][name] = value;
-
-    setProduct({
-      ...product,
-      options: updatedOptions,
-    });
-  };
-
-  useEffect(() => {
-    let stock = 0;
-    product.options.forEach((option) => {
-      stock += Number(option.quantity);
-    });
-
-    setProduct({
-      ...product,
-      stock,
-    });
-  }, [product.options]);
   
 
 
@@ -187,33 +145,9 @@ const AddProduct = () => {
         </label>
         </div>
         <div>
-        <div className="margin">
-         Tạo Option: <br></br>
+        
         <div className="margin" >
-      <button className="margin" onClick={addOption}>Thêm Option</button>
-      {product.options.map((option, index) => (
-        <div key={index}>
-          Option: 
-          <input
-            type="text"
-            name="size"
-            value={option.size}
-            onChange={(e) => handleOptionChange(index, e)}
-          />
-          Số lượng: 
-          <input
-            type="number"
-            name="quantity"
-            value={option.quantity}
-            onChange={(e) => handleOptionChange(index, e)}
-          />
-          <button className="margin" onClick={() => deleteOption(index)}>Xóa Option</button>
-        </div>
-           
-
-      ))}
-      <p className="margin">Tổng stock: {product.stock}</p>
-    </div>
+      <p className="margin">Số lượng: <textarea type="number" name="stock" value={product.stock} onChange={handleChange} /></p>
     </div>
         </div>
             </div>

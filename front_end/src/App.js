@@ -7,13 +7,20 @@ import { ArtistList } from './screens/Artist/Artist';
 import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
+
+// import HeaderAdmin from './components/HeaderAdmin/HeaderAdmin';
+// import SidebarAdmin from './components/SidebarAdmin/SidebarAdmin'
 import { ProductListAdmin } from './screens/Admin/Product/ProductListAdmin'
 import { AddProduct } from './screens/Admin/Product/AddProduct';
+
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import { ProductList } from './screens/ProductList/ProductList';
+
 import { Blog } from './screens/Blog/BlgFilter/BlgFilter';
 import {SinglePost} from './screens/Blog/SinglePost/SinglePost'
 import { Cart } from './screens/Cart/Cart';
+
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -51,6 +58,7 @@ function App() {
           <Route path="/manager/add_product" element={<AddProduct />} />
           <Route path="/manager/product_list" element={<ProductListAdmin />} />
           <Route path="/product_list">
+
             <Route path=":sort" element={<ProductList />} />
             <Route path="" element={<ProductList />} />
           </Route>
@@ -58,6 +66,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+
 
   );
 }
