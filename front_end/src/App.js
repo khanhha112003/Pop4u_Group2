@@ -1,5 +1,6 @@
 import Footer from './components/Footer/Footer';
 import CustomNavbar from './components/Navbar/Navbar';
+// import BasicTable from './screens/Admin/Order/OrderList';
 import { useEffect } from "react";
 import { AboutUs } from './screens/AboutUs/AboutUs';
 import { ArtistList } from './screens/Artist/Artist';
@@ -16,6 +17,7 @@ import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import { ProductList } from './screens/ProductList/ProductList';
 
 import { Blog } from './screens/Blog/BlgFilter/BlgFilter';
+import {SinglePost} from './screens/Blog/SinglePost/SinglePost'
 import { Cart } from './screens/Cart/Cart';
 
 
@@ -50,6 +52,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/single-post/:postId" element={<SinglePost />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product_detail" element={<ProductDetail />} />
           <Route path="/manager/add_product" element={<AddProduct />} />
