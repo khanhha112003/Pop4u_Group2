@@ -1,5 +1,6 @@
 import Footer from './components/Footer/Footer';
 import CustomNavbar from './components/Navbar/Navbar';
+// import BasicTable from './screens/Admin/Order/OrderList';
 import { useEffect } from "react";
 import { AboutUs } from './screens/AboutUs/AboutUs';
 import { ArtistList } from './screens/Artist/Artist';
