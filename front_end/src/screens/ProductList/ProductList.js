@@ -32,19 +32,19 @@ function ProductList() {
     const [selectedCategory, setSelectedCategory] = useState(null)
    
     //Input filter
-    // const [filterName, setFilterName] = useState('');
-    // const [searchTimeout, setSearchTimeout] = useState(null);
-    // const [filteredData, setFilteredData] = useState(items);
+    const [filterName, setFilterName] = useState('');
+    const [searchTimeout, setSearchTimeout] = useState(null);
+    const [filteredData, setFilteredData] = useState(items);
 
-    // const handleInputChange = (event) => {
-    //     const inputValue = event.target.value;
-    //     setFilterName(inputValue);
+    const handleInputChange = (event) => {
+        const inputValue = event.target.value;
+        setFilterName(inputValue);
     
-    //     const newFilteredItems = items.filter((item) =>
-    //       item.product_name.toLowerCase().includes(inputValue.toLowerCase())
-    //     );
-    //     setFilteredData(newFilteredItems);
-    //     setCurrentPage(1); // Reset to the first page when searching
+        const newFilteredItems = items.filter((item) =>
+          item.product_name.toLowerCase().includes(inputValue.toLowerCase())
+        );
+        setFilteredData(newFilteredItems);
+        setCurrentPage(1); // Reset to the first page when searching
        
 
         // // Clear previous timeout
@@ -62,19 +62,60 @@ function ProductList() {
 
         // // Save the new timeout ID
         // setSearchTimeout(newTimeout);
-    // };
-
-    const [searchTerm, setSearchTerm] = useState('');
-
-    const handleInputChange = (e) => {
-        setSearchTerm(e.target.value);
     };
 
-    const filteredProducts = items.filter((item) =>
-        item.product_name.toLowerCase().includes(searchTerm.toLowerCase())
+            const [isPromotion, setIsPromotion] = useState(false);
+            const [isNewProduct, setIsNewProduct] = useState(false);
+            const [isHotProduct, setIsHotProduct] = useState(false);
 
-  );
+            const handlePromotionChange = (event) => {
+                setIsPromotion(event.target.checked);
+            };
 
+            const handleNewProductChange = (event) => {
+                setIsNewProduct(event.target.checked);
+            };
+
+            const handleHotProductChange = (event) => {
+                setIsHotProduct(event.target.checked);
+            };
+
+            const filteredItems = filteredData.filter((item) => {
+                const isPromotionItem = isPromotion ? item.is_sale : true;
+                const isNew = isNewProduct ? item.is_new : true;
+                const isHot = isHotProduct ? item.is_hot : true;
+
+                return isPromotionItem && isNew && isHot;
+            });
+    
+            const [ascendingPrice, setAscendingPrice] = useState(false);
+            const [descendingPrice, setDescendingPrice] = useState(false);
+          
+            // Handler for ascending price
+            const handleAscendingChange = () => {
+              setAscendingPrice(!ascendingPrice);
+              setDescendingPrice(false);
+            };
+          
+            // Handler for descending price
+            const handleDescendingChange = () => {
+              setDescendingPrice(!descendingPrice);
+              setAscendingPrice(false);
+            };
+          
+            // Filtering based on price
+            const filterByPrice = () => {
+              let filtered = filteredData;
+          
+              if (ascendingPrice) {
+                filtered = filtered.sort((a, b) => a.sell_price - b.sell_price);
+              } else if (descendingPrice) {
+                filtered = filtered.sort((a, b) => b.sell_price - a.sell_price);
+              }
+          
+              setFilteredData(filtered);
+            };
+             
     return (
 
 
@@ -97,12 +138,10 @@ function ProductList() {
                         className='label-m'
                         type="text"
                         id="filterInput"
-                        value={searchTerm}
+                        value={filterName}
                         onChange={handleInputChange}
                         placeholder="Tên sản phẩm..."
-                        data={items}
                         />
-                         
                     </div>
                 </div>
 
@@ -118,29 +157,53 @@ function ProductList() {
                 <div className="col-md-3 col-lg-2">
                     <span className="mb-3 label-xl">Bộ lọc sản phẩm</span>
                     <div className="d-flex flex-column mb-4">
+                    <div className="d-flex flex-column mb-4">
                         <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
+                        <input
+                            type="checkbox"
+                            className="mycheckbox"
+                            onChange={handlePromotionChange}
+                        />
                         <span className="label-m">Khuyến mãi</span>
                         </label>
                         <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
+                        <input
+                            type="checkbox"
+                            className="mycheckbox"
+                            onChange={handleNewProductChange}
+                        />
                         <span className="label-m">Sản phẩm mới</span>
                         </label>
                         <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
+                        <input
+                            type="checkbox"
+                            className="mycheckbox"
+                            onChange={handleHotProductChange}
+                        />
                         <span className="label-m">Sản phẩm hot</span>
                         </label>
+                    </div>
                     </div>
 
                     <br />
                     <span className="mb-3 label-xl">Giá yêu thương</span>
                     <div className="d-flex flex-column mb-4">
                         <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
+                        <input 
+                        type="checkbox"
+                        className="mycheckbox"
+                        checked={ascendingPrice}
+                        onChange={handleAscendingChange} 
+                        />
                         <span className="label-m">Giá tăng dần</span>
                         </label>
                         <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
+                        <input 
+                        type="checkbox"
+                        className="mycheckbox"
+                        checked={descendingPrice}
+                        onChange={handleDescendingChange}
+                        />
                         <span className="label-m">Giá giảm dần</span>
                         </label>
                     </div>
@@ -150,19 +213,14 @@ function ProductList() {
 
                     <Container>
                         <Row>
-                            {/* {currentItems.map((item, index) => (
+                            {filteredItems.map((item, index) => (
                                 <Col key={index} sm={3}>
                                     <HomepageProductItem
                                         key={'product' + index}
                                         data={item}
                                     />
                                 </Col>
-                            ))} */}
-                            {filteredProducts.map((item, index) => (
-                                <Col key={index} sm={3}>
-                                    <HomepageProductItem key={'product' + index} data={item} />
-                                </Col>
-                                ))}
+                            ))}
                         </Row>
                         <Row className="mt-3 d-flex justify-content-center">
                             <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
