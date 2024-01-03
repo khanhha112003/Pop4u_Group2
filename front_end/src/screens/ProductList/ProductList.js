@@ -32,19 +32,19 @@ function ProductList() {
     const [selectedCategory, setSelectedCategory] = useState(null)
    
     //Input filter
-    const [filterName, setFilterName] = useState('');
-    const [searchTimeout, setSearchTimeout] = useState(null);
-    const [filteredData, setFilteredData] = useState(items);
+    // const [filterName, setFilterName] = useState('');
+    // const [searchTimeout, setSearchTimeout] = useState(null);
+    // const [filteredData, setFilteredData] = useState(items);
 
-    const handleInputChange = (event) => {
-        const inputValue = event.target.value;
-        setFilterName(inputValue);
+    // const handleInputChange = (event) => {
+    //     const inputValue = event.target.value;
+    //     setFilterName(inputValue);
     
-        const newFilteredItems = items.filter((item) =>
-          item.product_name.toLowerCase().includes(inputValue.toLowerCase())
-        );
-        setFilteredData(newFilteredItems);
-        setCurrentPage(1); // Reset to the first page when searching
+    //     const newFilteredItems = items.filter((item) =>
+    //       item.product_name.toLowerCase().includes(inputValue.toLowerCase())
+    //     );
+    //     setFilteredData(newFilteredItems);
+    //     setCurrentPage(1); // Reset to the first page when searching
        
 
         // // Clear previous timeout
@@ -62,10 +62,18 @@ function ProductList() {
 
         // // Save the new timeout ID
         // setSearchTimeout(newTimeout);
+    // };
+
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleInputChange = (e) => {
+        setSearchTerm(e.target.value);
     };
 
+    const filteredProducts = items.filter((item) =>
+        item.product_name.toLowerCase().includes(searchTerm.toLowerCase())
 
-    
+  );
 
     return (
 
@@ -89,10 +97,12 @@ function ProductList() {
                         className='label-m'
                         type="text"
                         id="filterInput"
-                        value={filterName}
+                        value={searchTerm}
                         onChange={handleInputChange}
                         placeholder="Tên sản phẩm..."
+                        data={items}
                         />
+                         
                     </div>
                 </div>
 
@@ -140,14 +150,19 @@ function ProductList() {
 
                     <Container>
                         <Row>
-                            {currentItems.map((item, index) => (
+                            {/* {currentItems.map((item, index) => (
                                 <Col key={index} sm={3}>
                                     <HomepageProductItem
                                         key={'product' + index}
                                         data={item}
                                     />
                                 </Col>
-                            ))}
+                            ))} */}
+                            {filteredProducts.map((item, index) => (
+                                <Col key={index} sm={3}>
+                                    <HomepageProductItem key={'product' + index} data={item} />
+                                </Col>
+                                ))}
                         </Row>
                         <Row className="mt-3 d-flex justify-content-center">
                             <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
