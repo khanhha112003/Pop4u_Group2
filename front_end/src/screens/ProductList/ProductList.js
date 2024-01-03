@@ -28,8 +28,6 @@ function ProductList() {
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
     };
-
-    const [selectedCategory, setSelectedCategory] = useState(null)
    
     //Input filter
     const [filterName, setFilterName] = useState('');
@@ -63,7 +61,7 @@ function ProductList() {
         // // Save the new timeout ID
         // setSearchTimeout(newTimeout);
     };
-
+// filter 1
             const [isPromotion, setIsPromotion] = useState(false);
             const [isNewProduct, setIsNewProduct] = useState(false);
             const [isHotProduct, setIsHotProduct] = useState(false);
@@ -87,7 +85,8 @@ function ProductList() {
 
                 return isPromotionItem && isNew && isHot;
             });
-    
+
+//filter 2
             const [ascendingPrice, setAscendingPrice] = useState(false);
             const [descendingPrice, setDescendingPrice] = useState(false);
           
@@ -108,13 +107,31 @@ function ProductList() {
               let filtered = filteredData;
           
               if (ascendingPrice) {
-                filtered = filtered.sort((a, b) => a.sell_price - b.sell_price);
+                filtered = filtered.sort((a, b) => a.discount_price - b.discount_price);
               } else if (descendingPrice) {
-                filtered = filtered.sort((a, b) => b.sell_price - a.sell_price);
+                filtered = filtered.sort((a, b) => b.discount_price - a.discount_price);
               }
           
               setFilteredData(filtered);
             };
+
+/// filter 3
+            const [selectedCategory, setSelectedCategory] = useState(null);
+            const filterByCategory = (category) => {
+                setSelectedCategory(category);
+
+                const filteredByCategory = items.filter((item) => item.category === category);
+
+                setFilteredData(filteredByCategory);
+                setCurrentPage(1); // Reset to the first page when changing the category
+            };
+
+            const showAllProducts = () => {
+                setSelectedCategory(null); // Reset selected category to null
+                setFilteredData(items); // Set filteredData back to all products
+                setCurrentPage(1); // Reset to the first page when showing all products
+            };
+
              
     return (
 
@@ -146,12 +163,12 @@ function ProductList() {
                 </div>
 
                 <div className="buttons col-sm-12 col-md-12 col-lg-12 col-xl-12 row justify-content-right justify-content-md-center">
-                    <button className="rec-btn">Tất cả</button>
-                    <button className="rec-btn">Album</button>
-                    <button className="rec-btn">Lightstick</button>
-                    <button className="rec-btn">Photobook</button>
-                    <button className="rec-btn">Vinyl</button>
-                    <button className="rec-btn">Merch</button>
+                <button className="rec-btn" onClick={showAllProducts}>Tất cả</button>
+                    <button className="rec-btn" onClick={() => filterByCategory('Album')}>Album</button>
+                    <button className="rec-btn" onClick={() => filterByCategory('Lightstick')}>Lightstick</button>
+                    <button className="rec-btn" onClick={() => filterByCategory('Photobook')}>Photobook</button>
+                    <button className="rec-btn"onClick={() => filterByCategory('Vinyl')}>Vinyl</button>
+                    <button className="rec-btn" onClick={() => filterByCategory('Merch')}>Merch</button>
 
                 </div>
                 <div className="col-md-3 col-lg-2">
