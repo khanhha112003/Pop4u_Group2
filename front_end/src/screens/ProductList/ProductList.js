@@ -28,30 +28,53 @@ function ProductList() {
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
     };
+
+    const [selectedCategory, setSelectedCategory] = useState(null)
+   
+    //Input filter
     const [filterName, setFilterName] = useState('');
     const [searchTimeout, setSearchTimeout] = useState(null);
-    const [filteredData, setFilteredData] = useState(data);
+    const [filteredData, setFilteredData] = useState(items);
 
-    const handleFilterChange = event => {
+    const handleInputChange = (event) => {
         const inputValue = event.target.value;
         setFilterName(inputValue);
+    
+        const newFilteredItems = items.filter((item) =>
+          item.product_name.toLowerCase().includes(inputValue.toLowerCase())
+        );
+        setFilteredData(newFilteredItems);
+        setCurrentPage(1); // Reset to the first page when searching
+       
 
-        // Clear previous timeout
-        if (searchTimeout) {
-            clearTimeout(searchTimeout);
-        }
+        // // Clear previous timeout
+        // if (searchTimeout) {
+        //     clearTimeout(searchTimeout);
+        // }
 
-        // Set new timeout for 2 seconds
-        const newTimeout = setTimeout(() => {
-            const newFilteredData = data.filter(artist =>
-                artist.name.toLowerCase().includes(inputValue.toLowerCase())
-            );
-            setFilteredData(newFilteredData);
-        }, 150);
+        // // Set new timeout for 2 seconds
+        // const newTimeout = setTimeout(() => {
+        //     const newFilteredData = data.filter(artist =>
+        //         artist.name.toLowerCase().includes(inputValue.toLowerCase())
+        //     );
+        //     setFilteredData(newFilteredData);
+        // }, 150);
 
-        // Save the new timeout ID
-        setSearchTimeout(newTimeout);
+        // // Save the new timeout ID
+        // setSearchTimeout(newTimeout);
     };
+
+    //Label filter
+    const handleChange = event => {
+        setSelectedCategory(event.target.value)
+    }
+
+    //Buttons Filter
+    const HandleClick = event => {
+        setSelectedCategory(event.target.value)
+    }
+
+    
 
     return (
 
@@ -76,7 +99,7 @@ function ProductList() {
                         type="text"
                         id="filterInput"
                         value={filterName}
-                        onChange={handleFilterChange}
+                        onChange={handleInputChange}
                         placeholder="Tên sản phẩm..."
                         />
                     </div>
