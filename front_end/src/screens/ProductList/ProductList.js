@@ -7,6 +7,11 @@ import img_album from './images/img_album.png'
 import Carousel from 'react-bootstrap/Carousel';
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import data from './data.js'
+import NotFoundPage from "../Error/NotFoundError";
+import LoadingPage from "../Loading/LoadingPage";
+
+import { basicGetRequets, combineMultipleRequests } from "../../app_logic/APIHandler";
+
 // import Category from "./Category";
 // import Card from "./Card/Card";
 
@@ -41,9 +46,17 @@ function ProductList() {
       setSearchTimeout(newTimeout);
     };
     
+
+    if (loading) {
+        return <LoadingPage />;
+      }
+    
+      if (error) {
+        return <NotFoundPage />
+      }
+
+
     return (
-
-
         <div className="container">
             <div className="row">
                 <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
@@ -95,111 +108,41 @@ function ProductList() {
                         />
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-md-3 col-lg-2 bg-light p-4 sidebar">
+                    <h5 className="mb-3">Bộ lọc sản phẩm</h5>
+                    <div className="d-flex flex-column mb-4">
+                        <label className="filtering">
+                        <input type="checkbox" className="mycheckbox" />
+                        <span className="label-m">All</span>
+                        </label>
+                        <label className="filtering">
+                        <input type="checkbox" className="mycheckbox" />
+                        <span className="label-m">All</span>
+                        </label>
+                        {/* Add more filters as needed */}
+                    </div>
 
-                <div className="buttons col-sm-12 col-md-12 col-lg-12 col-xl-12 row justify-content-right justify-content-md-center">
-                    <button className="rec-btn">BTS</button>
-                    <button className="rec-btn">NCT</button>
-                    <button className="rec-btn">Blackpink</button>
-                    <button className="rec-btn">aespa</button>
-
+                    <h5 className="mb-3">Giá yêu thương</h5>
+                    <div className="d-flex flex-column mb-4">
+                        <label className="filtering">
+                        <input type="checkbox" className="mycheckbox" />
+                        <span className="label-m">All</span>
+                        </label>
+                        <label className="filtering">
+                        <input type="checkbox" className="mycheckbox" />
+                        <span className="label-m">All</span>
+                        </label>
+                        {/* Add more price options as needed */}
+                    </div>
+                    </div>
+                    <div className="col-md-9 col-lg-10">
+                    {/* Main content here */}
+                    </div>
                 </div>
-                <div className="col-md-3">
-                    <span className="label-xl">Bộ lọc sản phẩm</span>
-                    <table className="mytable">
-                        <tr>
-                            <td>
-                                <label className="filtering">
-                                    <input type="checkbox" className="mycheckbox" ></input>
-                                    <span className="label-m">All</span>
-                                </label>
-                            </td>
-                            <td>
-                                <label className="filtering">
-                                    <input type="checkbox" className="mycheckbox" ></input>
-                                    <span className="label-m">All</span>
-                                </label>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <label className="filtering">
-                                    <input type="checkbox" className="mycheckbox" ></input>
-                                    <span className="label-m">All</span>
-                                </label>
-                            </td>
-                            <td>
-                                <label className="filtering">
-                                    <input type="checkbox" className="mycheckbox" ></input>
-                                    <span className="label-m">All</span>
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label className="filtering">
-                                    <input type="checkbox" className="mycheckbox" ></input>
-                                    <span className="label-m">All</span>
-                                </label>
-                            </td>
-                            <td>
-                                <label className="filtering">
-                                    <input type="checkbox" className="mycheckbox" ></input>
-                                    <span className="label-m">All</span>
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-
-                    <br />
-                    <span className="label-xl">Giá yêu thương</span>
-                    <table className="mytable">
-                        <tr>
-                            <td>
-                                <label className="filtering">
-                                    <input type="checkbox" className="mycheckbox" ></input>
-                                    <span className="label-m">All</span>
-                                </label>
-                            </td>
-                            <td>
-                                <label className="filtering">
-                                    <input type="checkbox" className="mycheckbox" ></input>
-                                    <span className="label-m">All</span>
-                                </label>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <label className="filtering">
-                                    <input type="checkbox" className="mycheckbox" ></input>
-                                    <span className="label-m">All</span>
-                                </label>
-                            </td>
-                            <td>
-                                <label className="filtering">
-                                    <input type="checkbox" className="mycheckbox" ></input>
-                                    <span className="label-m">All</span>
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label className="filtering">
-                                    <input type="checkbox" className="mycheckbox" ></input>
-                                    <span className="label-m">All</span>
-                                </label>
-                            </td>
-                            <td>
-                                <label className="filtering">
-                                    <input type="checkbox" className="mycheckbox" ></input>
-                                    <span className="label-m">All</span>
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-
                 </div>
+
+
                 <div className="col-md-9">
 
                     <div className="col-md-3">
@@ -253,7 +196,6 @@ function ProductList() {
             </div> */}
 
             </div>
-        </div>
     )
 }
 
