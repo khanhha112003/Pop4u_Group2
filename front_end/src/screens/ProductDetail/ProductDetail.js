@@ -203,7 +203,7 @@ function ProductDetail() {
                             <hr></hr>
                             <div>
                                 <h5 className="margin">Mô tả sản phẩm:</h5>
-                                <p className="body-small margin">
+                                <p className="body-small margin pre-line">
                                     {content.product_data.description}
                                 </p>
                             </div>

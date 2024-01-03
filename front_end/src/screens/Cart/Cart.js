@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react'
 import 'react-bootstrap';
 import './style.css'
@@ -6,7 +7,8 @@ import { ReactComponent as Plus } from './icons/icon_plus.svg';
 import { ReactComponent as Minus } from './icons/icon_minus.svg';
 import { ReactComponent as Remove } from './icons/icon_remove.svg';
 
-function Cart () 
+
+function Cart ()
 {
   const initialCart = [
     { _id: 1, product_name: 'j-hope (BTS) "Jack In The Box" (HOPE Edition)', discount_price: 450000, quantity: 2, image: require('./icons/img_product.png') },
@@ -15,6 +17,7 @@ function Cart ()
   ];
   const [couponCode, setCouponCode] = useState('');
   const [discountAmount, setDiscountAmount] = useState(0);
+
 
   const applyCoupon = () => {
     // Logic to apply coupon and calculate discount amount
@@ -36,6 +39,7 @@ function Cart ()
     setCartItems(updatedCart);
   };
 
+
   const handleDecrease = (_id) => {
     const updatedCart = cartItems.map((item) =>
       item._id === _id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
@@ -45,10 +49,13 @@ function Cart ()
   const [selectAll, setSelectAll] = useState(false);
 
 
+
+
   const totalPrice = cartItems.reduce(
     (total, item) => total + (item.checked ? item.discount_price * item.quantity : 0),
     0
   );
+
 
   const handleCheckboxChange = (_id) => {
     const updatedCart = cartItems.map((item) =>
@@ -57,6 +64,7 @@ function Cart ()
     setCartItems(updatedCart);
   };
 
+
   const handleSelectAll = () => {
     const updatedCart = cartItems.map((item) => ({
       ...item,
@@ -64,6 +72,8 @@ function Cart ()
     }));
     setCartItems(updatedCart);
     setSelectAll(!selectAll);
+
+
 
 
   };
@@ -119,10 +129,13 @@ function Cart ()
           <hr></hr>
           <h5>Tạm tính: {totalPrice - discountAmount}</h5>
                 <button className='order-now' ><span className="label-l" style={{ color: 'var(--theme-typo-label-light, #FFF)'}} >Đặt hàng ngay</span></button>
-            
+           
+
+
 
 
           {/* Other elements related to payment */}
+
 
             </div>
             </div>
@@ -131,4 +144,6 @@ function Cart ()
   );
 }
 
+
 export {Cart}
+
