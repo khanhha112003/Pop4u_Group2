@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import '../CartComponent/Cart.css'; // Import file CSS
-import 'react-bootstrap';
-import { ReactComponent as Plus } from '../../theme/images/icon_plus.svg';
-import { ReactComponent as Minus } from '../../theme/images/icon_minus.svg';
-import { ReactComponent as Remove } from '../../theme/images/icon_remove.svg';
-import './style.css'
 
-const CartPage = () => {
+import React, { useState } from 'react'
+import 'react-bootstrap';
+import './style.css'
+import { ReactComponent as Plus } from './icons/icon_plus.svg';
+import { ReactComponent as Minus } from './icons/icon_minus.svg';
+import { ReactComponent as Remove } from './icons/icon_remove.svg';
+
+function Cart () 
+{
   const initialCart = [
-    { id: 1, name: 'j-hope (BTS) "Jack In The Box" (HOPE Edition)', price: 450.000, option: 'Version 1', quantity: 2, image: require('../../screens/HomePage/icons/img_product.png') },
-    { id: 2, name: 'BLACKPINK - 1st FULL ALBUM [THE ALBUM]',  price: 500.000, option: 'No Version' , quantity: 1, image: require('../../theme/images/Blackpink-The_Album.png') },
+    { id: 1, name: 'j-hope (BTS) "Jack In The Box" (HOPE Edition)', price: 450.000, option: 'Version 1', quantity: 2, image: require('./icons/img_product.png') },
+    { id: 2, name: 'BLACKPINK - 1st FULL ALBUM [THE ALBUM]',  price: 500.000, option: 'No Version' , quantity: 1, image: require('./icons/Blackpink-The_Album.png') },
     // Add more product details
   ];
   const [couponCode, setCouponCode] = useState('');
@@ -129,6 +130,6 @@ const CartPage = () => {
         </div>
     </div>
   );
-};
+}
 
-export default CartPage;
+export {Cart}

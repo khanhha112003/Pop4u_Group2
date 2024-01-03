@@ -13,8 +13,8 @@ import { ReactComponent as SearchOrderIcon } from './icons/icon_order_search.svg
 import { ReactComponent as SearchIcon } from './icons/icon_search.svg';
 function CustomNavbar() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container fluid>
+    <Navbar expand="xxl" style={{backgroundColor: 'var(--bs-body-bg)', paddingTop: 0, paddingBottom: 0}}>
+      <Container  className="bg-body-tertiary" >
         <Navbar.Brand className='d-flex w-50 me-auto' href="/">
           <LogoIcon />
         </Navbar.Brand>
@@ -22,7 +22,7 @@ function CustomNavbar() {
         <Navbar.Collapse className='w-100' id="navbarScroll">
           <Nav className="w-100 justify-content-center" activeKey="/home">
             <NavDropdown className="label-m" title="Sản phẩm" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="/product_list/album">
+              <NavDropdown.Item href="/product_list">
                 Tất cả
               </NavDropdown.Item>
               <NavDropdown.Item href="/product_list/album">
@@ -35,7 +35,7 @@ function CustomNavbar() {
                 Merch
               </NavDropdown.Item>
               <NavDropdown.Item href="/product_list/vynil">
-                Vynil
+                Vinyl
               </NavDropdown.Item>
               <NavDropdown.Item href="/product_list/photobook">
                 Photobook

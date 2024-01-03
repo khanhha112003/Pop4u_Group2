@@ -4,10 +4,11 @@ import "./HomepageProductItem.css";
 import RatingBar from '../RatingBar/RatingBar';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { BadgeList } from '../BadgeList/BadgeList';
 
 import { Link } from 'react-router-dom'
 
-const HomepageProductItem = ({ data, margin, padding }) => {
+const HomepageProductItem = ({ data }) => {
     const price_element = data.discount_price !== 0 ? (
         <div style={{display: 'flex',flexDirection: 'row'}}>
             <div className="price-sale">
@@ -20,43 +21,36 @@ const HomepageProductItem = ({ data, margin, padding }) => {
             <span className="price-inner">{data.sell_price}</span>
         </div>
     );
-    const speical_tag = ["Mới", "Freeship"]
-    // const special_tag = data.special_tag.length > 0 ? (
-    const special_tag_element = speical_tag.length > 0 ? (
-        speical_tag.map((item, index) => (
-            <span key={index} className="tag">{item}</span>
-        ))
-    ) : (
-        <></>
-    );
 
     return (
-        <Link to="/product_detail" style={{ width: '100%', height: '100%', cursor: 'pointer' }}>
-        <Card style={{ width: '100%', height: '100%'}}>
-            <Card.Img variant="top" src={data.img_product} />
-            <Card.Body className='product_title'>
+        <Link 
+            to={`/product_detail?product_code=${data.product_code}&artist_code=${data.artist_code}`}
+            style={{ width: '100%', height: '100%', cursor: 'pointer' }}
+        >
+        <Card style={{ width: '100%', height: '100%', padding: '10px 0'}}>
+            <Card.Img style={{height: 180, objectFit: 'contain'}} variant="top" src={data.list_product_image[0]} />
+            <Card.Body className='product_title' style={{paddingTop: 5, paddingBottom: 5}}>
                 <Card.Title>
                     {data.product_name}
                 </Card.Title>
             </Card.Body>
-            <ListGroup style={{border: 0}}>
-                <ListGroup.Item style={{border: 0}}>
-                    {special_tag_element}
+            <ListGroup style={{border: 0, marginTop: 'auto'}}>
+                <ListGroup.Item style={{border: 0, paddingTop: 5, paddingBottom: 5}}>
+                    <BadgeList data={data} />
                 </ListGroup.Item>
-                <ListGroup.Item style={{border: 0}}>
+                <ListGroup.Item style={{border: 0, paddingTop: 5, paddingBottom: 5}}>
                     <RatingBar 
                         isDisabled={true}  
-                        numOfRating={data.numOfRating}
                         data={
                             {
                                 rating: data.rating,
-                                numOfRating: data.numOfRating
+                                rating_detail: data.rating_detail
                             }
                         }
                          />
                 </ListGroup.Item>
             </ListGroup>
-            <Card.Body>
+            <Card.Body style={{paddingTop: 5, paddingBottom: 5, height: 40}}>
                 {price_element}
             </Card.Body>
         </Card>

@@ -1,26 +1,54 @@
 @import url(../../theme/theme.css);
 
-body {
-    padding-bottom: em;
-}
-
-.banner-artist {
+.banner-product {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 310px;
-    background: linear-gradient(60deg, #673E96, #E13A3E, #E07900 90%);
-    color: white;
-    font-size: 24px;
+    height: 15em; 
+    background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%); 
+    color: white; 
+    font-size: 24px; 
     border-radius: 1em;
-    margin-bottom: 0em;
+    margin-bottom: 2em;
 
 }
 
 .banner_tet {
     border-radius: 1em;
 }
+.search-product {
+    text-align: center;
+    margin-bottom: 2em;
+}
 
+.search-label {
+    text-align: center;
+    color: var(--color-primary-light);
+    margin-bottom: 1em;
+    background: linear-gradient(90deg,#e1384e,#f46626,#b48f21);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+}
+
+#filterInput {
+    padding-left: 3em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    padding-right: 2em;
+    border: 0.2em solid var(--color-surface-tint-light);
+    border-radius: 2em;
+    width: 70%;
+    outline: none; 
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+    color: var( --color-on-surface-variant-light);
+    background: transparent url("./images/search.svg") no-repeat 13px;
+  }
+  
+#filterInput:focus {
+    border-color: var(--color-on-primary-fixed-variant-light); 
+    box-shadow: 0 0 5em rgba(25, 118, 210, 0.5), inset 0 0 0.5em rgba(186, 225, 255, 0.3);
+}
 /* filtering */
 
 .tag {
@@ -67,15 +95,6 @@ body {
     margin-right: 5px;
 }
 
-.recommend {
-    display: flex;
-    text-align: center;
-    /* margin-left: 12em; */
-    margin-top: 2em;
-    margin-bottom: 1em;
-
-}
-
 .searchbar {
     width: 50em;
     height: 3em;
@@ -103,7 +122,9 @@ body {
     font-weight: var(--font-semibold);
     font-size: 18px;
 }
-
+.mytable {
+    border: none;
+}
 .buttons :hover {
     background: var(--color-tertiary-container-light);
     border: var(--color-primary-light);
@@ -175,4 +196,10 @@ body {
 
 .product-box-price .price-del {
     color: #888;
+}
+
+td {
+    padding: 0.5rem;
+    background-color: var(--color-on-primary-light);
+    border: none;
 }
