@@ -1,27 +1,114 @@
 @import url(../../theme/theme.css);
 
-h2,h6 {
+
+.homepage-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+h2, h4, h6 {
   text-align: center;
 }
+
+.homepage-header h4 {
+  color: var(--color-primary-light);
+}
+
 .product-box-price .price-inner {
   font-weight: bold;
   margin-right: 10px;
 }
+
 .product-box-price .price-del {
   color: #888; 
 }
+
 .tag {
   border-radius: 10px;
   padding: 2px 5px;
   background: #D8E2FF;
   margin-right: 10px;
 }
+
 .component {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
+.cat-card {
+  padding: 7.5%;
+}
+
+.cat-card-content {
+  width: 55%;
+}
+
+.cat-card-content a,
+.cat-card-content a:hover, 
+.cat-card-content a:active, 
+.cat-card-content a:visited {
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;   
+}
+
+.cat-card-icon {
+  width: 30%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+}
+
+.cat-card-icon > * {
+  width: 108px;
+  height: 108px;
+  text-align: center;
+}
+
+@media (max-width: 992px) {
+  .cat-card-icon > * {
+    width: 80px;
+
+  }
+}
+
+@media (max-width: 992px) {
+  .cat-card-content {
+    width: 60%;
+  }
+  
+  .cat-card-icon {
+    width: 40%;
+  }  
+}
+
+.cat-card-button {
+  padding: 0.5em 2.5em;
+  background-color: var(--color-secondary-container-light);
+  border-radius: 5em;
+  border: 2px solid var(--color-primary-light);
+  margin-top: 0.5em;
+  transition: background 0.3s;
+}
+
+.cat-card-button:hover {
+  background-color: var(--color-primary-light);
+  color: var(--color-on-primary-light);
+  box-shadow: 0 0 5em rgba(25, 118, 210, 0.4);
+}
+
+.cat-card-button:active {
+  background-color: var(--color-secondary-container-light);
+  color: var(--color-on-secondary-container-light);
+}
+
+.cat-card,
 .album,
 .merch,
 .vinyl,
@@ -29,15 +116,11 @@ h2,h6 {
 .lightstick {
   flex: 1;
   margin: 10px;
-  padding: 15px;
-  background-color: #D8E2FF; /* Set background color */
-  border: 16px solid #D8E2FF; /* Set border */
+  background-color: var(--color-secondary-container-light); 
   text-align: left;
   border-radius: 20px;
-  border-style: solid;
-  border-color: var(--theme-primary-1, #325da8);
-  border-width: 1px;
 } 
+
 .btn.btn-default {  
   border-radius: 20px;
   border-style: solid;
@@ -79,4 +162,25 @@ h2,h6 {
   border: 0.5px solid #ededed !important; 
   padding: 5px;
   cursor: pointer;
+}
+
+.benefit-card {
+  /* height: 200px; */
+  background-color: var(--color-primary-container-light);
+  padding-top: 10%;
+  padding-bottom: 10%;
+  text-align: center;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+
+
+.benefit img {
+  width: 48px;
+}
+
+.benefit h6 {
+  margin-top: 24px;
+  margin-bottom: 28px;
 }
