@@ -36,46 +36,48 @@ class TokenData(BaseModel):
 
 # Product
 class ProductReview(BaseModel):
-    product_id: str
-    username: str
-    create_date: str
-    review: Optional[str]
-    rating: Optional[float]
+    product_code: str
+    username: Optional[str] = None
+    create_date: Optional[str] = None
+    review: Optional[str] = None
+    rating: Optional[float] = None
 
 class Product(BaseModel):
     _id: int
+    category: Optional[str] = None  
+    artist_code: str
+    artist: str
     product_name: str 
     product_code: str 
-    description: str 
-    artist: str
-    artist_code: str
-    sell_price: float 
+    is_hot: bool
+    is_new: bool
+    is_sale: bool
+    is_freeship: bool
     discount_price: Optional[float] = None 
-    stock: int = 0
-    category: Optional[str] = None  
-    list_product_image: List[str] = None
-    options: List[str] = None 
+    sell_price: float 
+    product_stock: int = 0
+    description: str 
+    list_product_image: List[str] 
     rating: Optional[float] = None
     rating_detail: str
-    special_badge: List
-    special_type: List
     num_of_rating: Optional[int] = None
     reviews: Optional[List[ProductReview]] = None
 
 # Artist
 class Artist(BaseModel):
     artist_code: str
-    name: str
+    artist_name: str
     description: Optional[str] = None
     is_hot: bool
-    pic: str
+    artist_logo: str
+    artist_avatar: str
 
 # Cart
 class CartItem(BaseModel):
     quantity: int
     discount_price: float
     sell_price: float
-    product_name: str
+    product_code: str
 
 class Cart(BaseModel):
     username: str

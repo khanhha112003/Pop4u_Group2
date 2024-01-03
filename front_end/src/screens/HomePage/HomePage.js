@@ -15,7 +15,7 @@ import React, { useState, useEffect } from 'react';
 import { Col, Row, Button, Card, CardGroup } from 'react-bootstrap';
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
-import ArtistCardItem from "../../components/ArtistCardItem/ArtistCardItem";
+import { ArtistCardItem } from "../../components/ArtistCardItem/ArtistCardItem";
 import NotFoundPage from "../Error/NotFoundError";
 import LoadingPage from "../Loading/LoadingPage";
 
@@ -27,9 +27,9 @@ function HomePage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const newProductRequest = basicGetRequets("/product/product_list", { type_filter: "new" });
-    const saleProductRequest = basicGetRequets("/product/product_list", { type_filter: "sale" });
-    const hotArtistRequest = basicGetRequets("/artist/artist_list", { type_filter: "hot" });
+    const newProductRequest = basicGetRequets("/product/product_list", { type_filter: "new", limit: 12 });
+    const saleProductRequest = basicGetRequets("/product/product_list", { type_filter: "sale", limit: 12 });
+    const hotArtistRequest = basicGetRequets("/artist/artist_list", { type_filter: "hot", limit: 4 });
     const result = combineMultipleRequests([newProductRequest, saleProductRequest, hotArtistRequest])
       .then((responses) => {
         let data = {
@@ -183,19 +183,11 @@ function HomePage() {
             items={content.sale_product.map((item, index) => (
               <HomepageProductItem
                 key={index}
-                data={{
-                  product_name: item.product_name,
-                  discount_price: item.discount_price,
-                  sell_price: item.sell_price,
-                  img_product: item.list_product_image[0],
-                  rating_detail: item.rating_detail,
-                  rating: item.rating,
-                  special_badge: item.special_badge
-                }}
+                data={item}
               />
             ))}
             itemWidth={250} 
-            itemHeight={450} 
+            itemHeight={425} 
             paddingItem={10} 
           />
         </div>
@@ -212,20 +204,12 @@ function HomePage() {
             items={content.new_product.map((item, index) => (
               <HomepageProductItem
                 key={index}
-                data={{
-                  product_name: item.product_name,
-                  discount_price: item.discount_price,
-                  sell_price: item.sell_price,
-                  img_product: item.list_product_image[0],
-                  rating_detail: item.rating_detail,
-                  rating: item.rating,
-                  special_badge: item.special_badge
-                }}
+                data={item}
               />
             ))}
             itemWidth={250} 
-            itemHeight={450} 
-            paddingItem={20}
+            itemHeight={425} 
+            paddingItem={10} 
           />
         </div>
 

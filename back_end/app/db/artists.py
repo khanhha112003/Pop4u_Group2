@@ -37,7 +37,7 @@ def get_total_artist(alphabet: Optional[str] = None):
     return total_artist
 
 def get_list_artist_with_special_filter(type_filter: str, limit: int):
-    collection = db['Artist']
+    collection = db['Artists']
     if type_filter == "hot":
         list_artist = collection.find({"is_hot": True}).limit(limit)
     elif type_filter == "new":

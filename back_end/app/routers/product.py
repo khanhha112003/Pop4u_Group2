@@ -38,7 +38,7 @@ def get_list_product(page: int = 1,
         #                 "rating":rating,
         #                 "artist_code":artist_code
         #               })
-    if type_filter == "normal":
+    if type_filter == "all":
         total = get_total_product(category, artist_code, p_start, p_end, rating)
         list_product = get_product_list(page, 
                                         limit,
@@ -52,16 +52,21 @@ def get_list_product(page: int = 1,
             return {"total": 0, "list_product": []}
         return {"total":total, "list_product": listProductSerializer(list_product)}
     else:
-        list_product = {}
+        list_product = []
         if type_filter == "related" and artist_code != None:
-            list_product = get_list_product_with_special_filter(type_filter, artist_code, limit)
+            list_product = get_list_product_with_special_filter(type_filter, artist_code, 12)
         else:
             list_product = get_list_product_with_special_filter(type_filter, "", limit)
-        return listProductSerializer(list_product)
+        if list_product:
+            return listProductSerializer(list_product)
+        else:
+            return []
 
-@router.get('/product_by_name', response_model=Product)
-def get_list_product(product_name):
-    res = get_product_by_name(product_name)
+@router.get('/product_detail', response_model=Product)
+def get_product_detail(product_code: str, usr = Depends(get_user_or_none)):
+    if type(usr) == HTTPException or usr == None :
+        print("no user") 
+    res = get_product_detail_by_code(product_code)
     if res:
         return productSerializer(res)
     else:
@@ -127,7 +132,7 @@ def delete_all_product(usr = Depends(get_user_or_none)):
         else:
             raise HTTPException(status_code=400, detail="Invalid data")
         
-@router.put('/update_product_rating')
+@router.put('/product_review')
 def user_review(review: ProductReview, usr = Depends(get_current_active_user)):
     if type(usr) == HTTPException:
         raise usr
@@ -137,3 +142,14 @@ def user_review(review: ProductReview, usr = Depends(get_current_active_user)):
             return {"res":"updated"}
         else:
             raise HTTPException(status_code=400, detail="Invalid data")
+
+@router.get('/product_review', response_model=ProductReview)
+def get_user_review(product_code: str, usr = Depends(get_user_or_none)):
+    if type(usr) == HTTPException or usr == None :
+        print("no user")
+        return ProductReview(product_code=product_code).__dict__
+    res = get_product_review(usr.username, product_code)
+    if res:
+        return productReviewSerializer(res)
+    else:
+        raise HTTPException(status_code=404, detail="Product not found")

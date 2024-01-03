@@ -111,20 +111,21 @@
 .rec-btn {
     /* padding: px 10px; */
     height: 2em;
-    width: 6em;
+    width: 10em;
     /* margin-right: 2em; */
     margin-left: 1em;
+    margin-bottom: 1em;
     background: transparent;
     border: 0.6px solid #333;
     border-radius: 1em;
     cursor: pointer;
     font-family: var(--inter);
     font-weight: var(--font-semibold);
-    font-size: 18px;
+    font-size: 19px;
 }
-.mytable {
+/* .mytable {
     border: none;
-}
+} */
 .buttons :hover {
     background: var(--color-tertiary-container-light);
     border: var(--color-primary-light);
