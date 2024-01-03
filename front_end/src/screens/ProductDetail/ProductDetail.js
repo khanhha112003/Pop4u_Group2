@@ -23,7 +23,6 @@ function ProductDetail() {
             product_data: {
                 product_code: 0,
                 product_name: "",
-                options: [],
                 product_stock: 0,
                 is_new: false,
                 is_hot: false,
@@ -44,11 +43,11 @@ function ProductDetail() {
     const [ratingData, setRatingData] = useState({ userRating: 0, rating_detail: "" });
     const [quantity, setQuantity] = useState(1);
     const [imageIndex, setImageIndex] = useState(0);
-    const [option, setOption] = useState(0);
 
     useEffect(() => {
         const productDetailRequest = basicGetRequets("/product/product_detail", { product_code: searchParam.get("product_code") });
-        const relatedProductRequest = basicGetRequets("/product/product_list", { type: "related" });
+
+        const relatedProductRequest = basicGetRequets("/product/product_list", { type: "related", artist_code: searchParam.get("artist_code")});
         const userRatingRequest = basicGetRequets("/product/product_review", { product_code: searchParam.get("product_code") });
         const result = combineMultipleRequests([productDetailRequest, relatedProductRequest, userRatingRequest])
             .then((responses) => {
@@ -101,10 +100,6 @@ function ProductDetail() {
         }).catch(error => {
             setError(error);
         });
-    };
-
-    const handleOptionSelection = (selectedOption) => {
-        setOption(selectedOption);
     };
 
     if (loading) {

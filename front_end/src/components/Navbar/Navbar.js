@@ -22,7 +22,7 @@ function CustomNavbar() {
         <Navbar.Collapse className='w-100' id="navbarScroll">
           <Nav className="w-100 justify-content-center" activeKey="/home">
             <NavDropdown className="label-m" title="Sản phẩm" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="/product_list/album">
+              <NavDropdown.Item href="/product_list">
                 Tất cả
               </NavDropdown.Item>
               <NavDropdown.Item href="/product_list/album">
