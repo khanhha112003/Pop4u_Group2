@@ -8,7 +8,7 @@ const Blgdata = {
 
     BlgPosts : [
         {
-            id: "1",
+            id: 1,
             image: "https://c4.wallpaperflare.com/wallpaper/610/350/327/bts-jungkook-jin-bts-jhope-wallpaper-preview.jpg",
             name: 'Những ca khúc cũ của BTS bất ngờ lọt top BXH Billboard sau nhiều năm ra mắt',
             slug: 'Những ca khúc cũ của BTS bất ngờ lọt top BXH Billboard sau nhiều năm ra mắt',
@@ -17,7 +17,7 @@ const Blgdata = {
             date: "2023-12-31"
         },
         {
-            id: "2",
+            id: 2,
             image:"https://c4.wallpaperflare.com/wallpaper/650/781/190/blackpink-lalisa-lisa-blackpink-jisoo-blackpink-jennie-blackpink-hd-wallpaper-preview.jpg",
             name: '4 thành viên Blackpink không gia hạn hợp đồng cá nhân với công ty chủ quản',
             slug: '4 thành viên Blackpink không gia hạn hợp đồng cá nhân với công ty chủ quản',
@@ -26,7 +26,7 @@ const Blgdata = {
             date: "2023-12-31"
         },
         {
-            id: "3",
+            id: 3,
             image:"https://c4.wallpaperflare.com/wallpaper/290/278/388/kpop-blackpink-girl-red-wallpaper-preview.jpg",
             name: 'Không lập công ty riêng, Jisoo (Blackpink) gia nhập công ty của anh trai',
             slug: 'Không lập công ty riêng, Jisoo (Blackpink) gia nhập công ty của anh trai',
@@ -35,7 +35,7 @@ const Blgdata = {
             date: "2024-01-02"
         },
         {
-            id:"4",
+            id: 4,
             image:"https://c4.wallpaperflare.com/wallpaper/17/721/243/twice-k-pop-celebrity-asian-korean-hd-wallpaper-preview.jpg",
             name: 'Twice là idol nữ K-pop đầu tiên tiến vào NISSAN - SVĐ lớn nhất Nhật Bản',
             slug: 'Twice là idol nữ K-pop đầu tiên tiến vào NISSAN - SVĐ lớn nhất Nhật Bản',
@@ -44,7 +44,7 @@ const Blgdata = {
             date: "2023-12-30"
         },
         {
-            id:"5",
+            id: 5,
             image:"https://images2.thanhnien.vn/528068263637045248/2023/12/25/anh-2-2-1703515572678783588.jpg",
             name: 'Dàn sao K-pop đổ bộ thảm đỏ SBS Gayo Daejeon',
             slug: 'Dàn sao K-pop đổ bộ thảm đỏ SBS Gayo Daejeon',
@@ -53,7 +53,7 @@ const Blgdata = {
             date: "2023-12-25"
         },
         {
-            id:"6",
+            id: 6,
             image:"https://c4.wallpaperflare.com/wallpaper/107/435/734/blackpink-girl-kpop-jennie-wallpaper-preview.jpg",
             name: 'Jennie Blackpink đã phá vỡ mọi quy chuẩn ở Kpop như thế nào?',
             slug: 'Jennie Blackpink đã phá vỡ mọi quy chuẩn ở Kpop như thế nào?',
@@ -62,7 +62,7 @@ const Blgdata = {
             date: "2023-09-12"
         },
         {
-            id:"7",
+            id: 7,
             image:"https://media-cdn-v2.laodong.vn/storage/newsportal/2023/12/15/1280110/Babymonster-Batterup.jpg?w=660",
             name: 'Tân binh BabyMonster chuẩn bị ra mắt sản phẩm âm nhạc mới',
             slug: 'Tân binh BabyMonster chuẩn bị ra mắt sản phẩm âm nhạc mới',
