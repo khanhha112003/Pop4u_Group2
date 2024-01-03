@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import Blgdata from '../data.jsx';
 import './BlgFilter.css'
 import { ReactComponent as FilterIcon } from '../img/filtericon.svg';
@@ -99,6 +100,7 @@ export function Blog(){
                     {filteredBlgPosts.slice(0, visiblePosts).map((post, idx) => (
                         <div key={`BlgPosts-${idx}`} className="col- col-12 col-sm-6 col-md-4 col-lg-4">
                             <div className="Post mb-5">
+                            <Link to={`/single-post/${post.id}`} className="post-link">
                                 <img src={post.image} 
                                 alt={post.name} 
                                 className="img-fluid" 
@@ -120,6 +122,7 @@ export function Blog(){
                                 ))}
                             </div>
                                 </div>
+                            </Link>
                             </div>
                         </div>
                         ))}

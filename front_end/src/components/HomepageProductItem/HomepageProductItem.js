@@ -27,9 +27,11 @@ const HomepageProductItem = ({ data }) => {
             to={`/product_detail?product_code=${data.product_code}&artist_code=${data.artist_code}`}
             style={{ width: '100%', height: '100%', cursor: 'pointer' }}
         >
-        <Card style={{ width: '100%', height: '100%', padding: '10px 0'}}>
-            <Card.Img style={{height: 180, objectFit: 'contain'}} variant="top" src={data.list_product_image[0]} />
-            <Card.Body className='product_title' style={{paddingTop: 5, paddingBottom: 5}}>
+        <Card style={{ width: '100%', height: '100%', padding: '10px 0'}}
+         onMouseOver={(e) => { e.target.style.transform = 'scale(1.06)'; }} 
+         onMouseOut={(e) => { e.target.style.transform = 'scale(1)'; }}  >
+            <Card.Img style={{height: 180, objectFit: 'contain'}} variant="top" src={data.list_product_image[0]}/>
+            <Card.Body className='product_title' style={{paddingTop: 5, paddingBottom: 2}}>
                 <Card.Title>
                     {data.product_name}
                 </Card.Title>
