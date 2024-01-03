@@ -1,11 +1,13 @@
 
 import './ProductDetail.css'
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import 'react-bootstrap';
 import { Carousel } from 'react-bootstrap';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
 import { ReactComponent as Plus } from './icons/icon_plus.svg';
 import { ReactComponent as Minus } from './icons/icon_minus.svg';
+import { BadgeList } from '../../components/BadgeList/BadgeList';
 import RatingBar from '../../components/RatingBar/RatingBar';
 import NotFoundPage from "../Error/NotFoundError";
 import LoadingPage from "../Loading/LoadingPage";
@@ -14,13 +16,14 @@ import HorizontalPagination from "../../components/HorizontalPagination/Horizont
 
 import { basicGetRequets, basicPutRequest, combineMultipleRequests } from "../../app_logic/APIHandler";
 
-function ProductDetail(product_id) {
+function ProductDetail() {
+    const [searchParam] = useSearchParams();
     const [content, setContent] = useState(
         {
             product_data: {
-                product_id: 0,
+                product_code: 0,
                 product_name: "",
-                options: [],
+                product_stock: 0,
                 is_new: false,
                 is_hot: false,
                 is_freeship: false,
@@ -40,12 +43,12 @@ function ProductDetail(product_id) {
     const [ratingData, setRatingData] = useState({ userRating: 0, rating_detail: "" });
     const [quantity, setQuantity] = useState(1);
     const [imageIndex, setImageIndex] = useState(0);
-    const [option, setOption] = useState(0);
 
     useEffect(() => {
-        const productDetailRequest = basicGetRequets("/product_detail", { product_id: product_id });
-        const relatedProductRequest = basicGetRequets("/product_list", { type: "related" });
-        const userRatingRequest = basicGetRequets("/user_rating", { product_id: product_id });
+        const productDetailRequest = basicGetRequets("/product/product_detail", { product_code: searchParam.get("product_code") });
+
+        const relatedProductRequest = basicGetRequets("/product/product_list", { type: "related", artist_code: searchParam.get("artist_code")});
+        const userRatingRequest = basicGetRequets("/product/product_review", { product_code: searchParam.get("product_code") });
         const result = combineMultipleRequests([productDetailRequest, relatedProductRequest, userRatingRequest])
             .then((responses) => {
                 var related_product = responses[1].data;
@@ -91,16 +94,12 @@ function ProductDetail(product_id) {
     const handleRatingChange = (newRating) => {
         // Do something with the new rating, e.g., update it in the state
         const newRatingData = { rating: newRating, num_of_rating: ratingData.num_of_rating + 1 };
-        const updateRatingRequest = basicPutRequest("/update_rating", { product_id: product_id, rating: newRatingData.rating, num_of_rating: newRatingData.num_of_rating });
+        const updateRatingRequest = basicPutRequest("/update_rating", { product_code: searchParam.get("product_code") , rating: newRatingData.rating, num_of_rating: newRatingData.num_of_rating });
         updateRatingRequest.then((response) => {
             setRatingData(response.data);
         }).catch(error => {
             setError(error);
         });
-    };
-
-    const handleOptionSelection = (selectedOption) => {
-        setOption(selectedOption);
     };
 
     if (loading) {
@@ -134,7 +133,7 @@ function ProductDetail(product_id) {
                             {
                                 content.product_data.list_product_image.map((imageSrc, index) => (
                                     <img
-                                        key={"image_tag_banter" + index}
+                                        key={"image_tag_banner_list" + index}
                                         src={imageSrc}
                                         alt={"image_" + index}
                                         style={{ width: '20%', marginRight: '1px', cursor: 'pointer' }}
@@ -147,18 +146,16 @@ function ProductDetail(product_id) {
                 </div>
 
                 <div className="col-md-3 product_1">
-                    <img src={content.product_data.img_product} alt="Product Image" />
                     <div>
-                        {content.product_data.special_badge.map((tag, index) => (
-                            <span className="tag">{tag}</span>
-                        ))}
                         <div className="product-box-title">
                             <h4>
                                 <a href="" title={content.product_data.product_name}>
                                     {content.product_data.product_name}
                                 </a>
                             </h4>
-
+                        </div>
+                        <div style={{maxWidth: 400}}>
+                            <BadgeList data={content.product_data} small={false} />
                         </div>
                         <div>
                             {
@@ -178,34 +175,23 @@ function ProductDetail(product_id) {
                         </div>
                         {
                             ratingData.userRating === 0
-                                ? <RatingBar isDisabled={false} data={{ rating: ratingData.totalRating, rating_detail: ratingData.rating_detail }} onChangeValue={handleRatingChange} />
-                                : <RatingBar isDisabled={false} data={{ rating: ratingData.userRating, rating_detail: ratingData.rating_detail }} onChangeValue={handleRatingChange} />
+                                ? <RatingBar 
+                                    style={{ width: 200 }}
+                                    isDisabled={false} 
+                                    data={{ rating: ratingData.totalRating, rating_detail: ratingData.rating_detail }} 
+                                    onChangeValue={handleRatingChange} 
+                                    />
+                                : <RatingBar 
+                                    style={{ width: 200 }}
+                                    isDisabled={false} 
+                                    data={{ rating: ratingData.userRating, rating_detail: ratingData.rating_detail }} 
+                                    onChangeValue={handleRatingChange} 
+                                    />
                         }
                         <hr></hr>
                         <div>
-                            {
-                                content.product_data.options.length > 0 && (
-                                    <div>
-                                        <h5 className="margin">Ver:</h5>
-                                        <div>
-                                            {
-                                                content.product_data.options.map((optionName, index) => (
-                                                    <button
-                                                        key={"option" + index}
-                                                        className={`btn option-box ${index === option ? 'active' : ''}`}
-                                                        onClick={() => handleOptionSelection(index)}
-                                                    >
-                                                        {optionName}
-                                                    </button>
-                                                ))
-                                            }
-                                        </div>
-                                    </div>
-                                )
-
-                            }
                             <div>
-                                <h5 className="margin">Số lượng:</h5>
+                                <h6 className="margin">Số lượng: {content.product_data.product_stock}</h6>
                                 <label style={{ cursor: 'pointer' }} onClick={decreaseQuantity}><Minus /></label>
                                 <input className="quantity" type="text" value={quantity} readOnly />
                                 <label style={{ cursor: 'pointer' }} onClick={increaseQuantity}><Plus /></label>

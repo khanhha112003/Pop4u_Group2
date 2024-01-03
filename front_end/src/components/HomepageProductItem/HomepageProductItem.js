@@ -22,10 +22,11 @@ const HomepageProductItem = ({ data }) => {
         </div>
     );
 
-    console.log(data);
-
     return (
-        <Link to="/product_detail" style={{ width: '100%', height: '100%', cursor: 'pointer' }}>
+        <Link 
+            to={`/product_detail?product_code=${data.product_code}&artist_code=${data.artist_code}`}
+            style={{ width: '100%', height: '100%', cursor: 'pointer' }}
+        >
         <Card style={{ width: '100%', height: '100%', padding: '10px 0'}}>
             <Card.Img style={{height: 180, objectFit: 'contain'}} variant="top" src={data.list_product_image[0]} />
             <Card.Body className='product_title' style={{paddingTop: 5, paddingBottom: 5}}>
@@ -35,12 +36,7 @@ const HomepageProductItem = ({ data }) => {
             </Card.Body>
             <ListGroup style={{border: 0, marginTop: 'auto'}}>
                 <ListGroup.Item style={{border: 0, paddingTop: 5, paddingBottom: 5}}>
-                    <BadgeList data={{
-                        is_new: data.is_new,
-                        is_hot: data.is_hot,
-                        is_freeship: data.is_freeship,
-                        is_sale: data.is_sale
-                    }} />
+                    <BadgeList data={data} />
                 </ListGroup.Item>
                 <ListGroup.Item style={{border: 0, paddingTop: 5, paddingBottom: 5}}>
                     <RatingBar 

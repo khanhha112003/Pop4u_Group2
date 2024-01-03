@@ -46,6 +46,14 @@ export function Blog(){
         );
     };
     
+    useEffect(() => {
+        let sortedPosts = [...filteredBlgPosts]; // Create a copy of the filtered posts
+
+        // Sort the posts by date (assuming post.date is in a sortable format)
+        sortedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        setFilteredBlgPosts(sortedPosts); // Update the state with sorted posts
+    }, [selectedFilters, Blgdata.BlgPosts]);
     
     return(
         <div className="BlgLst">
@@ -55,7 +63,7 @@ export function Blog(){
                     {
                         Blgdata.BlgBanner.map ((BannerImg) => (
                         <div>
-                            <img src={BannerImg.Image} className="banner-image" alt="Banner Image" />
+                            <img src={BannerImg.image} className="banner-image" alt="Banner Image" />
                         </div>
                         ))
                     }
@@ -91,10 +99,19 @@ export function Blog(){
                     {filteredBlgPosts.slice(0, visiblePosts).map((post, idx) => (
                         <div key={`BlgPosts-${idx}`} className="col- col-12 col-sm-6 col-md-4 col-lg-4">
                             <div className="Post mb-5">
-                                <img src={post.Image} alt={post.name} className="img-fluid" />
+                                <img src={post.image} 
+                                alt={post.name} 
+                                className="img-fluid" 
+                                style={{ borderRadius: '30px', transition: 'transform 0.3s ease',  width: '100%', 
+                                height: '250px',
+                                objectFit: 'cover', }}
+                                onMouseOver={(e) => { e.target.style.transform = 'scale(1.1)'; }} 
+                                onMouseOut={(e) => { e.target.style.transform = 'scale(1)'; }} 
+                                />
                                 <div className="postinfo">
                                         <h5 className="posttitle">{post.name}</h5>
-                                        <div className="postdes">{post.description} </div>
+                                        <div className="postdate">Ngày đăng: {post.date} </div>
+                                        <div className="postdes" style={{marginTop:'8px'}}>{post.description} </div>
                                         <div className="postcategories">
                                         {Array.isArray(post.category) && post.category.map((category, index) => (
                                     <div key={`category-${index}`} className="postcategory">
