@@ -64,9 +64,58 @@ function ProductList() {
         // setSearchTimeout(newTimeout);
     };
 
+            const [isPromotion, setIsPromotion] = useState(false);
+            const [isNewProduct, setIsNewProduct] = useState(false);
+            const [isHotProduct, setIsHotProduct] = useState(false);
 
+            const handlePromotionChange = (event) => {
+                setIsPromotion(event.target.checked);
+            };
+
+            const handleNewProductChange = (event) => {
+                setIsNewProduct(event.target.checked);
+            };
+
+            const handleHotProductChange = (event) => {
+                setIsHotProduct(event.target.checked);
+            };
+
+            const filteredItems = filteredData.filter((item) => {
+                const isPromotionItem = isPromotion ? item.is_sale : true;
+                const isNew = isNewProduct ? item.is_new : true;
+                const isHot = isHotProduct ? item.is_hot : true;
+
+                return isPromotionItem && isNew && isHot;
+            });
     
-
+            const [ascendingPrice, setAscendingPrice] = useState(false);
+            const [descendingPrice, setDescendingPrice] = useState(false);
+          
+            // Handler for ascending price
+            const handleAscendingChange = () => {
+              setAscendingPrice(!ascendingPrice);
+              setDescendingPrice(false);
+            };
+          
+            // Handler for descending price
+            const handleDescendingChange = () => {
+              setDescendingPrice(!descendingPrice);
+              setAscendingPrice(false);
+            };
+          
+            // Filtering based on price
+            const filterByPrice = () => {
+              let filtered = filteredData;
+          
+              if (ascendingPrice) {
+                filtered = filtered.sort((a, b) => a.sell_price - b.sell_price);
+              } else if (descendingPrice) {
+                filtered = filtered.sort((a, b) => b.sell_price - a.sell_price);
+              }
+          
+              setFilteredData(filtered);
+            };
+             
     return (
 
 
@@ -108,29 +157,53 @@ function ProductList() {
                 <div className="col-md-3 col-lg-2">
                     <span className="mb-3 label-xl">Bộ lọc sản phẩm</span>
                     <div className="d-flex flex-column mb-4">
+                    <div className="d-flex flex-column mb-4">
                         <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
+                        <input
+                            type="checkbox"
+                            className="mycheckbox"
+                            onChange={handlePromotionChange}
+                        />
                         <span className="label-m">Khuyến mãi</span>
                         </label>
                         <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
+                        <input
+                            type="checkbox"
+                            className="mycheckbox"
+                            onChange={handleNewProductChange}
+                        />
                         <span className="label-m">Sản phẩm mới</span>
                         </label>
                         <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
+                        <input
+                            type="checkbox"
+                            className="mycheckbox"
+                            onChange={handleHotProductChange}
+                        />
                         <span className="label-m">Sản phẩm hot</span>
                         </label>
+                    </div>
                     </div>
 
                     <br />
                     <span className="mb-3 label-xl">Giá yêu thương</span>
                     <div className="d-flex flex-column mb-4">
                         <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
+                        <input 
+                        type="checkbox"
+                        className="mycheckbox"
+                        checked={ascendingPrice}
+                        onChange={handleAscendingChange} 
+                        />
                         <span className="label-m">Giá tăng dần</span>
                         </label>
                         <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
+                        <input 
+                        type="checkbox"
+                        className="mycheckbox"
+                        checked={descendingPrice}
+                        onChange={handleDescendingChange}
+                        />
                         <span className="label-m">Giá giảm dần</span>
                         </label>
                     </div>
@@ -140,7 +213,7 @@ function ProductList() {
 
                     <Container>
                         <Row>
-                            {currentItems.map((item, index) => (
+                            {filteredItems.map((item, index) => (
                                 <Col key={index} sm={3}>
                                     <HomepageProductItem
                                         key={'product' + index}
