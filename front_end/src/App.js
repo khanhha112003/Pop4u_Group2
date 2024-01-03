@@ -7,13 +7,17 @@ import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
 
+// import HeaderAdmin from './components/HeaderAdmin/HeaderAdmin';
+// import SidebarAdmin from './components/SidebarAdmin/SidebarAdmin'
 import { ProductListAdmin } from './screens/Admin/Product/ProductListAdmin'
 import { AddProduct } from './screens/Admin/Product/AddProduct';
+
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import { ProductList } from './screens/ProductList/ProductList';
 
 import { Blog } from './screens/Blog/BlgFilter/BlgFilter';
 import { Cart } from './screens/Cart/Cart';
+
 
 import {
   BrowserRouter as Router,
@@ -59,6 +63,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+
 
   );
 }
