@@ -1,7 +1,5 @@
-import Footer from './components/Footer/Footer';
-import CustomNavbar from './components/Navbar/Navbar';
-// import BasicTable from './screens/Admin/Order/OrderList';
 import { useEffect } from "react";
+import { SpecificLayout } from "./SpecificLayout";
 import { AboutUs } from './screens/AboutUs/AboutUs';
 import { ArtistList } from './screens/Artist/Artist';
 import { SignIn } from './screens/SignIn/SignIn';
@@ -12,10 +10,10 @@ import { AddProduct } from './screens/Admin/Product/AddProduct';
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import { ProductList } from './screens/ProductList/ProductList';
 import { Blog } from './screens/Blog/BlgFilter/BlgFilter';
-import {SinglePost} from './screens/Blog/SinglePost/SinglePost'
+import { SinglePost } from './screens/Blog/SinglePost/SinglePost'
 import { Cart } from './screens/Cart/Cart';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Routes,
   Route,
   useLocation
@@ -34,11 +32,10 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <ScrollToTop />
-      <div className="App">
-        <CustomNavbar />
-        <Routes>
+      <Routes>
+        <Route path="/" element={<SpecificLayout />}>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/artists" element={<ArtistList />} />
@@ -48,16 +45,19 @@ function App() {
           <Route path="/single-post/:postId" element={<SinglePost />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product_detail" element={<ProductDetail />} />
-          <Route path="/manager/add_product" element={<AddProduct />} />
-          <Route path="/manager/product_list" element={<ProductListAdmin />} />
           <Route path="/product_list">
             <Route path=":sort" element={<ProductList />} />
             <Route path="" element={<ProductList />} />
           </Route>
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+        </Route>
+        <Route path="/" element={<SpecificLayout />}>
+          <Route path="/admin/add_product" element={<AddProduct />} />
+        </Route>
+        <Route path="/">
+          <Route path="/admin/product_list" element={<ProductListAdmin />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
 
   );
 }
