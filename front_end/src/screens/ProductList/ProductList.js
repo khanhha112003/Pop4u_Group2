@@ -64,15 +64,6 @@ function ProductList() {
         // setSearchTimeout(newTimeout);
     };
 
-    //Label filter
-    const handleChange = event => {
-        setSelectedCategory(event.target.value)
-    }
-
-    //Buttons Filter
-    const HandleClick = event => {
-        setSelectedCategory(event.target.value)
-    }
 
     
 
