@@ -209,3 +209,7 @@ td {
     background-color: var(--color-on-primary-light);
     border: none;
 }
+
+div.col-sm-3 {
+    padding: 0.5rem;
+}
