@@ -49,6 +49,7 @@ const HomepageProductItem = ({ data }) => {
                                 rating_detail: data.rating_detail
                             }
                         }
+                        style={{width: '100%'}}
                          />
                 </ListGroup.Item>
             </ListGroup>
