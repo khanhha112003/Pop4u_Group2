@@ -7,8 +7,7 @@ import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
 
-// import HeaderAdmin from './components/HeaderAdmin/HeaderAdmin';
-// import SidebarAdmin from './components/SidebarAdmin/SidebarAdmin'
+import { AdminSpecificLayout } from "./AdminSpecificLayout";
 import { ProductListAdmin } from './screens/Admin/Product/ProductListAdmin'
 import { AddProduct } from './screens/Admin/Product/AddProduct';
 import { AddVoucher } from './screens/Admin/Voucher/AddVoucher';
@@ -62,7 +61,7 @@ function App() {
             <Route path="" element={<ProductList />} />
           </Route>
         </Route>
-
+        <Route path="/" element={<AdminSpecificLayout />}>
         <Route path="/" >
           <Route path="/admin/add_product" element={<AddProduct />} />
         </Route> 
@@ -74,6 +73,7 @@ function App() {
         </Route>
         <Route path="/">
           <Route path="/admin/voucher_list" element={<VoucherList />} />
+        </Route>
         </Route>
       </Routes>
     </BrowserRouter>
