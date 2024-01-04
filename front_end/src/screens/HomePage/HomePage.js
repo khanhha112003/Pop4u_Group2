@@ -63,7 +63,7 @@ function HomePage() {
 	return (
 		<div className="App">
 			<div className="container">
-				<div className="row">
+				<div className="row" style={{ marginBottom: '48px' }}>
 					<div className="col-12">
 						<div className="homepage-header">
 							<h4 className="head4">Danh mục sản phẩm</h4>
@@ -156,7 +156,7 @@ function HomePage() {
 						</div>
 					</div>
 				</div>
-				<div className="row">
+				<div className="row"  style={{ marginBottom: '48px' }}>
 					<div className="col-12">
 						<div className="homepage-header">
 							<h4 className="head4">Sale đến "ngất".</h4>
@@ -182,7 +182,7 @@ function HomePage() {
 						</div>
 					</div>
 				</div>
-				<div className="row">
+				<div className="row"  style={{ marginBottom: '48px' }}>
 					<div className="col-12">
 						<div className="homepage-header">
 							<h4 className="head4">Mới ra mắt. Nóng cả tay.</h4>
@@ -228,7 +228,7 @@ function HomePage() {
 						))}
 					</Row>
 				</div>
-				<div className="row">
+				<div className="row"  style={{ marginBottom: '48px' }}>
 					<div className="col-12">
 						<div className="homepage-header">
 							<h4 className="head4">Mua hàng tự tin. Dẹp đi vặt vãnh.</h4>

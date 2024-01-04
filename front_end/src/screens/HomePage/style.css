@@ -39,8 +39,16 @@ h6 {
 }
 
 .cat-card {
+	width: 100%;
+	padding: 7.5%;
 	padding: 7.5%;
 	transition: all 0.5s;
+	transition: all 0.5s;
+	background-color: var(--color-secondary-container-light);
+	text-align: left;
+	border-radius: 20px;
+	margin-bottom: 24px;
+	flex: 1
 }
 
 .cat-card:hover {
@@ -55,6 +63,10 @@ h6 {
 	100% {
 		transform: rotate(360deg);
 	}
+}
+
+.cat-card .rotatable-svg {
+	transition: all 0.5s;
 }
 
 .cat-card:hover .rotatable-svg {
@@ -95,7 +107,7 @@ h6 {
 @media (max-width: 992px) {
 	.cat-card-icon>* {
 		width: 80px;
-
+		height: 80px;
 	}
 }
 
@@ -128,13 +140,9 @@ h6 {
 	background-color: var(--color-secondary-container-light);
 	color: var(--color-on-secondary-container-light);
 }
-
-.cat-card {
+.artist-card-item {
+	width: 100%;
 	flex: 1;
-	margin: 10px;
-	background-color: var(--color-secondary-container-light);
-	text-align: left;
-	border-radius: 20px;
 }
 
 .btn.btn-default {
@@ -144,28 +152,12 @@ h6 {
 	border-width: 1px;
 }
 
-.col-md-3 {
-	flex: 1;
-	margin: 20px;
-	text-align: left;
-	width: 100%;
-}
-
-.product-box-title {
-	width: 100%;
-
-}
-
-/* Optionally, you can add some styling to the items within the row */
 .product>* {
 	display: flex;
 	overflow-x: auto;
-	/* Enable horizontal scrolling */
 	white-space: wrap;
-	/* Prevent line breaks for inline elements */
 	height: 494px;
 	margin-right: 10px;
-	/* Add margin between items for spacing */
 }
 
 .list {
@@ -211,21 +203,27 @@ h6 {
 	transform-origin: center;
 }
 
+.benefit-card .rotatable-svg {
+	transition: all 0.5s;
+}
+
 .benefit-card:hover .rotatable-svg {
 	animation: rotateLeft 0.6s forwards;
 }
-
-
 @keyframes rotateLeft {
 	0% {
 		transform: rotate(0deg) scale(1);
 	}
 
-	75% {
+	45% {
 		transform: rotate(-35deg) scale(0.6);
 	}
 
-	100% {
+	65% {
 		transform: rotate(15deg) scale(1.1);
+	}
+
+	100% {
+		transform: rotate(0deg) scale(1);
 	}
 }
