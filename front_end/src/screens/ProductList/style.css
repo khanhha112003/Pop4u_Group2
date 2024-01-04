@@ -110,13 +110,14 @@
 
 .rec-btn {
     /* padding: px 10px; */
-    height: 2em;
+    height: 2.8em;
     width: 10em;
     /* margin-right: 2em; */
     margin-left: 1em;
     margin-bottom: 1em;
-    background: transparent;
-    border: 0.6px solid #333;
+    color: var(--theme-primary1, #325DA8);
+    border: 1px solid var(--theme-primary1, #325DA8);
+    background: var(--theme-typo-label-light, #FFF);
     border-radius: 1em;
     cursor: pointer;
     font-family: var(--inter);
@@ -127,10 +128,14 @@
     border: none;
 } */
 .buttons :hover {
-    background: var(--color-tertiary-container-light);
+    background: var(--theme-secondary1, #D8E2FF);
     border: var(--color-primary-light);
-
 }
+.buttons.active {
+    background: var(--theme-secondary1, #D8E2FF);
+    border: var(--color-primary-light);
+}
+
 
 /* Style Card */
 
@@ -203,4 +208,8 @@ td {
     padding: 0.5rem;
     background-color: var(--color-on-primary-light);
     border: none;
+}
+
+div.col-sm-3 {
+    padding: 0.5rem;
 }

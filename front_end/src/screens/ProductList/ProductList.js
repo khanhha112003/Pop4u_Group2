@@ -1,75 +1,149 @@
-import React, { useState } from "react";
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams, useHistory } from 'react-router-dom';
+import { basicGetRequets } from "../../app_logic/APIHandler.js";
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
-import data from './data.js'
-import { items } from './list_product.js'
 import { Container, Row, Col, Pagination } from 'react-bootstrap';
 
 const itemsPerPage = 16;
 
+function filterWithFilterInfo(items, filter_info = {}) {
+    var filterItemWithCategory = [];
+    if (filter_info.category === "All") {
+        filterItemWithCategory = items
+    } else {
+        filterItemWithCategory = items.filter((item) => { return item.category === filter_info.category });
+    }
+    var filteredItemsWithFilterName = filterItemWithCategory
+    if (filter_info.filterName !== "") {
+        filteredItemsWithFilterName = filterItemWithCategory.filter((item) => item.product_name.toLowerCase().includes(filter_info.filterName.toLowerCase()));
+    }
+    var filteredItemsWithSale = filteredItemsWithFilterName
+    if (filter_info.isSaleProduct) {
+        filteredItemsWithSale = filteredItemsWithFilterName.filter((item) => item.is_sale);
+    }
+    var filteredItemsWithNew = filteredItemsWithSale
+    if (filter_info.isNewProduct) {
+        filteredItemsWithNew = filteredItemsWithSale.filter((item) => item.is_new);
+    }
+    var filteredItemsWithHot = filteredItemsWithNew
+    if (filter_info.isHotProduct) {
+        filteredItemsWithHot = filteredItemsWithNew.filter((item) => item.is_hot);
+    }
+    if (filter_info.ascendingPrice || filter_info.descendingPrice) {
+        // const filteredItemsWithPrice = filteredItemsWithHot.sort((a, b) => {
+        //     const a_price = (a.discount_price !== 0) ? a.discount_price : a.sell_price;
+        //     const b_price = (a.discount_price !== 0) ? b.discount_price : b.sell_price;
+        //     console.log(a_price, b_price);
+        //     if (filter_info.ascendingPrice) {
+        //         return a_price > b_price;
+        //     } else if (filter_info.descendingPrice) {
+        //         return b_price > a_price;
+        //     } else {
+        //         return 0;
+        //     }
+        // });
+        // return filteredItemsWithPrice;
+    }
+    return filteredItemsWithHot;
+}
+
+function calulatePageInformation(items, currentPage = 1) {
+    const totalPage = Math.ceil(items.length / itemsPerPage);
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const currentItems = items.slice(start, end);
+    return {filtered_product: items, current_page: currentPage, current_item: currentItems, total_page: totalPage };
+}
+
 function ProductList() {
-    const [index, setIndex] = useState(0);
     const { sort } = useParams();
-
-    const [currentPage, setCurrentPage] = useState(1);
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
-
-    const totalPages = Math.ceil(items.length / itemsPerPage);
+    const [total_product, setTotalProduct] = useState([]);
+    const [currentPageInfo, setCurrentPageInfo] = useState({filtered_product: [], current_page: 0, current_item: [], total_page: 0});
+    const [filter_info, setFilterInfo] = useState({isSaleProduct: false, isNewProduct: false, isHotProduct: false, ascendingPrice: false, descendingPrice: false, filterName: ""});
 
     const handlePageChange = (page) => {
-        setCurrentPage(page);
+        const newState = calulatePageInformation(currentPageInfo.filtered_product, page);
+        setCurrentPageInfo(newState);
     };
 
-    const handleSelect = (selectedIndex) => {
-        setIndex(selectedIndex);
-    };
+    useEffect(() => {
+        const reg = basicGetRequets("/product/product_list", { type_filter: "all", limit: 1000 });
+    
+        reg.then((data) => {
+          const serverItem = data.data.list_product;
+          const newState = calulatePageInformation(serverItem);
+          setTotalProduct(serverItem);
+          setCurrentPageInfo(newState);
+        }).catch((error) => {
+          console.log(error);
+        }).finally(() => {
+          console.log("done");
+        });
+    }, []); 
 
-    const [selectedCategory, setSelectedCategory] = useState(null)
-   
     //Input filter
-    const [filterName, setFilterName] = useState('');
-    const [searchTimeout, setSearchTimeout] = useState(null);
-    const [filteredData, setFilteredData] = useState(items);
-
     const handleInputChange = (event) => {
         const inputValue = event.target.value;
-        setFilterName(inputValue);
-    
-        const newFilteredItems = items.filter((item) =>
-          item.product_name.toLowerCase().includes(inputValue.toLowerCase())
-        );
-        setFilteredData(newFilteredItems);
-        setCurrentPage(1); // Reset to the first page when searching
-       
+        const newFilterInfo = { ...filter_info, filterName: inputValue };
+        const filteredItems = filterWithFilterInfo(total_product, newFilterInfo);
+        const newState = calulatePageInformation(filteredItems);
+        setFilterInfo(newFilterInfo);
+        setCurrentPageInfo(newState);
+    };
 
-        // // Clear previous timeout
-        // if (searchTimeout) {
-        //     clearTimeout(searchTimeout);
-        // }
+    const handleSaleProductChange = (event) => {
+        const newFilterInfo = { ...filter_info, isSaleProduct: event.target.checked };
+        const filteredItems = filterWithFilterInfo(total_product, newFilterInfo);
+        const newState = calulatePageInformation(filteredItems);
+        setFilterInfo(newFilterInfo);
+        setCurrentPageInfo(newState);
+    };
 
-        // // Set new timeout for 2 seconds
-        // const newTimeout = setTimeout(() => {
-        //     const newFilteredData = data.filter(artist =>
-        //         artist.name.toLowerCase().includes(inputValue.toLowerCase())
-        //     );
-        //     setFilteredData(newFilteredData);
-        // }, 150);
+    const handleNewProductChange = (event) => {
+        const newFilterInfo = { ...filter_info, isNewProduct: event.target.checked };
+        const filteredItems = filterWithFilterInfo(total_product, newFilterInfo);
+        const newState = calulatePageInformation(filteredItems);
+        setFilterInfo(newFilterInfo);
+        setCurrentPageInfo(newState);
+    };
 
-        // // Save the new timeout ID
-        // setSearchTimeout(newTimeout);
+    const handleHotProductChange = (event) => {
+        const newFilterInfo = { ...filter_info, isHotProduct: event.target.checked };
+        const filteredItems = filterWithFilterInfo(total_product, newFilterInfo);
+        const newState = calulatePageInformation(filteredItems);
+        setCurrentPageInfo(newState);
+        setFilterInfo(newFilterInfo);
     };
 
 
-    
+    // Handler for price price
+    const handleRadioChange = (value) => {
+        var newFilterInfo = {};
+        if (value === 'ascending') {
+            newFilterInfo = { ...filter_info, ascendingPrice: true, descendingPrice: false };
+        } else if (value === 'descending') {
+            newFilterInfo = { ...filter_info, ascendingPrice: false, descendingPrice: true };
+        }
+        const filteredItems = filterWithFilterInfo(total_product, newFilterInfo);
+        const newState = calulatePageInformation(filteredItems);
+        setCurrentPageInfo(newState);   
+        setFilterInfo(newFilterInfo);
+    };
+
+    /// filter 3
+    const filterByCategory = (category) => {
+        // const filteredByCategory = items.filter((item) => item.category === category);
+        const newFilterInfo = { ...filter_info, category: category };
+        const filteredItems = filterWithFilterInfo(total_product, newFilterInfo);
+        const newState = calulatePageInformation(filteredItems);
+        setCurrentPageInfo(newState);
+        setFilterInfo(newFilterInfo);
+    };
+
 
     return (
-
-
         <div className="container">
             <div className="row">
                 <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
@@ -86,61 +160,88 @@ function ProductList() {
                     </div>
                     <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
                         <input
-                        className='label-m'
-                        type="text"
-                        id="filterInput"
-                        value={filterName}
-                        onChange={handleInputChange}
-                        placeholder="Tên sản phẩm..."
+                            className='label-m'
+                            type="text"
+                            id="filterInput"
+                            // value={filterName}
+                            onChange={handleInputChange}
+                            placeholder="Tên sản phẩm..."
                         />
                     </div>
                 </div>
 
                 <div className="buttons col-sm-12 col-md-12 col-lg-12 col-xl-12 row justify-content-right justify-content-md-center">
-                    <button className="rec-btn">Tất cả</button>
-                    <button className="rec-btn">Album</button>
-                    <button className="rec-btn">Lightstick</button>
-                    <button className="rec-btn">Photobook</button>
-                    <button className="rec-btn">Vinyl</button>
-                    <button className="rec-btn">Merch</button>
+                    <button className="rec-btn" onClick={() => filterByCategory('All')}>Tất cả</button>
+                    <button className="rec-btn" onClick={() => filterByCategory('Album')}>Album</button>
+                    <button className="rec-btn" onClick={() => filterByCategory('Lightstick')}>Lightstick</button>
+                    <button className="rec-btn" onClick={() => filterByCategory('Photobook')}>Photobook</button>
+                    <button className="rec-btn" onClick={() => filterByCategory('Vinyl')}>Vinyl</button>
+                    <button className="rec-btn" onClick={() => filterByCategory('Merch')}>Merch</button>
 
                 </div>
                 <div className="col-md-3 col-lg-2">
                     <span className="mb-3 label-xl">Bộ lọc sản phẩm</span>
                     <div className="d-flex flex-column mb-4">
-                        <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
-                        <span className="label-m">Khuyến mãi</span>
-                        </label>
-                        <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
-                        <span className="label-m">Sản phẩm mới</span>
-                        </label>
-                        <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
-                        <span className="label-m">Sản phẩm hot</span>
-                        </label>
+                        <div className="d-flex flex-column mb-4">
+                            <label className="filtering">
+                                <input
+                                    type="checkbox"
+                                    className="mycheckbox"
+                                    onChange={handleSaleProductChange}
+                                    checked={filter_info.isSaleProduct}
+                                />
+                                <span className="label-m">Khuyến mãi</span>
+                            </label>
+                            <label className="filtering">
+                                <input
+                                    type="checkbox"
+                                    className="mycheckbox"
+                                    onChange={handleNewProductChange}
+                                    checked={filter_info.isNewProduct}
+                                />
+                                <span className="label-m">Sản phẩm mới</span>
+                            </label>
+                            <label className="filtering">
+                                <input
+                                    type="checkbox"
+                                    className="mycheckbox"
+                                    onChange={handleHotProductChange}
+                                    checked={filter_info.isHotProduct}
+                                />
+                                <span className="label-m">Sản phẩm hot</span>
+                            </label>
+                        </div>
                     </div>
 
                     <br />
                     <span className="mb-3 label-xl">Giá yêu thương</span>
                     <div className="d-flex flex-column mb-4">
                         <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
-                        <span className="label-m">Giá tăng dần</span>
+                            <input
+                                type="radio"
+                                value="ascending"
+                                checked={filter_info.ascendingPrice}
+                                onChange={() => handleRadioChange('ascending')}
+                            />
+                            <span className="label-m">Giá tăng dần</span>
                         </label>
                         <label className="filtering">
-                        <input type="checkbox" className="mycheckbox" />
-                        <span className="label-m">Giá giảm dần</span>
+                            <input
+                                type="radio"
+                                value="descending"
+                                checked={filter_info.descendingPrice}
+                                onChange={() => handleRadioChange('descending')}
+                            />
+                            <span className="label-m">Giá giảm dần</span>
                         </label>
                     </div>
-                 </div>
-                    
-                <div className="col-md-9">
+                </div>
+
+                <div className="col-md-9" style={{ width: '80%' }}>
 
                     <Container>
                         <Row>
-                            {currentItems.map((item, index) => (
+                            {currentPageInfo.current_item.map((item, index) => (
                                 <Col key={index} sm={3}>
                                     <HomepageProductItem
                                         key={'product' + index}
@@ -150,12 +251,12 @@ function ProductList() {
                             ))}
                         </Row>
                         <Row className="mt-3 d-flex justify-content-center">
-                            <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                            <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 <Pagination>
-                                    {[...Array(totalPages)].map((_, index) => (
+                                    {[...Array(currentPageInfo.total_page)].map((_, index) => (
                                         <Pagination.Item
                                             key={index + 1}
-                                            active={index + 1 === currentPage}
+                                            active={index + 1 === currentPageInfo.current_page}
                                             onClick={() => handlePageChange(index + 1)}
                                         >
                                             {index + 1}

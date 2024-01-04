@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-// import { SpecificLayout } from "./SpecificLayout";
+
+import { SpecificLayout } from "./SpecificLayout";
 import { AboutUs } from './screens/AboutUs/AboutUs';
 import { ArtistList } from './screens/Artist/Artist';
 import { SignIn } from './screens/SignIn/SignIn';
@@ -44,7 +45,8 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path="/" >
+
+        <Route path="/" element={<SpecificLayout />}>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/artists" element={<ArtistList />} />
@@ -60,9 +62,10 @@ function App() {
             <Route path="" element={<ProductList />} />
           </Route>
         </Route>
-        <Route path="/" />
+
+        <Route path="/" element={<SpecificLayout />}>
           <Route path="/admin/add_product" element={<AddProduct />} />
-        {/* </Route> */}
+        </Route> 
         <Route path="/">
           <Route path="/admin/product_list" element={<ProductListAdmin />} />
         </Route>
