@@ -53,7 +53,7 @@ const ProductListAdmin = () => {
   );
 
   return (
-    <div>
+    <div className="container">
       <label htmlFor="categoryFilter">Filter by Category:</label>
       <select
         id="categoryFilter"

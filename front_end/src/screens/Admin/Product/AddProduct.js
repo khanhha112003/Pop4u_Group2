@@ -39,26 +39,43 @@ const AddProduct = () => {
 
   };
 
-  const [productImg, setProductImg] = useState("");
-  const handleProductImageUpload = (e) => {
-    const file = e.target.files[0];
+  const [productImgList, setProductImgList] = useState([]);
 
-    TransformFileData(file);
+  // ...
+
+  const handleProductImageUpload = (e) => {
+    const files = e.target.files;
+
+    // Loop through selected files and transform each into base64
+    const imgList = Array.from(files).map((file) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const imageData = {
+          name: file.name,
+          base64: reader.result,
+        };
+        setProductImgList((prevList) => [...prevList, imageData]);
+      };
+      return null;
+    });
+
+    // Add image data to product state
+    setProduct({
+      ...product,
+      photo: [...product.photo, ...imgList],
+    });
   };
 
-  const TransformFileData = (file) => {
-    const reader = new FileReader();
+  // Display uploaded images
+  const renderUploadedImages = () => {
+    return productImgList.map((imgData, index) => (
+      <div key={index}>
+        <img src={imgData.base64} alt={imgData.name} style={{ width: '300px', height: '300px', margin:'20px' }} />
+      </div>
+    ));
+  };
 
-    if (file) {
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setProductImg(reader.result);
-      };
-    } else {
-      setProductImg("");
-    };
-  }
-  
 
 
   return (
@@ -66,33 +83,32 @@ const AddProduct = () => {
 <form onSubmit={handleSubmit}>
 
   <div className="row">
-    <h2 className="center">Sản phẩm </h2>
+    <h2 className="center">Thông tin sản phẩm</h2>
 
     <div className="col-md-8">
       <div className="section-frame margin">
-        <h3 className="center">Thông tin sản phẩm</h3>
         <div className="margin">
         <label>
           Tên sản phẩm: <br></br>
-          <textarea type="text" cols="100" name="product_name" value={product.product_name} onChange={handleChange} />
+          <input className="input-custom margin" type="text" name="product_name" value={product.product_name} onChange={handleChange} />
          </label>
          </div>
          <div className="margin">
          Mã Sản phẩm: <br></br>
         <label>
-          <textarea type="text" cols="100" name="product_code" value={product.product_code} onChange={handleChange} />
+          <input className="input-custom margin" type="text" name="product_code" value={product.product_code} onChange={handleChange} />
         </label>
         </div>
         <div className="margin">
          Nghệ sĩ: <br></br>
         <label>
-          <textarea type="text" cols="100" name="artist" value={product.artist} onChange={handleChange} />
+          <input className="input-custom margin" type="text" cols="100" name="artist" value={product.artist} onChange={handleChange} />
         </label>
         </div>
         <div className="margin">
         Mô tả sản phẩm: <br></br>
         <label>
-          <textarea type="text" cols="100" rows="5" name="description" value={product.description} onChange={handleChange} />
+          <input className="input-custom margin" type="text" cols="100" rows="5" name="description" value={product.description} onChange={handleChange} />
         </label>
         </div>
       </div>
@@ -105,17 +121,15 @@ const AddProduct = () => {
                 <div className="margin">
         <label>
           Giá bán: <br></br>
-          <textarea type="number" name="discount_price" value={product.discount_price} onChange={handleChange} />
+          <input className="input-custom-price margin" type="number" name="discount_price" value={product.discount_price} onChange={handleChange} />
          </label>
          </div>
          <div className="margin">
          Giá khuyến mãi: <br></br>
         <label>
-          <textarea type="number" name="sell_price" value={product.sell_price} onChange={handleChange} />
+          <input className="input-custom-price margin" type="number" name="sell_price" value={product.sell_price} onChange={handleChange} />
         </label>
         </div>
-
-
                 </div>
             </div>
             </div>
@@ -147,36 +161,29 @@ const AddProduct = () => {
         <div>
         
         <div className="margin" >
-      <p className="margin">Số lượng: <textarea type="number" name="stock" value={product.stock} onChange={handleChange} /></p>
+      <p className="margin">Số lượng: <input className="input-custom margin" type="number" name="stock" value={product.stock} onChange={handleChange} /></p>
     </div>
         </div>
             </div>
             </div>
             <div className="col-md-4">
             <div className="section-frame margin">
-            <input
-          id="imgUpload"
-          accept="image/*"
-          type="file"
-          onChange={handleProductImageUpload}
-          required
-        />
-          <div>
-        {productImg ? (
-          <>
-            <img src={productImg} alt="error!" style={{
-                    width: '100%',
-                    maxWidth: "300px"
-                  }}/>
-          </>
-        ) : (
-          <p>Product image upload preview will appear here!</p>
-        )}
+              <input
+              id="imgUpload"
+              accept="image/*"
+              type="file"
+              onChange={handleProductImageUpload}
+              multiple // Allow multiple file selection
+              required
+            />
+         
+        {/* Render uploaded images */}
+          <div style={{ marginTop: '20px'}}>{renderUploadedImages()}</div>
+          </div>
       </div>
       </div>
-      </div>
-            </div>
-            <button >Lưu</button>
+            
+      <button className="input-button"type="submit">Lưu</button>
             </form>        
         </div>
          
