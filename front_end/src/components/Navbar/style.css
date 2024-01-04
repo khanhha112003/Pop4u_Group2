@@ -41,3 +41,34 @@ a :active {
     margin-left: 0;
 }
 
+div.ml-lg-4>a.btn.btn-outline-success {
+    margin: 0 !important;
+    padding: 5px !important;
+    border: none !important;
+    outline: none !important;
+}
+
+div.ml-lg-4 {
+    justify-content: center !important;
+    align-items: center !important;
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+form {
+    padding: 5px 0;
+    margin: auto 5px;
+}
+
+input.form-control {
+    height: 30px;
+}
+
+span.input-group-text {
+    height: 30px;
+}
+
+span>svg {
+    height: 20px !important;
+    width: 20px !important;
+}

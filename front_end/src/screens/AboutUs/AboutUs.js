@@ -44,11 +44,11 @@ function AboutUs() {
     };
 
     const employees = [
-        { name: 'Khánh Hà', position: 'CEO', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'},
-        { name: 'Thanh Lực', position: 'Chief Strategy Officer', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'},
-        { name: 'Xuân Thiều', position: 'Chief Financial Officer', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'},
-        { name: 'Anh Thuy', position: 'Chief compliance officer', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'},
-        { name: 'Thanh Tâm', position: 'Chief Digital Officer', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'}
+        { name: 'Khánh Hà', position: 'Nhóm trưởng', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'},
+        { name: 'Thanh Lực', position: 'Thành viên', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'},
+        { name: 'Xuân Thiều', position: 'Thành viên', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'},
+        { name: 'Anh Thuy', position: 'Thành viên', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'},
+        { name: 'Thanh Tâm', position: 'Thành viên', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'}
     ];
 
     // const [isVisible, setIsVisible] = useState(false);

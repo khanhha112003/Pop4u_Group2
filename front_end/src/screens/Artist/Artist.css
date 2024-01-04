@@ -65,6 +65,7 @@
     padding-bottom: 2em;
 }
 
+
 .artist-pic img {
     border-radius: 50%; /* Bo tròn border theo hình dạng của ảnh */
 
@@ -75,7 +76,17 @@
     width: 10em;
     height: 10em;
     object-fit: cover;  
-  
+    transition: background 0.3s, border-radius 0.1s;
+}
+
+.artist-pic img:hover {
+    box-shadow: 0 0 5em rgba(25, 118, 210, 0.4);
+    border-radius: 20%;
+}
+
+.artist-pic img:active {
+    border-radius: 50%;
+    border: 0.2em solid var(--color-surface-tint-light);
 }
 
 .artist-name {

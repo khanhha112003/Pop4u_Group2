@@ -5,12 +5,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { Link } from 'react-router-dom';
 import { ReactComponent as LogoIcon } from './icons/logo.svg';
 import { ReactComponent as CartIcon } from './icons/icon_cart.svg';
 import { ReactComponent as AccountIcon } from './icons/icon_account.svg';
 import { ReactComponent as SearchOrderIcon } from './icons/icon_order_search.svg';
 import { ReactComponent as SearchIcon } from './icons/icon_search.svg';
+import './style.css'
+
 function CustomNavbar() {
   return (
     <Navbar expand="xxl" style={{backgroundColor: 'var(--bs-body-bg)', paddingTop: 0, paddingBottom: 0}}>

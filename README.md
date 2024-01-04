@@ -1,5 +1,5 @@
 # Hướng dẫn cho project
-
+// please read it for one time, i wrote this for u guys to make things easier
 project có 4 đối tượng, 2 folder là back end với front end
 2 đôí tượng còn lại là 2 file gitignore và README
 

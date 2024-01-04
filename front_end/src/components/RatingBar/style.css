@@ -1,0 +1,15 @@
+span.rating-detail {
+    color: #6c757d;
+    font-size: 12px;
+    margin-left: 10px;
+    width: max(20% 15px);
+    white-space: 'nowrap';
+    overflow: 'hidden';
+    text-overflow: 'ellipsis';
+}
+
+@media (max-width: 990px) {
+    span.rating-detail {
+      display: none;
+    }
+  }

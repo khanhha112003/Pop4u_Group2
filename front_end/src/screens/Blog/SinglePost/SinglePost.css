@@ -1,3 +1,9 @@
+.banner-image {
+    max-width: 100%;
+    width: 100vw; /* Set the image width relative to the viewport width */
+    height: auto;
+    display: block;
+}
 .title{
     position: absolute;
     font-family: 'Inter', sans-serif;
@@ -46,7 +52,7 @@
 }
 
 .ContentPara{
-    font-size: 20px;
+    font-size: 24px;
     color: #4D4D4D;
 }
 
@@ -84,4 +90,9 @@
     font-size: 20px;
     font-family: Inter;
     word-wrap: break-word;
+}
+.icon {
+    width: 40px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    margin-right: 8px; /* Optional: Add spacing between icons */
 }

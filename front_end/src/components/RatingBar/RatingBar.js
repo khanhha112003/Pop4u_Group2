@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ReactComponent as ActiveStar } from './icons/icon_star.svg';
 import { ReactComponent as InactiveStar } from './icons/icon_inactive_star.svg';
 import { ReactComponent as HalfStar } from './icons/icon_half_star.svg';
-
+import './style.css';
 const RatingBar = ({style, data, isDisabled, onChangeValue }) => {
   const [currentRating, setRating] = useState(data.rating);
 
@@ -33,8 +33,8 @@ const RatingBar = ({style, data, isDisabled, onChangeValue }) => {
           style={{
             cursor: isDisabled ? '' : 'pointer',
             display: 'inline-block',
-            height: "15%",
-            width: "15%",
+            height: "10%",
+            width: "10%",
             margin: '0 1px', // Add margin between stars
             transition: 'color 0.3s', // Add color transition on hover
           }}
@@ -46,15 +46,7 @@ const RatingBar = ({style, data, isDisabled, onChangeValue }) => {
     stars.push(
       <span
         key={5}
-        style={{
-          color: '#6c757d',
-          fontSize: '12px',
-          marginLeft: 10,
-          width: '30%',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-        }}
+        className = "rating-detail"
       >
         {data.rating_detail}
       </span>

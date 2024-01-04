@@ -47,7 +47,7 @@ function ProductDetail() {
     useEffect(() => {
         const productDetailRequest = basicGetRequets("/product/product_detail", { product_code: searchParam.get("product_code") });
 
-        const relatedProductRequest = basicGetRequets("/product/product_list", { type: "related", artist_code: searchParam.get("artist_code")});
+        const relatedProductRequest = basicGetRequets("/product/product_list", { type_filter: "related", artist_code: searchParam.get("artist_code")});
         const userRatingRequest = basicGetRequets("/product/product_review", { product_code: searchParam.get("product_code") });
         const result = combineMultipleRequests([productDetailRequest, relatedProductRequest, userRatingRequest])
             .then((responses) => {
@@ -203,7 +203,7 @@ function ProductDetail() {
                             <hr></hr>
                             <div>
                                 <h5 className="margin">Mô tả sản phẩm:</h5>
-                                <p className="body-small margin">
+                                <p className="body-small margin pre-line">
                                     {content.product_data.description}
                                 </p>
                             </div>
@@ -218,8 +218,9 @@ function ProductDetail() {
                                 <h3 >Sản phẩm liên quan </h3>
                                 <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
                             </div>
-                            <div className="product">
+                            <div className="product" style={{ marginBottom: 40 }}>
                                 <HorizontalPagination
+                                    key={"related_product"}
                                     gap={10} // Adjust the gap between items as needed
                                     background_color="white"
                                     items={content.related_product.map((item, index) => (
@@ -229,8 +230,8 @@ function ProductDetail() {
                                         />
                                     ))}
                                     itemWidth={250} // Set the width of each item as needed
-                                    itemHeight={600} // Set the height of each item as needed
-                                    paddingItem={20} // Set the padding as needed
+                                    itemHeight={425} // Set the height of each item as needed
+                                    paddingItem={10} // Set the padding as needed
                                 />
                             </div>
                         </div>
