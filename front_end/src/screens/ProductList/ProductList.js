@@ -198,17 +198,41 @@ function ProductList() {
                 </div>
 
                 <div className="buttons col-sm-12 col-md-12 col-lg-12 col-xl-12 row justify-content-right justify-content-md-center">
-                    <button className="rec-btn" onClick={() => filterByCategory('All')}>Tất cả</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Album')}>Album</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Lightstick')}>Lightstick</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Photobook')}>Photobook</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Vinyl')}>Vinyl</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Merch')}>Merch</button>
+                      <button
+                        className={`rec-btn ${filter_info.category === 'All' ? 'active' : ''}`}
+                        onClick={() => filterByCategory('All')}>
+                        Tất cả
+                    </button>
+                    <button
+                        className={`rec-btn ${filter_info.category === 'Album' ? 'active' : ''}`}
+                        onClick={() => filterByCategory('Album')}>
+                        Album
+                    </button>
+                    <button
+                        className={`rec-btn ${filter_info.category === 'Lightstick' ? 'active' : ''}`}
+                        onClick={() => filterByCategory('Lightstick')}>
+                        Lightstick
+                    </button>
+                    <button
+                        className={`rec-btn ${filter_info.category === 'Photobook' ? 'active' : ''}`}
+                        onClick={() => filterByCategory('Photobook')}>
+                        Photobook
+                    </button>
+                    <button
+                        className={`rec-btn ${filter_info.category === 'Vinyl' ? 'active' : ''}`}
+                        onClick={() => filterByCategory('Vinyl')}>
+                        Vinyl
+                    </button>
+                    <button
+                        className={`rec-btn ${filter_info.category === 'Merch' ? 'active' : ''}`}
+                        onClick={() => filterByCategory('Merch')}>
+                        Merch
+                    </button>
 
                 </div>
                 <div className="col-md-3 col-lg-2">
                     <span className="mb-3 label-xl">Bộ lọc sản phẩm</span>
-                    <div className="d-flex flex-column mb-4">
+                    <div className="d-flex flex-column mb-4" style={{ marginLeft: '-10px'}}>
                         <div className="d-flex flex-column mb-4">
                             <label className="filtering">
                                 <input
@@ -242,19 +266,19 @@ function ProductList() {
 
                     <br />
                     <span className="mb-3 label-xl">Giá yêu thương</span>
-                    <div className="d-flex flex-column mb-4">
+                    <div className="d-flex flex-column mb-4" style={{ marginLeft: '-15px'}}>
                         <label className="filtering">
                             <input
-                                type="radio"
+                                type="radio" style={{ margin: '3px' }}
                                 value="ascending"
                                 checked={filter_info.ascendingPrice}
                                 onChange={() => handleRadioChange('ascending')}
                             />
                             <span className="label-m">Giá tăng dần</span>
                         </label>
-                        <label className="filtering">
+                        <label className="filtering" >
                             <input
-                                type="radio"
+                                type="radio" style={{ margin: '3px' }}
                                 value="descending"
                                 checked={filter_info.descendingPrice}
                                 onChange={() => handleRadioChange('descending')}

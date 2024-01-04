@@ -122,7 +122,7 @@
     cursor: pointer;
     font-family: var(--inter);
     font-weight: var(--font-semibold);
-    font-size: 19px;
+    font-size: 16px;
 }
 /* .mytable {
     border: none;
@@ -131,9 +131,10 @@
     background: var(--theme-secondary1, #D8E2FF);
     border: var(--color-primary-light);
 }
-.buttons.active {
+.rec-btn.active {
     background: var(--theme-secondary1, #D8E2FF);
     border: var(--color-primary-light);
+    color: var(--theme-primary1, #325DA8);
 }
 
 

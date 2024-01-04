@@ -98,3 +98,7 @@ background: var(--theme-primary1, #325DA8);
 .product-box-title{
   width: 80%;
 }
+
+.pre-line {
+  white-space: pre-line;
+}
