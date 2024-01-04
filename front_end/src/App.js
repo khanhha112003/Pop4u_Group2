@@ -7,8 +7,7 @@ import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
 
-import HeaderAdmin from './components/HeaderAdmin/HeaderAdmin';
-import SidebarAdmin from './components/SidebarAdmin/SidebarAdmin'
+import { AdminSpecificLayout } from "./AdminSpecificLayout";
 import { ProductListAdmin } from './screens/Admin/Product/ProductListAdmin'
 import { AddProduct } from './screens/Admin/Product/AddProduct';
 import { AddVoucher } from './screens/Admin/Voucher/AddVoucher';
@@ -28,7 +27,6 @@ import {
   Route,
   useLocation
 } from "react-router-dom";
-import CustomerManagementAdmin from "./screens/Admin/Customer/CustomerList";
 
 
 function ScrollToTop() {
@@ -63,7 +61,7 @@ function App() {
             <Route path="" element={<ProductList />} />
           </Route>
         </Route>
-
+        <Route path="/" element={<AdminSpecificLayout />}>
         <Route path="/" >
           <Route path="/admin/add_product" element={<AddProduct />} />
         </Route> 
@@ -76,14 +74,6 @@ function App() {
         <Route path="/">
           <Route path="/admin/voucher_list" element={<VoucherList />} />
         </Route>
-        <Route path="/">
-          <Route path="/admin/customer_list" element={<CustomerManagementAdmin />} />
-        </Route>
-        <Route path="/">
-        <Route path="/header" element={<HeaderAdmin />} />
-        </Route>
-        <Route path="/">
-        <Route path="/sidebar" element={<SidebarAdmin />} />
         </Route>
       </Routes>
     </BrowserRouter>
