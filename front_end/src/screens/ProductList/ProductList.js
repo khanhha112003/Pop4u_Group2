@@ -171,39 +171,43 @@ function ProductList() {
                 </div>
 
                 <div className="buttons col-sm-12 col-md-12 col-lg-12 col-xl-12 row justify-content-right justify-content-md-center">
-<<<<<<< HEAD
-                    <button className="rec-btn" onClick={() => filterByCategory('All')}>Tất cả</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Album')}>Album</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Lightstick')}>Lightstick</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Photobook')}>Photobook</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Vinyl')}>Vinyl</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Merch')}>Merch</button>
+                      <button
+                        className={`rec-btn ${filter_info.category === 'All' ? 'active' : ''}`}
+                        onClick={() => filterByCategory('All')}
+                    >
+                        Tất cả
+                    </button>
+                    <button
+                        className={`rec-btn ${filter_info.category === 'Album' ? 'active' : ''}`}
+                        onClick={() => filterByCategory('Album')}
+                    >
+                        Album
+                    </button>
+                    <button
+                        className={`rec-btn ${filter_info.category === 'Lightstick' ? 'active' : ''}`}
+                        onClick={() => filterByCategory('Lightstick')}
+                    >
+                        Lightstick
+                    </button>
+                    <button
+                        className={`rec-btn ${filter_info.category === 'Photobook' ? 'active' : ''}`}
+                        onClick={() => filterByCategory('Photobook')}
+                    >
+                        Photobook
+                    </button>
+                    <button
+                        className={`rec-btn ${filter_info.category === 'Vinyl' ? 'active' : ''}`}
+                        onClick={() => filterByCategory('Vinyl')}
+                    >
+                        Vinyl
+                    </button>
+                    <button
+                        className={`rec-btn ${filter_info.category === 'Merch' ? 'active' : ''}`}
+                        onClick={() => filterByCategory('Merch')}
+                    >
+                        Merch
+                    </button>
 
-=======
-                {/* <button className="rec-btn" onClick={showAllProducts}>Tất cả</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Lightstick')}>Lightstick</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Photobook')}>Photobook</button>
-                    <button className="rec-btn"onClick={() => filterByCategory('Vinyl')}>Vinyl</button>
-                    <button className="rec-btn" onClick={() => filterByCategory('Merch')}>Merch</button> */}
-                <button className={`rec-btn ${!selectedCategory ? 'active' : ''}`} onClick={showAllProducts}>
-          Tất cả
-        </button>
-        <button className={`rec-btn ${selectedCategory === 'Album' ? 'active' : ''}`} onClick={() => filterByCategory('Album')}>
-          Album
-        </button>
-        <button className={`rec-btn ${selectedCategory === 'Lightstick' ? 'active' : ''}`} onClick={() => filterByCategory('Lightstick')}>
-          Lightstick
-        </button>
-        <button className={`rec-btn ${selectedCategory === 'Photobook' ? 'active' : ''}`} onClick={() => filterByCategory('Photobook')}>
-          Photobook
-        </button>
-        <button className={`rec-btn ${selectedCategory === 'Vinyl' ? 'active' : ''}`} onClick={() => filterByCategory('Vinyl')}>
-          Vinyl
-        </button>
-        <button className={`rec-btn ${selectedCategory === 'Merch' ? 'active' : ''}`} onClick={() => filterByCategory('Merch')}>
-          Merch
-        </button>
->>>>>>> xuntheo
                 </div>
                 <div className="col-md-3 col-lg-2">
                     <span className="mb-3 label-xl">Bộ lọc sản phẩm</span>
