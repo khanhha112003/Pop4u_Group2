@@ -23,7 +23,7 @@ def get_list_artist(page: int = 1,
         tracking_user(usr.username, "get_list_artist", {"page":page, "limit":limit, "alphabet":alphabet})
     if page < 1:
         page = 1
-    if type_filter == "normal":
+    if type_filter == "all":
         total = get_total_artist(alphabet)
         list_artist = get_artist_list(page, limit, alphabet)
         if total == 0:

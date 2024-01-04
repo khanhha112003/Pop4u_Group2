@@ -22,64 +22,55 @@ import { Cart } from './screens/Cart/Cart';
 
 
 import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation
+	BrowserRouter,
+	Routes,
+	Route,
+	useLocation
 } from "react-router-dom";
 
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+	const { pathname } = useLocation();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [pathname]);
 
-  return null;
+	return null;
 }
 
 function App() {
-  return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
+	return (
+		<BrowserRouter>
+			<ScrollToTop />
+			<Routes>
 
-        <Route path="/" element={<SpecificLayout />}>
-          <Route exact path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/artists" element={<ArtistList />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/single-post/:postId" element={<SinglePost />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/product_detail" element={<ProductDetail />} />
-          <Route path="/product_list">
-
-            <Route path=":sort" element={<ProductList />} />
-            <Route path="" element={<ProductList />} />
-          </Route>
-        </Route>
-        <Route path="/" element={<AdminSpecificLayout />}>
-        <Route path="/" >
-          <Route path="/admin/add_product" element={<AddProduct />} />
-        </Route> 
-        <Route path="/">
-          <Route path="/admin/product_list" element={<ProductListAdmin />} />
-        </Route>
-        <Route path="/">
-          <Route path="/admin/add_voucher" element={<AddVoucher />} />
-        </Route>
-        <Route path="/">
-          <Route path="/admin/voucher_list" element={<VoucherList />} />
-        </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+				<Route path="/" element={<SpecificLayout />}>
+					<Route exact path="/" element={<HomePage />} />
+					<Route path="/about" element={<AboutUs />} />
+					<Route path="/artists" element={<ArtistList />} />
+					<Route path="/signin" element={<SignIn />} />
+					<Route path="/signup" element={<SignUp />} />
+					<Route path="/blog" element={<Blog />} />
+					<Route path="/single-post/:postId" element={<SinglePost />} />
+					<Route path="/cart" element={<Cart />} />
+					<Route path="/product_detail" element={<ProductDetail />} />
+					<Route path="/product_list">
+						<Route path=":sort" element={<ProductList />} />
+						<Route path="" element={<ProductList />} />
+					</Route>
+				</Route>
+				<Route path="/" element={<AdminSpecificLayout />}>
+					<Route path="/admin/add_product" element={<AddProduct />} />
+					<Route path="/admin/product_list" element={<ProductListAdmin />} />
+					<Route path="/admin/add_voucher" element={<AddVoucher />} />
+					<Route path="/admin/voucher_list" element={<VoucherList />} />
+				</Route>
+			</Routes>
+		</BrowserRouter>
 
 
-  );
+	);
 }
 
 export default App;
