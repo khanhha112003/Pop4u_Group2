@@ -63,7 +63,7 @@ function App() {
           </Route>
         </Route>
 
-        <Route path="/" element={<SpecificLayout />}>
+        <Route path="/" >
           <Route path="/admin/add_product" element={<AddProduct />} />
         </Route> 
         <Route path="/">
