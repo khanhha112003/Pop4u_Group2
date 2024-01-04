@@ -232,7 +232,7 @@ function ProductList() {
                 </div>
                 <div className="col-md-3 col-lg-2">
                     <span className="mb-3 label-xl">Bộ lọc sản phẩm</span>
-                    <div className="d-flex flex-column mb-4">
+                    <div className="d-flex flex-column mb-4" style={{ marginLeft: '-10px'}}>
                         <div className="d-flex flex-column mb-4">
                             <label className="filtering">
                                 <input
@@ -266,19 +266,19 @@ function ProductList() {
 
                     <br />
                     <span className="mb-3 label-xl">Giá yêu thương</span>
-                    <div className="d-flex flex-column mb-4">
+                    <div className="d-flex flex-column mb-4" style={{ marginLeft: '-15px'}}>
                         <label className="filtering">
                             <input
-                                type="radio"
+                                type="radio" style={{ margin: '3px' }}
                                 value="ascending"
                                 checked={filter_info.ascendingPrice}
                                 onChange={() => handleRadioChange('ascending')}
                             />
                             <span className="label-m">Giá tăng dần</span>
                         </label>
-                        <label className="filtering">
+                        <label className="filtering" >
                             <input
-                                type="radio"
+                                type="radio" style={{ margin: '3px' }}
                                 value="descending"
                                 checked={filter_info.descendingPrice}
                                 onChange={() => handleRadioChange('descending')}
