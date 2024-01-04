@@ -1,18 +1,23 @@
 import "./HomePage.css"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-bootstrap";
 import { ReactComponent as Music } from './icons/icon_album.svg';
 import { ReactComponent as Merch } from './icons/icon_merch.svg';
 import { ReactComponent as Vinyl } from './icons/icon_vinyl.svg';
 import { ReactComponent as Photobook } from './icons/icon_photobook.svg';
 import { ReactComponent as Lightstick } from './icons/icon_lightstick.svg';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
-import { ReactComponent as NewReleases } from '../../theme/images/new_releases.svg';
+import  BestPriceIcon  from '../../theme/images/new_releases.svg';
+import  FreeshipIcon  from '../../theme/images/local_shipping-48px.svg';
+import  EnviromentIcon  from '../../theme/images/spa.svg';
+import  ChangeIcon  from '../../theme/images/model_training.svg';
 
-import BestPriceIcon from './icons/icon_bestprice.png';
-import FreeshipIcon from './icons/icon_freeship.png';
-import EnviromentIcon from './icons/icon_enviroment.png';
-import ChangeIcon from './icons/icon_change.png';
+
+// import BestPriceIcon from './icons/icon_bestprice.png';
+// import FreeshipIcon from './icons/icon_freeship.png';
+// import EnviromentIcon from './icons/icon_enviroment.png';
+// import ChangeIcon from './icons/icon_change.png';
 import React, { useState, useEffect } from 'react';
+import { ReactSVG } from "react-svg";
 
 
 import { Col, Row, Button, Card, CardGroup } from 'react-bootstrap';
@@ -100,7 +105,7 @@ function HomePage() {
                 </button>
               </div>
               <div className="cat-card-icon">
-                <Music width="100%" height="100%"/>
+                <Music className="rotatable-svg" width="100%" height="100%"/>
               </div>
             </div>
           </div>
@@ -117,7 +122,7 @@ function HomePage() {
                 </button>
               </div>
               <div className="cat-card-icon">
-                <Merch width="100%" height="100%"/>
+                <Merch className="rotatable-svg" width="100%" height="100%"/>
               </div>
             </div>
           </div>
@@ -134,7 +139,7 @@ function HomePage() {
                 </button>
               </div>
               <div className="cat-card-icon">
-                <Vinyl width="100%" height="100%"/>
+                <Vinyl className="rotatable-svg" width="100%" height="100%"/>
               </div>
             </div>
           </div>
@@ -151,7 +156,7 @@ function HomePage() {
                 </button>
               </div>
               <div className="cat-card-icon">
-                <Photobook width="100%" height="100%"/>
+                <Photobook className="rotatable-svg"/>
               </div>
             </div>
           </div>
@@ -168,7 +173,7 @@ function HomePage() {
                 </button>
               </div>
               <div className="cat-card-icon">
-                <Lightstick/>
+                <Lightstick className="rotatable-svg"/>
               </div>
             </div>
           </div>
@@ -231,7 +236,6 @@ function HomePage() {
               <h4 className="head4">Idol siêu chất, nổi bần bật.</h4>
               <a href="/artists"><span className="label-l">Xem tất cả nghệ sĩ </span><Arrow/></a>
             </div>
-
           </div>
         </div>
         <div className="artist" style={{ marginBottom: 30 }}>
@@ -278,8 +282,7 @@ function HomePage() {
               <div key={variant.title} className="col-sm-12 col-md-6 col-xl-3 col-lg-3">
                 <div className="benefit-card">
                   <div className="benefit">
-                    {/* <div>{variant.img_src}</div> */}
-                    <img src={variant.img_src} alt={variant.title}/>
+                    <ReactSVG className="rotatable-svg" src={variant.img_src} />
                     <h6 className="head6">{variant.title}</h6>
                   </div>
                   <div className="benefit-reference">
