@@ -1,0 +1,52 @@
+@import url(../../theme/theme.css);
+
+
+
+.hp-artist-card {
+    background-color: var(--color-primary-container-light);
+    height: 300px;
+    border-radius: 40px;
+    margin-bottom: 24px;
+    flex: 1;
+    width: 100%;
+    transition: all 0.5s;
+    color: var(--color-on-primary-container-light);
+}
+
+.artist-reference:hover {
+    cursor: pointer;
+}
+
+.hp-artist-card-image {
+    width: 50%;
+    height: 300px;
+    border-radius: 40px 0 0 40px;
+    background-size: cover;
+    background-position: center;
+    /* transition: all 0.5s; */
+    background-repeat: no-repeat;
+}
+
+.hp-artist-card .hp-artist-card-image {
+    background-size: 150%;
+    transition: background-size 0.5s ease-in-out; 
+}
+
+
+.hp-artist-card:hover .hp-artist-card-image {
+    background-size: 175%;
+}
+
+.hp-artist-card-content {
+    text-align: center;
+    padding: 7.5%;
+    width: 50%;
+}
+
+.hp-artist-card-content img {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 16px;
+}
