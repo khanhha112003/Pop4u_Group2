@@ -5,6 +5,9 @@ import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import { Container, Row, Col, Pagination } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import LoadingPage from "../Loading/LoadingPage.js";
+import NotFoundPage from "../Error/NotFoundError.js";
 
 const itemsPerPage = 16;
 
@@ -32,19 +35,16 @@ function filterWithFilterInfo(items, filter_info = {}) {
         filteredItemsWithHot = filteredItemsWithNew.filter((item) => item.is_hot);
     }
     if (filter_info.ascendingPrice || filter_info.descendingPrice) {
-        // const filteredItemsWithPrice = filteredItemsWithHot.sort((a, b) => {
-        //     const a_price = (a.discount_price !== 0) ? a.discount_price : a.sell_price;
-        //     const b_price = (a.discount_price !== 0) ? b.discount_price : b.sell_price;
-        //     console.log(a_price, b_price);
-        //     if (filter_info.ascendingPrice) {
-        //         return a_price > b_price;
-        //     } else if (filter_info.descendingPrice) {
-        //         return b_price > a_price;
-        //     } else {
-        //         return 0;
-        //     }
-        // });
-        // return filteredItemsWithPrice;
+        filteredItemsWithHot.sort((a, b) => {
+            const a_price = (a.discount_price !== undefined && a.discount_price !== 0) ? a.discount_price : a.sell_price;
+            const b_price = (b.discount_price !== undefined && b.discount_price !== 0) ? b.discount_price : b.sell_price;
+
+            if (filter_info.ascendingPrice) {
+                return a_price - b_price;
+            } else if (filter_info.descendingPrice) {
+                return b_price - a_price;
+            }
+        });
     }
     return filteredItemsWithHot;
 }
@@ -54,14 +54,26 @@ function calulatePageInformation(items, currentPage = 1) {
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const currentItems = items.slice(start, end);
-    return {filtered_product: items, current_page: currentPage, current_item: currentItems, total_page: totalPage };
+    return { filtered_product: items, current_page: currentPage, current_item: currentItems, total_page: totalPage };
 }
 
 function ProductList() {
     const { sort } = useParams();
     const [total_product, setTotalProduct] = useState([]);
-    const [currentPageInfo, setCurrentPageInfo] = useState({filtered_product: [], current_page: 0, current_item: [], total_page: 0});
-    const [filter_info, setFilterInfo] = useState({isSaleProduct: false, isNewProduct: false, isHotProduct: false, ascendingPrice: false, descendingPrice: false, filterName: ""});
+    const [currentPageInfo, setCurrentPageInfo] = useState({ filtered_product: [], current_page: 0, current_item: [], total_page: 0 });
+    const [filter_info, setFilterInfo] = useState({
+        isSaleProduct: false,
+        isNewProduct: false,
+        isHotProduct: false,
+        ascendingPrice: false,
+        descendingPrice: false,
+        category: (sort === undefined || sort === "") ? "All" : sort,
+        filterName: ""
+    });
+
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
 
     const handlePageChange = (page) => {
         const newState = calulatePageInformation(currentPageInfo.filtered_product, page);
@@ -70,18 +82,18 @@ function ProductList() {
 
     useEffect(() => {
         const reg = basicGetRequets("/product/product_list", { type_filter: "all", limit: 1000 });
-    
+
         reg.then((data) => {
-          const serverItem = data.data.list_product;
-          const newState = calulatePageInformation(serverItem);
-          setTotalProduct(serverItem);
-          setCurrentPageInfo(newState);
-        }).catch((error) => {
-          console.log(error);
+            const serverItem = data.data.list_product;
+            const newState = calulatePageInformation(serverItem);
+            setTotalProduct(serverItem);
+            setCurrentPageInfo(newState);
+        }).catch(error => {
+            setError(error);
         }).finally(() => {
-          console.log("done");
+            setLoading(false);
         });
-    }, []); 
+    }, []);
 
     //Input filter
     const handleInputChange = (event) => {
@@ -128,7 +140,7 @@ function ProductList() {
         }
         const filteredItems = filterWithFilterInfo(total_product, newFilterInfo);
         const newState = calulatePageInformation(filteredItems);
-        setCurrentPageInfo(newState);   
+        setCurrentPageInfo(newState);
         setFilterInfo(newFilterInfo);
     };
 
@@ -142,6 +154,21 @@ function ProductList() {
         setFilterInfo(newFilterInfo);
     };
 
+    const clearFilter = () => {
+        const newFilterInfo = { isSaleProduct: false, isNewProduct: false, isHotProduct: false, ascendingPrice: false, descendingPrice: false, category: "All", filterName: "" };
+        const filteredItems = filterWithFilterInfo(total_product, newFilterInfo);
+        const newState = calulatePageInformation(filteredItems);
+        setCurrentPageInfo(newState);
+        setFilterInfo(newFilterInfo);
+    }
+
+    if (loading) {
+        return <LoadingPage />;
+    }
+
+    if (error) {
+        return <NotFoundPage />
+    }
 
     return (
         <div className="container">
@@ -234,6 +261,13 @@ function ProductList() {
                             />
                             <span className="label-m">Giá giảm dần</span>
                         </label>
+                    </div>
+
+                    <br />
+                    <div className="d-flex flex-column mb-4">
+                        <Button onClick={clearFilter} variant="outline-primary" className="filtering">
+                            Xoá bộ lọc
+                        </Button>
                     </div>
                 </div>
 

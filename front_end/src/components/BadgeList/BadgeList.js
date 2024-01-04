@@ -12,7 +12,8 @@ export const BadgeList = ({ data, small = true }) => {
 
   const list_badge = Object.entries(list_badge_dict)
     .filter(([_, value]) => value)
-    .map(([key, _]) => key);
+    .map(([key, _]) => key)
+    .slice(0, 2);
 
   return (
     <div>
