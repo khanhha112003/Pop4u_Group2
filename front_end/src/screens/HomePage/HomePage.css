@@ -40,7 +40,6 @@ h2, h4, h6 {
   width: 100%;
   padding: 7.5%;
   transition: all 0.5s;
-  /* flex: 1; */
   background-color: var(--color-secondary-container-light); 
   text-align: left;
   border-radius: 20px;
@@ -60,9 +59,14 @@ h2, h4, h6 {
   }
 }
 
-.cat-card:hover .rotatable-svg{
-    animation: rotateLeft 0.5s forwards;
+.cat-card .rotatable-svg {
+  transition: all 0.5s;
 }
+
+.cat-card:hover .rotatable-svg{
+  animation: rotateLeft 0.5s forwards;
+}
+
 
 .cat-card-content {
   width: 55%;
@@ -195,8 +199,12 @@ h2, h4, h6 {
   transform-origin: center;
 }
 
+.benefit-card .rotatable-svg {
+  transition: all 0.5s;
+}
+
 .benefit-card:hover .rotatable-svg {
-  animation: rotateLeft 0.6s forwards;
+  animation: rotateLeft 0.5s forwards;
 }
 
 
@@ -204,10 +212,13 @@ h2, h4, h6 {
   0% {
     transform: rotate(0deg) scale(1);
   }
-  75% {
+  45% {
     transform: rotate(-35deg) scale(0.6); 
   }
-  100% {
+  65% {
     transform: rotate(15deg) scale(1.1); 
+  }
+  100% {
+    transform: rotate(0deg) scale(1); 
   }
 }
