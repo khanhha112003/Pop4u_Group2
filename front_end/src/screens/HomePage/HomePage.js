@@ -20,7 +20,6 @@ import React, { useState, useEffect } from 'react';
 import { ReactSVG } from "react-svg";
 
 
-import { Col, Row, Button, Card, CardGroup } from 'react-bootstrap';
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
 import { ArtistCardItem } from "../../components/ArtistCardItem/ArtistCardItem";
@@ -85,14 +84,14 @@ function HomePage() {
   return (
     <div className="App">
       <div className="container">
-        <div className="row">
+        <div className="row" style={{ marginBottom: '48px' }}>
           <div className="col-12">
             <div className="homepage-header">
               <h4 className="head4">Danh mục sản phẩm</h4>
               <a href="/artists"><span className="label-l">Xem tất cả sản phẩm</span><Arrow/></a>
             </div>
           </div>
-          <div className="col-sm-12 col-md-6 col-lg-6 col-xl-4 d-flex justify-content-between" style={{padding: '0px'}}>
+          <div className="col-sm-12 col-md-6 col-lg-6 col-xl-4 d-flex justify-content-between" >
             <div className="d-flex justify-content-between cat-card">
               <div className="cat-card-content">
                 <h5 className="head5">Album</h5>
@@ -109,7 +108,7 @@ function HomePage() {
               </div>
             </div>
           </div>
-          <div className="col-sm-12 col-md-6 col-lg-6 col-xl-4 d-flex justify-content-between" style={{padding: '0px'}}>
+          <div className="col-sm-12 col-md-6 col-lg-6 col-xl-4 d-flex justify-content-between" >
             <div className="d-flex justify-content-between cat-card">
               <div className="cat-card-content">
                 <h5 className="head5">Merch</h5>
@@ -126,7 +125,7 @@ function HomePage() {
               </div>
             </div>
           </div>
-          <div className="col-sm-12 col-md-6 col-lg-6 col-xl-4 d-flex justify-content-between" style={{padding: '0px'}}>
+          <div className="col-sm-12 col-md-6 col-lg-6 col-xl-4 d-flex justify-content-between">
             <div className="d-flex justify-content-between cat-card">
               <div className="cat-card-content">
                 <h5 className="head5">Vinyl</h5>
@@ -143,7 +142,7 @@ function HomePage() {
               </div>
             </div>
           </div>
-          <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-between" style={{padding: '0px'}}>
+          <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex">
             <div className="d-flex justify-content-between cat-card">
               <div className="cat-card-content">
                 <h5 className="head5">Photobook</h5>
@@ -160,7 +159,7 @@ function HomePage() {
               </div>
             </div>
           </div>
-          <div className="col-sm-12 col-md-12 col-lg-12 col-xl-6 d-flex justify-content-between" style={{padding: '0px'}}>
+          <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 d-flex">
             <div className="d-flex justify-content-between cat-card">
               <div className="cat-card-content">
                 <h5 className="head5">Lightstick</h5>
@@ -178,7 +177,7 @@ function HomePage() {
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row" style={{ marginBottom: '48px' }}>
           <div className="col-12">
             <div className="homepage-header">
               <h4 className="head4">Sale đến "ngất".</h4>
@@ -204,7 +203,7 @@ function HomePage() {
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row" style={{ marginBottom: '48px' }}>
           <div className="col-12">
             <div className="homepage-header">
               <h4 className="head4">Mới ra mắt. Nóng cả tay.</h4>
@@ -230,27 +229,24 @@ function HomePage() {
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row" style={{ marginBottom: '48px' }} >
           <div className="col-12">
             <div className="homepage-header">
               <h4 className="head4">Idol siêu chất, nổi bần bật.</h4>
               <a href="/artists"><span className="label-l">Xem tất cả nghệ sĩ </span><Arrow/></a>
             </div>
           </div>
-        </div>
-        <div className="artist" style={{ marginBottom: 30 }}>
-          <Row xs={1} md={2} className="g-4">
             {content.hot_artits.map((data, index) => (
-              <Col key={index}>
-                <ArtistCardItem
-                  data={data}
-                  onMoreInfoClick={() => { /* Your click handler logic here */ }}
-                />
-              </Col>
+                <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 d-flex" key={index}>
+                  <ArtistCardItem 
+                    className = 'artist-card-item'
+                    data={data}
+                    onMoreInfoClick={() => { /* Your click handler logic here */ }}
+                  />
+                </div>
             ))}
-          </Row>
         </div>
-        <div className="row">
+        <div className="row" style={{ marginBottom: '48px' }}>
           <div className="col-12">
             <div className="homepage-header">
               <h4 className="head4">Mua hàng tự tin. Dẹp đi vặt vãnh.</h4>
