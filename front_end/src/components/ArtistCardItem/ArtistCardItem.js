@@ -1,5 +1,6 @@
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
 import React from 'react';
+import "react-bootstrap";
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
