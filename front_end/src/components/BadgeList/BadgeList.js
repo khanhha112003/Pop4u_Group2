@@ -1,4 +1,6 @@
 import React from 'react';
+import 'react-bootstrap'
+import './BadgeList.css'
 import Badge from 'react-bootstrap/Badge';
 import Stack from 'react-bootstrap/Stack';
 
@@ -18,23 +20,21 @@ export const BadgeList = ({ data, small = true }) => {
   return (
     <div>
       {small ? (
-        <Stack direction="horizontal" gap={2}>
+        <div className='d-flex'>
           {list_badge.map((item, idx) => (
-            <Badge key={data.product_code + idx} bg="info" style={{ borderRadius: 10 }}>
-              {item}
-            </Badge>
+            <div key={data.product_code + idx} className='product-badge'>
+              <span className='label-s'>{item}</span>
+            </div>
           ))}
-        </Stack>
+        </div>
       ) : (
-        <h4>
-          <Stack direction="horizontal" gap={2}>
-            {list_badge.map((item, idx) => (
-              <Badge key={data.product_code + idx} bg="info" style={{ borderRadius: 10 }}>
-                {item}
-              </Badge>
-            ))}
-          </Stack>
-        </h4>
+        <div className='d-flex'>
+          {list_badge.map((item, idx) => (
+            <div key={data.product_code + idx} className='product-badge'>
+              <span className='label-s'>{item}</span>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

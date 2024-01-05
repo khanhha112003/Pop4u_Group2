@@ -41,13 +41,13 @@ function ArtistList() {
         <div className="row">
           <div className='search-artist'>
             <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
-                <label htmlFor="filterInput" className='label-xxxl search-label'>Bạn Muốn Lắng Nghe Âm Nhạc Từ Ai?</label>
+                <label htmlFor="filterInputArtist" className='label-xxxl search-label'>Bạn Muốn Lắng Nghe Âm Nhạc Từ Ai?</label>
             </div>
             <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
                 <input
-                  className='label-m'
+                  className='label-m filter-input'
                   type="text"
-                  id="filterInput"
+                  id="filterInputArtist"
                   value={filterName}
                   onChange={handleFilterChange}
                   placeholder="Tên nghệ sĩ..."

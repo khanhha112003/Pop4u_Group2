@@ -84,6 +84,11 @@ function HomePage() {
   return (
     <div className="App">
       <div className="container">
+        <div className="row">
+          <div className="hp-banner">
+            
+          </div>
+        </div>
         <div className="row" style={{ marginBottom: '48px' }}>
           <div className="col-12">
             <div className="homepage-header">
