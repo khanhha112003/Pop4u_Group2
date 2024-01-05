@@ -6,8 +6,9 @@ export function AdminSpecificLayout () {
     return (
         <div className="App">
             <HeaderAdmin />
-            <Outlet />
             <SidebarAdmin />
+            <Outlet />
+            
         </div>
     )
 }
