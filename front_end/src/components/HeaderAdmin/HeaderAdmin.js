@@ -12,8 +12,10 @@ import { ReactComponent as SearchIcon } from '../Navbar/icons/icon_search.svg';
 import {ReactComponent as NotiIcon} from './icons/icon_notification.svg'
 function HeaderAdmin() {
   return (
+    
     <Navbar expand="xxl" style={{backgroundColor: 'var(--bs-body-bg)', paddingTop: 0, paddingBottom: 0}}>
-      <Container  className="bg-body-tertiary" >
+      <div className="container-fluid" style={{backgroundColor: 'var(--color-surface-container-highest-light)' }}>
+      {/* <Container  className="bg-body-tertiary" > */}
         <Navbar.Brand className='d-flex w-50 me-auto' href="/">
           <LogoIcon />
         </Navbar.Brand>
@@ -52,7 +54,8 @@ function HeaderAdmin() {
           </div>
           </Nav>
         </Navbar.Collapse>
-      </Container>
+      {/* </Container> */}
+      </div>
     </Navbar>
   );
 }
