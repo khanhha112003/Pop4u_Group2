@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import './CustomerList.css';
 
@@ -102,3 +103,12 @@ function CustomerList () {
   );
 };
 export {CustomerList};
+=======
+export const CustomerManagementAdmin = () => {
+    return (
+        <div>
+        <h1>CustomerManagementAdmin</h1>
+        </div>
+    );
+}
+>>>>>>> bd6795ef96ef59a1574f715817de77ce31c79c6b
