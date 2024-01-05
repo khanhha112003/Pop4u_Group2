@@ -12,6 +12,7 @@ import { ProductListAdmin } from './screens/Admin/Product/ProductListAdmin'
 import { AddProduct } from './screens/Admin/Product/AddProduct';
 import { AddVoucher } from './screens/Admin/Voucher/AddVoucher';
 import { VoucherList } from './screens/Admin/Voucher/VoucherList';
+import { OrderList } from "./screens/Admin/Order/OrderList";
 
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import { ProductList } from './screens/ProductList/ProductList';
@@ -75,7 +76,7 @@ function App() {
           <Route path="/admin/voucher_list" element={<VoucherList />} />
         </Route>
         </Route>
-      </Routes>
+      </Routes> 
     </BrowserRouter>
 
 
