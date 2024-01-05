@@ -9,6 +9,7 @@ import { ReactComponent as LogoIcon } from '../Navbar/icons/logo.svg';
 import { ReactComponent as AccountIcon } from '../Navbar/icons/icon_account.svg';
 import { ReactComponent as SearchOrderIcon } from '../Navbar/icons/icon_order_search.svg';
 import { ReactComponent as SearchIcon } from '../Navbar/icons/icon_search.svg';
+import {ReactComponent as NotiIcon} from './icons/icon_notification.svg'
 function HeaderAdmin() {
   return (
     <Navbar expand="xxl" style={{backgroundColor: 'var(--bs-body-bg)', paddingTop: 0, paddingBottom: 0}}>
@@ -19,15 +20,15 @@ function HeaderAdmin() {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse className='w-100' id="navbarScroll">
           
-          <Nav className='ms-auto w-100 justify-content-end'>
+          <Nav className='ms-auto w-100 justify-content-center'>
           <Form className="d-flex justify-content-center align-items-center">
             <div style={{ margin: '0px !important' }}> {/* Centered div */}
               <InputGroup>
-                <Form.Control
+                <Form.Control 
                   placeholder="Search"
                   aria-label="Search"
                   aria-describedby="basic-addon2"
-                  style={{ borderRadius: '20px 0 0 20px' }} // Adjust border-radius as needed
+                  style={{ width: '300px', borderRadius: '20px 0 0 20px'  }} // Adjust border-radius as needed
                 />
                 <InputGroup.Text style={{ borderRadius: '0 20px 20px 0' }}>
                   {/* Adjust border-radius as needed */}
@@ -36,10 +37,17 @@ function HeaderAdmin() {
               </InputGroup>
             </div>
           </Form>
+          </Nav>
+
+          <Nav className='ms-auto w-100 justify-content-end'>
+          
 
           <div>
-            <Button href='/signin' variant="outline-success">
+            <Button href='/admin' variant="outline-success">
               <AccountIcon />
+            </Button>
+            <Button href='/admin' variant="outline-success">
+              <NotiIcon />
             </Button>
           </div>
           </Nav>
