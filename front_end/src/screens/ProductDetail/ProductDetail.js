@@ -1,7 +1,7 @@
 
 import './ProductDetail.css'
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import 'react-bootstrap';
 import { Carousel } from 'react-bootstrap';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
@@ -18,6 +18,7 @@ import { basicGetRequets, basicPutRequest, combineMultipleRequests } from "../..
 
 function ProductDetail() {
     const [searchParam] = useSearchParams();
+    const navigate = useNavigate();
     const [content, setContent] = useState(
         {
             product_data: {
@@ -96,6 +97,24 @@ function ProductDetail() {
         const updateRatingRequest = basicPutRequest("/update_rating", { product_code: searchParam.get("product_code") , rating: newRatingData.rating, num_of_rating: newRatingData.num_of_rating });
         updateRatingRequest.then((response) => {
             setRatingData(response.data);
+        }).catch(error => {
+            setError(error);
+        });
+    };
+
+    const handleBuyNowButton = (product_code, quantity) => {
+        const newCartRequest = basicPutRequest("/add_to_cart", { product_code: product_code, quantity: quantity });
+        newCartRequest.then((response) => {
+            navigate("/cart");
+        }).catch(error => {
+            setError(error);
+        });
+    };
+
+    const handleAddToCartButton = (product_code, quantity) => {
+        const newCartRequest = basicPutRequest("/add_to_cart", { product_code: product_code, quantity: quantity });
+        newCartRequest.then((response) => {
+            alert("Thêm vào giỏ hàng thành công");
         }).catch(error => {
             setError(error);
         });
@@ -198,8 +217,18 @@ function ProductDetail() {
                             </div>
                         </div>
                         <div className='conversion-btn'>
-                            <button className='add-to-cart'><span className="label-xl">Thêm vào giỏ hàng</span></button>
-                            <button className='buy-now' ><span className="label-xl">Mua ngay</span></button>
+                            <button 
+                                onClick={() => {handleAddToCartButton(content.product_data.product_code, quantity)}}
+                                className='add-to-cart'
+                            >
+                                <span className="label-xl">Thêm vào giỏ hàng</span>
+                            </button>
+                            <button 
+                                onClick={() => {handleBuyNowButton(content.product_data.product_code, quantity)}}
+                                className='buy-now' 
+                            >
+                                <span className="label-xl">Mua ngay</span>
+                            </button>
                         </div>
                     </div>
                     <hr></hr>

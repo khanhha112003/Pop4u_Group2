@@ -1,9 +1,9 @@
 @import url(../../theme/theme.css);
 
-.product-badge {
-    background-color: var(--color-primary-container-light);
+.product-badge{
+    background-color: var(--color-primary-container-light) !important;
     color: var(--color-on-primary-container-light);
-    padding: 3px 12px;
+    padding: 3px 12px !important;  
     border-radius: 8px;
     margin-right: 8px;
 }
