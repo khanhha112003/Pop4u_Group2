@@ -102,13 +102,13 @@ const AddProduct = () => {
         <div className="margin">
          Nghệ sĩ: <br></br>
         <label>
-          <input className="input-custom margin" type="text" cols="100" name="artist" value={product.artist} onChange={handleChange} />
+          <input className="input-custom margin" type="text"  name="artist" value={product.artist} onChange={handleChange} />
         </label>
         </div>
         <div className="margin">
         Mô tả sản phẩm: <br></br>
         <label>
-          <input className="input-custom margin" type="text" cols="100" rows="5" name="description" value={product.description} onChange={handleChange} />
+          <input className="input-custom margin" type="text"  name="description" value={product.description} onChange={handleChange} />
         </label>
         </div>
       </div>
@@ -161,7 +161,8 @@ const AddProduct = () => {
         <div>
         
         <div className="margin" >
-      <p className="margin">Số lượng: <input className="input-custom margin" type="number" name="stock" value={product.stock} onChange={handleChange} /></p>
+      Số lượng: <br></br>
+      <input className="input-custom-price margin" type="number" name="stock" value={product.stock} onChange={handleChange} />
     </div>
         </div>
             </div>

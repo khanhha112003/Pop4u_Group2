@@ -27,7 +27,7 @@ const SidebarAdmin = () => {
     //     </li>
     //   </ul>
     // </nav>
-    <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{backgroundColor:"#e9ecef"}}>
+    <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{backgroundColor:"#F5F3F7"}}>
             <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 ">
                 <li class="nav-item mb-2 mt-3"><a class="nav-link text-secondary" href="#"><h5>Tên nhân viên</h5></a></li>
                 <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="#"><i class="fas fa-user font-weight-bold"></i> <span className="ml-3">Dashboard</span></a></li>
