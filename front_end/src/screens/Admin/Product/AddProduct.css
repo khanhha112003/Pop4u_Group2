@@ -1,6 +1,6 @@
 @import url(../../../theme/theme.css); 
-.section-frame {
-  flex: 0 0 30%;
+.section-frame-admin {
+  flex: 0 0 10%;
   padding: 20px;
   border-radius: 40px;
   border: 1px solid var(--theme-secondary3, #11448F);
