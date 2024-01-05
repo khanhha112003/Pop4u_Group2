@@ -58,22 +58,22 @@ function ArtistList() {
 		<div>
 			<div className="container">
 				<div className="row">
-					<div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
+					<div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
 						<div className='banner-artist'>
-							<span className='head3'>Nghệ Sĩ</span>
+							<h3 className='head3'>Nghệ Sĩ</h3>
 						</div>
 					</div>
 				</div>
 				<div className="row">
 					<div className='search-artist'>
 						<div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
-							<label htmlFor="filterInput" className='label-xxxl search-label'>Bạn Muốn Lắng Nghe Âm Nhạc Từ Ai?</label>
+							<label htmlFor="filterInputArtist" className='label-xxxl search-label'>Bạn Muốn Lắng Nghe Âm Nhạc Từ Ai?</label>
 						</div>
 						<div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
 							<input
-								className='label-m'
+								className='label-m filter-input'
 								type="text"
-								id="filterInput"
+								id="filterInputArtist"
 								value={filterName}
 								onChange={handleFilterChange}
 								placeholder="Tên nghệ sĩ..."
@@ -83,7 +83,7 @@ function ArtistList() {
 				</div>
 				<div className="row">
 					{filteredData.map(artist => (
-						<div key={artist._id} className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+						<div key={artist._id} className="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
 							<div className="artist-card animate__animated animate__slideInRight">
 								<div className="artist-pic">
 									<img src={artist.artist_logo} alt={artist.artist_name} />

@@ -1,41 +1,50 @@
-.basic-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .basic-table th,
-  .basic-table td {
-    border: none;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .Table:first-child {
-    border-radius: 0.7rem;
-  }
-  
-  .status {
-    padding: 8px;
-    border-radius: 9px;
-  }
-  
-  .Details {
-    color: #00b5ff;
-  }
-  
-  @media screen and (max-width: 1200px) {
-    .basic-table {
-      width: 170%;
-      margin-top: 2rem;
+.container {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Inter;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table th,
+table td {
+  .status{
+    padding: 5px 10px;
+    border-radius: 15px;
+
+    &.In-transit{
+      color: goldenrod;
+      background-color: rgb(189, 189, 3, 0.103);
+    }
+
+    &.Done{
+      color: rgb(34, 219, 34);
+      background-color: rgba(12, 77, 3, 0.103);
+    }
+
+    &.In-prepare{
+      color: rgb(73, 29, 231);
+      background-color: rgba(12, 1, 22, 0.103);
     }
   }
-  
-  @media screen and (max-width: 768px) {
-    .basic-table {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 23rem;
-    }
-  }
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s;
+}
+

@@ -1,0 +1,13 @@
+
+.sidebar {
+    width: 220px;
+}
+.nav-link:hover {
+    background-color: #DBE1FF ;
+    color: white;
+    cursor: pointer;
+}   
+/* .span>svg {
+    height: 20px !important;
+    width: 20px !important;
+} */

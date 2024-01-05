@@ -35,7 +35,8 @@ const VoucherList = () => {
   );
 
   return (
-    <div className="container">
+    <div className="container margin">
+      <h2>Danh sách Voucher</h2>
       <label htmlFor="categoryFilter">Filter by Category:</label>
       <select
         id="categoryFilter"

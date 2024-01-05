@@ -24,8 +24,8 @@ function Footer() {
                 </a>
                 <ul className="link-list">
                     <li><a href="/about"><span className="label-s">Về chúng tôi</span></a></li>
-                    <li><a href="/todo"><span className="label-s">Nhà cung ứng</span></a></li>
-                    <li><a href="/todo"><span className="label-s">ESG</span></a></li>
+                    <li><a href="/supplier"><span className="label-s">Nhà cung ứng</span></a></li>
+                    <li><a href="/esg"><span className="label-s">ESG</span></a></li>
                     <li><a href="/todo"><span className="label-s">Chứng nhận</span></a></li>
                 </ul>
             </div>
@@ -42,10 +42,10 @@ function Footer() {
             <div className="col-sm-6 col-md-6 col-lg-3 col-xl-3">
                 <div className="footer-head"><span className="link-list-title label-xl">Chính sách</span></div>
                 <ul className="link-list">
-                    <li><a href="#"><span className="label-s">Chính sách mua hàng</span></a></li>
-                    <li><a href="#"><span className="label-s">Chính sách giao hàng</span></a></li>
-                    <li><a href="#"><span className="label-s">Chính sách thanh toán</span></a></li>
-                    <li><a href="#"><span className="label-s">Dữ liệu cá nhân</span></a></li>
+                    <li><a href="/buy_policy"><span className="label-s">Chính sách mua hàng</span></a></li>
+                    <li><a href="/ship_policy"><span className="label-s">Chính sách giao hàng</span></a></li>
+                    <li><a href="/payment_policy"><span className="label-s">Chính sách thanh toán</span></a></li>
+                    <li><a href="/personal_data"><span className="label-s">Dữ liệu cá nhân</span></a></li>
                 </ul>
             </div>
             <div className="col-sm-6 col-md-6 col-lg-3 col-xl-3 footer-col">

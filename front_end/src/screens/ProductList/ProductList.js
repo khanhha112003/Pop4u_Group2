@@ -296,7 +296,6 @@ function ProductList() {
                 </div>
 
                 <div className="col-md-9" style={{ width: '80%' }}>
-
                     <Container>
                         <Row>
                             {currentPageInfo.current_item.map((item, index) => (
