@@ -31,6 +31,10 @@ a :active {
     margin-bottom: 24px;
 }
 
+.link-list li a:hover {
+    letter-spacing: 2px;
+}
+
 .label-link-icon {
     display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử con */
     align-items: center; /* Căn chỉnh theo trục đứng */  

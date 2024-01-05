@@ -19,6 +19,7 @@ import { ProductListAdmin } from './screens/Admin/Product/ProductListAdmin'
 import { AddProduct } from './screens/Admin/Product/AddProduct';
 import { AddVoucher } from './screens/Admin/Voucher/AddVoucher';
 import { VoucherList } from './screens/Admin/Voucher/VoucherList';
+import { ArtistAdmin } from "./screens/Admin/Artist/ArtistAdmin";
 
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import { ProductList } from './screens/ProductList/ProductList';
@@ -84,8 +85,8 @@ function App() {
 					<Route path="/admin/voucher_list" element={<VoucherList />} />
 					<Route path="/admin/customer_list" element={<CustomerManagementAdmin />} />
 					<Route path="/admin/add_customer" element={<CustomerManagementAdmin />} />
-					{/* <Route path="/admin/artist_list" element={<ArtistAdmin/>} />
-					<Route path="/admin/add_artist" element={<ArtistAdmin />} /> */}
+					<Route path="/admin/artist_list" element={<ArtistAdmin/>} />
+// 					<Route path="/admin/add_artist" element={<ArtistAdmin />} />
 					<Route path="/admin/order_list" element={<BasicTable />} />
 					<Route path="/admin/order_detail" element={<BasicTable />} />
 					
