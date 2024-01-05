@@ -21,6 +21,7 @@ export function Blog(){
         } else {
         setSelectedFilters([...selectedFilters, selectedCategory]);
         }
+        console.log("Selected Filters:", selectedFilters);
     };
 
     useEffect(() => {
@@ -28,17 +29,23 @@ export function Blog(){
     }, [selectedFilters]);
 
     const filterBlgPosts = () => {
+        let filteredPosts = [];
+
         if (selectedFilters.length > 0) {
-            setFilteredBlgPosts(
-                Blgdata.BlgPosts.filter((post) =>
-                    selectedFilters.some((selectedCategory) =>
-                        post.category.includes(selectedCategory)
-                    )
+            filteredPosts = Blgdata.BlgPosts.filter((post) =>
+                selectedFilters.some((selectedCategory) =>
+                    post.category.includes(selectedCategory)
                 )
             );
         } else {
-            setFilteredBlgPosts([...Blgdata.BlgPosts]);
+            filteredPosts = [...Blgdata.BlgPosts];
         }
+
+        // Sort the filtered posts by date in descending order
+        filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // Update state with sorted and filtered posts
+        setFilteredBlgPosts(filteredPosts);
     };
     
     const loadMorePosts = () => {
@@ -46,15 +53,6 @@ export function Blog(){
             Math.min(prevVisiblePosts + postsPerPage, filteredBlgPosts.length)
         );
     };
-    
-    useEffect(() => {
-        let sortedPosts = [...filteredBlgPosts]; // Create a copy of the filtered posts
-
-        // Sort the posts by date (assuming post.date is in a sortable format)
-        sortedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        setFilteredBlgPosts(sortedPosts); // Update the state with sorted posts
-    }, [selectedFilters, Blgdata.BlgPosts]);
     
     return(
         <div className="BlgLst">
