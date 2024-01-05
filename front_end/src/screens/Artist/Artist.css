@@ -9,7 +9,10 @@
     color: white; 
     border-radius: 20px;
     margin-bottom: 64px;
+    text-align: center;
 }
+
+
   
 .search-artist {
     text-align: center;

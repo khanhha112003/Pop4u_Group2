@@ -56,15 +56,14 @@ export function Blog(){
         <div className="BlgLst">
             <div className="container">
                 <div className="row">
-                <div className="col-12 header position-relative">
+                <div className="col-12">
                     {
                         Blgdata.BlgBanner.map ((BannerImg) => (
-                        <div>
-                            <img src={BannerImg.image} className="banner-image" alt="Banner Image" />
+                        <div className="banner-image" style={{backgroundImage: `url(${BannerImg.image})`}}>
+                            <h3 className="head3">Bài Viết</h3>   
                         </div>
                         ))
                     }
-                    <h2 className="title position-absolute top-50 start-50 translate-middle">Bài Viết</h2>   
                 </div>
                 </div>
                 </div>
@@ -72,7 +71,7 @@ export function Blog(){
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
-                        <h5><FilterIcon/>Lọc bài viết theo thẻ</h5>
+                        <h5><FilterIcon style={{marginRight:'4px'}}/>Lọc bài viết theo thẻ</h5>
                             {filters.map((category, idx) => (
                             <button
                                 onClick={() => handleFilterButtonClick(category)}
