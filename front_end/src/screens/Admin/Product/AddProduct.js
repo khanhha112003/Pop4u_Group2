@@ -86,7 +86,7 @@ const AddProduct = () => {
     <h2 className="center">Thông tin sản phẩm</h2>
 
     <div className="col-md-8">
-      <div className="section-frame margin">
+      <div className="section-frame-admin margin">
         <div className="margin">
         <label>
           Tên sản phẩm: <br></br>
@@ -117,7 +117,7 @@ const AddProduct = () => {
 
                 
                 <div className="col-md-4">    
-                <div className="section-frame margin">
+                <div className="section-frame-admin margin">
                 <div className="margin">
         <label>
           Giá bán: <br></br>
@@ -136,7 +136,7 @@ const AddProduct = () => {
 
             <div className='row'>
             <div className="col-md-8">
-            <div className="section-frame margin">
+            <div className="section-frame-admin margin">
             <div className="margin">
          </div>
          <div className="margin">
@@ -168,7 +168,7 @@ const AddProduct = () => {
             </div>
             </div>
             <div className="col-md-4">
-            <div className="section-frame margin">
+            <div className="section-frame-admin margin">
               <input
               id="imgUpload"
               accept="image/*"
