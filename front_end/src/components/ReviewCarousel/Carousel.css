@@ -1,0 +1,47 @@
+@import url(../../theme/theme.css);
+
+
+.review-carousel {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    transition: all 0.3s;
+}
+
+.review-slide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+}
+  
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    background-color: var(--color-primary-container-light);
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.carousel-button:first-child:hover {
+    padding-left: 16px;
+}
+
+.carousel-button:last-child:hover {
+    padding-right: 16px;
+}
+
+  
+.carousel-button:first-child {
+left: 10px;
+}
+  
+.carousel-button:last-child {
+    right: 10px;
+}  

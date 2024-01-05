@@ -72,7 +72,7 @@ function HomePage() {
           <div className="col-12">
             <div className="homepage-header">
               <h4 className="head4">Danh mục sản phẩm</h4>
-              <a href="/artists"><span className="label-l">Xem tất cả sản phẩm</span><Arrow/></a>
+              <a href="/product_list"><span className="label-l">Xem tất cả sản phẩm </span><Arrow/></a>
             </div>
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 col-xl-4 d-flex justify-content-between" >
@@ -241,22 +241,22 @@ function HomePage() {
               {
                 title: "Giá tốt nhất.",
                 img_src: BestPriceIcon,
-                link: '#'
+                link: '/about'
               },
               {
                 title: "Freeship từ 500K.",
                 img_src: FreeshipIcon,
-                link: '#'
+                link: '/about'
               },
               {
                 title: "Vì môi trường.",
                 img_src: EnviromentIcon,
-                link: '#'
+                link: '/about'
               },
               {
                 title: "Miễn phí đổi trả.",
                 img_src: ChangeIcon,
-                link: '#'
+                link: '/about'
               }
             ].map((variant) => (
               <div key={variant.title} className="col-sm-12 col-md-6 col-xl-3 col-lg-3">
