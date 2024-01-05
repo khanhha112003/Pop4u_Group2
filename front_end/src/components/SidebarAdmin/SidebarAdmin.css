@@ -1,9 +1,11 @@
 
 .sidebar {
     width: 220px;
+    font-family: var(--inter);
+
 }
 .nav-item {
-    display: flex;
+    /* display: flex; */
     gap: 2em;
 }
 .nav-link{
