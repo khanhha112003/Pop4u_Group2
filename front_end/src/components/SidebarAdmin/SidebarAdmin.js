@@ -32,7 +32,7 @@ const SidebarAdmin = () => {
         
         <li className="nav-item mb-2 "><NavLink className="nav-link " to="/admin/dashboard"><i className=""></i> 
         <DashboardIcon />
-        <span className="ml-3 fs-5">Dashboard</span></NavLink></li>
+        <span className=" fs-5">Dashboard</span></NavLink></li>
         
         <li className="nav-item mb-2 "><NavLink className="nav-link " to="/admin/product_list"><i className="fs-5"></i> 
         <ProductIcon/>
