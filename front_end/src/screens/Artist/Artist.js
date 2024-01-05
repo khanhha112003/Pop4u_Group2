@@ -58,7 +58,7 @@ function ArtistList() {
 		<div>
 			<div className="container">
 				<div className="row">
-					<div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
+					<div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
 						<div className='banner-artist'>
 							<h3 className='head3'>Nghệ Sĩ</h3>
 						</div>

@@ -4,12 +4,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 15em; 
+    height: 400px; 
     background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%); 
     color: white; 
-    font-size: 24px; 
-    border-radius: 1em;
-    margin-bottom: 3em;
+    border-radius: 20px;
+    margin-bottom: 64px;
 }
   
 .search-artist {
@@ -59,9 +58,8 @@
     padding-bottom: 5em;
 }
 
-/* CSS */
 .animate__slideInRightFast {
-    animation-duration: 0.1s; /* Ví dụ: Thời gian animation ngắn hơn */
+    animation-duration: 0.1s; 
 }
 
 
@@ -72,9 +70,7 @@
 
 
 .artist-pic img {
-    border-radius: 50%; /* Bo tròn border theo hình dạng của ảnh */
-
-    /* border-radius: 5em; */
+    border-radius: 50%; 
     align-self: center;
     align-items: center;
     text-align: center;
@@ -99,7 +95,6 @@
 }
 
 .artist-name span {
-    /* font-size: 32px; */
     color: var(--color-on-background-light);
     font-weight: var(--font-bold);
 }

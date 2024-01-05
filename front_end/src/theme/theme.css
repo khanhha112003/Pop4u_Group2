@@ -224,6 +224,9 @@ body{
     }        
 }
 
+a {
+    transition: all 0.5s;
+}
 
 /* .label-xxl, 
 .label-l,

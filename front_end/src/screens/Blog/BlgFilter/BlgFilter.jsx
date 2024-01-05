@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-bootstrap'
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import Blgdata from '../data.jsx';
@@ -41,10 +41,8 @@ export function Blog(){
             filteredPosts = [...Blgdata.BlgPosts];
         }
 
-        // Sort the filtered posts by date in descending order
         filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        // Update state with sorted and filtered posts
         setFilteredBlgPosts(filteredPosts);
     };
     
@@ -70,8 +68,6 @@ export function Blog(){
                 </div>
                 </div>
                 </div>
-            
-               
                 <div className='FilterBar' style={{marginTop:'20px'}}  >
                 <div className="container">
                     <div className="row">
@@ -127,7 +123,6 @@ export function Blog(){
                     </div>
                 </div>
             </div>
-
             {(visiblePosts < filteredBlgPosts.length) && (
                 <div className='LoadmoreBlg'>
                     <div className="container-fluid text-center">

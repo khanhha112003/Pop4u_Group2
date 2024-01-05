@@ -31,9 +31,6 @@
   box-sizing: border-box;
 }
 
-/* .select-amount-button label:hover {
-  background-color: var(--color-background-light);
-} */
 
 .select-amount-button label:active {
   animation: amountButton 0.2s;

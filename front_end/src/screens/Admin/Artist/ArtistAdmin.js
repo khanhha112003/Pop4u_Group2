@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "react-bootstrap";
+import './ArtistAdmin.css'
 
 function ArtistAdmin() {
     const [searchTerm, setSearchTerm] = useState('');
