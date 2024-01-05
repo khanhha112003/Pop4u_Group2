@@ -27,6 +27,9 @@ import {
 	Route,
 	useLocation
 } from "react-router-dom";
+import { ArtistAdmin } from "./screens/Admin/Artist/ArtistAdmin";
+import CustomerManagementAdmin from "./screens/Admin/Customer/CustomerList";
+import { BasicTable } from "./screens/Admin/Order/OrderList";
 
 
 function ScrollToTop() {
@@ -61,10 +64,18 @@ function App() {
 					</Route>
 				</Route>
 				<Route path="/" element={<AdminSpecificLayout />}>
+					{/* <Route path="/admin/dashboard" element={<Dashboard />} /> */}
 					<Route path="/admin/add_product" element={<AddProduct />} />
 					<Route path="/admin/product_list" element={<ProductListAdmin />} />
 					<Route path="/admin/add_voucher" element={<AddVoucher />} />
 					<Route path="/admin/voucher_list" element={<VoucherList />} />
+					<Route path="/admin/customer_list" element={<CustomerManagementAdmin />} />
+					<Route path="/admin/add_customer" element={<CustomerManagementAdmin />} />
+					{/* <Route path="/admin/artist_list" element={<ArtistAdmin/>} />
+					<Route path="/admin/add_artist" element={<ArtistAdmin />} /> */}
+					<Route path="/admin/order_list" element={<BasicTable />} />
+					<Route path="/admin/order_detail" element={<BasicTable />} />
+					
 				</Route>
 			</Routes>
 		</BrowserRouter>
