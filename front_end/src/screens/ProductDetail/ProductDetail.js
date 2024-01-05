@@ -92,7 +92,6 @@ function ProductDetail() {
     };
 
     const handleRatingChange = (newRating) => {
-        // Do something with the new rating, e.g., update it in the state
         const newRatingData = { rating: newRating, num_of_rating: ratingData.num_of_rating + 1 };
         const updateRatingRequest = basicPutRequest("/update_rating", { product_code: searchParam.get("product_code") , rating: newRatingData.rating, num_of_rating: newRatingData.num_of_rating });
         updateRatingRequest.then((response) => {
@@ -114,8 +113,8 @@ function ProductDetail() {
 
     return (
         <div className="container">
-            <div className="row">
-                <div className="col-md-6 col-sm-12">
+            <div className="row" style={{'marginTop': '64px'}}>
+                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <div className="image-size">
                         <Carousel activeIndex={imageIndex} onSelect={handleImageSelect}>
                             {
@@ -128,7 +127,6 @@ function ProductDetail() {
                                 ))
                             }
                         </Carousel>
-
                         <div style={{ marginTop: '3px', display: 'flex', justifyContent: 'center' }}>
                             {
                                 content.product_data.list_product_image.map((imageSrc, index) => (
@@ -144,31 +142,31 @@ function ProductDetail() {
                         </div>
                     </div>
                 </div>
-
-                <div className="col-md-3 product_1">
-                    <div>
-                        <div className="product-box-title">
-                            <h4>
-                                <a href="" title={content.product_data.product_name}>
-                                    {content.product_data.product_name}
-                                </a>
-                            </h4>
+                <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div className='product-main-info'>
+                        <div className="product-detail-box-title">
+                            <h5 className='head5'>
+                                {content.product_data.product_name}
+                            </h5>
                         </div>
-                        <div style={{maxWidth: 400}}>
-                            <BadgeList data={content.product_data} small={false} />
+                        <div className='d-flex badges-amount'>
+                            <BadgeList data={content.product_data} small={false}/>
+                            <div className='amount-warehouse'>
+                                <span className="body-small">Số lượng: {content.product_data.product_stock}</span>
+                            </div>
                         </div>
-                        <div>
+                        <div className='d-flex'>
                             {
                                 content.product_data.discount_price === 0 ? (
                                     <div className="price-sale">
-                                        <span className="price-inner">{content.product_data.sell_price}</span>
+                                        <span className="price">{content.product_data.sell_price}đ</span>
                                     </div>
                                 ) : (
-                                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                    <div className='d-flex'>
                                         <div className="price-sale">
-                                            <span className="price-inner">{content.product_data.discount_price}</span>
+                                            <span className="price">{content.product_data.discount_price}đ</span>
+                                            <span className="old-price">{content.product_data.sell_price}đ</span>
                                         </div>
-                                        <del className="price-del">{content.product_data.sell_price}</del>
                                     </div>
                                 )
                             }
@@ -188,34 +186,36 @@ function ProductDetail() {
                                     onChangeValue={handleRatingChange} 
                                     />
                         }
-                        <hr></hr>
-                        <div>
-                            <div>
-                                <h6 className="margin">Số lượng: {content.product_data.product_stock}</h6>
-                                <label style={{ cursor: 'pointer' }} onClick={decreaseQuantity}><Minus /></label>
-                                <input className="quantity" type="text" value={quantity} readOnly />
-                                <label style={{ cursor: 'pointer' }} onClick={increaseQuantity}><Plus /></label>
+                    </div>
+                    <hr></hr>
+                    <div className='product-select-amount'>
+                        <div className='select-amount d-flex'>
+                            <span className='body-small'>Số lượng:</span>
+                            <div className='select-amount-button'>
+                                <label style={{ cursor: 'pointer' }} onClick={decreaseQuantity}><Minus/></label>
+                                <input className="quantity body-small" type="text" value={quantity} readOnly />
+                                <label style={{ cursor: 'pointer' }} onClick={increaseQuantity}><Plus/></label>
                             </div>
-                            <div>
-                                <button className='btn add-cart' ><span className="label-l" style={{ color: 'var(--theme-primary1, #325DA8)' }}>Thêm vào giỏ hàng</span></button>
-                                <button className='btn pay' ><span className="label-l" style={{ color: 'var(--theme-typo-label-light, #FFF)' }} >Thanh toán ngay</span></button>
-                            </div>
-                            <hr></hr>
+                        </div>
+                        <div className='conversion-btn'>
+                            <button className='add-to-cart'><span className="label-xl">Thêm vào giỏ hàng</span></button>
+                            <button className='buy-now' ><span className="label-xl">Mua ngay</span></button>
+                        </div>
+                    </div>
+                    <hr></hr>
                             <div>
                                 <h5 className="margin">Mô tả sản phẩm:</h5>
                                 <p className="body-small margin pre-line">
                                     {content.product_data.description}
                                 </p>
                             </div>
-                        </div>
-                    </div>
                 </div>
                 {
                     content.related_product.length > 0 && (
                         <div>
                             <div className='center'
                                 style={{ marginTop: '60px', cursor: 'pointer' }}>
-                                <h3 >Sản phẩm liên quan </h3>
+                                <h4 className='head4'>Sản phẩm liên quan</h4>
                                 <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
                             </div>
                             <div className="product" style={{ marginBottom: 40 }}>
@@ -237,13 +237,8 @@ function ProductDetail() {
                         </div>
                     )
                 }
-
             </div>
-
         </div>
-
-
-
     );
 };
 

@@ -11,7 +11,6 @@
 }
 
 .spinner span {
-    font-size: 2rem;
     animation: fade 1s linear 0s infinite;
     padding-right: 1rem;
     margin: 0;
@@ -30,7 +29,6 @@
 .completed {
     font-size: 2rem;
     color: #03fc4e;
-
     animation: bigger 1s linear;
 }
 

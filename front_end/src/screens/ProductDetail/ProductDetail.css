@@ -1,68 +1,148 @@
 @import url(../../theme/theme.css); 
 
+.product-main-info {
+  margin-bottom: 24px;
+  color: var(--color-on-surface-light);
+}
+
+.product-main-info > * {
+  margin-bottom: 16px;
+}
+
+.badges-amount, .select-amount {
+  align-items: center;
+  display: flex;
+}
+
+.select-amount span {
+  margin-right: 24px;
+}
+
+.select-amount-button {
+  background-color: var(--color-primary-container-light);
+  padding: 4px 16px;
+  border-radius: 16px;
+}
+
+.select-amount-button label {
+  border-radius: 50%;
+  padding: 4px;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+/* .select-amount-button label:hover {
+  background-color: var(--color-background-light);
+} */
+
+.select-amount-button label:active {
+  animation: amountButton 0.2s;
+}
+
+@keyframes amountButton {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }  
+}
+
+.badges-amount .amount-warehouse {
+  margin-left: 24px;
+}
+
 .tag {
   border-radius: 10px;
   padding: 2px 5px;
   background: #D8E2FF;
   margin-right: 10px;
 }
-  
-.price-inner {
-    font-weight: bold;
-    margin-right: 10px;
-    font-size:larger ;
-  }
-.price-del {
-    color: #888; 
-    font-size: medium;
-  }
 
-  .img-product-main {
-    width:100%;
-  }
+.price-sale {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-right: 24px;
+}
 
-  .checked {
-    color: orange;
-  }
 
-  .btn {
-    border: none;
-    outline: none;
-    padding: 10px 10px;
-    cursor: pointer;
-    margin: 5px;
-  }
+.price, .old-price {
+  vertical-align: text-bottom;
+}
+
+.price-sale .price {
+  margin-right: 20px;
+}
+
+.img-product-main {
+  width:100%;
+}
+
+.checked {
+  color: orange;
+}
+
+.add-to-cart, .buy-now {
+  border: none;
+  outline: none;
+  padding: 10px 10px;
+  cursor: pointer;
+  height: 64px;
+  transition: all 1s;
+}
 
 .option-box{
   border-radius: 8px;
   border: 1px solid var(--theme-trung-tinh4, rgba(60, 64, 67, 0.80));
   background: var(--theme-typo-label-light, #FFF);
 }
-  
-.add-cart{
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 20px;
-  width: 250px;
-  height: 50px;
-  flex-shrink: 0;
-  border-radius: 36px;
-  border: 1px solid var(--theme-primary1, #325DA8);
-  background: var(--theme-typo-label-light, #FFF);
-}
-.pay{
-  margin-top: 20px;
-  margin-left: 5px;
-  width: 250px;
-  height: 50px;
-  flex-shrink: 0;
-  border-radius: 36px;
-background: var(--theme-primary1, #325DA8);
+
+.product-select-amount {
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 24px;
+
 }
 
-.center{
-  text-align: center;
+.conversion-btn {
+  width: 100%;
+  margin-top: 24px;
 }
+
+.add-to-cart{
+  margin-right: 2%;
+  width: 48%;
+  border-radius: 36px;
+  background-color: transparent;
+  border: 2px solid var(--color-primary-light);
+  color: var(--color-primary-light);
+}
+
+.buy-now{
+  margin-left: 2%;
+  width: 48%;
+  border-radius: 36px;
+  background: var(--theme-primary1, #325DA8);
+  color: var(--color-on-primary-light);
+}
+
+@media (max-width: 992px) {
+  .add-to-cart, .buy-now {
+    margin: 0;
+    width: 100%;
+  }
+  .add-to-cart {
+    margin-bottom: 16px;
+  }
+}
+
 .margin {
   margin: 10px;
 }
@@ -71,27 +151,30 @@ background: var(--theme-primary1, #325DA8);
   max-width: 90%;
 }
 
-
-
-
-.btn:hover {
-  background-color:#D8E2FF;
-}
-
-.btn.active {
-  background-color:#325DA8;
+.add-to-cart:hover {
+  background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%);
+  border: 0; 
   color: white;
 }
 
+.buy-now:hover {
+  background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%);
+  border: 0; 
+  color: white;
+}
+
+.buy-now:active, .add-to-cart:active {
+  box-shadow: 0 0em 5em rgba(25, 118, 210, 1);
+}
+
 .quantity{
-    border:none;
-    width: 50px;
-    cursor: pointer;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 16px;
-    background: var(--theme-secondary1, #D8E2FF);
-    text-align: center;
+  border:none;
+  width: 50px;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 16px;
+  text-align: center;
 }
 
 
