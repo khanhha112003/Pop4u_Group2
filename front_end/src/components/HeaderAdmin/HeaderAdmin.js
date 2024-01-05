@@ -45,12 +45,13 @@ function HeaderAdmin() {
           
 
           <div>
+          <Button href='/admin' variant="outline-success">
+              <NotiIcon />
+            </Button>
             <Button href='/admin' variant="outline-success">
               <AccountIcon />
             </Button>
-            <Button href='/admin' variant="outline-success">
-              <NotiIcon />
-            </Button>
+            
           </div>
           </Nav>
         </Navbar.Collapse>
