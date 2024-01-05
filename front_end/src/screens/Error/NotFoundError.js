@@ -8,13 +8,13 @@ export default function NotFoundPage() {
       <img
         src="https://www.pngitem.com/pimgs/m/561-5616833_image-not-found-png-not-found-404-png.png"
         alt="not-found"
-        style={{ width: '50%', maxWidth: '400px' }} // Adjust the width of the image here
+        style={{ width: '50%', maxWidth: '400px' }}
       />
       <Link
         className="btn btn-primary"
         role="button"
         to="/about"
-        style={{ width: '200px' }} // Adjust the width of the button here
+        style={{ width: '200px' }}
       >
         Về trang chủ
       </Link>

@@ -37,6 +37,16 @@
     background-position: left;
 }
 
+.hp-artist-card .hp-artist-card-content h6 {
+    transition: all 0.5s;
+}
+
+
+.hp-artist-card:hover .hp-artist-card-content h6 {
+    letter-spacing: 6px;
+}
+
+
 @keyframes blurBackground {
     0% {
         filter: blur(0px);

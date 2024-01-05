@@ -27,7 +27,7 @@
     -webkit-text-fill-color: transparent; 
 }
 
-#filterInput {
+.filter-input {
     padding-left: 3em;
     padding-top: 0.75em;
     padding-bottom: 0.75em;
@@ -41,11 +41,16 @@
     background: transparent url("./images/search.svg") no-repeat 13px;
   }
   
-#filterInput:focus {
+.filter-input:focus {
     border-color: var(--color-on-primary-fixed-variant-light); 
     box-shadow: 0 0 5em rgba(25, 118, 210, 0.5), inset 0 0 0.5em rgba(186, 225, 255, 0.3);
 }
     
+@media (max-width: 768px) {
+    .filter-input {
+        width: 90%;
+    }
+}
 
 .artist-card {
     justify-content: center;
