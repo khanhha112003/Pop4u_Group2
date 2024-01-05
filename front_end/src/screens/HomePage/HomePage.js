@@ -1,25 +1,23 @@
 import "./HomePage.css"
 import "react-bootstrap";
+import BestPriceIcon from './icons/new_releases.svg';
+import FreeshipIcon from './icons/local_shipping.svg';
+import EnviromentIcon from './icons/spa.svg';
+import ChangeIcon from './icons/model_training.svg';
+
 import { ReactComponent as Music } from './icons/icon_album.svg';
 import { ReactComponent as Merch } from './icons/icon_merch.svg';
 import { ReactComponent as Vinyl } from './icons/icon_vinyl.svg';
 import { ReactComponent as Photobook } from './icons/icon_photobook.svg';
 import { ReactComponent as Lightstick } from './icons/icon_lightstick.svg';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
-import  BestPriceIcon  from '../../theme/images/new_releases.svg';
-import  FreeshipIcon  from '../../theme/images/local_shipping-48px.svg';
-import  EnviromentIcon  from '../../theme/images/spa.svg';
-import  ChangeIcon  from '../../theme/images/model_training.svg';
 
-
-// import BestPriceIcon from './icons/icon_bestprice.png';
-// import FreeshipIcon from './icons/icon_freeship.png';
-// import EnviromentIcon from './icons/icon_enviroment.png';
-// import ChangeIcon from './icons/icon_change.png';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import { ReactSVG } from "react-svg";
+import "react-bootstrap";
 
-
+import { Col, Row, Button } from 'react-bootstrap';
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
 import { ArtistCardItem } from "../../components/ArtistCardItem/ArtistCardItem";
@@ -29,61 +27,47 @@ import LoadingPage from "../Loading/LoadingPage";
 import { basicGetRequets, combineMultipleRequests } from "../../app_logic/APIHandler";
 
 function HomePage() {
-  const [content, setContent] = useState({ new_product: [], sale_product: [], hot_artits: [] });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+	const [content, setContent] = useState({ new_product: [], sale_product: [], hot_artits: [] });
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+	const navigate = useNavigate();
 
-  useEffect(() => {
-    const newProductRequest = basicGetRequets("/product/product_list", { type_filter: "new", limit: 12 });
-    const saleProductRequest = basicGetRequets("/product/product_list", { type_filter: "sale", limit: 12 });
-    const hotArtistRequest = basicGetRequets("/artist/artist_list", { type_filter: "hot", limit: 4 });
-    const result = combineMultipleRequests([newProductRequest, saleProductRequest, hotArtistRequest])
-      .then((responses) => {
-        let data = {
-          new_product: responses[0].data,
-          sale_product: responses[1].data,
-          hot_artits: responses[2].data
-        }
-        setContent(data)
-      }).catch(error => {
-        setError(error);
-      }).finally(() => {
-        setLoading(false);
-      });
+	useEffect(() => {
+		const newProductRequest = basicGetRequets("/product/product_list", { type_filter: "new", limit: 12 });
+		const saleProductRequest = basicGetRequets("/product/product_list", { type_filter: "sale", limit: 12 });
+		const hotArtistRequest = basicGetRequets("/artist/artist_list", { type_filter: "hot", limit: 4 });
+		const result = combineMultipleRequests([newProductRequest, saleProductRequest, hotArtistRequest])
+			.then((responses) => {
+				let data = {
+					new_product: responses[0].data,
+					sale_product: responses[1].data,
+					hot_artits: responses[2].data
+				}
+				setContent(data)
+			}).catch(error => {
+				setError(error);
+			}).finally(() => {
+				setLoading(false);
+			});
 
-  }, []);
+	}, []);
 
-  if (loading) {
-    return <LoadingPage />;
-  }
+	if (loading) {
+		return <LoadingPage />;
+	}
 
-  if (error) {
-    return <NotFoundPage />
-  }
-
-  const handleClickAlbum = () => {
-    window.location.href = '/product_list/album';
-  };
-
-  const handleClickMerch = () => {
-    window.location.href = '/product_list/merch';
-  };
-
-  const handleClickVinyl = () => {
-    window.location.href = '/product_list/vinyl';
-  };
-
-  const handleClickPhotobook = () => {
-    window.location.href = '/product_list/photobook';
-  };
-
-  const handleClickLightstick = () => {
-    window.location.href = '/product_list/lightstick';
-  };
+	if (error) {
+		return <NotFoundPage />
+	}
 
   return (
     <div className="App">
       <div className="container">
+        <div className="row" style={{ marginBottom: '48px' }}>
+          <div className="hp-banner">
+            
+          </div>
+        </div>
         <div className="row" style={{ marginBottom: '48px' }}>
           <div className="col-12">
             <div className="homepage-header">
@@ -98,7 +82,7 @@ function HomePage() {
                 <p className="body-small">Khám phá album từ những nghệ sĩ hàng đầu</p>
                 <button
                   className="cat-card-button"
-                  onClick={handleClickAlbum}
+                  onClick={ () => navigate("/product_list/album")}
                 >
                   <span className="label-m">Xem ngay</span>
                 </button>
@@ -115,7 +99,7 @@ function HomePage() {
                 <p className="body-small">Vật phẩm ghi dấu thương hiệu, mang đầy cảm xúc</p>
                 <button
                   className="cat-card-button"
-                  onClick={handleClickMerch}
+                  onClick={ () => navigate("/product_list/merch")}
                 >
                   <span className="label-m">Xem ngay</span>
                 </button>
@@ -132,7 +116,7 @@ function HomePage() {
                 <p className="body-small">Đĩa than retro, dành cho người "sành" hướng về xưa cũ</p>
                 <button
                   className="cat-card-button"
-                  onClick={handleClickVinyl}
+                  onClick={ () => navigate("/product_list/vinyl")}
                 >
                   <span className="label-m">Xem ngay</span>
                 </button>
@@ -149,7 +133,7 @@ function HomePage() {
                 <p className="body-small">Những concept siêu đỉnh do các idol thể hiện qua các dịp quan trọng</p>
                 <button
                   className="cat-card-button"
-                  onClick={handleClickPhotobook}
+                  onClick={ () => navigate("/product_list/photobook")}
                 >
                   <span className="label-m">Xem ngay</span>
                 </button>
@@ -166,7 +150,7 @@ function HomePage() {
                 <p className="body-small">Đẹp lỗng lẫy, sáng rạng ngời, một tình yêu với idol mãi</p>
                 <button
                   className="cat-card-button"
-                  onClick={handleClickLightstick}
+                  onClick={ () => navigate("/product_list/lightstick")}
                 >
                   <span className="label-m">Xem ngay</span>
                 </button>
@@ -290,79 +274,6 @@ function HomePage() {
             )
             
           }
-          {/* <div className="col-sm-12 col-md-6 col-xl-4 col-lg-4">
-
-            <CardGroup style={{height: 150}} key={"bread_crub"}>
-            {
-            [
-              {
-                title: "Giá tốt nhất.",
-                img_src: BestPriceIcon
-              },
-              {
-                title: "Freeship từ 500K.",
-                img_src: FreeshipIcon
-              },
-              {
-                title: "Vì môi trường.",
-                img_src: EnviromentIcon
-              },
-              {
-                title: "Miễn phí đổi trả.",
-                img_src: ChangeIcon
-              }
-            ].map((variant) => (
-            <Card key={'card_' + variant.title} 
-                  style={
-                    {
-                      width: '100%', 
-                      height: '100%', 
-                      padding: 0, 
-                      margin: 10,
-                      borderRadius: 20,
-                      overflow: 'hidden'
-                    }
-                  }>
-              <Col 
-                  md={6} 
-                  style={{ 
-                    backgroundColor: '#D8E2FF', 
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center' 
-                  }}
-                >
-                <div
-                  style={{ textAlign: 'center' }}>
-                  <img
-                    src={variant.img_src}
-                    alt={variant.img_src}
-                    style={{
-                      width: 25,
-                      height: 25,
-                      objectFit: 'contain',
-                      marginBottom: '10px',
-                    }}
-                  />
-                  <h6
-                    style={{ fontWeight: 600 }}>
-                    {variant.title}
-                  </h6>   
-                  <p style={{fontSize: 14}}>
-                      Tham khảo
-                      <a href="#" onClick={() => {}}>
-                          <Arrow />
-                      </a>
-                  </p>
-                </div>  
-              </Col>
-            </Card>
-          ))}
-          </CardGroup>
-
-          </div> */}
         </div>
       </div>
     </div>

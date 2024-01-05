@@ -1,44 +1,56 @@
+@import url(../../../theme/theme.css);
+
 .banner-image {
-    max-width: 100%;
-    width: 100vw; /* Set the image width relative to the viewport width */
-    height: auto;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px; 
+    color: white; 
+    border-radius: 20px;
+    margin-bottom: 48px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
 }
-.title{
+
+/* .title{
     position: absolute;
     font-family: 'Inter', sans-serif;
     color: #ffff;
     font-size: 56px;
     font-weight: 700;
-}
+} */
 .subtext {
     display: flex;
     gap: 36px;
-    font-size: 16px;
-    color: #4D4D4D;
-    font-family: Inter;
-    font-weight: 400;
-    word-wrap: break-word;
-  }
+    color: var(--color-secondary-light);
+    margin: 24px 0px;
+}
 
-  .PostTag{
+.subtext span {
+    color: var(--color-secondary-light);
+}
+
+.Content .body-medium {
+    color: var(--color-on-surface-light);
+}
+
+.PostTag{
     display: inline-block;
     border: 1px #D8E2FF solid;
     background: #D8E2FF;
-    margin: 5px 5px;
-    border-radius: 5px;
-    padding: 5px 5px;
-    font-size: 14px;
-    font-family: Inter;
-    font-weight: 500;
-    margin-top: 12px;
+    border-radius: 8px;
+    padding: 4px 8px;
+    margin-bottom: 16px;
 }
+
 .ContentTitle {
     font-size: 40px;
     font-weight: 700; 
     font-family: Inter;
 }
- .PostTitle>h1{
+
+.PostTitle>h1{
     color: #1B1B1F;
     font-size: 48px;
     font-family: Inter;
@@ -48,18 +60,30 @@
 
 .brieftext{
     font-size: 20px;
-    color: #4D4D4D;
+    color: var(--color-secondary-light);
 }
 
-.ContentPara{
-    font-size: 24px;
-    color: #4D4D4D;
-}
 
 .ParaImg{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    margin-top: 24px;
+    border-radius: 20px;
+
+
+}
+
+.ParaImg img {
+    display: block;
+    border-radius: 20px;
+    transition: all 0.5s;
+}
+
+.ParaImg img:hover {
+    transform: scale(1.2);
 }
 
 .spTitle{

@@ -6,17 +6,13 @@
   margin-bottom: 32px;
 }
 
-h2, h4, h6 {
-  text-align: center;
-}
-
 .homepage-header h4 {
   color: var(--color-primary-light);
 }
 
 .product-box-price .price-inner {
   font-weight: bold;
-  margin-right: 10px;
+  margin-right: 16px;
 }
 
 .product-box-price .price-del {
@@ -44,10 +40,21 @@ h2, h4, h6 {
   text-align: left;
   border-radius: 20px;
   margin-bottom: 24px;
+  color: var(--color-primary-on-container-light);
 }
 
 .cat-card:hover {
   background: linear-gradient(135deg, var(--color-background-light) 15%, var(--color-primary-container-light));
+}
+
+.cat-card .cat-card-content h5 {
+  transition: all 0.5s;
+}
+
+
+.cat-card:hover .cat-card-content h5 {
+  margin-left: 24px;
+  color: var(--color-primary-light);
 }
 
 @keyframes rotateCatIcon {
@@ -192,6 +199,8 @@ h2, h4, h6 {
 .benefit h6 {
   margin-top: 24px;
   margin-bottom: 28px;
+  color: var(--color-primary-on-container-light);
+
 }
 
 .rotatable-svg {

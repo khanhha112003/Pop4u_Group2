@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-bootstrap'
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import Blgdata from '../data.jsx';
@@ -41,10 +41,8 @@ export function Blog(){
             filteredPosts = [...Blgdata.BlgPosts];
         }
 
-        // Sort the filtered posts by date in descending order
         filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        // Update state with sorted and filtered posts
         setFilteredBlgPosts(filteredPosts);
     };
     
@@ -58,25 +56,22 @@ export function Blog(){
         <div className="BlgLst">
             <div className="container">
                 <div className="row">
-                <div className="col-12 header position-relative">
+                <div className="col-12">
                     {
                         Blgdata.BlgBanner.map ((BannerImg) => (
-                        <div>
-                            <img src={BannerImg.image} className="banner-image" alt="Banner Image" />
+                        <div className="banner-image" style={{backgroundImage: `url(${BannerImg.image})`}}>
+                            <h3 className="head3">Bài Viết</h3>   
                         </div>
                         ))
                     }
-                    <h2 className="title position-absolute top-50 start-50 translate-middle">Bài Viết</h2>   
                 </div>
                 </div>
                 </div>
-            
-               
                 <div className='FilterBar' style={{marginTop:'20px'}}  >
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
-                        <h5><FilterIcon/>Lọc bài viết theo thẻ</h5>
+                        <h5><FilterIcon style={{marginRight:'4px'}}/>Lọc bài viết theo thẻ</h5>
                             {filters.map((category, idx) => (
                             <button
                                 onClick={() => handleFilterButtonClick(category)}
@@ -127,7 +122,6 @@ export function Blog(){
                     </div>
                 </div>
             </div>
-
             {(visiblePosts < filteredBlgPosts.length) && (
                 <div className='LoadmoreBlg'>
                     <div className="container-fluid text-center">
