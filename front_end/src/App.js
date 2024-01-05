@@ -20,7 +20,7 @@ import { AddVoucher } from './screens/Admin/Voucher/AddVoucher';
 import { VoucherList } from './screens/Admin/Voucher/VoucherList';
 import { CustomerManagementAdmin } from "./screens/Admin/Customer/CustomerList";
 import { ArtistAdmin } from "./screens/Admin/Artist/ArtistAdmin";
-
+// import {OrderList} from "./screens/Admin/Order/OrderList"
 
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import { ProductList } from './screens/ProductList/ProductList';

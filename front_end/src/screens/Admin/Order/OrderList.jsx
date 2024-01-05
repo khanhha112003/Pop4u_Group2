@@ -89,7 +89,7 @@ const handleFilterByStatus = (selectedStatus) => {
             />
             <button onClick={handleSearch}>Tìm</button>
           </div>
-
+           <div className='Status filter'>
           {/* <div className="filter-bar"> */}
             <select
               value={filterStatus}
@@ -102,7 +102,8 @@ const handleFilterByStatus = (selectedStatus) => {
   
             </select>
           {/* </div> */}
-      
+        </div>
+      <div className='table'>
       {/* Bảng hiển thị danh sách sản phẩm */}
       <table>
         <thead>
@@ -114,6 +115,7 @@ const handleFilterByStatus = (selectedStatus) => {
             <th>Tổng giá trị đơn</th>
             <th>Phương thức thanh toán</th>
             <th>Trạng thái</th>
+            <th>Xem chi tiết</th>
           </tr>
         </thead>
         <tbody>
@@ -128,15 +130,19 @@ const handleFilterByStatus = (selectedStatus) => {
               <td>
                 <span className= {`status ${order.status}`}> {order.status} </span>
               </td>
+              <td>Chi tiết</td>
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
+      <div className='Return button'>
             {searchResults.length > 0 && (
               <div className="return-button"> 
                 <button onClick={handleClearSearch}>Return</button>
               </div>
             )}
+      </div>
     </div>
   );
 };

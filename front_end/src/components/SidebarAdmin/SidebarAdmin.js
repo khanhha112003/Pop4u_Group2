@@ -42,7 +42,7 @@ const SidebarAdmin = () => {
         <OrderIcon/>
         <span className="ml-3 fs-5">Order</span></NavLink></li>
       
-        <li className="nav-item mb-2 "><NavLink className="nav-link " to="/admin"><i className="fs-5"></i> 
+        <li className="nav-item mb-2 "><NavLink className="nav-link " to="/admin/artist_list"><i className="fs-5"></i> 
         <ArtistIcon/>
         <span className="ml-3 fs-5">Artist</span></NavLink></li>
       
