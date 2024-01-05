@@ -6,6 +6,13 @@ import { ArtistList } from './screens/Artist/Artist';
 import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
+import {BuyPolicy} from './screens/Policy/BuyPolicy';
+import {ShipPolicy} from './screens/Policy/ShipPolicy';
+import {PaymentPolicy} from './screens/Policy/PaymentPolicy';
+import {PersonalData} from './screens/Policy/PersonalData';
+import {Supplier} from './screens/Policy/Supplier';
+import {ESG} from './screens/Policy/ESG'
+
 
 import { AdminSpecificLayout } from "./AdminSpecificLayout";
 import { ProductListAdmin } from './screens/Admin/Product/ProductListAdmin'
@@ -55,6 +62,12 @@ function App() {
 					<Route path="/single-post/:postId" element={<SinglePost />} />
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/product_detail" element={<ProductDetail />} />
+					<Route path="/buy_policy" element={<BuyPolicy />} />
+					<Route path="/ship_policy" element={<ShipPolicy />} />
+					<Route path="/payment_policy" element={<PaymentPolicy />} />
+					<Route path="/personal_data" element={<PersonalData />} />
+					<Route path="/supplier" element={<Supplier />} />
+					<Route path="/esg" element={<ESG />} />
 					<Route path="/product_list">
 						<Route path=":sort" element={<ProductList />} />
 						<Route path="" element={<ProductList />} />
