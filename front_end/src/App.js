@@ -20,7 +20,7 @@ import { AddVoucher } from './screens/Admin/Voucher/AddVoucher';
 import { VoucherList } from './screens/Admin/Voucher/VoucherList';
 import {CustomerManagementAdmin} from "./screens/Admin/Customer/CustomerList";
 import { ArtistAdmin } from "./screens/Admin/Artist/ArtistAdmin";
-
+// import {OrderList} from "./screens/Admin/Order/OrderList"
 
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import { ProductList } from './screens/ProductList/ProductList';
@@ -83,6 +83,7 @@ function App() {
 					<Route path="/admin/customer_list" element={<CustomerManagementAdmin />} />
  					<Route path="/admin/add_customer" element={<CustomerManagementAdmin />} />
 					 <Route path="/admin/artist_list" element={<ArtistAdmin/>} />
+					 {/* <Route path="/admin/order_list" element={<OrderList/>} /> */}
 
 
 				</Route>
