@@ -22,7 +22,7 @@ function Cart ()
   const applyCoupon = () => {
     // Logic to apply coupon and calculate discount amount
     if (couponCode === 'COUPON123') {
-      setDiscountAmount(10); // Set your discount amount here
+      setDiscountAmount(20000); // Set your discount amount here
     } else {
       setDiscountAmount(0); // No discount if coupon is not valid
     }
@@ -82,7 +82,7 @@ function Cart ()
         <div className="row">
         <h2 className="center">Giỏ hàng của bạn</h2>
             <div className="col-md-8">
-            <div className="section-frame margin">
+            <div className="section-frame-cart margin">
             <h3 className="center">Thông tin sản phẩm</h3>
                     <input className="margin"
                         type="checkbox"
@@ -111,7 +111,7 @@ function Cart ()
                 </div>
             </div>
             <div className="col-md-4">
-                <div className="section-frame margin">
+                <div className="section-frame-cart margin">
                 <h5>Tổng tiền: {totalPrice}</h5>
                 <h5>Giảm giá: {discountAmount}</h5>
           <hr></hr>
@@ -128,7 +128,7 @@ function Cart ()
           </div>
           <hr></hr>
           <h5>Tạm tính: {totalPrice - discountAmount}</h5>
-                <button className='order-now' ><span className="label-l" style={{ color: 'var(--theme-typo-label-light, #FFF)'}} >Đặt hàng ngay</span></button>
+          <a  href="/payment"><button className='order-now' ><span className="label-l" style={{ color: 'var(--theme-typo-label-light, #FFF)'}}>Đặt hàng ngay</span></button></a>
            
 
 
