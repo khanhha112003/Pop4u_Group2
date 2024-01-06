@@ -27,7 +27,7 @@
 
 }
 
-.input-button {
+.voucher-button {
     border: 0.1em solid var(--color-surface-tint-light);
     border-radius: 5em;
     outline: none;
@@ -36,14 +36,9 @@
     box-sizing: border-box; 
     color: var(--color-on-primary-light);
     background-color: var(--color-primary-light);
-    width: 100px;
-    margin-top: 0.5em;
+    width: 20%;
+    margin-top: 1.5em;
     margin-bottom: 1.5em;
+    margin-left:500px;
     transition: background 0.5s ease-in-out;
-}
-
-.input-button:hover {
-    background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%);
-    border: 0; 
-
-}
+  }

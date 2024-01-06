@@ -136,7 +136,7 @@ const AddVoucher = () => {
       </form>
       
       </div>
-      <button className="input-button"type="submit">Lưu</button>
+      <button button className='voucher-button label-l' type="submit">Lưu</button>
       
     </div>
   );

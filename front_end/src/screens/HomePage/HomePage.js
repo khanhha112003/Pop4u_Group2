@@ -263,9 +263,9 @@ function HomePage() {
                                         <ReactSVG className="rotatable-svg" src={variant.img_src} />
                                         <h6 className="head6">{variant.title}</h6>
                                     </div>
-                                    <div className="benefit-reference">
+                                    {/* <div className="benefit-reference">
                                         <a href={variant.link}><span className="label-l">Tham khảo </span><Arrow /></a>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         )
