@@ -173,7 +173,7 @@ function ProductList() {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center">
+                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 justify-content-right justify-content-md-center text-center">
                     <div className='banner-product'>
                         <span className='head3'>Sản phẩm của chúng tôi</span>
                     </div>
