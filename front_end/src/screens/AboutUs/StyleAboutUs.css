@@ -340,7 +340,8 @@
     padding: 48px 108px;
     transition: all 0.5s;
     color: var(--color-on-background-light);
-
+    display: flex;
+    flex-wrap: wrap; 
 }
 
 .review-content:hover {
@@ -348,23 +349,68 @@
     color: var(--color-on-primary-container-light);
 }
 
-.review-content-pic {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin-right: 64px;
+.review-content .review-content-pic div img {
+    transition: all 0.5s;
 }
 
-.review-content-pic img {
+.review-content:hover .review-content-pic div img {
+    transform: scale(1.1);
+}
+
+.review-content-pic {
+    width: auto;
+    border-radius: 50%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+.review-content-pic div {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.review-content-pic div img {
     width: 200px;
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
 }
 
+.review-content-text {
+    width: 65%;
+}
+
 .review-content-text h5 {
     margin-bottom: 24px;
     color: var(--color-primary-light);
+}
+
+@media (max-width: 1200px) {
+    .review-content-pic {
+        text-align: center;
+        align-items: center;
+        width: auto;
+    }
+
+    .review-content-pic div {
+        width: 130px;
+        height: 130px;
+        text-align: center;
+   }
+    
+    .review-content-pic div img {
+        width: 130px;
+        height: 130px;
+        text-align: center;
+    }
+
+    .review-content-text {
+        text-align: center;
+        width: 100%;
+    }
+
 }
 
 @media (max-width: 992px) {
@@ -379,14 +425,32 @@
         margin-bottom: 2em;
 
     }
-    .review-content-pic {
-        width: 150px;
-        height: 150px;
+
+    .review-content {
+        text-align: center;
+        justify-content: center;
+        align-items: center;    
+    }
+
+    .review-content-pic div {
+        width: 120px;
+        height: 120px;
+        text-align: center;
     }
     
-    .review-content-pic img {
-        width: 150px;
-        height: 150px;
+    .review-content-pic div img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .review-content-text {
+        width: 100%;
+        text-align: center;
+    }    
+    .review-content-pic {
+        text-align: center;
+        margin-bottom: 32px;
+        margin-right: 0;
     }
     
 }
@@ -399,6 +463,7 @@
     #main-des {
         height: 8em;
     }
+
 }
 
 
