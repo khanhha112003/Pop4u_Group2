@@ -1,7 +1,7 @@
 @import url(../../theme/theme.css);
 
 
-.section-frame {
+.section-frame-cart {
   flex: 0 0 30%;
   padding: 20px;
   border-radius: 40px;
@@ -155,6 +155,7 @@
   border-radius: 16px;
   background: var(--theme-secondary1, #D8E2FF);
   text-align: center;
+  color:#11448F
 }
 
 .product-box-title {

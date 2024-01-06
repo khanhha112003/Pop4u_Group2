@@ -16,7 +16,7 @@ function HeaderAdmin() {
     <Navbar expand="xxl" style={{backgroundColor: 'var(--bs-body-bg)', paddingTop: 0, paddingBottom: 0}}>
       <div className="container-fluid" style={{backgroundColor: 'var(--color-surface-container-highest-light)' }}>
       {/* <Container  className="bg-body-tertiary" > */}
-        <Navbar.Brand className='d-flex w-50 me-auto' href="/">
+        <Navbar.Brand className='d-flex w-50 me-5' href="/">
           <LogoIcon />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />

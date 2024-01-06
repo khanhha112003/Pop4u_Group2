@@ -1,7 +1,10 @@
 
 .sidebar {
     width: 220px;
+    font-family: var(--inter);
+    background-color: var(--bs-body-bg);
 }
+
 .nav-item.admin-nav-item {
     display: flex;
     gap: 2em;
