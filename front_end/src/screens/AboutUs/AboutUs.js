@@ -4,11 +4,13 @@ import "react-bootstrap"
 
 import { ReactComponent as LogoIcon } from './images/logo.svg';
 import { ReactComponent as MusicSpectrum } from './images/music-spectrum.svg';
+import {ReviewCarousel} from '../../components/ReviewCarousel/ReviewCarousel'
 
 import Inclusion1 from './images/inclusion_signtime__cjyg7gx31w2u_large.jpg';
 import Inclusion2 from './images/inclusion_veterans__c8iynwo4wtea_large.jpg';
 import Universe1 from './images/34ead214963ecf4f37b1d0f62a4f1a63.png';
 import Inclusion3 from './images/inclusion_hispanic__d4rhg33wt26a_large.jpg'
+import MascotPop4u from '../../theme/images/MascotPop4u.png';
 
 
 console.log(Inclusion1);
@@ -51,6 +53,29 @@ function AboutUs() {
         { name: 'Thanh Tâm', position: 'Thành viên', img: 'https://0.soompi.io/wp-content/uploads/2021/07/07193649/jisoo-3.jpeg'}
     ];
 
+    const reviews = [
+        { id: 1, name: 'Khánh Hà', content: '"Pop4u là địa chỉ tin cậy cho Kpop lovers! Sản phẩm chính hãng, giá phải chăng và trách nhiệm xã hội làm nổi bật thương hiệu này. Tôi hài lòng với chất lượng và dịch vụ chuyên nghiệp."', img: 'https://cdn.24h.com.vn/upload/2-2019/images/2019-04-02/1554196355-742-vi-sao-kha-banh-tro-thanh-hien-tuong-dinh-dam-tren-mang-xa-hoi-khabanh-1554192528-width660height597.jpg'},
+        { id: 2, name: 'Thanh Lực', content: '"Pop4u là nguồn cung uy tín cho sản phẩm Kpop tại Việt Nam. Giá hợp lý, đa dạng sản phẩm và cam kết trách nhiệm xã hội tạo nên một trải nghiệm mua sắm tốt."', img: 'https://vapa.vn/wp-content/uploads/2022/12/anh-mau-dep-001.jpg'},
+        { id: 3, name: 'Xuân Thiều', content: '"Pop4u là đối tác lý tưởng cho người hâm mộ Kpop. Chất lượng, giá cả hợp lý và sự cam kết với trách nhiệm xã hội làm cho mỗi lần mua sắm ở đây trở nên đặc biệt và ý nghĩa."', img: 'https://kenh14cdn.com/thumb_w/660/203336854389633024/2023/7/17/photo-4-16895567273911182507904.jpeg'}
+    ]
+
+
+    const reviewsSlides = reviews.map((review, index) => (
+        <div key={index} style={{ width: '100%' }}>
+            <div className='col-lg-10 col-xl-10 col-md-12 col-sm-12 mx-auto'>
+                <div className='review-content d-flex'>
+                    <div className='review-content-pic'>
+                        <img src={review.img} alt={`Review by ${review.name}`} />
+                    </div>
+                    <div className='review-content-text'>
+                        <h5 className='head5'>{review.name}</h5>
+                        <p className='body-medium'>{review.content}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    ));
+        
     // const [isVisible, setIsVisible] = useState(false);
 
     // useEffect(() => {
@@ -117,7 +142,7 @@ function AboutUs() {
                 <div className="col-sm-0 col-md-0 col-lg-1 col-xl-1"></div>
                 <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <div className="side-img">
-                        <img className="" src={Universe1} alt="Ảnh Inclusion 1"/>                  
+                        <img className="mascot-pic" src={MascotPop4u} alt="Ảnh Inclusion 1"/>                  
                     </div>
                 </div>
             </div>
@@ -196,6 +221,12 @@ function AboutUs() {
                         </div>
                     </div>
                 )}
+            </div>
+            <div className='row section-10' >
+                <div className='col-12'>
+                    <h5 className="h5 heading-about-us-center">Khách Hàng Nói Gì Về Pop4u?</h5>
+                </div>
+                <ReviewCarousel slides={reviewsSlides}/>
             </div>
         </div>
     </div>

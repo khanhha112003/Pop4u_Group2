@@ -8,8 +8,9 @@
 .section-6,
 .section-7,
 .section-8,
-.section-9 {
-    margin-bottom: 5em;
+.section-9,
+.section-10 {
+    margin-bottom: 64px;
 }
 
 /* .section-1 {
@@ -82,10 +83,6 @@
     height: 6em;
 }
 
-
-
-
-
 .music-spectrum {
     width: 100%;
     display: flex; 
@@ -94,6 +91,10 @@
     text-align: center;
 }
 
+.side-img {
+    overflow: hidden;
+    border-radius: 40px;
+}
 
 .side-img img{
     width: 100%;
@@ -101,9 +102,17 @@
     max-width: 100%; 
     max-height: 100%;
     display: block; 
-    border-radius: 2em;
+    border-radius: 40px;
+    transition: all 0.5s;
 }
 
+.side-img:hover img {
+    transform: scale(1.2);
+}
+
+.side-img:hover .mascot-pic {
+    transform: rotate(-10deg) scale(1.2);
+}
 
 #core-value > * {
     margin-bottom: 24px;
@@ -139,11 +148,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    transition: all 0.5s;
     background-color: var(--color-inverse-primary-light);
     border-radius: 2em;
     width: 100%;
     height: 200px;
+}
+
+.core-value-card:hover {
+    background: linear-gradient(45deg, var(--color-background-light) 5%, var(--color-primary-container-light) 65%);
+    letter-spacing: 4px;
 }
 
 .core-value-card h4, .core-value-card .head4 {
@@ -159,13 +173,22 @@
 
 
 .section-vision, .section-esg {
-    border-radius: 2em;
+    border-radius: 40px;
     padding-top: 8em;
     padding-bottom: 8em;
 }
 
 .section-vision {
-    background-image: -webkit-linear-gradient(60deg, var(--color-tertiary-container-light), var(--color-primary-fixed-dim-light) 90%); 
+    background: linear-gradient(45deg, var(--color-tertiary-container-light), var(--color-primary-fixed-dim-light) 98% ); 
+    transition: all 0.5s;
+}
+
+.section-vision .vision h4 {
+    transition: all 0.5s;
+}
+
+.section-vision:hover {
+    border-radius: 120px;
 }
 
 .vision, .esg {
@@ -217,21 +240,38 @@
 }
 
 .section-esg {
-    position: relative;
-    background-image: url("./images/green-forest.png");
-    background-size: cover;
+    background-image: url("../../theme/images/Mclntosh-SEED-child-by-tree_big.jpg.large.jpg");
     background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: top;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    transition: all 0.5s;
+}
+
+.section-esg:hover {
+    background-position: top;
 }
 
 .section-esg h5 {
-    color: var(--color-on-background-light);
+    color: var(--color-primary-light);
 }
 
 .esg h4 {
-    color: var(--color-on-primary-fixed-light);
+    color: var(--color-surface-light);
 }
+
+@keyframes moveBackground {
+    0% {
+      background-position: center center;
+   }
+    50% {
+      background-position: center 100%;
+   }
+    100% {
+      background-position: center center;
+   }
+  }
+  
 
 .dark-gradient-overlay {
     position: absolute;
@@ -255,12 +295,13 @@
 
 
 .employee-img img {
-    border-radius: 10em;
+    border-radius: 50%;
     object-fit: cover; 
     width: 12em;
     height: 12em;
     margin-bottom: 2em;
     margin-top: 1em;
+    transition: all 0.5s;
 }
 
 .employee-name {
@@ -269,6 +310,61 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; 
     margin-bottom: none;
+    transition: all 0.5s;
+}
+
+.employee-card .employee-name {
+    transition: all 0.5s;
+}
+
+.employee-card:hover .employee-name {
+    letter-spacing: 4px;
+}
+
+.employee-img {
+    transition: all 0.5s;
+}
+
+.employee-card:hover .employee-img img {
+    transform: scale(1.2);
+    border-radius: 20%;
+}
+
+.employee-card:hover .employee-img img {
+    border-radius: 20%;
+}
+
+.review-content {
+    border-radius: 40px;
+    width: 100%;
+    padding: 48px 108px;
+    transition: all 0.5s;
+    color: var(--color-on-background-light);
+
+}
+
+.review-content:hover {
+    background-color: var(--color-primary-container-light);
+    color: var(--color-on-primary-container-light);
+}
+
+.review-content-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-right: 64px;
+}
+
+.review-content-pic img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.review-content-text h5 {
+    margin-bottom: 24px;
+    color: var(--color-primary-light);
 }
 
 @media (max-width: 992px) {
@@ -282,6 +378,15 @@
     .section-7 div:nth-child(1) {
         margin-bottom: 2em;
 
+    }
+    .review-content-pic {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .review-content-pic img {
+        width: 150px;
+        height: 150px;
     }
     
 }
@@ -306,3 +411,5 @@
         height: 8em;
     }
 }
+
+
