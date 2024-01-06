@@ -13,9 +13,9 @@ def get_cart(usr = Depends(get_current_active_user)):
         raise HTTPException(status_code=404, detail="Cart not found")
     
 @router.post('/add_to_cart')
-def add_to_cart(product_name: str, quantity: int, usr = Depends(get_current_active_user)):
+def add_to_cart(product_code: str, quantity: int, usr = Depends(get_current_active_user)):
     res = update_cart_by_username(usr.username, 
-                                    product_name,
+                                    product_code,
                                     quantity)
     if res:
         return {"res":"created"}

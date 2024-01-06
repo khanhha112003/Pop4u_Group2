@@ -1,4 +1,3 @@
-
 import './ProductDetail.css'
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
@@ -14,7 +13,7 @@ import LoadingPage from "../Loading/LoadingPage";
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
 
-import { basicGetRequets, basicPutRequest, combineMultipleRequests } from "../../app_logic/APIHandler";
+import { basicGetRequets, basicPostRequest, combineMultipleRequests } from "../../app_logic/APIHandler";
 
 function ProductDetail() {
     const [searchParam] = useSearchParams();
@@ -48,7 +47,7 @@ function ProductDetail() {
     useEffect(() => {
         const productDetailRequest = basicGetRequets("/product/product_detail", { product_code: searchParam.get("product_code") });
 
-        const relatedProductRequest = basicGetRequets("/product/product_list", { type_filter: "related", artist_code: searchParam.get("artist_code")});
+        const relatedProductRequest = basicGetRequets("/product/product_list", { type_filter: "related", artist_code: searchParam.get("artist_code") });
         const userRatingRequest = basicGetRequets("/product/product_review", { product_code: searchParam.get("product_code") });
         const result = combineMultipleRequests([productDetailRequest, relatedProductRequest, userRatingRequest])
             .then((responses) => {
@@ -94,29 +93,40 @@ function ProductDetail() {
 
     const handleRatingChange = (newRating) => {
         const newRatingData = { rating: newRating, num_of_rating: ratingData.num_of_rating + 1 };
-        const updateRatingRequest = basicPutRequest("/update_rating", { product_code: searchParam.get("product_code") , rating: newRatingData.rating, num_of_rating: newRatingData.num_of_rating });
+        const updateRatingRequest = basicPostRequest("/update_rating", { product_code: searchParam.get("product_code") , rating: newRatingData.rating, num_of_rating: newRatingData.num_of_rating });
         updateRatingRequest.then((response) => {
             setRatingData(response.data);
         }).catch(error => {
-            setError(error);
+            console.log(error);
+            if (error.response.status === 401) {
+                navigate("/signin");
+            }
         });
     };
 
     const handleBuyNowButton = (product_code, quantity) => {
-        const newCartRequest = basicPutRequest("/add_to_cart", { product_code: product_code, quantity: quantity });
+        const newCartRequest = basicPostRequest("/order/add_to_cart", { product_code: product_code, quantity: quantity });
         newCartRequest.then((response) => {
-            navigate("/cart");
+            if (response.data.status === "success") {
+                navigate("/cart");
+            }
         }).catch(error => {
-            setError(error);
+            console.log(error);
+            if (error.response.status === 401) {
+                navigate("/signin");
+            }
         });
     };
 
     const handleAddToCartButton = (product_code, quantity) => {
-        const newCartRequest = basicPutRequest("/add_to_cart", { product_code: product_code, quantity: quantity });
+        const newCartRequest = basicPostRequest("/order/add_to_cart", { product_code: product_code, quantity: quantity });
         newCartRequest.then((response) => {
             alert("Thêm vào giỏ hàng thành công");
         }).catch(error => {
-            setError(error);
+            console.log(error);
+            if (error.response.status === 401) {
+                navigate("/signin");
+            }
         });
     };
 
@@ -139,8 +149,8 @@ function ProductDetail() {
                             {
                                 content.product_data.list_product_image.map((imageSrc, index) => (
                                     <Carousel.Item key={"image_carou" + index}>
-                                        <img 
-                                            key={"image_tag" + index} className="d-block w-100" 
+                                        <img
+                                            key={"image_tag" + index} className="d-block w-100"
                                             src={imageSrc} alt={"image_" + index} />
                                     </Carousel.Item>
                                 ))
@@ -192,18 +202,18 @@ function ProductDetail() {
                         </div>
                         {
                             ratingData.userRating === 0
-                                ? <RatingBar 
+                                ? <RatingBar
                                     style={{ width: 200 }}
-                                    isDisabled={false} 
-                                    data={{ rating: ratingData.totalRating, rating_detail: ratingData.rating_detail }} 
-                                    onChangeValue={handleRatingChange} 
-                                    />
-                                : <RatingBar 
+                                    isDisabled={false}
+                                    data={{ rating: ratingData.totalRating, rating_detail: ratingData.rating_detail }}
+                                    onChangeValue={handleRatingChange}
+                                />
+                                : <RatingBar
                                     style={{ width: 200 }}
-                                    isDisabled={false} 
-                                    data={{ rating: ratingData.userRating, rating_detail: ratingData.rating_detail }} 
-                                    onChangeValue={handleRatingChange} 
-                                    />
+                                    isDisabled={false}
+                                    data={{ rating: ratingData.userRating, rating_detail: ratingData.rating_detail }}
+                                    onChangeValue={handleRatingChange}
+                                />
                         }
                     </div>
                     <hr></hr>

@@ -2,13 +2,10 @@ import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
 import React from 'react';
 import "react-bootstrap";
 import './StyleArtistCardItem.css'
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { ReactComponent as EmptyAvatar } from './icons/icon_empty_avatar.svg';
+import { useNavigate } from 'react-router-dom';
 
-export const ArtistCardItem = ({ data, onMoreInfoClick }) => {
+export const ArtistCardItem = ({ data }) => {
+    const navigate = useNavigate();
     return (
         <div style={{ width: '100%' }}>
             <div className='hp-artist-card'>
@@ -24,8 +21,8 @@ export const ArtistCardItem = ({ data, onMoreInfoClick }) => {
                         <h6 className='head6'>
                             {data.artist_name}
                         </h6>
-                        <div className='artist-reference'>
-                            <a onClick={onMoreInfoClick} ><span className="label-l">Xem sản phẩm </span><Arrow/></a>
+                        <div className='artist-reference' onClick={() => {navigate('/artist_detail?artist_code=' + data.artist_code)}}>
+                            <span className="label-l">Xem sản phẩm </span><Arrow/>
                         </div>
                     </div>
                 </div>

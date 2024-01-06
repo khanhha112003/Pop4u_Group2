@@ -88,3 +88,7 @@ img {
   white-space: normal;
   height: 100px;
 }
+
+.product-item-card:hover {
+  /* transform: scale(1.06); */
+}

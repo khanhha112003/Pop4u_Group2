@@ -43,6 +43,8 @@
 // look at this you stupid bitch, do you even know what is '!important' flag is ?
 // send you best fuck
 // let other can code or you code alone for now: <Note: ductran>
+// about !important flag, the pagination is jiggling because you not set the proper class style for other element
+// and it affected worked code, understand ?
 
 import './BadgeList.css'
 import React from 'react';

@@ -33,7 +33,7 @@ def get_list_artist(page: int = 1,
         list_artist = get_list_artist_with_special_filter(type_filter, 4)
         return listArtistSerializer(list_artist)
 
-@router.get('/artist', response_model=Artist)
+@router.get('/artist_detail', response_model=Artist)
 def get_artist(artist_code):
     res = get_artist_by_id(artist_code)
     if res:
