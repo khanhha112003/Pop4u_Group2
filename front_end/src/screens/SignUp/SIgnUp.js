@@ -48,17 +48,16 @@ function SignUp() {
 
 		const signupRequest = basicPostRequest('/auth/register', userRegisterContent)
 		signupRequest.then((response) => {
-			if (response.status === 200) {
+			if (response.data.status === 1) {
 				setRegisterErrorMessage('');
 				navigate('/signin');
 			} else {
+				console.log(response.data);
 				setRegisterErrorMessage(response.data.message);
 			}
 		}).catch((error) => {
 			setRegisterErrorMessage(error.message);
-		}).finally((
-			navigate('/signin')
-		))
+		})
 	};
 
 	return (
@@ -187,7 +186,11 @@ function SignUp() {
 							return '';
 						}}
 					/>
-					<p className="error-message body-small">{registerErrorMessage}</p>
+					<div className='row'>
+						<div className='col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xs-10 mx-auto text-center'>
+							<p className="error-message body-small">{registerErrorMessage}</p>
+						</div>
+					</div>
 					<div className='row'>
 						<div className='col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xs-10 mx-auto text-center'>
 							<div className='agreement'>

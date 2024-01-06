@@ -5,6 +5,7 @@ from oauth2 import get_current_user, create_access_token
 from database import db
 from schemas import User
 from datetime import datetime
+from db.user import *
 
 
 router = APIRouter()
@@ -15,18 +16,23 @@ def create_user(request:User):
     user_object = dict(request)
     find_usr = db["Users"].find_one({"username":request.username})
     if find_usr:
-        return {"res":"username already exists"}   
+        return {"status": 0, "message": "Tài khoản đã tồn tại"}
+    find_usr = db["Users"].find_one({"phone_number":request.phone_number})
+    if find_usr:
+        return {"status": 0, "message": "Số điện thoại đã được sử dụng"}
     user_object["password"] = hashed_pass
     user_object["role"] = "user"
     user_object["verified"] = False
     user_object["email"] = request.email
-    user_object["photo"] = ""
+    user_object["fullname"] = request.fullname
+    user_object["phone_number"] = request.phone_number
     user_object["username"] = request.username
+    user_object["birthdate"] = request.birthdate
     user_object["created_at"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     user_object["updated_at"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     try:
         db["Users"].insert_one(user_object)
-        return {"res":"created"}
+        return {"status": 1}
     except Exception as e:
         return {"res":str(e)}
 
