@@ -1,4 +1,3 @@
-
 import './ProductDetail.css'
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -47,7 +46,7 @@ function ProductDetail() {
     useEffect(() => {
         const productDetailRequest = basicGetRequets("/product/product_detail", { product_code: searchParam.get("product_code") });
 
-        const relatedProductRequest = basicGetRequets("/product/product_list", { type_filter: "related", artist_code: searchParam.get("artist_code")});
+        const relatedProductRequest = basicGetRequets("/product/product_list", { type_filter: "related", artist_code: searchParam.get("artist_code") });
         const userRatingRequest = basicGetRequets("/product/product_review", { product_code: searchParam.get("product_code") });
         const result = combineMultipleRequests([productDetailRequest, relatedProductRequest, userRatingRequest])
             .then((responses) => {
@@ -94,7 +93,7 @@ function ProductDetail() {
     const handleRatingChange = (newRating) => {
         // Do something with the new rating, e.g., update it in the state
         const newRatingData = { rating: newRating, num_of_rating: ratingData.num_of_rating + 1 };
-        const updateRatingRequest = basicPutRequest("/update_rating", { product_code: searchParam.get("product_code") , rating: newRatingData.rating, num_of_rating: newRatingData.num_of_rating });
+        const updateRatingRequest = basicPutRequest("/update_rating", { product_code: searchParam.get("product_code"), rating: newRatingData.rating, num_of_rating: newRatingData.num_of_rating });
         updateRatingRequest.then((response) => {
             setRatingData(response.data);
         }).catch(error => {
@@ -121,8 +120,8 @@ function ProductDetail() {
                             {
                                 content.product_data.list_product_image.map((imageSrc, index) => (
                                     <Carousel.Item key={"image_carou" + index}>
-                                        <img 
-                                            key={"image_tag" + index} className="d-block w-100" 
+                                        <img
+                                            key={"image_tag" + index} className="d-block w-100"
                                             src={imageSrc} alt={"image_" + index} />
                                     </Carousel.Item>
                                 ))
@@ -154,7 +153,7 @@ function ProductDetail() {
                                 </a>
                             </h4>
                         </div>
-                        <div style={{maxWidth: 400}}>
+                        <div style={{ maxWidth: 400 }}>
                             <BadgeList data={content.product_data} small={false} />
                         </div>
                         <div>
@@ -175,18 +174,18 @@ function ProductDetail() {
                         </div>
                         {
                             ratingData.userRating === 0
-                                ? <RatingBar 
+                                ? <RatingBar
                                     style={{ width: 200 }}
-                                    isDisabled={false} 
-                                    data={{ rating: ratingData.totalRating, rating_detail: ratingData.rating_detail }} 
-                                    onChangeValue={handleRatingChange} 
-                                    />
-                                : <RatingBar 
+                                    isDisabled={false}
+                                    data={{ rating: ratingData.totalRating, rating_detail: ratingData.rating_detail }}
+                                    onChangeValue={handleRatingChange}
+                                />
+                                : <RatingBar
                                     style={{ width: 200 }}
-                                    isDisabled={false} 
-                                    data={{ rating: ratingData.userRating, rating_detail: ratingData.rating_detail }} 
-                                    onChangeValue={handleRatingChange} 
-                                    />
+                                    isDisabled={false}
+                                    data={{ rating: ratingData.userRating, rating_detail: ratingData.rating_detail }}
+                                    onChangeValue={handleRatingChange}
+                                />
                         }
                         <hr></hr>
                         <div>

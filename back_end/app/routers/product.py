@@ -13,7 +13,7 @@ def tracking_user(username, action, data):
 router = APIRouter()
 @router.get('/product_list')
 def get_list_product(page: int = 1, 
-                     type_filter: str = "normal",
+                     type_filter: str = "all",
                      order: str = "asc",
                      limit: int = 10, 
                      p_start: Optional[float] = None,

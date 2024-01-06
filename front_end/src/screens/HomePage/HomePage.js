@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import "react-bootstrap";
 
-import { Col, Row, Button } from 'react-bootstrap';
+import { Col, Row, button } from 'react-bootstrap';
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
 import { ArtistCardItem } from "../../components/ArtistCardItem/ArtistCardItem";
@@ -75,12 +75,12 @@ function HomePage() {
 							<div className="cat-card-content">
 								<h5 className="head5">Album</h5>
 								<p className="body-small">Khám phá album từ những nghệ sĩ hàng đầu</p>
-								<Button
+								<button
 									className="cat-card-button"
 									onClick={ () => navigate("/product_list/album")}
 								>
 									<span className="label-m">Xem ngay</span>
-								</Button>
+								</button>
 							</div>
 							<div className="cat-card-icon">
 								<Music className="rotatable-svg" width="100%" height="100%" />
@@ -92,12 +92,12 @@ function HomePage() {
 							<div className="cat-card-content">
 								<h5 className="head5">Merch</h5>
 								<p className="body-small">Vật phẩm ghi dấu thương hiệu, mang đầy cảm xúc</p>
-								<Button
+								<button
 									className="cat-card-button"
 									onClick= { () => navigate("/product_list/merch")}
 								>
 									<span className="label-m">Xem ngay</span>
-								</Button>
+								</button>
 							</div>
 							<div className="cat-card-icon">
 								<Merch className="rotatable-svg" width="100%" height="100%" />
@@ -109,12 +109,12 @@ function HomePage() {
 							<div className="cat-card-content">
 								<h5 className="head5">Vinyl</h5>
 								<p className="body-small">Đĩa than retro, dành cho người "sành" hướng về xưa cũ</p>
-								<Button
+								<button
 									className="cat-card-button"
 									onClick= { () => navigate("/product_list/vinyl")}
 								>
 									<span className="label-m">Xem ngay</span>
-								</Button>
+								</button>
 							</div>
 							<div className="cat-card-icon">
 								<Vinyl className="rotatable-svg" width="100%" height="100%" />
