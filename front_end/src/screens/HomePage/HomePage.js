@@ -163,7 +163,7 @@ function HomePage() {
                     <div className="col-12">
                         <div className="homepage-header">
                             <h4 className="head4">Sale đến "ngất".</h4>
-                            <a href="#"><span className="label-l">Xem tất cả </span><Arrow /></a>
+                            <a onClick={() => navigate("/product_list")}><span className="label-l">Xem tất cả</span><Arrow /></a>
                         </div>
                     </div>
                     <div className="col-12">
@@ -189,7 +189,7 @@ function HomePage() {
                     <div className="col-12">
                         <div className="homepage-header">
                             <h4 className="head4">Mới ra mắt. Nóng cả tay.</h4>
-                            <a href="#"><span className="label-l">Xem tất cả </span><Arrow /></a>
+                            <a onClick={() => navigate("/product_list")}><span className="label-l">Xem tất cả</span><Arrow /></a>
                         </div>
                     </div>
                     <div className="col-12">
@@ -215,7 +215,7 @@ function HomePage() {
                     <div className="col-12">
                         <div className="homepage-header">
                             <h4 className="head4">Idol siêu chất, nổi bần bật.</h4>
-                            <a href="/artists"><span className="label-l">Xem tất cả nghệ sĩ </span><Arrow /></a>
+                            <a onClick={() => navigate("/artists")}><span className="label-l">Xem tất cả nghệ sĩ</span><Arrow /></a>
                         </div>
                     </div>
                     {content.hot_artits.map((data, index) => (
@@ -239,22 +239,18 @@ function HomePage() {
                             {
                                 title: "Giá tốt nhất.",
                                 img_src: BestPriceIcon,
-                                link: '#'
                             },
                             {
                                 title: "Freeship từ 500K.",
                                 img_src: FreeshipIcon,
-                                link: '#'
                             },
                             {
                                 title: "Vì môi trường.",
                                 img_src: EnviromentIcon,
-                                link: '#'
                             },
                             {
                                 title: "Miễn phí đổi trả.",
                                 img_src: ChangeIcon,
-                                link: '#'
                             }
                         ].map((variant) => (
                             <div key={variant.title} className="col-sm-12 col-md-6 col-xl-3 col-lg-3">
@@ -262,9 +258,6 @@ function HomePage() {
                                     <div className="benefit">
                                         <ReactSVG className="rotatable-svg" src={variant.img_src} />
                                         <h6 className="head6">{variant.title}</h6>
-                                    </div>
-                                    <div className="benefit-reference">
-                                        <a href={variant.link}><span className="label-l">Tham khảo </span><Arrow /></a>
                                     </div>
                                 </div>
                             </div>

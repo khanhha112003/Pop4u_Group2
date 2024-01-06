@@ -80,7 +80,7 @@ function SignUp() {
       if (password === "") {
         setErrorMessage3('Vui lòng nhập mật khẩu trước khi nhập mật khẩu xác nhận.');
       } else {
-        // if ((password !== confirmPassword) ) {
+        // if ((password !== confirmPassword) ) { 
         //   setErrorMessage3('Mật khẩu không trùng khớp.');
         // } else {
         //   setErrorMessage3('');

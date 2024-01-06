@@ -89,4 +89,6 @@ a :active {
 .footer-list-social-icon {
     padding-bottom: 24px;
 }
-
+.link-list:hover{
+    cursor: pointer;
+}
