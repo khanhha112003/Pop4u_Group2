@@ -9,7 +9,6 @@ from db.products import *
 def tracking_user(username, action, data):
     pass
     
-
 router = APIRouter()
 @router.get('/product_list')
 def get_list_product(page: int = 1, 

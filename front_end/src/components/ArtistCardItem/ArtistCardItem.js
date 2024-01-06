@@ -3,11 +3,6 @@ import React from 'react';
 import "react-bootstrap";
 import './StyleArtistCardItem.css'
 import { useNavigate } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { ReactComponent as EmptyAvatar } from './icons/icon_empty_avatar.svg';
 
 export const ArtistCardItem = ({ data }) => {
     const navigate = useNavigate();

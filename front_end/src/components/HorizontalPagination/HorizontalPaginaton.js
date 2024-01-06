@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { Carousel, Card, Stack } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./style.css";
@@ -18,7 +18,7 @@ const HorizontalPagination = (
         innerPadding = 0
     }) => {
 
-    const [itemsPerPage, setItemsPerPage] = React.useState(numberOfMaxItems);
+    const [itemsPerPage, setItemsPerPage] = useState(Math.min(numberOfMaxItems, Math.floor(window.innerWidth / itemWidth)));
 
     useLayoutEffect(() => {
         const handleResize = () => {
