@@ -118,17 +118,17 @@ function Cart ()
           <div className="coupon-container">
             <h6>Mã giảm giá</h6>
             <input
-                className="coupon-frame"
+              className="coupon-frame"
               type="text"
               placeholder="Enter coupon code"
               value={couponCode}
               onChange={(e) => setCouponCode(e.target.value)}
             />
-            <button className='apply margin' onClick={applyCoupon}><span className="label-m" style={{ color: 'var(--theme-typo-label-light, #FFF)'}} >Áp dụng</span></button>
+            <button className='apply margin' onClick={applyCoupon} ><span className="label-m" style={{ color: 'var(--theme-typo-label-light, #FFF)'}} >Áp dụng</span></button>
           </div>
           <hr></hr>
           <h5>Tạm tính: {totalPrice - discountAmount}</h5>
-          <a  href="/payment"><button className='order-now' ><span className="label-l" style={{ color: 'var(--theme-typo-label-light, #FFF)'}}>Đặt hàng ngay</span></button></a>
+          <a  href="/payment"><button className='cart-button label-l' ><span className="label-l" style={{ color: 'var(--theme-typo-label-light, #FFF)'}}>Đặt hàng ngay</span></button></a>
            
 
 

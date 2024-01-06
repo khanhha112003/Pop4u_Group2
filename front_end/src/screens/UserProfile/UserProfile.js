@@ -93,9 +93,9 @@ const UserProfile = () => {
        
           <div className='row'>
                 <div className='col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xs-10 mx-auto text-center'>
-      <button onClick={handleLogout} className='sign-up-button label-xl' type="submit">
+      <a href="/signin"><button onClick={handleLogout} className='sign-up-button label-xl' type="submit">
         Đăng xuất 
-      </button>
+      </button></a>
       </div>
       </div>
     </div>
