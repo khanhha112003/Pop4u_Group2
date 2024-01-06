@@ -259,6 +259,7 @@ function HomePage() {
                                         <ReactSVG className="rotatable-svg" src={variant.img_src} />
                                         <h6 className="head6">{variant.title}</h6>
                                     </div>
+
                                 </div>
                             </div>
                         )
