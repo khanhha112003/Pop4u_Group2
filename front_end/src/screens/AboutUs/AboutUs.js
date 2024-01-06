@@ -54,7 +54,7 @@ function AboutUs() {
     ];
 
     const reviews = [
-        { id: 1, name: 'Khánh Hà', content: '"Pop4u là địa chỉ tin cậy cho Kpop lovers! Sản phẩm chính hãng, giá phải chăng và trách nhiệm xã hội làm nổi bật thương hiệu này. Tôi hài lòng với chất lượng và dịch vụ chuyên nghiệp."', img: 'https://cdnphoto.dantri.com.vn/eDFk4WWZ0w4M-LSsE51GL5DD908=/thumb_w/1155/2021/12/11/nu-sinh-ngoai-thuong-dep-tua-nang-mai-chia-se-ve-nghe-nguoi-mau-anh-1-1639186701886.jpeg'},
+        { id: 1, name: 'Khánh Hà', content: '"Pop4u là địa chỉ tin cậy cho Kpop lovers! Sản phẩm chính hãng, giá phải chăng và trách nhiệm xã hội làm nổi bật thương hiệu này. Tôi hài lòng với chất lượng và dịch vụ chuyên nghiệp."', img: 'https://cdn.24h.com.vn/upload/2-2019/images/2019-04-02/1554196355-742-vi-sao-kha-banh-tro-thanh-hien-tuong-dinh-dam-tren-mang-xa-hoi-khabanh-1554192528-width660height597.jpg'},
         { id: 2, name: 'Thanh Lực', content: '"Pop4u là nguồn cung uy tín cho sản phẩm Kpop tại Việt Nam. Giá hợp lý, đa dạng sản phẩm và cam kết trách nhiệm xã hội tạo nên một trải nghiệm mua sắm tốt."', img: 'https://vapa.vn/wp-content/uploads/2022/12/anh-mau-dep-001.jpg'},
         { id: 3, name: 'Xuân Thiều', content: '"Pop4u là đối tác lý tưởng cho người hâm mộ Kpop. Chất lượng, giá cả hợp lý và sự cam kết với trách nhiệm xã hội làm cho mỗi lần mua sắm ở đây trở nên đặc biệt và ý nghĩa."', img: 'https://kenh14cdn.com/thumb_w/660/203336854389633024/2023/7/17/photo-4-16895567273911182507904.jpeg'}
     ]

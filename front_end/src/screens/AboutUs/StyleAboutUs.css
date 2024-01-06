@@ -379,6 +379,15 @@
         margin-bottom: 2em;
 
     }
+    .review-content-pic {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .review-content-pic img {
+        width: 150px;
+        height: 150px;
+    }
     
 }
 
