@@ -79,10 +79,7 @@ def get_product_list(
     if rating == None:
         rating = 0
     if artist_code:
-        if order == "asc":
-            list_product = collection.find({"artist_code": artist_code, "category": category, "sell_price": {"$gte": price_range_start, "$lte": price_range_end}, "rating": {"$gte": rating}}).sort("sell_price", 1).skip((page-1)*limit).limit(limit)
-        else:
-            list_product = collection.find({"artist_code": artist_code, "category": category, "sell_price": {"$gte": price_range_start, "$lte": price_range_end}, "rating": {"$gte": rating}}).sort("sell_price", -1).skip((page-1)*limit).limit(limit)
+        list_product = collection.find({"artist_code": artist_code, "sell_price": {"$gte": price_range_start, "$lte": price_range_end}, "rating": {"$gte": rating}}).limit(limit)
         return list(list_product)
     if category:
         if order == "asc":

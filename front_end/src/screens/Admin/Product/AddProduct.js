@@ -83,10 +83,10 @@ const AddProduct = () => {
 <form onSubmit={handleSubmit}>
 
   <div className="row">
-    <h2 className="center">Thông tin sản phẩm</h2>
+    <h2 className="text-center">Thông tin sản phẩm</h2>
 
     <div className="col-md-8">
-      <div className="section-frame margin">
+      <div className="section-frame-admin margin">
         <div className="margin">
         <label>
           Tên sản phẩm: <br></br>
@@ -102,13 +102,13 @@ const AddProduct = () => {
         <div className="margin">
          Nghệ sĩ: <br></br>
         <label>
-          <input className="input-custom margin" type="text" cols="100" name="artist" value={product.artist} onChange={handleChange} />
+          <input className="input-custom margin" type="text"  name="artist" value={product.artist} onChange={handleChange} />
         </label>
         </div>
         <div className="margin">
         Mô tả sản phẩm: <br></br>
         <label>
-          <input className="input-custom margin" type="text" cols="100" rows="5" name="description" value={product.description} onChange={handleChange} />
+          <input className="input-custom margin" type="text"  name="description" value={product.description} onChange={handleChange} />
         </label>
         </div>
       </div>
@@ -117,7 +117,7 @@ const AddProduct = () => {
 
                 
                 <div className="col-md-4">    
-                <div className="section-frame margin">
+                <div className="section-frame-admin margin">
                 <div className="margin">
         <label>
           Giá bán: <br></br>
@@ -136,7 +136,7 @@ const AddProduct = () => {
 
             <div className='row'>
             <div className="col-md-8">
-            <div className="section-frame margin">
+            <div className="section-frame-admin margin">
             <div className="margin">
          </div>
          <div className="margin">
@@ -161,13 +161,14 @@ const AddProduct = () => {
         <div>
         
         <div className="margin" >
-      <p className="margin">Số lượng: <input className="input-custom margin" type="number" name="stock" value={product.stock} onChange={handleChange} /></p>
+      Số lượng: <br></br>
+      <input className="input-custom-price margin" type="number" name="stock" value={product.stock} onChange={handleChange} />
     </div>
         </div>
             </div>
             </div>
             <div className="col-md-4">
-            <div className="section-frame margin">
+            <div className="section-frame-admin margin">
               <input
               id="imgUpload"
               accept="image/*"

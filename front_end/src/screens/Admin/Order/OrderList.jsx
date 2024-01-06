@@ -1,73 +1,150 @@
-import React from "react";
-import "./OrderList.css";
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './OrderList.css';
 
-class BasicTable extends React.Component {
-  constructor(props) {
-    super(props);
-    this.rows = [
-      this.createData("Lasania Chiken Fri", 18908424, "2 March 2022", "Approved"),
-      this.createData("Big Baza Bang ", 18908424, "2 March 2022", "Pending"),
-      this.createData("Mouth Freshner", 18908424, "2 March 2022", "Approved"),
-      this.createData("Cupcake", 18908421, "2 March 2022", "Delivered"),
-    ];
-  }
+const OrderList = () => {
+  const data = [
+    {
+      id: 10007,
+      customer: "Nữ đại gia bao shop",
+      date: "2023-12-14",
+      phone: "0254823646",
+      addr: "125 Thủ Đức",
+      value: 2500000,
+      paymethod: "COD",
+      status: "In-transit",
+    },
+    {
+      id: 10008,
+      customer: "Nữ đại gia bao shop",
+      date: "2023-11-15",
+      phone: "02548257646",
+      addr: "125 Thủ Đức",
+      value: 1500000,
+      paymethod: "Chuyển khoản",
+      status: "Done",
+    },
+    {
+      id: 10009,
+      customer: "Nữ đại gia bao shop",
+      date: "2024-01-06",
+      phone: "0254783646",
+      addr: "125 Thủ Đức",
+      value: 1600000,
+      paymethod: "Chuyển khoản",
+      status: "In-prepare",
+    },
+    
+    
+    // Add more products here
+  ];
+ 
+  // Filter
+  // Search Bar
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState(data);
 
-  createData(name, orderId, date, status) {
-    return { name, orderId, date, status };
-  }
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
-  makeStyle(status) {
-    if (status === "Approved") {
-      return {
-        background: 'rgb(145 254 159 / 47%)',
-        color: 'green',
-      };
-    } else if (status === "Pending") {
-      return {
-        background: '#ffadad8f',
-        color: 'red',
-      };
-    } else {
-      return {
-        background: '#59bfff',
-        color: 'white',
-      };
-    }
-  }
-
-  render() {
-    return (
-      <div className="Table">
-        <h3>Recent Orders</h3>
-        <table className="basic-table" style={{ boxShadow: "0px 13px 20px 0px #80808029" }}>
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Tracking ID</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody style={{ color: "white" }}>
-            {this.rows.map((row, index) => (
-              <tr key={index}>
-                <td>{row.name}</td>
-                <td>{row.orderId}</td>
-                <td>{row.date}</td>
-                <td>
-                  <span className="status" style={this.makeStyle(row.status)}>
-                    {row.status}
-                  </span>
-                </td>
-                <td className="Details">Details</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+  const handleSearch = () => {
+    const filteredResults = data.filter(
+      (order) =>
+        order.id.toString().includes(searchTerm) ||
+        order.phone.includes(searchTerm)
     );
-  }
-}
+    setSearchResults(filteredResults);
+  };
+  const handleClearSearch = () => {
+    setSearchTerm('');
+    setSearchResults(data);
+  };
 
-export  {BasicTable};
+
+//Column Filter
+//Sort by status
+const [filterStatus, setFilterStatus] = useState('');
+const handleFilterByStatus = (selectedStatus) => {
+  setFilterStatus(selectedStatus);
+
+  const filteredResults = data.filter((order) =>
+    selectedStatus ? order.status === selectedStatus : true
+  );
+
+  setSearchResults(filteredResults);
+};
+
+
+
+  return (
+    <div className="container">
+      <h1>DANH SÁCH ĐƠN HÀNG</h1>
+          <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Tìm theo OrderID hoặc sđt"
+              value={searchTerm}
+              onChange={handleChange}
+            />
+            <button onClick={handleSearch}>Tìm</button>
+          </div>
+           <div className='Status filter'>
+          {/* <div className="filter-bar"> */}
+            <select
+              value={filterStatus}
+              onChange={(e) => handleFilterByStatus(e.target.value)}
+            >
+              <option value="">Lọc theo tình trạng đơn</option>
+              <option value="In-transit">In-transit</option>
+              <option value="In-prepare">In-prepare</option>
+              <option value="Done">Done</option>
+  
+            </select>
+          {/* </div> */}
+        </div>
+      <div className='table'>
+      {/* Bảng hiển thị danh sách sản phẩm */}
+      <table>
+        <thead>
+          <tr>
+            <th>OrderID</th>
+            <th>Tên khách hàng</th>
+            <th>Ngày đặt hàng</th>
+            <th>SĐT</th>
+            <th>Tổng giá trị đơn</th>
+            <th>Phương thức thanh toán</th>
+            <th>Trạng thái</th>
+            <th>Xem chi tiết</th>
+          </tr>
+        </thead>
+        <tbody>
+        {searchResults.map((order, index) => (
+            <tr key={index}>
+              <td>{order.id}</td>
+              <td>{order.customer}</td>
+              <td>{order.date}</td>
+              <td>{order.phone}</td>
+              <td>{order.value}</td>
+              <td>{order.paymethod}</td>
+              <td>
+                <span className= {`status ${order.status}`}> {order.status} </span>
+              </td>
+              <td>Chi tiết</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      </div>
+      <div className='Return button'>
+            {searchResults.length > 0 && (
+              <div className="return-button"> 
+                <button onClick={handleClearSearch}>Return</button>
+              </div>
+            )}
+      </div>
+    </div>
+  );
+};
+
+export { OrderList };

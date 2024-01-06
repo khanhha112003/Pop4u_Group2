@@ -1,7 +1,7 @@
 @import url(../../theme/theme.css);
 
 
-.section-frame {
+.section-frame-cart {
   flex: 0 0 30%;
   padding: 20px;
   border-radius: 40px;
@@ -144,6 +144,7 @@
   padding: 8px;
   border-radius: 16px;
   border: 1px solid var(--theme-secondary3, #11448F);
+  color:#11448F
 }
 
 .quantity {
@@ -155,8 +156,23 @@
   border-radius: 16px;
   background: var(--theme-secondary1, #D8E2FF);
   text-align: center;
+  color:#11448F
 }
 
 .product-box-title {
   width: 80%;
+}
+.cart-button {
+  border: 0.1em solid var(--color-surface-tint-light);
+  border-radius: 5em;
+  outline: none;
+  transition: box-shadow 0.3s;
+  height: 3.5em; 
+  box-sizing: border-box; 
+  color: var(--color-on-primary-light);
+  background-color: var(--color-primary-light);
+  width: 100%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  transition: background 0.5s ease-in-out;
 }

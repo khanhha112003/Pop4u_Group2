@@ -67,7 +67,7 @@ class Product(BaseModel):
 class Artist(BaseModel):
     artist_code: str
     artist_name: str
-    description: Optional[str] = None
+    artist_description: Optional[str] = None
     is_hot: bool
     artist_logo: str
     artist_avatar: str

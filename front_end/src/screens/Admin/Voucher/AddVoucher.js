@@ -27,7 +27,7 @@ const AddVoucher = () => {
 
   return (
     <div className="container">
-      <h2>Thông tin voucher</h2>
+      <h2 className="text-center">Thông tin voucher</h2>
       <div className="section-frame ">
       <form onSubmit={handleSubmit}>
         <div>

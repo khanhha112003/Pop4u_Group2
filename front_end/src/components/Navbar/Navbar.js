@@ -72,7 +72,7 @@ function CustomNavbar() {
             <Button href='/cart' variant="outline-success">
               <CartIcon />
             </Button>
-            <Button href='/signin' variant="outline-success">
+            <Button href='/user_profile' variant="outline-success">
               <AccountIcon />
             </Button>
           </div>

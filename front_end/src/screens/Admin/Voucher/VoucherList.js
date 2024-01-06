@@ -35,7 +35,10 @@ const VoucherList = () => {
   );
 
   return (
-    <div className="container">
+    <div className="container margin">
+      <h2 className="text-center">Danh sách Voucher</h2>
+      <button className="input-button" type="submit"><a href="/admin/add_voucher">Tạo mới</a></button>
+      <div>
       <label htmlFor="categoryFilter">Filter by Category:</label>
       <select
         id="categoryFilter"
@@ -52,6 +55,7 @@ const VoucherList = () => {
           )
         )}
       </select>
+      </div>
         <div className="margin">
       <input
         type="text"

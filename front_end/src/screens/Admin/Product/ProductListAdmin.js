@@ -53,7 +53,10 @@ const ProductListAdmin = () => {
   );
 
   return (
-    <div className="container">
+    <div className="container margin">
+      <h2 className="text-center">Danh sách sản phẩm</h2>
+      <button className="input-button" type="submit"><a href="/admin/add_product">Tạo mới</a></button>
+      <div>
       <label htmlFor="categoryFilter">Filter by Category:</label>
       <select
         id="categoryFilter"
@@ -70,6 +73,7 @@ const ProductListAdmin = () => {
           )
         )}
       </select>
+      </div>
         <div className="margin">
       <input
         type="text"

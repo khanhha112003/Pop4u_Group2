@@ -3,33 +3,48 @@ import "./SignUp.css"
 import { ReactComponent as ArrowUp } from './images/arrow_outward.svg';
 import { ReactComponent as HandShake } from './images/handshake.svg';
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import { basicPostRequest } from '../../app_logic/APIHandler';
 
 function SignUp() {
-  const [userId, setUserId] = useState('');
+  const [username, setUserName] = useState('');
+  const [userFullname, setUserFullName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [userPhone, setUserPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [birthdate, setBirthdate] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [usernameError,  setUsernameError] = useState('');
+  const [userFullnameError,   ] = useState('');
+  const [errorMessage0,  setErrorMessage0] = useState('');
   const [errorMessage1,  setErrorMessage1] = useState('');
   const [errorMessage2, setErrorMessage2] = useState('');
   const [errorMessage3, setErrorMessage3] = useState('');
 
+  const navigate = useNavigate()
+
+  const userNameRegex = /[a-zA-Z_\d]{6,}$/;
   const phoneRegex = /^0\d{9}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;  
-  const handleUserId = (e) => {
-    const newUserId = e.target.value;
-    setUserId(newUserId);
+  const handleUserEmail = (e) => {
+    const newUserEmail = e.target.value;
+    setUserEmail(newUserEmail);
+  };
 
-    const isPhone = phoneRegex.test(newUserId);
-    const isEmail = emailRegex.test(newUserId);
+  const handleInputUserName = (e) => {
+    const inputUsername = e.target.value;
+    setUserName(inputUsername);
+  };
 
-    if (!(isPhone || isEmail) && (newUserId !== "") ) {
-        setErrorMessage1('Số điện thoại hoặc email của bạn chưa đúng.');
-    } else {
-        setErrorMessage1('');
-    }
+  const handleInputUserFullname = (e) => {
+    const fullname = e.target.value;
+    setUserFullName(fullname);
+  };
+
+  const handleInputPhone = (e) => {
+    const phoneNumber = e.target.value;
+    setUserPhone(phoneNumber);
   };
 
   const handlePassword = (e) => {
@@ -44,6 +59,19 @@ function SignUp() {
 
     }
   }
+
+  const onChooseBirthdate = (e) => {
+    const newBirthdate = e.target.value;
+    if (newBirthdate!== "") {
+      if (new Date(newBirthdate) > new Date()) {
+        setErrorMessage3('Ngày sinh không hợp lệ.');
+      } else {
+        setBirthdate(newBirthdate);  
+      }    
+    } else {
+      setErrorMessage3('Vui lòng nhập ngày sinh của bạn.');
+    }
+  }
   
   const handleConfirmPassword = (e) => {
     const newConfirmPassword = e.target.value;
@@ -52,11 +80,11 @@ function SignUp() {
       if (password === "") {
         setErrorMessage3('Vui lòng nhập mật khẩu trước khi nhập mật khẩu xác nhận.');
       } else {
-        if ((password !== confirmPassword) ) {
-          setErrorMessage3('Mật khẩu không trùng khớp.');
-        } else {
-          setErrorMessage3('');
-        }    
+        // if ((password !== confirmPassword) ) {
+        //   setErrorMessage3('Mật khẩu không trùng khớp.');
+        // } else {
+        //   setErrorMessage3('');
+        // }    
       }
     } else {
       setErrorMessage3('');
@@ -65,31 +93,59 @@ function SignUp() {
  
   const handleSignUp = (e) => {
       e.preventDefault();
-      if (userId && password) {
-          if (userId === '0904944193' && password === 'password') {
-          } else {
-              // setErrorMessage2('Tên đăng nhập hoặc mật khẩu không chính xác');
-          }
-      } else {
-          // setErrorMessage3('Vui lòng điền đầy đủ thông tin đăng nhập');
+
+      if (username === "") {
+        setUsernameError('Xin vui lòng nhập tên đăng nhập');
+        return;
+      } else if (!userNameRegex.test(username)) {
+        setUsernameError('Tên đăng nhập của bạn chưa hợp lệ.');
+        return;
       }
+      if (userFullname === "") {
+        setUsernameError('Xin vui lòng điền tên của bạn');
+        return;
+      }
+
+      if (userPhone === "") {
+        setErrorMessage0('Xin vui lòng nhập số điện thoại.');
+        return;
+      } else if (!phoneRegex.test(userPhone)) {
+        setErrorMessage0('Số điện thoại của bạn chưa hợp lệ.');
+        return;
+      } 
+
+      if (userEmail === "") {
+        setErrorMessage1('Vui lòng điền email.');
+        return;
+      } else if (!emailRegex.test(userEmail)) {
+        setErrorMessage1('Email của bạn chưa hợp lệ.');
+        return;
+      }
+
+      if (password.length === '') {
+        setErrorMessage2('Vui lòng nhập mật khẩu.');
+        return;
+      } if (confirmPassword !== password) { 
+        setErrorMessage3('Vui lòng nhập lại mật khẩu xác nhận.');
+        return;
+      }
+
+      const signupRequest = basicPostRequest('/auth/register', {
+        phone_number: userPhone,
+        password: password,
+        birthdate: birthdate,
+        email: userEmail,
+        fullname: userFullname,
+        username: username
+      }).then((response) => {
+
+      }).catch((error) => {
+
+      }).finally((
+        navigate('/signin')
+      ))
   };
   
-  // const handleLogout = () => {
-  //     setIsLoggedIn(false);
-  //     setUserId('');
-  //     setPassword('');
-  // };
-        
-      // Kiểm tra xem userId là số điện thoại hoặc email hợp lệ không
-  //   return (
-  //     <div>
-  //       <h2>Xin chào, {userId}!</h2>
-  //       <button onClick={handleLogout}>Đăng xuất</button>
-  //     </div>
-  //   );
-  // }
-
   return (
     <div>
         <div className='container'>
@@ -102,17 +158,35 @@ function SignUp() {
               </div>
           </div>
           <form onSubmit={handleSignUp}>
+          <div className='row'>
+                <div className='col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xs-10 mx-auto'>
+                    <div className='sign-in-input text-center'>
+                        <input
+                        className='body-small sign-in-field'
+                        type="text"
+                        id="username"
+                        value={username}
+                        placeholder="Tên đăng nhập"
+                        required
+                        onChange={handleInputUserName}
+                        />
+                        <p className="error-message body-small">{usernameError}</p>                  
+                    </div>
+                </div>
+            </div>
             <div className='row'>
                 <div className='col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xs-10 mx-auto'>
                     <div className='sign-in-input text-center'>
                         <input
                         className='body-small sign-in-field'
                         type="text"
-                        id="name"
+                        id="fullname"
                         placeholder="Họ và tên"
                         required
+                        onChange={handleInputUserFullname}
                         />
                     </div>
+                    <p className="error-message body-small">{userFullnameError}</p>  
                 </div>
             </div>
             <div className='row'>
@@ -125,7 +199,7 @@ function SignUp() {
                         // value={birthdate}
                         placeholder="Ngày sinh"
                         required
-                        // onChange=""
+                        onChange= {onChooseBirthdate}
                         />
                     </div>
                 </div>
@@ -136,11 +210,26 @@ function SignUp() {
                         <input
                         className='body-small sign-in-field'
                         type="text"
-                        id="user-id"
-                        value={userId}
-                        placeholder="Email hoặc số điện thoại"
+                        id="user-phonenumber"
+                        value={userPhone}
+                        placeholder="Số điện thoại"
                         required
-                        onChange={handleUserId}
+                        onChange={handleInputPhone}
+                        />
+                        <p className="error-message body-small">{errorMessage0}</p>                  
+                    </div>
+                </div>
+            </div>
+            <div className='row'>
+                <div className='col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xs-10 mx-auto'>
+                    <div className='sign-in-input text-center'>
+                        <input
+                        className='body-small sign-in-field'
+                        type="text"
+                        id="user-email"
+                        value={userEmail}
+                        placeholder="Email"
+                        onChange={handleUserEmail}
                         />
                         <p className="error-message body-small">{errorMessage1}</p>                  
                     </div>
