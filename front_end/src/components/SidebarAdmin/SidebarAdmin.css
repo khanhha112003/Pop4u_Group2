@@ -2,7 +2,7 @@
 .sidebar {
     width: 220px;
     font-family: var(--inter);
-
+    background-color: var(--bs-body-bg);
 }
 .nav-item {
     /* display: flex; */
