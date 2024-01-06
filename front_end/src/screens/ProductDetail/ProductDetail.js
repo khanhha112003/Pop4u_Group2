@@ -14,7 +14,7 @@ import LoadingPage from "../Loading/LoadingPage";
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
 
-import { basicGetRequets, basicPutRequest, combineMultipleRequests } from "../../app_logic/APIHandler";
+import { basicGetRequets, basicPostRequest, combineMultipleRequests } from "../../app_logic/APIHandler";
 
 function ProductDetail() {
     const [searchParam] = useSearchParams();
@@ -94,29 +94,40 @@ function ProductDetail() {
 
     const handleRatingChange = (newRating) => {
         const newRatingData = { rating: newRating, num_of_rating: ratingData.num_of_rating + 1 };
-        const updateRatingRequest = basicPutRequest("/update_rating", { product_code: searchParam.get("product_code") , rating: newRatingData.rating, num_of_rating: newRatingData.num_of_rating });
+        const updateRatingRequest = basicPostRequest("/update_rating", { product_code: searchParam.get("product_code") , rating: newRatingData.rating, num_of_rating: newRatingData.num_of_rating });
         updateRatingRequest.then((response) => {
             setRatingData(response.data);
         }).catch(error => {
-            setError(error);
+            console.log(error);
+            if (error.response.status === 401) {
+                navigate("/signin");
+            }
         });
     };
 
     const handleBuyNowButton = (product_code, quantity) => {
-        const newCartRequest = basicPutRequest("/add_to_cart", { product_code: product_code, quantity: quantity });
+        const newCartRequest = basicPostRequest("/order/add_to_cart", { product_code: product_code, quantity: quantity });
         newCartRequest.then((response) => {
-            navigate("/cart");
+            if (response.data.status === "success") {
+                navigate("/cart");
+            }
         }).catch(error => {
-            setError(error);
+            console.log(error);
+            if (error.response.status === 401) {
+                navigate("/signin");
+            }
         });
     };
 
     const handleAddToCartButton = (product_code, quantity) => {
-        const newCartRequest = basicPutRequest("/add_to_cart", { product_code: product_code, quantity: quantity });
+        const newCartRequest = basicPostRequest("/order/add_to_cart", { product_code: product_code, quantity: quantity });
         newCartRequest.then((response) => {
             alert("Thêm vào giỏ hàng thành công");
         }).catch(error => {
-            setError(error);
+            console.log(error);
+            if (error.response.status === 401) {
+                navigate("/signin");
+            }
         });
     };
 
