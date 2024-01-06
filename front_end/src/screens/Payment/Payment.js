@@ -5,7 +5,8 @@ import "react-bootstrap";
 import {ReactComponent as Back} from '../../theme/images/back.svg'
 import {ReactComponent as CreditCard} from '../../theme/images/credit_card.svg'
 import {ReactComponent as COD} from '../../theme/images/local_shipping.svg'
-import {ReactComponent as Momo} from '../../theme/images/momo_icon_square_pinkbg.svg'
+import {ReactComponent as Momo} from '../../theme/images/momo_square_pinkbg.svg'
+
 
 import AnhSanPham from '../../theme/images/Blackpink-The_Album.png'
 
@@ -174,11 +175,8 @@ function Payment() {
                                     <img src={AnhSanPham} alt=''/>
                                 </div>
                                 <div className='product-des'>
-                                    <p className='body-medium'>j-hope (BTS) 'Jack In The Box' (HOPE Edition)</p>
-                                    <p className='body-small'>Số lượng: × <span></span></p>
-                                    <div className='product-option'>
-                                        <p className='label-m'>Đen</p>                        
-                                    </div>
+                                    <p className='body-medium'>BLACKPINK - 1st FULL ALBUM [THE ALBUM]</p>
+                                    <p className='body-small'>Số lượng: x1 <span></span></p>
                                     <p className='product-price'>
                                         <span className='price'>500.000</span>
                                         <span className='old-price'>550.000</span>

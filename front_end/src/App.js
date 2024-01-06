@@ -20,7 +20,7 @@ import { AddVoucher } from './screens/Admin/Voucher/AddVoucher';
 import { VoucherList } from './screens/Admin/Voucher/VoucherList';
 import { CustomerManagementAdmin } from "./screens/Admin/Customer/CustomerList";
 import { ArtistAdmin } from "./screens/Admin/Artist/ArtistAdmin";
-// import {OrderList} from "./screens/Admin/Order/OrderList"
+import {OrderList} from "./screens/Admin/Order/OrderList"
 
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import { ProductList } from './screens/ProductList/ProductList';
@@ -28,6 +28,7 @@ import { ProductList } from './screens/ProductList/ProductList';
 import { Blog } from './screens/Blog/BlgFilter/BlgFilter';
 import { SinglePost } from './screens/Blog/SinglePost/SinglePost'
 import { Cart } from './screens/Cart/Cart';
+import {Payment} from './screens/Payment/Payment'
 
 
 import {
@@ -70,6 +71,7 @@ function App() {
 					<Route path="/personal_data" element={<PersonalData />} />
 					<Route path="/supplier" element={<Supplier />} />
 					<Route path="/esg" element={<ESG />} />
+					<Route path="/payment" element={<Payment />} />
 					<Route path="/product_list">
 						<Route path=":sort" element={<ProductList />} />
 						<Route path="" element={<ProductList />} />
@@ -82,6 +84,7 @@ function App() {
 					<Route path="/admin/voucher_list" element={<VoucherList />} />
 					<Route path="/admin/customer_list" element={<CustomerManagementAdmin />} />
 					<Route path="/admin/artist_list" element={<ArtistAdmin />} />
+					<Route path="/admin/order_list" element={<OrderList/>}/>
 				</Route>
 			</Routes>
 		</BrowserRouter>
