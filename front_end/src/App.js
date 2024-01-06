@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 import { SpecificLayout } from "./SpecificLayout";
 import { AboutUs } from './screens/AboutUs/AboutUs';
-import { ArtistList } from './screens/Artist/Artist';
 import { SignIn } from './screens/SignIn/SignIn';
 import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
@@ -25,10 +24,12 @@ import { ArtistAdmin } from "./screens/Admin/Artist/ArtistAdmin";
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import { ProductList } from './screens/ProductList/ProductList';
 
+import { ProductArtist } from './screens/ProductArtist/ProductArtist';
+import { ArtistList } from './screens/Artist/Artist';
+
 import { Blog } from './screens/Blog/BlgFilter/BlgFilter';
 import { SinglePost } from './screens/Blog/SinglePost/SinglePost'
 import { Cart } from './screens/Cart/Cart';
-
 
 import {
 	BrowserRouter,
@@ -74,6 +75,7 @@ function App() {
 						<Route path=":sort" element={<ProductList />} />
 						<Route path="" element={<ProductList />} />
 					</Route>
+					<Route path="/artist_detail" element = {<ProductArtist />} />
 				</Route>
 				<Route path="/" element={<AdminSpecificLayout />}>
 					<Route path="/admin/add_product" element={<AddProduct />} />

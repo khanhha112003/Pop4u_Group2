@@ -1,4 +1,3 @@
-
 import './ProductDetail.css'
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
@@ -48,7 +47,7 @@ function ProductDetail() {
     useEffect(() => {
         const productDetailRequest = basicGetRequets("/product/product_detail", { product_code: searchParam.get("product_code") });
 
-        const relatedProductRequest = basicGetRequets("/product/product_list", { type_filter: "related", artist_code: searchParam.get("artist_code")});
+        const relatedProductRequest = basicGetRequets("/product/product_list", { type_filter: "related", artist_code: searchParam.get("artist_code") });
         const userRatingRequest = basicGetRequets("/product/product_review", { product_code: searchParam.get("product_code") });
         const result = combineMultipleRequests([productDetailRequest, relatedProductRequest, userRatingRequest])
             .then((responses) => {
@@ -150,8 +149,8 @@ function ProductDetail() {
                             {
                                 content.product_data.list_product_image.map((imageSrc, index) => (
                                     <Carousel.Item key={"image_carou" + index}>
-                                        <img 
-                                            key={"image_tag" + index} className="d-block w-100" 
+                                        <img
+                                            key={"image_tag" + index} className="d-block w-100"
                                             src={imageSrc} alt={"image_" + index} />
                                     </Carousel.Item>
                                 ))
@@ -203,18 +202,18 @@ function ProductDetail() {
                         </div>
                         {
                             ratingData.userRating === 0
-                                ? <RatingBar 
+                                ? <RatingBar
                                     style={{ width: 200 }}
-                                    isDisabled={false} 
-                                    data={{ rating: ratingData.totalRating, rating_detail: ratingData.rating_detail }} 
-                                    onChangeValue={handleRatingChange} 
-                                    />
-                                : <RatingBar 
+                                    isDisabled={false}
+                                    data={{ rating: ratingData.totalRating, rating_detail: ratingData.rating_detail }}
+                                    onChangeValue={handleRatingChange}
+                                />
+                                : <RatingBar
                                     style={{ width: 200 }}
-                                    isDisabled={false} 
-                                    data={{ rating: ratingData.userRating, rating_detail: ratingData.rating_detail }} 
-                                    onChangeValue={handleRatingChange} 
-                                    />
+                                    isDisabled={false}
+                                    data={{ rating: ratingData.userRating, rating_detail: ratingData.rating_detail }}
+                                    onChangeValue={handleRatingChange}
+                                />
                         }
                     </div>
                     <hr></hr>
