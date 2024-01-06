@@ -3,9 +3,9 @@ import './StylePayment.css';
 import "react-bootstrap";
 
 import {ReactComponent as Back} from '../../theme/images/back.svg'
-import {ReactComponent as CreditCard} from '../../images/credit_card.svg'
-import {ReactComponent as COD} from '../../images/local_shipping.svg'
-import {ReactComponent as Momo} from '../../images/momo_icon_square_pinkbg.svg'
+import {ReactComponent as CreditCard} from '../../theme/images/credit_card.svg'
+import {ReactComponent as COD} from '../../theme/images/local_shipping.svg'
+import {ReactComponent as Momo} from '../../theme/images/momo_icon_square_pinkbg.svg'
 
 import AnhSanPham from '../../theme/images/Blackpink-The_Album.png'
 
