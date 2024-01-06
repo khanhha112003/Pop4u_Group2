@@ -21,7 +21,6 @@ function SignUp() {
 	const [userRegisterContent, setUserRegisterContent] = useState({});//[username, userFullname, userEmail, userPhone, password, confirmPassword, birthdate] = userRegisterContent;
 	const [errorMessage3, setErrorMessage3] = useState('');
 	const [registerErrorMessage, setRegisterErrorMessage] = useState('');
-	const [allowSignUp, setAllowSignUp] = useState(false);
 
 	const navigate = useNavigate()
 
