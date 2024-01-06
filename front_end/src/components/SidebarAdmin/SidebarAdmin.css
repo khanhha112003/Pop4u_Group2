@@ -2,12 +2,17 @@
 .sidebar {
     width: 220px;
 }
-.nav-link:hover {
+.nav-item.admin-nav-item {
+    display: flex;
+    gap: 2em;
+}
+.nav-link.admin-navlink{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.nav-link.admin-navlink:hover {
     background-color: #DBE1FF ;
     color: white;
     cursor: pointer;
 }   
-/* .span>svg {
-    height: 20px !important;
-    width: 20px !important;
-} */

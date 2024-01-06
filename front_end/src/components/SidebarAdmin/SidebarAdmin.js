@@ -30,27 +30,27 @@ const SidebarAdmin = () => {
     <ul className="nav flex-column sticky-top pl-0 pt-2 p-3 mt-3 ">
       <li className="nav-item mb-2 my-1"><a className="nav-link text-secondary" href="#"><h5>Tên nhân viên</h5></a></li>
         
-        <li className="nav-item mb-2 "><NavLink className="nav-link " to="/admin/dashboard"><i className=""></i> 
+        <li className="nav-item admin-nav-item mb-2 "><NavLink className="nav-link admin-navlink" to="/admin/dashboard"><i className=""></i> 
         <DashboardIcon />
         <span className="ml-3 fs-5">Dashboard</span></NavLink></li>
         
-        <li className="nav-item mb-2 "><NavLink className="nav-link " to="/admin/product_list"><i className="fs-5"></i> 
+        <li className="nav-item admin-nav-item mb-2 "><NavLink className="nav-link admin-navlink" to="/admin/product_list"><i className="fs-5"></i> 
         <ProductIcon/>
         <span className="ml-3 fs-5">Product</span></NavLink></li>
        
-        <li className="nav-item mb-2 "><NavLink className="nav-link " to="/admin/order_list"><i className="fs-5"></i> 
+        <li className="nav-item admin-nav-item mb-2 "><NavLink className="nav-link admin-navlink" to="/admin/order_list"><i className="fs-5"></i> 
         <OrderIcon/>
         <span className="ml-3 fs-5">Order</span></NavLink></li>
       
-        <li className="nav-item mb-2 "><NavLink className="nav-link " to="/admin"><i className="fs-5"></i> 
+        <li className="nav-item admin-nav-item mb-2 "><NavLink className="nav-link admin-navlink" to="/admin/artist_list"><i className="fs-5"></i> 
         <ArtistIcon/>
         <span className="ml-3 fs-5">Artist</span></NavLink></li>
       
-        <li className="nav-item mb-2 "><NavLink className="nav-link " to="/admin/voucher_list"><i className="fs-5"></i> 
+        <li className="nav-item admin-nav-item mb-2 "><NavLink className="nav-link admin-navlink" to="/admin/voucher_list"><i className="fs-5"></i> 
         <VoucherIcon/>
         <span className="ml-3 fs-5">Voucher</span></NavLink></li>
       
-        <li className="nav-item mb-2 "><NavLink className="nav-link " to="/admin/customer_list"><i className="fs-5"></i> 
+        <li className="nav-item admin-nav-item mb-2 "><NavLink className="nav-link admin-navlink" to="/admin/customer_list"><i className="fs-5"></i> 
         <CustomerIcon/>
         <span className="ml-3 fs-5">Customer</span></NavLink></li>
       
