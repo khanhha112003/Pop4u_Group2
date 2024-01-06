@@ -1,5 +1,41 @@
 @import url(../../theme/theme.css);
 
+.hp-banner {
+  overflow: hidden;
+}
+
+.banner-carousel {
+  border-radius: 40px;
+  background-color: transparent;
+  overflow: hidden;
+  margin: 0;
+
+
+}
+
+.carousel-banner-img {
+  border-radius: 40px;
+  background-color: transparent;
+  overflow: hidden;
+  margin: 0;
+
+}
+
+.banner-carousel-item img {
+  transition: all 0.5s;
+}
+
+
+.banner-carousel-item:hover img {
+  transform: scale(1.1);
+}
+
+.banner-carousel-item {
+  border-radius: 40px;
+  background-color: transparent;
+  color: transparent;
+  overflow: hidden;
+}
 
 .homepage-header {
   text-align: center;

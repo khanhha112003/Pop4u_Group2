@@ -1,9 +1,14 @@
 import "./HomePage.css"
 import "react-bootstrap";
+import { Carousel } from 'react-bootstrap';
 import BestPriceIcon from './icons/new_releases.svg';
 import FreeshipIcon from './icons/local_shipping.svg';
 import EnviromentIcon from './icons/spa.svg';
 import ChangeIcon from './icons/model_training.svg';
+import BannerBlue from "../../theme/images/Banner-Blue.png";
+import BannerTet from '../../theme/images/Banner-Tet.png'
+import BannerWelcome from '../../theme/images/Banner-Welcome.png'
+
 
 import { ReactComponent as Music } from './icons/icon_album.svg';
 import { ReactComponent as Merch } from './icons/icon_merch.svg';
@@ -63,7 +68,32 @@ function HomePage() {
             <div className="container">
                 <div className="row" style={{ marginBottom: '48px' }}>
                     <div className="hp-banner">
-
+                        <Carousel className="banner-carousel">
+                            <Carousel.Item className="banner-carousel-item">
+                                <img
+                                className="d-block w-100 carousel-banner-img"
+                                src= {BannerWelcome}
+                                alt="First slide"
+                                onClick={() => navigate("/product_list")}
+                                />
+                            </Carousel.Item>
+                            <Carousel.Item className="banner-carousel-item">
+                                <img
+                                className="d-block w-100 carousel-banner-img"
+                                src= {BannerTet}
+                                alt="Second slide"
+                                onClick={() => navigate("/product_list")}
+                                />
+                            </Carousel.Item>
+                            <Carousel.Item className="banner-carousel-item">
+                                <img
+                                className="d-block w-100 carousel-banner-img"
+                                src={BannerBlue}
+                                alt="Third slide"
+                                onClick={() => navigate("/product_list")}
+                                />
+                            </Carousel.Item>
+                        </Carousel>
                     </div>
                 </div>
                 <div className="row" style={{ marginBottom: '48px' }}>
