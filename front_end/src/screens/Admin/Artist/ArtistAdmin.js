@@ -22,9 +22,10 @@ function ArtistAdmin() {
     );
   
   return (
-    <div>
+    <div className="container margin">
         <div>
             <input
+            className="mt-4 mb-4 p-2"
             type="text"
             placeholder="Tìm kiếm nghệ sĩ"
             value={searchTerm}

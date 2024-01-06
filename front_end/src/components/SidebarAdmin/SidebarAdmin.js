@@ -25,9 +25,9 @@ const SidebarAdmin = () => {
     //     <li classNa me="nav-item mb-2"><NavLink className="nav-link text-secondary" to="#"><i className="fas fa-tablet-alt font-weight-bold"></i><span className="ml-3">Customer</span></NavLink></li>
     //   </ul>
     // </div>
-    <div className="sidebar col-md-3 col-lg-2"  style={{ backgroundColor: "#e9ecef" }}>
+    <div className="sidebar col-md-3 col-lg-2"  style={{ backgroundColor: 'var(--color-surface-container-highest-light)'}}>
     
-    <ul className="nav flex-column sticky-top pl-0 pt-2 p-3 mt-3 ">
+    <ul className="nav flex-column sticky-top pl-0 pt-2 p-2 mt-3 ">
       <li className="nav-item mb-2 my-1"><a className="nav-link text-secondary" href="#"><h5>Tên nhân viên</h5></a></li>
         
         <li className="nav-item mb-2 "><NavLink className="nav-link " to="/admin/dashboard"><i className=""></i> 

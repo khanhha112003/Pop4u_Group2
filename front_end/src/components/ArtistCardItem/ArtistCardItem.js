@@ -25,7 +25,7 @@ export const ArtistCardItem = ({ data, onMoreInfoClick }) => {
                             {data.artist_name}
                         </h6>
                         <div className='artist-reference'>
-                            <a href={onMoreInfoClick}><span className="label-l">Xem sản phẩm </span><Arrow/></a>
+                            <a onClick={onMoreInfoClick} ><span className="label-l">Xem sản phẩm </span><Arrow/></a>
                         </div>
                     </div>
                 </div>

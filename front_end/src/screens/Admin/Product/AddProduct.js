@@ -83,7 +83,7 @@ const AddProduct = () => {
 <form onSubmit={handleSubmit}>
 
   <div className="row">
-    <h2 className="center">Thông tin sản phẩm</h2>
+    <h2 className="text-center">Thông tin sản phẩm</h2>
 
     <div className="col-md-8">
       <div className="section-frame-admin margin">
