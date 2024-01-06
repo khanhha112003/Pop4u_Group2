@@ -81,7 +81,7 @@ function Cart ()
     <div className="container">
         <div className="row">
         <h2 className="center">Giỏ hàng của bạn</h2>
-            <div className="col-md-8">
+            <div className="className=col-sm-12 col-md-12 col-xl-7 col-lg-7">
             <div className="section-frame-cart margin">
             <h3 className="center">Thông tin sản phẩm</h3>
                     <input className="margin"
@@ -110,7 +110,7 @@ function Cart ()
                             ))}
                 </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-xl-5 col-lg-5">
                 <div className="section-frame-cart margin">
                 <h5>Tổng tiền: {totalPrice}</h5>
                 <h5>Giảm giá: {discountAmount}</h5>
