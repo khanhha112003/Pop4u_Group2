@@ -40,7 +40,6 @@ import {
 	useLocation
 } from "react-router-dom";
 
-
 function ScrollToTop() {
 	const { pathname } = useLocation();
 
@@ -56,8 +55,7 @@ function App() {
 		<BrowserRouter>
 			<ScrollToTop />
 			<Routes>
-
-				<Route path="/" element={<SpecificLayout />}>
+				<Route path="/" element={<SpecificLayout/>}>
 					<Route exact path="/" element={<HomePage />} />
 					<Route path="/about" element={<AboutUs />} />
 					<Route path="/artists" element={<ArtistList />} />

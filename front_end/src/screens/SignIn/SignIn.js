@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import "./SignIn.css";
 import "react-bootstrap";
 import { ReactComponent as ArrowUp } from './images/arrow_outward.svg';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { loginPostRequest,  } from '../../app_logic/APIHandler';
+import "./SignIn.css";
+import { loginPostRequest, } from '../../app_logic/APIHandler';
 import { saveToken } from '../../app_logic/Authenticate';
 import { CustomInputBox } from '../../components/CustomInputBox/CustomInputBox';
 import UsernameIcon from './images/icon_account.svg';
 import PasswordIcon from './images/password.svg';
+import { useAuth } from '../../AuthProvider';
 
 function SignIn() {
     const [userLoginContent, setUserLoginContent] = useState({});//[username, password] = userLoginContent;
     const [loginErrorMessage, setLoginErrorMessage] = useState('');
     const navigate = useNavigate();
+    const { auth, setAuth } = useAuth();
+
+    useEffect(() => {
+        if (auth) {
+            navigate('/');
+        }
+    }, [auth]);
+
+
     const handleLogin = (e) => {
         e.preventDefault();
         if (userLoginContent.username === undefined || userLoginContent.username === '') {
@@ -28,6 +38,8 @@ function SignIn() {
                 if (response.data.status === 1) {
                     setLoginErrorMessage('');
                     saveToken(response.data);
+                    setAuth(true)
+                    console.log(response.data);
                     navigate('/');
                 } else {
                     setLoginErrorMessage(response.data.message);
@@ -51,38 +63,38 @@ function SignIn() {
                 </div>
                 <form onSubmit={handleLogin}>
                     <CustomInputBox
-						data={{
-							regex: {
-								checker: /^[a-zA-Z0-9]{7,}$/,
-								message: 'Tên đăng nhập của bạn chưa hợp lệ.'
-							},
-							placeholder: 'Tên đăng nhập',
-							isRequired: true,
-							icon: UsernameIcon
-						}}
-						onSuccess={(value) => { setUserLoginContent({ ...userLoginContent, username: value }) }}
-						checkErrorMessage={(value) => {
-							if (value === '') {
-								return 'Xin vui lòng nhập tên đăng nhập';
-							}
-							return '';
-						}}
-					/>
+                        data={{
+                            regex: {
+                                checker: /^[a-zA-Z0-9]{7,}$/,
+                                message: 'Tên đăng nhập của bạn chưa hợp lệ.'
+                            },
+                            placeholder: 'Tên đăng nhập',
+                            isRequired: true,
+                            icon: UsernameIcon
+                        }}
+                        onSuccess={(value) => { setUserLoginContent({ ...userLoginContent, username: value }) }}
+                        checkErrorMessage={(value) => {
+                            if (value === '') {
+                                return 'Xin vui lòng nhập tên đăng nhập';
+                            }
+                            return '';
+                        }}
+                    />
                     <CustomInputBox
-						data={{
-							placeholder: "Mật khẩu",
-							isRequired: true,
-							type: 'password',
-							icon: PasswordIcon
-						}}
-						onSuccess={(value) => { setUserLoginContent({ ...userLoginContent, password: value }) }}
-						checkErrorMessage={(value) => {
-							if (value === '') {
-								return 'Xin vui lòng nhập mật khẩu';
-							}
-							return '';
-						}}
-					/>
+                        data={{
+                            placeholder: "Mật khẩu",
+                            isRequired: true,
+                            type: 'password',
+                            icon: PasswordIcon
+                        }}
+                        onSuccess={(value) => { setUserLoginContent({ ...userLoginContent, password: value }) }}
+                        checkErrorMessage={(value) => {
+                            if (value === '') {
+                                return 'Xin vui lòng nhập mật khẩu';
+                            }
+                            return '';
+                        }}
+                    />
                     <div className='row'>
                         <div className='col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xs-10 mx-auto text-center'>
                             <p className="error-message body-small">{loginErrorMessage}</p>

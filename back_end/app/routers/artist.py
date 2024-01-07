@@ -18,7 +18,7 @@ def get_list_artist(page: int = 1,
                     alphabet: Optional[str] = None, 
                     usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException or usr == None :
-        print("no user") 
+        print("no user -- artist_list") 
     else:
         tracking_user(usr.username, "get_list_artist", {"page":page, "limit":limit, "alphabet":alphabet})
     if page < 1:

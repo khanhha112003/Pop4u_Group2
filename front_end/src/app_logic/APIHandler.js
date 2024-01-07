@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken, saveToken } from "./Authenticate";
+import { getToken } from "./Authenticate";
 import qs from "qs";
 export let BASE_URL = "http://localhost:8000/api";
 
@@ -13,7 +13,7 @@ function getHeaders() {
   return {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `${token}`,
     },
   };
 }

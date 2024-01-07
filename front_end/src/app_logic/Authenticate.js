@@ -11,12 +11,6 @@ export function getToken() {
 }
 
 export function useToken() {
-  const getToken = () => {
-    const tokenString = sessionStorage.getItem('token');
-    const userToken = JSON.parse(tokenString);
-    return userToken?.token
-  };
-
   const [token, setToken] = useState(getToken());
 
   const saveToken = userToken => {
