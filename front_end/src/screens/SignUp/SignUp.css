@@ -32,33 +32,11 @@
     border-color: var(--color-on-primary-fixed-variant-light); 
     box-shadow: 0 0 3em rgba(25, 118, 210, 0.5), inset 0 0 0.5em rgba(186, 225, 255, 0.3);
 }
-
-#fullname{
-    background: transparent url("./images/motion_photos_auto.svg") no-repeat 1em;
-}
-
-#username{
-    background: transparent url("./images/motion_photos_auto.svg") no-repeat 1em;
-}
-
 #birthdate{
     background: transparent url("./images/cake.svg") no-repeat 1em;
 }
-
-#user-phonenumber{
-    background: transparent url("./images/phone.svg") no-repeat 1em;
-}
-
-#user-email{
-    background: transparent url("./images/alternate_email.svg") no-repeat 1em;
-}
-
 #password {
     background: transparent url("./images/password.svg") no-repeat 1em;
-}
-
-#confirm-password {
-    background: transparent url("./images/done_all.svg") no-repeat 1em;
 }
 
 
