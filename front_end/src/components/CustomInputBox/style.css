@@ -1,0 +1,35 @@
+@import url(../../theme/theme.css);
+
+.custom-input.sign-in-input {
+    margin-bottom: 1em;
+}
+
+.custom-input.sign-in-field {
+    padding-left: 3.5em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-right: 2em;
+    border: 0.1em solid var(--color-surface-tint-light);
+    border-radius: 1em;
+    outline: none; 
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+    color: var( --color-on-surface-variant-light);
+    height: 3.5em;
+    width: 100%;
+    background: transparent 1em;
+}
+
+.custom-input.sign-in-field:focus{
+    border-color: var(--color-on-primary-fixed-variant-light); 
+    box-shadow: 0 0 3em rgba(25, 118, 210, 0.5), inset 0 0 0.5em rgba(186, 225, 255, 0.3);
+}
+
+.custom-input.body-small {
+    color: var(--color-on-background-light);
+}
+
+.custom-input .error-message {
+    text-align: left;
+    margin-top: 1em;
+    color: var(--color-error-light);
+}
