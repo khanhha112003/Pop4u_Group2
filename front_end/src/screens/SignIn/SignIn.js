@@ -65,7 +65,7 @@ function SignIn() {
                 <div className='col-sm-12 col-md-12 col-lg-12 col-xl-12 col-12'>
                     <div className='sign-in-title'>
                         <h5 className='head5'> Đăng nhập vào Pop4u</h5>
-                        <p className='body-small'>Bạn chỉ có thể mua hàng khi có tài khoản tại Pop4u.</p>
+                        <p className='body-small'>Chào mừng bạn đến với Pop4u.</p>
                     </div>
                 </div>
             </div>
