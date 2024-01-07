@@ -24,7 +24,7 @@ function Payment() {
             <div className='row'>
                 <div className='col-xs-12 col-sm-12 col-md-12 col-xl-12 col-lg-12'>
                     <div className='button-back'>
-                        <a href='#'>
+                        <a href='/cart'>
                             <Back className='icon-back'></Back>
                             <span className='label-l'>Trở về Giỏ hàng</span>
                         </a>

@@ -79,7 +79,7 @@ const handleFilterByStatus = (selectedStatus) => {
 
   return (
     <div className="container">
-      <h1>DANH SÁCH ĐƠN HÀNG</h1>
+      <h2 className="margin text-center">Danh sách đơn hàng</h2>
           <div className="search-bar">
             <input
               type="text"

@@ -23,6 +23,7 @@ function ArtistAdmin() {
   
   return (
     <div className="container margin">
+        <h2 className="margin text-center">Danh sách nghệ sĩ</h2>
         <div>
             <input
             className="mt-4 mb-4 p-2"
