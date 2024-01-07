@@ -43,12 +43,16 @@ def login(request:OAuth2PasswordRequestForm = Depends()):
        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     if not Hash.verify(request.password, user["password"]):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
-    access_token = create_access_token(data={"sub": user["username"] })
-    db['Tokens'].insert_one({"token":access_token})
-    return {"access_token": access_token, "token_type": "bearer"}
+    try:
+        # find token with username
+        db['Tokens'].delete_many({"username": request.username})
+        access_token = create_access_token(data={"sub": user["username"] })
+        db['Tokens'].insert_one({"token":access_token, "username":user["username"]})
+        return {"status": 1, "access_token": "Bearer " + access_token, "token_type": "bearer"}
+    except Exception as e:
+        return {'status': 0, 'message': str(e)}
 
 @router.get('/logout', status_code=status.HTTP_200_OK)
 def logout(response: Response, user_id: str = Depends(get_current_user)):
     
-
     return {'status': 'success'}

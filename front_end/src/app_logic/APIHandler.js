@@ -29,6 +29,18 @@ export function basicGetRequets(url, urlParams) {
     );
 }
 
+export function loginPostRequest(url, username, password) {
+    let endpoint = BASE_URL + url;
+    return axios.post(
+      endpoint, 
+      {
+        username: username,
+        password: password
+      }, 
+      {headers: {'content-type': 'application/x-www-form-urlencoded'}}
+    );
+}
+
 export function basicPostRequest(url, data) {
     let endpoint = BASE_URL + url;
     return axios.post(endpoint, data, getHeaders());

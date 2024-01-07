@@ -7,7 +7,7 @@ export function saveToken(userToken) {
 export function getToken() {
     const tokenString = sessionStorage.getItem('token');
     const userToken = JSON.parse(tokenString);
-    return userToken?.token
+    return userToken?.access_token
 }
 
 export function useToken() {
@@ -28,6 +28,10 @@ export function useToken() {
     setToken: saveToken,
     token
   }
+}
+
+export function removeToken() {
+    sessionStorage.removeItem('token');
 }
 
 export function getUserRole() {
