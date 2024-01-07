@@ -13,10 +13,6 @@ import Inclusion3 from './images/inclusion_hispanic__d4rhg33wt26a_large.jpg'
 import MascotPop4u from '../../theme/images/MascotPop4u.png';
 
 
-console.log(Inclusion1);
-console.log(Inclusion2);
-
-
 function AboutUs() {
    
     const TypingEffect = ({ text, loop }) => {

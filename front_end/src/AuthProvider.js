@@ -15,13 +15,13 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = getToken();
-    if (token === undefined || token === '') setAuth(false);
-    if (token !== undefined || token !== '') {
-      setAuth(true);
-      basicPostRequest('/auth/check_token')
+    if (token === undefined || token === '') 
+    {
+      setAuth(false);
+    } else {
+      basicPostRequest('/auth/check_token', {})
         .then((response) => {
           if (response.data.status === 0) {
-            console.log(response.data);
             removeToken();
             setAuth(false);
           } else {

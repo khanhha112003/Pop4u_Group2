@@ -39,7 +39,6 @@ function SignIn() {
                     setLoginErrorMessage('');
                     saveToken(response.data);
                     setAuth(true)
-                    console.log(response.data);
                     navigate('/');
                 } else {
                     setLoginErrorMessage(response.data.message);

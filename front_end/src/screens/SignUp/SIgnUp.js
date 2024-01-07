@@ -53,7 +53,6 @@ function SignUp() {
 				setRegisterErrorMessage('');
 				navigate('/signin');
 			} else {
-				console.log(response.data);
 				setRegisterErrorMessage(response.data.message);
 			}
 		}).catch((error) => {

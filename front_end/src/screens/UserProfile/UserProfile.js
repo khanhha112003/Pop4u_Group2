@@ -17,10 +17,9 @@ const UserProfile = () => {
 		"birthdate": "",
 		"phone_number": "",
 	});
+
 	useEffect(() => {
-		if (!auth) {
-			navigate('/signin');
-		} else {
+		if (auth) {
 			basicGetRequets('/auth/user_profile')
 			.then((response) => {
 				setUserData(response.data);
@@ -48,7 +47,7 @@ const UserProfile = () => {
 				}
 			}
 			).catch((error) => {
-				console.log(error);
+				setAuth(false);
 			});
 	};
 
