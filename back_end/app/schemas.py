@@ -15,12 +15,13 @@ ObjectId = Annotated[str, AfterValidator(check_object_id)]
 # User and authorization
 class User(BaseModel):
     username: str
-    role: str
+    role: Optional[str] = None
     password: str
-    email: str
-    name: str
-    photo: str
-    verified: bool
+    email: Optional[str] = None
+    fullname: str
+    birthdate: str
+    phone_number: str
+    verified: bool = False
 
 class Login(BaseModel):
     username: str
