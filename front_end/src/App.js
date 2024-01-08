@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { SpecificLayout } from "./SpecificLayout";
 import { AboutUs } from './screens/AboutUs/AboutUs';
 import { SignIn } from './screens/SignIn/SignIn';
-import { SignUp } from './screens/SignUp/SignUp';
+import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
 import { BuyPolicy } from './screens/Policy/BuyPolicy';
 import { ShipPolicy } from './screens/Policy/ShipPolicy';
