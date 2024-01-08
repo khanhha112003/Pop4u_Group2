@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as EditIcon } from "./Icon_edit.svg"
-
 import './UserProfile.css';
-import { removeToken } from '../../app_logic/Authenticate';
 import { basicGetRequets, basicPostRequest } from '../../app_logic/APIHandler';
-import { useAuth } from '../../AuthProvider';
 
 const UserProfile = () => {
 	const navigate = useNavigate();
-	const { auth, setAuth } = useAuth();
 	const [userData, setUserData] = useState({
 		"username": "",
 		"email": "",
@@ -18,22 +14,20 @@ const UserProfile = () => {
 		"phone_number": "",
 	});
 
-	useEffect(() => {
-		setAuth(null);
-	}, []);
+	
 
 	useEffect(() => {
-		if (auth) {
+		if (true) {
 			basicGetRequets('/auth/user_profile')
 				.then((response) => {
-					setUserData(response.data);
+					// setUserData(response.data);
 				}
 				).catch((error) => {
-					if (error.response.status === 401) {
-						setAuth(false);
-						removeToken();
-						navigate('/signin');
-					}
+					// if (error.response.status === 401) {
+					// 	setAuth(false);
+					// 	removeToken();
+					// 	navigate('/signin');
+					// }
 				});
 		}
 	}, []);
@@ -44,9 +38,7 @@ const UserProfile = () => {
 			.then((response) => {
 				console.log(response.data);
 				if (response.data.status === 1) {
-					setAuth(false);
-					removeToken();
-					navigate('/signin');
+					navigate('/');
 				} else {
 					console.log(response.data);
 				}

@@ -1,33 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import "react-bootstrap";
 import { ReactComponent as ArrowUp } from './images/arrow_outward.svg';
 import { Link, useNavigate } from 'react-router-dom';
-
 import "./SignIn.css";
 import { loginPostRequest, } from '../../app_logic/APIHandler';
-import { saveToken } from '../../app_logic/Authenticate';
 import { CustomInputBox } from '../../components/CustomInputBox/CustomInputBox';
 import UsernameIcon from './images/icon_account.svg';
 import PasswordIcon from './images/password.svg';
-import { useAuth } from '../../AuthProvider';
 
 function SignIn() {
     const [userLoginContent, setUserLoginContent] = useState({});//[username, password] = userLoginContent;
     const [loginErrorMessage, setLoginErrorMessage] = useState('');
     const navigate = useNavigate();
-    const { auth, setAuth } = useAuth();
-
-    useEffect(() => {
-		setAuth(null);
-	}, []);
-
-    useEffect(() => {
-        if (auth) {
-            navigate('/');
-        } else {
-            setAuth(false);
-        }
-    }, []);
 
 
     const handleLogin = (e) => {
@@ -42,8 +26,7 @@ function SignIn() {
         loginPostRequest('/auth/login', userLoginContent.username, userLoginContent.password)
             .then((response) => {
                 if (response.data.status === 1) {
-                    saveToken(response.data);
-                    setAuth(true)
+                   
                     navigate('/');
                 } else {
                     setLoginErrorMessage(response.data.message);

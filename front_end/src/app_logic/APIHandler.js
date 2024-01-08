@@ -1,19 +1,11 @@
 import axios from "axios";
-import { getToken } from "./Authenticate";
 import qs from "qs";
 export let BASE_URL = "http://localhost:8000/api";
 
 function getHeaders() {
-  const token = getToken();
-  if (token === undefined || token === null || token === '') return {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
   return {
     headers: {
       "Content-Type": "application/json",
-      Authorization: 'Bearer ' + `${token}`,
     },
   };
 }
