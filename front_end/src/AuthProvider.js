@@ -27,7 +27,11 @@ const AuthProvider = ({ children }) => {
             console.log('Token valid');
             setAuth(true);
           }
-        })
+        }). catch((error) => {
+          console.log(error);
+          removeToken();
+          setAuth(false);
+        });
     }
   }, []);
 
