@@ -9,28 +9,32 @@ import { useAuth } from '../../AuthProvider';
 
 const UserProfile = () => {
 	const navigate = useNavigate();
-	const {auth, setAuth } = useAuth();
+	const { auth, setAuth } = useAuth();
 	const [userData, setUserData] = useState({
 		"username": "",
-		"email": null,
+		"email": "",
 		"fullname": "",
 		"birthdate": "",
 		"phone_number": "",
 	});
 
 	useEffect(() => {
+		setAuth(null);
+	}, []);
+
+	useEffect(() => {
 		if (auth) {
 			basicGetRequets('/auth/user_profile')
-			.then((response) => {
-				setUserData(response.data);
-			}
-			).catch((error) => {
-				if (error.response.status === 401) {
-					setAuth(false);
-					removeToken();
-					navigate('/signin');
+				.then((response) => {
+					setUserData(response.data);
 				}
-			});
+				).catch((error) => {
+					if (error.response.status === 401) {
+						setAuth(false);
+						removeToken();
+						navigate('/signin');
+					}
+				});
 		}
 	}, []);
 
@@ -38,6 +42,7 @@ const UserProfile = () => {
 	const handleLogout = () => {
 		basicPostRequest('/auth/logout')
 			.then((response) => {
+				console.log(response.data);
 				if (response.data.status === 1) {
 					setAuth(false);
 					removeToken();
@@ -46,9 +51,7 @@ const UserProfile = () => {
 					console.log(response.data);
 				}
 			}
-			).catch((error) => {
-				setAuth(false);
-			});
+			);
 	};
 
 	const handleEdit = () => {

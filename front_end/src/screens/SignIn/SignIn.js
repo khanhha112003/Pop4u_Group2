@@ -18,10 +18,16 @@ function SignIn() {
     const { auth, setAuth } = useAuth();
 
     useEffect(() => {
+		setAuth(null);
+	}, []);
+
+    useEffect(() => {
         if (auth) {
             navigate('/');
+        } else {
+            setAuth(false);
         }
-    }, [auth]);
+    }, []);
 
 
     const handleLogin = (e) => {
@@ -36,7 +42,6 @@ function SignIn() {
         loginPostRequest('/auth/login', userLoginContent.username, userLoginContent.password)
             .then((response) => {
                 if (response.data.status === 1) {
-                    setLoginErrorMessage('');
                     saveToken(response.data);
                     setAuth(true)
                     navigate('/');

@@ -4,35 +4,35 @@ import { basicPostRequest } from './app_logic/APIHandler';
 const AuthContext = createContext({
   auth: null,
   setAuth: () => { },
-  user: null,
 });
 
 export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const token = getToken();
-    if (token === undefined || token === '') 
+    if (token === undefined || token === '' || token === null) 
     {
       setAuth(false);
     } else {
       basicPostRequest('/auth/check_token', {})
         .then((response) => {
           if (response.data.status === 0) {
+            console.log('Token expired');
             removeToken();
             setAuth(false);
           } else {
+            console.log('Token valid');
             setAuth(true);
           }
         })
     }
-  }, [auth]);
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, user }}>
+    <AuthContext.Provider value={{ auth, setAuth }}>
       {children}
     </AuthContext.Provider>
   );

@@ -5,7 +5,7 @@ export let BASE_URL = "http://localhost:8000/api";
 
 function getHeaders() {
   const token = getToken();
-  if (!token) return {
+  if (token === undefined || token === null || token === '') return {
     headers: {
       "Content-Type": "application/json",
     },
@@ -13,7 +13,7 @@ function getHeaders() {
   return {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `${token}`,
+      Authorization: 'Bearer ' + `${token}`,
     },
   };
 }

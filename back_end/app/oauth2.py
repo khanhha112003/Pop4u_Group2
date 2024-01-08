@@ -41,6 +41,9 @@ def get_current_user(token: Union[str, None] = Depends(oauth2_scheme)):
         )
     return verify_token(token,credentials_exception)
 
+def get_current_token(token: Union[str, None] = Depends(oauth2_scheme)):
+    return token
+
 async def get_current_active_user(current_user: Union[dict, HTTPException] = Depends(get_current_user)):
     if current_user is None:
         return HTTPException(status_code=400, detail="Invalid user")
@@ -50,7 +53,6 @@ async def get_current_active_user(current_user: Union[dict, HTTPException] = Dep
 
 optional_oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login", auto_error=False)
 async def get_user_or_none(token : Union[str, None] = Depends(optional_oauth2_scheme)):
-    print(token)
     if token is None:
         return None
     credentials_exception = HTTPException(

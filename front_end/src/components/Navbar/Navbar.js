@@ -13,10 +13,16 @@ import { ReactComponent as SearchIcon } from './icons/icon_search.svg';
 import { ReactComponent as LoginIcon } from './icons/icon_login.svg';
 import './style.css'
 import { useAuth } from '../../AuthProvider';
+import { useEffect } from 'react';
 
-function CustomNavbar({isAuth}) {
+function CustomNavbar() {
 
-	const { auth } = useAuth();
+	const { auth, setAuth } = useAuth();
+
+	useEffect(() => {
+		setAuth(null);
+	}, []);
+
 	return (
 		<Navbar expand="xxl" style={{ backgroundColor: 'var(--bs-body-bg)', paddingTop: 0, paddingBottom: 0 }}>
 			<Container className="bg-body-tertiary" >
@@ -70,14 +76,16 @@ function CustomNavbar({isAuth}) {
 						</Form>
 
 						{
-							auth ? (
+							(auth === null) 
+							? ( <div></div> )
+							: ( auth ? (
 								<div className="ml-lg-4">
 									<Button href='/' variant="outline-success">
 										<SearchOrderIcon />
 									</Button>
 									<Button href='/cart' variant="outline-success">
 										<CartIcon />
-									</Button>
+							 		</Button>
 									<Button href='/user_profile' variant="outline-success">
 										<AccountIcon />
 									</Button>
@@ -88,7 +96,8 @@ function CustomNavbar({isAuth}) {
 										<LoginIcon />
 									</Button>
 								</div>
-             				)
+							)
+							)
 						}
 					</Nav>
 				</Navbar.Collapse>

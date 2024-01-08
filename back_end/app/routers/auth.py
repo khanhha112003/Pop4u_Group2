@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response, status, Depends, HTTPException, Request
 from fastapi.security import OAuth2PasswordRequestForm
 from hashing import Hash
-from oauth2 import get_current_user, create_access_token, get_current_active_user
+from oauth2 import get_current_user, create_access_token, get_current_token
 from database import db
 from schemas import User, PersonalInfo
 from datetime import datetime
@@ -47,27 +47,27 @@ def login(request:OAuth2PasswordRequestForm = Depends()):
         # find token with username
         db['Tokens'].delete_many({"username": request.username})
         access_token = create_access_token(data={"sub": user["username"] })
-        res = db['Tokens'].insert_one({"access_token": "Bearer " + access_token, "username":user["username"]})
+        res = db['Tokens'].insert_one({"access_token": access_token, "username":user["username"]})
         if res:
-            return {"status": 1, "access_token": "Bearer " + access_token, "token_type": "bearer"}
+            return {"status": 1, "access_token": access_token, "role": user["role"]}
         else:
             return {"status": 0, "message": "Lỗi tạo token"}
     except Exception as e:
         return {'status': 0, 'message': str(e)}
 
 @router.post('/logout', status_code=status.HTTP_200_OK)
-def logout(response: Response, user_id: str = Depends(get_current_user)):
+def logout(token: str = Depends(get_current_token), usr: str = Depends(get_current_user)):
     # delete token with username
-    tokendata = db['Tokens'].find_one({"username": user_id, "access_token": response.headers['Authorization']})
+    tokendata = db['Tokens'].find_one({"access_token": token, "username": usr['username']})
     if tokendata:
-        db['Tokens'].delete_one({"username": user_id, "access_token": response.headers['Authorization']})
-        return {'status': 1}
+        res = db['Tokens'].delete_one({"access_token": token, "username": usr['username']})
+        if res:
+            return {'status': 1}
     return {'status': 0}
 
 @router.post('/check_token', status_code=status.HTTP_200_OK)
-def check_token(request: Request):
-# delete token with username
-    tokendata = db['Tokens'].find_one({"access_token": request.headers['Authorization']})
+def check_token(token: str = Depends(get_current_token), usr: str = Depends(get_current_user)):
+    tokendata = db['Tokens'].find_one({"access_token": token, "username": usr['username']})
     if tokendata:
         return {'status': 1}
     return {'status': 0}
