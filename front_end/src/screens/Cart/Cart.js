@@ -1,15 +1,16 @@
 
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import 'react-bootstrap';
 import './style.css'
 import { ReactComponent as Plus } from './icons/icon_plus.svg';
 import { ReactComponent as Minus } from './icons/icon_minus.svg';
 import { ReactComponent as Remove } from './icons/icon_remove.svg';
+import { useAuth } from '../../AuthProvider';
 
 
-function Cart ()
-{
+function Cart () {
   const initialCart = [
     { _id: 1, product_name: 'j-hope (BTS) "Jack In The Box" (HOPE Edition)', discount_price: 450000, quantity: 2, image: require('./icons/img_product.png') },
     { _id: 2, product_name: 'BLACKPINK - 1st FULL ALBUM [THE ALBUM]',  discount_price: 500000,  quantity: 1, image: require('./icons/Blackpink-The_Album.png') },
@@ -17,7 +18,16 @@ function Cart ()
   ];
   const [couponCode, setCouponCode] = useState('');
   const [discountAmount, setDiscountAmount] = useState(0);
-
+  const navigate = useNavigate();
+  const { auth } = useAuth();
+  useEffect(() => {
+    // Logic to fetch cart items from database
+    if (!auth) {
+      navigate('/signin');
+    } else {
+      // Fetch cart items from database
+    }
+  }, []);
 
   const applyCoupon = () => {
     // Logic to apply coupon and calculate discount amount

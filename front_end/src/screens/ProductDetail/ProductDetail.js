@@ -97,7 +97,6 @@ function ProductDetail() {
         updateRatingRequest.then((response) => {
             setRatingData(response.data);
         }).catch(error => {
-            console.log(error);
             if (error.response.status === 401) {
                 navigate("/signin");
             }
@@ -111,7 +110,6 @@ function ProductDetail() {
                 navigate("/cart");
             }
         }).catch(error => {
-            console.log(error);
             if (error.response.status === 401) {
                 navigate("/signin");
             }
@@ -123,7 +121,6 @@ function ProductDetail() {
         newCartRequest.then((response) => {
             alert("Thêm vào giỏ hàng thành công");
         }).catch(error => {
-            console.log(error);
             if (error.response.status === 401) {
                 navigate("/signin");
             }

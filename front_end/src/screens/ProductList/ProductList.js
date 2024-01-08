@@ -8,6 +8,7 @@ import { Container, Row, Col, Pagination } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import LoadingPage from "../Loading/LoadingPage.js";
 import NotFoundPage from "../Error/NotFoundError.js";
+import { useAuth } from "../../AuthProvider.js";
 
 const itemsPerPage = 16;
 
@@ -59,6 +60,7 @@ function calulatePageInformation(items, currentPage = 1) {
 
 function ProductList() {
     const { sort } = useParams();
+    const { auth } = useAuth();
     const [total_product, setTotalProduct] = useState([]);
     const [currentPageInfo, setCurrentPageInfo] = useState({ filtered_product: [], current_page: 0, current_item: [], total_page: 0 });
     const [filter_info, setFilterInfo] = useState({

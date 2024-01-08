@@ -5,7 +5,7 @@ import CustomNavbar from './components/Navbar/Navbar';
 export function SpecificLayout () {
     return (
         <div className="App">
-            <CustomNavbar />
+            <CustomNavbar/>
             <Outlet />
             <Footer />
         </div>

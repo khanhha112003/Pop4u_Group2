@@ -22,21 +22,11 @@ def get_list_product(page: int = 1,
                      artist_code: Optional[str] = None, 
                      usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException or usr == None :
-        print("no user") 
+        print("no user -- product_list") 
     if page < 1:
         page = 1
     else:
         pass
-        # tracking_user(usr.username, 
-        #               "get_list_product", 
-        #               { "page":page, 
-        #                 "limit":limit, 
-        #                 "category":category,
-        #                 "p_start":p_start,
-        #                 "p_end":p_end,
-        #                 "rating":rating,
-        #                 "artist_code":artist_code
-        #               })
     if type_filter == "all":
         total = get_total_product(category, artist_code, p_start, p_end, rating)
         list_product = get_product_list(page, 
@@ -64,7 +54,7 @@ def get_list_product(page: int = 1,
 @router.get('/product_detail', response_model=Product)
 def get_product_detail(product_code: str, usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException or usr == None :
-        print("no user") 
+        print("no user -- product_detail") 
     res = get_product_detail_by_code(product_code)
     if res:
         return productSerializer(res)
@@ -145,7 +135,7 @@ def user_review(review: ProductReview, usr = Depends(get_current_active_user)):
 @router.get('/product_review', response_model=ProductReview)
 def get_user_review(product_code: str, usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException or usr == None :
-        print("no user")
+        print("no user -- product_review")
         return ProductReview(product_code=product_code).__dict__
     res = get_product_review(usr.username, product_code)
     if res:

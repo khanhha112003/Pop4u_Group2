@@ -40,7 +40,6 @@ import {
 	useLocation
 } from "react-router-dom";
 
-
 function ScrollToTop() {
 	const { pathname } = useLocation();
 
@@ -56,12 +55,10 @@ function App() {
 		<BrowserRouter>
 			<ScrollToTop />
 			<Routes>
-
-				<Route path="/" element={<SpecificLayout />}>
+				<Route path="/" element={<SpecificLayout/>}>
 					<Route exact path="/" element={<HomePage />} />
 					<Route path="/about" element={<AboutUs />} />
 					<Route path="/artists" element={<ArtistList />} />
-					<Route path="/signin" element={<SignIn />} />
 					<Route path="/signup" element={<SignUp />} />
 					<Route path="/blog" element={<Blog />} />
 					<Route path="/single-post/:postId" element={<SinglePost />} />
@@ -80,6 +77,7 @@ function App() {
 						<Route path="" element={<ProductList />} />
 					</Route>
 					<Route path="/artist_detail" element = {<ProductArtist />} />
+					<Route path="/signin" element={<SignIn />} />
 				</Route>
 				<Route path="/" element={<AdminSpecificLayout />}>
 					<Route path="/admin/add_product" element={<AddProduct />} />
