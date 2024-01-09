@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ReactComponent as EditIcon } from "./Icon_edit.svg"
 import './UserProfile.css';
-import { basicGetRequets, basicPostRequest } from '../../app_logic/APIHandler';
+import { BASE_URL } from '../../app_logic/APIHandler';
 import { useAuth } from '../../hooks/useAuth';
+import axios from 'axios';
 const UserProfile = () => {
-	const navigate = useNavigate();
 	const [profileData, setProfileData] = useState({
 		"username": "",
 		"email": "",
@@ -13,29 +12,43 @@ const UserProfile = () => {
 		"birthdate": "",
 		"phone_number": "",
 	});
-
-	const { user } = useAuth();
+	const [logoutErrorMessage, setLogoutErrorMessage] = useState('');
+	const [isReadOnly, setIsReadOnly] = useState(true);
+	const { user, logout } = useAuth();
 
 	useEffect(() => {
-		
+		async function getProfile() {
+			const token = 'Bearer ' + user.access_token;
+			console.log(token);
+			try {
+				const getProfileRequest = await axios.get(BASE_URL + "/auth/user_profile",
+					{
+						headers: {
+							'content-type': 'application/json',
+							'Authorization': token
+						}
+					})
+				if (getProfileRequest.data) {
+					setLogoutErrorMessage("");
+					setProfileData(getProfileRequest.data);
+				} else {
+					setLogoutErrorMessage("Lỗi lấy thông tin tài khoản.");
+				}
+			} catch (error) {
+				setLogoutErrorMessage(error.message);
+			}
+		}
+		getProfile();
 	}, []);
 
 
 	const handleLogout = () => {
-		basicPostRequest('/auth/logout')
-			.then((response) => {
-				console.log(response.data);
-				if (response.data.status === 1) {
-					navigate('/');
-				} else {
-					console.log(response.data);
-				}
-			}
-			);
+		logout(setLogoutErrorMessage);
 	};
 
 	const handleEdit = () => {
 		console.log('User edit');
+		setIsReadOnly(!isReadOnly)
 	}
 
 	return (
@@ -58,7 +71,7 @@ const UserProfile = () => {
 
 					</div>
 					<div className="canhgiua margin">
-						<button className="buttonn-profile" onClick={handleEdit}><EditIcon></EditIcon></button>
+						<button className="buttonn-profile" onClick={handleEdit}><EditIcon/></button>
 					</div>
 				</div>
 			</div>
@@ -70,7 +83,8 @@ const UserProfile = () => {
 							className='body-small sign-in-field'
 							type="fullName"
 							id="fullName"
-							value={navigate.fullname} />
+							readOnly = {isReadOnly}
+							value={profileData.fullname} />
 					</div>
 				</div>
 			</div>
@@ -82,7 +96,8 @@ const UserProfile = () => {
 							className='body-small sign-in-field'
 							type="dob"
 							id="dob"
-							value={navigate.birthdate} />
+							readOnly = {isReadOnly}
+							value={profileData.birthdate} />
 					</div>
 				</div>
 			</div>
@@ -94,7 +109,8 @@ const UserProfile = () => {
 							className='body-small sign-in-field'
 							type="email"
 							id="email"
-							value={navigate.email} />
+							readOnly = {isReadOnly}
+							value={profileData.email === null ? "" : profileData.email} />
 					</div>
 				</div>
 			</div>
@@ -106,16 +122,21 @@ const UserProfile = () => {
 							className='body-small sign-in-field'
 							type="address"
 							id="address"
-							value={navigate.phone_number} />
+							readOnly = {isReadOnly}
+							value={profileData.phone_number} />
 					</div>
 				</div>
 			</div>
-
 			<div className='row'>
 				<div className='col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xs-10 mx-auto text-center'>
-					<a href="/signin"><button onClick={handleLogout} className='sign-up-button label-xl' type="submit">
+					<p className="error-message body-small">{logoutErrorMessage}</p>
+				</div>
+			</div>
+			<div className='row'>
+				<div className='col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xs-10 mx-auto text-center'>
+					<button onClick={handleLogout} className='sign-up-button label-xl' type="submit">
 						Đăng xuất
-					</button></a>
+					</button>
 				</div>
 			</div>
 		</div>

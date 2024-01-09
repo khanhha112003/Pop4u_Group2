@@ -25,8 +25,7 @@ def verify_token(token:str,credentials_exception) -> Union[dict, HTTPException]:
         username: str = payload.get("sub")
         if username is None:
             return credentials_exception
-        token_data = TokenData(username=username)
-        user = db["Users"].find_one({"username":token_data.username})
+        user = db["Users"].find_one({"username":username})
         return user
     except JWTError:
         return credentials_exception

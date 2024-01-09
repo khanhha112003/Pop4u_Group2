@@ -18,7 +18,6 @@ export const AuthProvider = ({ children }) => {
             { username: dataPass.username, password: dataPass.password }, 
             {headers: {'content-type': 'application/x-www-form-urlencoded'}}
         );
-        
         if (response.data.status === 1) {
             setUser(response.data);
             console.log("login success");
@@ -32,10 +31,25 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    // this function pass to the profile page then logout from the system
-    navigate("/", { replace: true });
+  const logout = async (callback) => {
+    const token = 'Bearer ' + user.access_token;
+    try {
+        const response = await axios.post(
+            BASE_URL + '/auth/logout', 
+            {headers: {'content-type': 'application/json',
+                        'Authorization': token}}
+        );
+        if (response.data.status === 1) {
+            setUser(null);
+            console.log("logout success");
+            navigate("/", { replace: true });
+        } else {
+            console.log("logout fail");
+            callback(response.data.message);
+        }
+    } catch (error) {
+        console.log(error);
+    }
   };
 
   const value = useMemo(

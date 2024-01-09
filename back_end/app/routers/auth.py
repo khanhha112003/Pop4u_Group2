@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response, status, Depends, HTTPException, Request
 from fastapi.security import OAuth2PasswordRequestForm
 from hashing import Hash
-from oauth2 import get_current_user, create_access_token, get_current_token
+from oauth2 import get_current_user, create_access_token, get_current_token, get_current_active_user
 from database import db
 from schemas import User, PersonalInfo
 from datetime import datetime
@@ -74,10 +74,11 @@ def check_token(token: str = Depends(get_current_token), usr: str = Depends(get_
 
 
 @router.get('/user_profile', response_model=PersonalInfo)
-def get_me(usr: str = Depends(get_current_user)):
+def get_me(usr: str = Depends(get_current_active_user)):
     if type(usr) == HTTPException:
         raise usr
     else:
+        usr = usr.__dict__
         response = PersonalInfo(**usr)
         return response
     
