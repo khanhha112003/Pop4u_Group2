@@ -8,13 +8,8 @@ import {ReviewCarousel} from '../../components/ReviewCarousel/ReviewCarousel'
 
 import Inclusion1 from './images/inclusion_signtime__cjyg7gx31w2u_large.jpg';
 import Inclusion2 from './images/inclusion_veterans__c8iynwo4wtea_large.jpg';
-import Universe1 from './images/34ead214963ecf4f37b1d0f62a4f1a63.png';
 import Inclusion3 from './images/inclusion_hispanic__d4rhg33wt26a_large.jpg'
 import MascotPop4u from '../../theme/images/MascotPop4u.png';
-
-
-console.log(Inclusion1);
-console.log(Inclusion2);
 
 
 function AboutUs() {

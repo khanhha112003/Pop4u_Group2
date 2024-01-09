@@ -19,6 +19,7 @@ import { AddProduct } from './screens/Admin/Product/AddProduct';
 import { AddVoucher } from './screens/Admin/Voucher/AddVoucher';
 import { VoucherList } from './screens/Admin/Voucher/VoucherList';
 import { CustomerManagementAdmin } from "./screens/Admin/Customer/CustomerList";
+import { CustomerDetail } from "./screens/Admin/Customer/CustomerDetail";
 import { ArtistAdmin } from "./screens/Admin/Artist/ArtistAdmin";
 import {OrderList} from "./screens/Admin/Order/OrderList"
 
@@ -37,8 +38,10 @@ import {
 	BrowserRouter,
 	Routes,
 	Route,
-	useLocation
+	useLocation,
+	Router
 } from "react-router-dom";
+
 
 
 function ScrollToTop() {
@@ -87,6 +90,7 @@ function App() {
 					<Route path="/admin/add_voucher" element={<AddVoucher />} />
 					<Route path="/admin/voucher_list" element={<VoucherList />} />
 					<Route path="/admin/customer_list" element={<CustomerManagementAdmin />} />
+					<Route path="/admin/customer_detail" element={<CustomerDetail />} />
 					<Route path="/admin/artist_list" element={<ArtistAdmin />} />
 					<Route path="/admin/order_list" element={<OrderList/>}/>
 				</Route>
