@@ -42,7 +42,7 @@ import { GuestLayout } from './ProtectingRoute/GuestLayout';
 function App() {
 	return (
 		<Routes>
-			<Route path="/" element={<GuestLayout />}>
+			<Route path="/account" element={<GuestLayout />}>
 				<Route path="signup" element={<SignUp />} />
 				<Route path="signin" element={<SignIn />} />
 			</Route>
@@ -50,7 +50,6 @@ function App() {
 				<Route exact path="/" element={<HomePage />} />
 				<Route path="about" element={<AboutUs />} />
 				<Route path="artists" element={<ArtistList />} />
-				<Route path="signup" element={<SignUp />} />
 				<Route path="blog" element={<Blog />} />
 				<Route path="single-post/:postId" element={<SinglePost />} />
 				<Route path="product_detail" element={<ProductDetail />} />

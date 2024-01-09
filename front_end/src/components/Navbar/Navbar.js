@@ -8,7 +8,6 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { ReactComponent as LogoIcon } from './icons/logo.svg';
 import { ReactComponent as CartIcon } from './icons/icon_cart.svg';
 import { ReactComponent as AccountIcon } from './icons/icon_account.svg';
-import { ReactComponent as SearchOrderIcon } from './icons/icon_order_search.svg';
 import { ReactComponent as SearchIcon } from './icons/icon_search.svg';
 import { ReactComponent as LoginIcon } from './icons/icon_login.svg';
 import './style.css'
@@ -69,19 +68,16 @@ function CustomNavbar() {
 						{
 							true ? (
 								<div className="ml-lg-4">
-									<Button href='/' variant="outline-success">
-										<SearchOrderIcon />
-									</Button>
-									<Button href='/cart' variant="outline-success">
+									<Button href='/user/cart' variant="outline-success">
 										<CartIcon />
 									</Button>
-									<Button href='/user_profile' variant="outline-success">
+									<Button href='/user/user_profile' variant="outline-success">
 										<AccountIcon />
 									</Button>
 								</div>
 							) : (
 								<div className="ml-lg-4">
-									<Button href='/signin' variant="outline-success">
+									<Button href='/account/signin' variant="outline-success">
 										<LoginIcon />
 									</Button>
 								</div>

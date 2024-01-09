@@ -104,7 +104,7 @@ function SignIn() {
                                 <p>
                                     <span className='body-small'>Bạn chưa có tài khoản tại Pop4u? </span>
                                     <span className='label-m'>
-                                        <Link to="/signup">
+                                        <Link to="/account/signup">
                                             <span className=''>Tạo tài khoản của bạn ngay bây giờ.</span>
                                             <ArrowUp></ArrowUp>
                                         </Link>
