@@ -1,37 +1,25 @@
-import { useState } from 'react';
-
 export function saveToken(userToken) {
-    sessionStorage.setItem('token', JSON.stringify(userToken));
+    localStorage.setItem('token', JSON.stringify(userToken));
 }
 
 export function getToken() {
-    const tokenString = sessionStorage.getItem('token');
+    const tokenString = localStorage.getItem('token');
+    if (tokenString === null) {
+        return null;
+    }
     const userToken = JSON.parse(tokenString);
-    return userToken?.token
+    return userToken?.access_token
 }
 
-export function useToken() {
-  const getToken = () => {
-    const tokenString = sessionStorage.getItem('token');
-    const userToken = JSON.parse(tokenString);
-    return userToken?.token
-  };
-
-  const [token, setToken] = useState(getToken());
-
-  const saveToken = userToken => {
-    sessionStorage.setItem('token', JSON.stringify(userToken));
-    setToken(userToken.token);
-  };
-
-  return {
-    setToken: saveToken,
-    token
-  }
+export function removeToken() {
+    localStorage.removeItem('token');
 }
 
 export function getUserRole() {
-    const tokenString = sessionStorage.getItem('token');
+    const tokenString = localStorage.getItem('token');
+    if (tokenString === null) {
+        return null;
+    }
     const userToken = JSON.parse(tokenString);
     return userToken?.role
 }

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './OrderList.css';
-
+import { ReactComponent as SearchIcon } from "../Product/icon_productadmin_search.svg" ;
+import { ReactComponent as EditIcon } from "../../UserProfile/Icon_edit.svg"
+import { useNavigate } from "react-router-dom";
 const OrderList = () => {
+  const navigate = useNavigate();
   const data = [
     {
       id: 10007,
@@ -78,18 +81,23 @@ const handleFilterByStatus = (selectedStatus) => {
 
 
   return (
-    <div className="container">
-      <h2 className="margin text-center">Danh sách đơn hàng</h2>
-          <div className="search-bar">
+    <div className="container margin">
+      <h2 className="text-center" style={{color:'#3F5AA9', marginTop:'1%'}}>Danh sách đơn hàng</h2>
+      <hr></hr>
+      <div class="search-container margin">
             <input
+            class="search-input"
+            style={{color:'#3F5AA9'}}
               type="text"
               placeholder="Tìm theo OrderID hoặc sđt"
               value={searchTerm}
               onChange={handleChange}
             />
-            <button onClick={handleSearch}>Tìm</button>
+            <button class="search-button" onClick={handleSearch}>
+              <SearchIcon class="search-icon fas fa-search text-danger"></SearchIcon>
+            </button>
           </div>
-           <div className='Status filter'>
+           <div className='Status filter margin'>
           {/* <div className="filter-bar"> */}
             <select
               value={filterStatus}
@@ -130,7 +138,7 @@ const handleFilterByStatus = (selectedStatus) => {
               <td>
                 <span className= {`status ${order.status}`}> {order.status} </span>
               </td>
-              <td>Chi tiết</td>
+              <td className="text-center"><a onClick={() => navigate("/admin/order_detail")} style={{cursor: "pointer"}}><EditIcon></EditIcon></a></td>
             </tr>
           ))}
         </tbody>

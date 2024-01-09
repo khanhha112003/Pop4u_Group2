@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Blgdata from '../data.jsx';
 import './SinglePost.css';
-import ContentImg from '../img/contentimg.png';
 import FBicon from '../img/FB-icon.png';
 import IGicon from '../img/IG-icon.png';
 import Xicon from '../img/X-icon.png';

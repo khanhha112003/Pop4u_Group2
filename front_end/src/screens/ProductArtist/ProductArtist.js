@@ -2,17 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import 'react-bootstrap';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
-
-
-import RatingBar from '../../components/RatingBar/RatingBar';
 import NotFoundPage from "../Error/NotFoundError";
 import LoadingPage from "../Loading/LoadingPage";
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
 
-import { basicGetRequets, basicPostRequest, combineMultipleRequests } from "../../app_logic/APIHandler";
+import { basicGetRequets, combineMultipleRequests } from "../../app_logic/APIHandler";
 
 function ProductArtist() {
     const [searchParam] = useSearchParams();
@@ -37,7 +34,7 @@ function ProductArtist() {
         const getArtistRequest = basicGetRequets('/artist/artist_detail', { artist_code: searchParam.get('artist_code') });
         const getArtistProductRequest = basicGetRequets('/product/product_list', { artist_code: searchParam.get('artist_code') });
 
-        const combineRequest = combineMultipleRequests([getArtistRequest, getArtistProductRequest])
+        combineMultipleRequests([getArtistRequest, getArtistProductRequest])
             .then(responses => {
                 var list_product = [];
                 if (responses[1].data.list_product.length > 0) {

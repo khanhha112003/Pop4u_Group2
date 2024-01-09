@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import './SidebarAdmin.css';
 import { ReactComponent as DashboardIcon } from './icons/icon_dashboard.svg'
-import { ReactComponent as LogoIcon } from './icons/logo.svg'
 import { ReactComponent as ProductIcon } from './icons/icon_product.svg'
 import { ReactComponent as OrderIcon } from './icons/icon_order.svg'
 import { ReactComponent as VoucherIcon } from './icons/icon_voucher.svg'

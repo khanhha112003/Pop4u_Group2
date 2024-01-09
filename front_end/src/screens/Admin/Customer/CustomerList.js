@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import './CustomerList.css';
-
+import { ReactComponent as SearchIcon } from "../Product/icon_productadmin_search.svg" 
+import { ReactComponent as EditIcon } from "../../UserProfile/Icon_edit.svg"
+import { useNavigate } from "react-router-dom";
 
 function CustomerManagementAdmin () {
+
   const data = [
     {
       "_id":'1',
@@ -69,6 +72,7 @@ function CustomerManagementAdmin () {
     },
     // Add more products here
   ];
+  const navigate = useNavigate();
   const [filterCategory, setFilterCategory] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -79,26 +83,31 @@ function CustomerManagementAdmin () {
 
   return (
     <div className="container margin">
-      <h2 className="center m-4">Danh sách khách hàng</h2>
-      <div className="m-4 center">
-      <label htmlFor="categoryFilter">Tra cứu</label>
+      <h2 className="text-center" style={{color:'#3F5AA9', marginTop:'1%'}}>Danh sách khách hàng</h2>
+      <hr></hr>
+      
+      <div className="search-container margin">
       <input
-        className="m-2"
+        className="search-input"
         type="text"
         placeholder="Nhập SĐT"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-      />
+        style={{color:'#3F5AA9'}}/>
+        <button class="search-button">
+        <SearchIcon class="search-icon fas fa-search text-danger"></SearchIcon>
+        </button>
+      
+
     </div>
-    <div className="mt-4 mb-2">
+    <div className='margin'>
       <label htmlFor="categoryFilter">Phân loại khách hàng</label>
       <select
-        className="m-2"
         id="categoryFilter"
         onChange={(e) => setFilterCategory(e.target.value)}
         value={filterCategory}
       >
-        <option value="">All</option>
+        <option value="">Tất cả</option>
         {/* Tạo các option từ danh sách category duy nhất */}
         {[...new Set(data.map((customer) => customer.type))].map(
           (type, index) => (
@@ -119,6 +128,7 @@ function CustomerManagementAdmin () {
             <th>Ngày sinh</th>
             <th>Điểm tích lũy</th>
             <th>Loại khách hàng</th>
+            <th>Xem chi tiết</th>
           </tr>
         </thead>
         <tbody>
@@ -134,6 +144,7 @@ function CustomerManagementAdmin () {
               <td>{customer.datebirth}</td>
               <td>{customer.point}</td>
               <td>{customer.type}</td>
+              <td className="text-center"><a onClick={() => navigate("/admin/customer_detail")} style={{cursor: "pointer"}}><EditIcon></EditIcon></a></td>
             </tr>
           ))}
         </tbody>
