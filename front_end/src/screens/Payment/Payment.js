@@ -128,38 +128,46 @@ function Payment() {
                     </div>
                         <div className='payment-method'>
                             <h6 className='head6'>Phương thức thanh toán</h6>
-                            <label>
+                            <div className='d-flex payment-option'>
                                 <input
-                                type="radio"
-                                value="option1"
-                                checked={selectedOption === 'option1'}
-                                onChange={handleRadioChange}
+                                    type="radio"
+                                    value="option1"
+                                    id='payment-option1'
+                                    checked={selectedOption === 'option1'}
+                                    onChange={handleRadioChange}
                                 />
-                                <span className='label-l'>Thanh toán khi nhận hàng  (COD)</span>
-                                <COD className="payment-method-icon"></COD>
-                            </label>
-                            <label>
+                                <label for="payment-option1">
+                                    <span className='label-l'>Thanh toán khi nhận hàng  (COD)</span>
+                                    <COD className="payment-method-icon"></COD>
+                                </label>
+                            </div>
+                            <div className='d-flex payment-option'>
                                 <input
-                                type="radio"
-                                value="option2"
-                                checked={selectedOption === 'option2'}
-                                onChange={handleRadioChange}
-                                />
-                                <span className='label-l'>Thanh toán thông qua thẻ Napas</span>
-                                <CreditCard className="payment-method-icon"></CreditCard>
-                            </label>
-                            <label>
+                                    type="radio"
+                                    value="option2"
+                                    id='payment-option2'
+                                    checked={selectedOption === 'option2'}
+                                    onChange={handleRadioChange}
+                                    />
+                                <label for="payment-option2" >
+                                    <span className='label-l'>Thanh toán thông qua thẻ Napas</span>
+                                    <CreditCard className="payment-method-icon"></CreditCard>
+                                </label>
+                            </div>
+                            <div className='d-flex payment-option'>
                                 <input
-                                type="radio"
-                                value="option3"
-                                checked={selectedOption === 'option3'}
-                                onChange={handleRadioChange}
+                                    type="radio"
+                                    value="option3"
+                                    id='payment-option3'
+                                    checked={selectedOption === 'option3'}
+                                    onChange={handleRadioChange}
                                 />
-                                <span className='label-l'>Thanh toán thông qua Ví điện tử MoMo</span>
-                                <Momo className="payment-method-icon"></Momo>
-                            </label>
+                                <label for="payment-option3">
+                                    <span className='label-l'>Thanh toán thông qua Ví điện tử MoMo</span>
+                                    <Momo className="payment-method-icon"></Momo>
+                                </label>
+                            </div>
                         </div>
-
                     </div>
                 </div>
                 <div className='col-xs-12 col-sm-12 col-md-12 col-xl-5 col-lg-5'>

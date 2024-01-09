@@ -48,8 +48,9 @@ const UserProfile = () => {
 
 	const handleEdit = () => {
 		console.log('User edit');
-		setIsReadOnly(!isReadOnly)
+		setIsReadOnly(false)
 	}
+
 
 	return (
 		<div className='container'>
@@ -71,13 +72,16 @@ const UserProfile = () => {
 
 					</div>
 					<div className="canhgiua margin">
-						<button className="buttonn-profile" onClick={handleEdit}><EditIcon/></button>
+						<button className="button-profile" onClick={handleEdit}>
+							<span className='label-m'>Chỉnh sửa  </span>
+							<EditIcon/>
+						</button>
 					</div>
 				</div>
 			</div>
 			<div className='row'>
 				<div className='col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xs-10 mx-auto'>
-					<p>Họ và tên : </p>
+					<p className='body-big'>Họ và tên: </p>
 					<div className='sign-in-input text-center'>
 						<input
 							className='body-small sign-in-field'
@@ -90,7 +94,7 @@ const UserProfile = () => {
 			</div>
 			<div className='row'>
 				<div className='col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xs-10 mx-auto'>
-					<p>Ngày sinh : </p>
+					<p className='body-big'>Ngày sinh: </p>
 					<div className='sign-in-input text-center'>
 						<input
 							className='body-small sign-in-field'
@@ -103,7 +107,7 @@ const UserProfile = () => {
 			</div>
 			<div className='row'>
 				<div className='col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xs-10 mx-auto'>
-					<p>Email: </p>
+					<p className='body-big'>Email: </p>
 					<div className='sign-in-input text-center'>
 						<input
 							className='body-small sign-in-field'
@@ -116,7 +120,7 @@ const UserProfile = () => {
 			</div>
 			<div className='row'>
 				<div className='col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xs-10 mx-auto'>
-					<p>Số điện thoại: </p>
+					<p className='body-big'>Số điện thoại: </p>
 					<div className='sign-in-input text-center'>
 						<input
 							className='body-small sign-in-field'

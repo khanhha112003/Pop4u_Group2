@@ -108,7 +108,7 @@ function AboutUs() {
             <div className="row align-items-center section-3">
                 <div className="col-lg-5 col-xl-5 col-sm-12 col-md-12">
                     <div>
-                        <h5 className="h5 heading-about-us-left">Pop4u là Ai?</h5>
+                        <h6 className="head6 heading-about-us-left">Pop4u là Ai?</h6>
                         <p className="body-medium">Pop4u là một doanh nghiệp trẻ phân phối các sản phẩm KPop tại Việt Nam. 
                             Chúng tôi, có thể nói, là doanh nghiệp đầu tiên phân phối đa dạng và chính hãng tất
                             cả các sản phẩm của những công ty giải trí hàng đầu.</p>
@@ -125,7 +125,7 @@ function AboutUs() {
             </div>
             <div className="row align-items-center section-5">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12" >
-                    <h5 className="h5 heading-about-us-center">Giá Trị Cốt Lõi</h5>
+                    <h6 className="head6 heading-about-us-center">Giá Trị Cốt Lõi</h6>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12" id="core-value">
                     <div className="core-value-card">
@@ -153,9 +153,9 @@ function AboutUs() {
             <div className="row section-6">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div className="section-vision">
-                        <h5 className="h5 heading-about-us-center">Tầm Nhìn</h5>
+                        <h6 className="head6 heading-about-us-center">Tầm Nhìn</h6>
                         <div className="vision">
-                            <h4 className="h4 statement-script-center">Trở thành doanh nghiệp thương mại điện tử phân phối sản 
+                            <h4 className="head4 statement-script-center">Trở thành doanh nghiệp thương mại điện tử phân phối sản 
                             phẩm K-Pop uy tín hàng đầu Việt Nam.</h4>    
                         </div>
                     </div>
@@ -163,8 +163,8 @@ function AboutUs() {
             </div>
             <div className="row align-items-center section-7">
                 <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <h5 className="heading-about-us-left">Sứ Mệnh</h5>
-                    <span className="h4 statement-script-side">Phá bỏ mọi rào cản trong việc tiếp cận sản phẩm K-Pop
+                    <h6 className="head6 heading-about-us-left">Sứ Mệnh</h6>
+                    <span className="head4 statement-script-side">Phá bỏ mọi rào cản trong việc tiếp cận sản phẩm K-Pop
                         của người hâm mộ tại Việt Nam.</span>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
@@ -176,7 +176,7 @@ function AboutUs() {
             <div className="row section-8">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div className="section-esg">
-                        <h5 className="h5 heading-about-us-center">Trách Nhiệm Xã Hội</h5>
+                        <h6 className="head6 heading-about-us-center">Trách Nhiệm Xã Hội</h6>
                         <div className="esg">
                             <h4 className="head4 statement-script-center">Mang trong mình sức trẻ, Pop4u biết mình phải làm gì để cống hiến cho môi trường, xã hội và những giá trị nội bộ.</h4>    
                         </div>
@@ -185,7 +185,7 @@ function AboutUs() {
             </div> 
             <div className='row mx-auto justify-content-center section-9'>
                 <div className='col-12'>
-                    <h5 className="h5 heading-about-us-center">Gặp Gỡ Chúng Tôi - POP4U TEAM</h5>
+                    <h6 className="head6 heading-about-us-center">Gặp Gỡ Chúng Tôi - POP4U TEAM</h6>
                 </div>
                 {employees.map((employee, name) =>
                     <div key={name} className="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
@@ -201,7 +201,7 @@ function AboutUs() {
             </div>
             <div className='row section-10' >
                 <div className='col-12'>
-                    <h5 className="h5 heading-about-us-center">Khách Hàng Nói Gì Về Pop4u?</h5>
+                    <h6 className="head6 heading-about-us-center">Khách Hàng Nói Gì Về Pop4u?</h6>
                 </div>
                 <ReviewCarousel slides={reviewsSlides}/>
             </div>

@@ -1,26 +1,19 @@
-/* AccountPage.css */
+@import url('../../theme/theme.css');
 
-/* Container styles */
-/* .account-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  } */
-  
-  /* User profile styles */
-  .user-profile {
+.user-profile {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
   }
   
-  .user-avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    
-  }
+.user-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 24px;
+}
+
   .canhgiua{
     display: flex;
     justify-content: center;
@@ -59,10 +52,19 @@
     text-align: center;
 }
 
-.buttonn-profile{
-    border-radius: 16px;
-background: var(--M3-sys-light-surface-container-high, #EAE7EC);
-border:#EAE7EC;
-/* M3/Elevation Light/3 */
-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.30), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+.button-profile{
+  border-radius: 16px;
+  padding: 8px 20px;
+  background: var(--color-primary-container-light);
+  border: 1px solid var(--color-secondary-container-light);
+  color: var(--color-on-primary-container-light);
+  transition: all 0.3s;
+}
+
+.button-profile:hover{
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.30), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+}
+
+.button-profile:active {
+  background: var(--color-primary-fixed-dim-light);
 }
