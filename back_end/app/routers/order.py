@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 from oauth2 import get_current_active_user
@@ -25,6 +26,28 @@ def add_to_cart(productInfo: ProductBuyInfo, usr = Depends(get_current_active_us
     res = update_cart_by_username(usr.username, 
                                   productInfo.product_code,
                                   productInfo.quantity)
+    if res:
+        return {"status":1}
+    else:
+        raise HTTPException(status_code=404, detail="Cart not found")
+
+@router.get('/buy_now')
+def buy_now(product_code: str, quantity: int, usr = Depends(get_current_active_user)):
+    res = create_order_buy_now(usr.username, product_code, quantity)
+    if res:
+        return {"res":"created"}
+    else:
+        raise HTTPException(status_code=404, detail="Cart not found")
+
+@router.post('/update_cart')
+def update_cart(productInfo: List[ProductBuyInfo], usr = Depends(get_current_active_user)):
+    temp_list = {}
+    for i in productInfo:
+        temp_dict = {}
+        temp_dict["product_code"] = i.product_code
+        temp_dict["quantity"] = i.quantity
+        temp_list.append(temp_dict)
+    res = update_cart_with_multiple_product_id_and_quantity(usr.username, temp_list)
     if res:
         return {"status":1}
     else:

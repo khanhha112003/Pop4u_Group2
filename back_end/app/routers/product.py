@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from oauth2 import get_user_or_none, get_current_active_user
 
 from schemas import Product, ProductReview
@@ -140,5 +140,16 @@ def get_user_review(product_code: str, usr = Depends(get_user_or_none)):
     res = get_product_review(usr.username, product_code)
     if res:
         return productReviewSerializer(res)
+    else:
+        raise HTTPException(status_code=404, detail="Product not found")
+    
+@router.get('/get_list_product_by_list_code', response_model=List[Product])
+def list_code_to_list_product(list_code: List[str] = Query(None), usr = Depends(get_user_or_none)):
+    if type(usr) == HTTPException or usr == None :
+        print("no user -- product_review")
+    print(list_code)
+    res = get_list_product_by_list_code(list_code)
+    if res:
+        return listProductSerializer(res)
     else:
         raise HTTPException(status_code=404, detail="Product not found")

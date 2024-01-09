@@ -67,7 +67,7 @@ def update_cart_with_multiple_product_id_and_quantity(username:str, list_data: l
         for i in range(len(list_product_in_cart)):
             for j in list_data:
                 if list_product_in_cart[i]['product_code'] == j['product_code']:
-                    list_product_in_cart[i]['quantity'] = j['quantity']    
+                    list_product_in_cart[i]['quantity'] += j['quantity']    
                     if list_product_in_cart[i]['quantity'] <= 0:
                         return False
         existing_user_cart['products'] = list_product_in_cart
@@ -81,6 +81,14 @@ def get_cart_by_username(username: str):
     collection = db['Carts']
     cart = collection.find_one({"username": username})
     return cart
+
+
+def create_order_buy_now(username: str, order: Order):
+    collection = db['Orders']
+    collection.insert_one(order.__dict__)
+    
+    return None
+
 
 def delete_item_from_cart(username: str, product_code: str, quantity: int):
     collection = db['Carts']

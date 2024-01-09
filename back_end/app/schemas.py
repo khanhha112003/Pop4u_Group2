@@ -103,9 +103,12 @@ class Order(BaseModel):
     status: str
     address: str
     phone: str
+    is_paid: bool
+    is_buy_now: bool
     payment_method: str
     products: List[Product]
     shipping_price: float
+    coupoun_price: Optional[float] = None
 
 class OrderForm(BaseModel):
     username: str
