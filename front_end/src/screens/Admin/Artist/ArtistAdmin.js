@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import "react-bootstrap";
-import './ArtistAdmin.css'
-
+import './ArtistAdmin.css';
+import { ReactComponent as SearchIcon } from "../Product/icon_productadmin_search.svg" 
+import { ReactComponent as EditIcon } from "../../UserProfile/Icon_edit.svg"
+import { useNavigate } from "react-router-dom";
 function ArtistAdmin() {
+    const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
-
     const dataArtist = [
         {
             '_id': '2',
@@ -23,15 +25,19 @@ function ArtistAdmin() {
   
   return (
     <div className="container margin">
-        <h2 className="margin text-center">Danh sách nghệ sĩ</h2>
-        <div>
-            <input
-            className="mt-4 mb-4 p-2"
+        <h2 className="text-center" style={{color:'#3F5AA9', marginTop:'1%'}}>Danh sách nghệ sĩ</h2>
+        <hr></hr>
+        <div class="search-container margin">
+            <input 
+            class="search-input"
             type="text"
             placeholder="Tìm kiếm nghệ sĩ"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            />
+            onChange={(e) => setSearchTerm(e.target.value)}/>
+            <button class="search-button">
+            <SearchIcon class="search-icon fas fa-search text-danger"></SearchIcon>
+            </button>
+            
         </div>
         <table>
             <thead>
@@ -42,6 +48,7 @@ function ArtistAdmin() {
                     <th>Thẻ</th>
                     <th>Ảnh logo</th>
                     <th>Ảnh đại diện</th>
+                    <th>Xem chi tiết</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,6 +75,7 @@ function ArtistAdmin() {
                         style={{ width: '50px', height: '50px' }}
                         />
                     </td>
+                    <td className="text-center"><a onClick={() => navigate("/admin/artist_detail")} style={{cursor: "pointer"}}><EditIcon></EditIcon></a></td>
                 </tr>
             ))}
             </tbody>
