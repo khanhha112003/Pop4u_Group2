@@ -36,8 +36,7 @@ function ArtistAdmin() {
             onChange={(e) => setSearchTerm(e.target.value)}/>
             <button class="search-button">
             <SearchIcon class="search-icon fas fa-search text-danger"></SearchIcon>
-            </button>
-            
+            </button>    
         </div>
         <table>
             <thead>

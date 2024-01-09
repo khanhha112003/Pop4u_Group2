@@ -16,6 +16,7 @@ import { AddVoucher } from './screens/Admin/Voucher/AddVoucher';
 import { VoucherList } from './screens/Admin/Voucher/VoucherList';
 import { CustomerManagementAdmin } from "./screens/Admin/Customer/CustomerList";
 import { ArtistAdmin } from "./screens/Admin/Artist/ArtistAdmin";
+import { ArtistDetailAdmin } from './screens/Admin/Artist/ArtistDetailAdmin';
 import { OrderList } from "./screens/Admin/Order/OrderList"
 
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
@@ -77,6 +78,7 @@ function App() {
 				<Route path="voucher_list" element={<VoucherList />} />
 				<Route path="customer_list" element={<CustomerManagementAdmin />} />
 				<Route path="artist_list" element={<ArtistAdmin />} />
+				<Route path='artist_detail' element={<ArtistDetailAdmin />} />
 				<Route path="order_list" element={<OrderList />} />
 			</Route>
 		</Routes>
