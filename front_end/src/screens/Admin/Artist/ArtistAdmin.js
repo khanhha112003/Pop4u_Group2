@@ -42,6 +42,7 @@ function ArtistAdmin() {
                     <th>Thẻ</th>
                     <th>Ảnh logo</th>
                     <th>Ảnh đại diện</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -67,6 +68,14 @@ function ArtistAdmin() {
                         src={artist.artist_avatar}
                         style={{ width: '50px', height: '50px' }}
                         />
+                    </td>
+                    <td>
+                    <button type="button" 
+                    class="btn btn-primary" 
+                    style={{
+                    }}>
+                    Xem chi tiết
+                    </button>
                     </td>
                 </tr>
             ))}

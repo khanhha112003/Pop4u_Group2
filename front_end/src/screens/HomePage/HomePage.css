@@ -236,7 +236,12 @@
   margin-top: 24px;
   margin-bottom: 28px;
   color: var(--color-on-primary-container-light);
+  transition: all 0.5s;
+}
 
+.benefit-card:hover .benefit h6 {
+  margin-top: 36px;
+  margin-bottom: 16px;
 }
 
 .rotatable-svg {
@@ -251,7 +256,6 @@
 .benefit-card:hover .rotatable-svg {
   animation: rotateLeft 0.5s forwards;
 }
-
 
 @keyframes rotateLeft {
   0% {
