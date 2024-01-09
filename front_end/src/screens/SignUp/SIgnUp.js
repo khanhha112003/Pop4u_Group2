@@ -197,7 +197,7 @@ function SignUp() {
 								<HandShake className="hand-shake-icon"></HandShake>
 								<p className='body-min'>Nếu bạn nhấn Tạo tài khoản, bạn đã đồng ý với các điều khoản và dịch vụ của Pop4u về quản lý tài khoản, thông tin cá nhân, thông tin giao dịch và chính sách quảng cáo.</p>
 								<span className='label-m'>
-									<a href='#'>
+									<a onClick={() => navigate('/personal_data')}>
 										<span className=''>Tìm hiểu thêm.</span>
 										<ArrowUp></ArrowUp>
 									</a>

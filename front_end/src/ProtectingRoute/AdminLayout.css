@@ -1,0 +1,24 @@
+.container-admin {
+    display: flex;
+    height: 100vh;
+    /* Đảm bảo container chiếm toàn bộ chiều cao màn hình */
+}
+
+.SidebarAdmin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    /* Chiều rộng sidebar */
+    height: 100%;
+    /* Chiều cao toàn màn hình */
+    background-color: #f0f0f0;
+    /* Màu nền sidebar (tùy chỉnh nếu muốn) */
+}
+
+.Outlet {
+    flex: 1;
+    /* Giúp Outlet chiếm toàn bộ không gian còn lại */
+    padding-left: 200px;
+    /* Tạo khoảng cách tương ứng với chiều rộng sidebar */
+}

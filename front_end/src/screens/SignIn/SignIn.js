@@ -96,7 +96,7 @@ function SignIn() {
                         <div className='col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xs-12 mx-auto text-center'>
                             <div className='sign-in-support'>
                                 <p className='label-m'>
-                                    <a href='#'>
+                                    <a onClick={ console.log("forgot to implement") }>
                                         <span className=''>Bạn đã quên mật khẩu?</span>
                                         <ArrowUp></ArrowUp>
                                     </a>

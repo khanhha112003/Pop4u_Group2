@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import 'react-bootstrap';
 import './style.css'
 import { ReactComponent as Plus } from './icons/icon_plus.svg';
@@ -18,7 +18,7 @@ function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [couponCode, setCouponCode] = useState('');
   const [discountAmount, setDiscountAmount] = useState(0);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     // if (!auth) {

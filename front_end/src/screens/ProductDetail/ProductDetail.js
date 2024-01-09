@@ -49,7 +49,7 @@ function ProductDetail() {
 
         const relatedProductRequest = basicGetRequets("/product/product_list", { type_filter: "related", artist_code: searchParam.get("artist_code") });
         const userRatingRequest = basicGetRequets("/product/product_review", { product_code: searchParam.get("product_code") });
-        const result = combineMultipleRequests([productDetailRequest, relatedProductRequest, userRatingRequest])
+        combineMultipleRequests([productDetailRequest, relatedProductRequest, userRatingRequest])
             .then((responses) => {
                 var related_product = responses[1].data;
                 if (related_product === null) {

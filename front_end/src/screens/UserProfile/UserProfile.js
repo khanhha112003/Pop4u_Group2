@@ -21,6 +21,7 @@ const UserProfile = () => {
 			basicGetRequets('/auth/user_profile')
 				.then((response) => {
 					// setUserData(response.data);
+					setUserData({})
 				}
 				).catch((error) => {
 					// if (error.response.status === 401) {
