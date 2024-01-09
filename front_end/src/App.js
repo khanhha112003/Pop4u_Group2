@@ -37,7 +37,7 @@ import { AdminLayout } from "./ProtectingRoute/AdminLayout";
 import { ProtectedLayout } from "./ProtectingRoute/ProtectedLayout";
 import { NormalLayout } from "./ProtectingRoute/NormalLayout";
 import { GuestLayout } from './ProtectingRoute/GuestLayout';
-
+import NotFoundPage from './screens/Error/NotFoundError';
 
 function App() {
 	return (
@@ -45,6 +45,7 @@ function App() {
 			<Route path="/account" element={<GuestLayout />}>
 				<Route path="signup" element={<SignUp />} />
 				<Route path="signin" element={<SignIn />} />
+				<Route path='*' exact={true} component={<NotFoundPage/>} />
 			</Route>
 			<Route  element={<NormalLayout />}>
 				<Route path="/" element={<HomePage />} />
@@ -64,11 +65,12 @@ function App() {
 					<Route path="" element={<ProductList />} />
 				</Route>
 				<Route path="/artist_detail" element={<ProductArtist />} />
+				<Route path='*' exact={true} component={<NotFoundPage/>} />
+				<Route path="payment" element={<Payment />} />
 			</Route>
 			<Route path="/user" element={<ProtectedLayout />}>
 				<Route path="user_profile" element={<UserProfile />} />
 				<Route path="cart" element={<Cart />} />
-				<Route path="payment" element={<Payment />} />
 			</Route>
 			<Route path="/admin" element={<AdminLayout />}>
 				<Route path="add_product" element={<AddProduct />} />
@@ -78,6 +80,7 @@ function App() {
 				<Route path="customer_list" element={<CustomerManagementAdmin />} />
 				<Route path="artist_list" element={<ArtistAdmin />} />
 				<Route path="order_list" element={<OrderList />} />
+				<Route path='*' exact={true} component={<NotFoundPage/>} />
 			</Route>
 		</Routes>
 	);

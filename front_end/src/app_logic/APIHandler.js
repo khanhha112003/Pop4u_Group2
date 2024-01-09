@@ -2,22 +2,26 @@ import axios from "axios";
 import qs from "qs";
 export let BASE_URL = "http://localhost:8000/api";
 
-function getHeaders() {
-  return {
-    headers: {
-      "Content-Type": "application/json",
-    },
+function getHeaders(isCors) {
+  var headers = {
+    "Content-Type": "application/json",
   };
+
+  if (isCors) {
+    headers["Access-Control-Allow-Origin"] = "*";
+    headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS";
+  }
+  return { headers: headers };
 }
 
-export function basicGetRequets(url, urlParams) {
+export function basicGetRequets(url, urlParams, isCors = true) {
     let endpoint = BASE_URL + url;
     return axios.get(endpoint, {
         params: urlParams,
         paramsSerializer: params => {
           return qs.stringify(params)
         }
-        }, getHeaders()
+        }, getHeaders(isCors)
     );
 }
 
