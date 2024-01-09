@@ -22,6 +22,14 @@ class User(BaseModel):
     birthdate: str
     phone_number: str
     verified: bool = False
+    
+class PersonalInfo(BaseModel):
+    username: str
+    password: str
+    email: Optional[str] = None
+    fullname: str
+    birthdate: str
+    phone_number: str
 
 class Login(BaseModel):
     username: str

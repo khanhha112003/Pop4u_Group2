@@ -1,19 +1,11 @@
 import axios from "axios";
-import { getToken, saveToken } from "./Authenticate";
 import qs from "qs";
 export let BASE_URL = "http://localhost:8000/api";
 
 function getHeaders() {
-  const token = getToken();
-  if (!token) return {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
   return {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
   };
 }
@@ -26,6 +18,18 @@ export function basicGetRequets(url, urlParams) {
           return qs.stringify(params)
         }
         }, getHeaders()
+    );
+}
+
+export function loginPostRequest(url, username, password) {
+    let endpoint = BASE_URL + url;
+    return axios.post(
+      endpoint, 
+      {
+        username: username,
+        password: password
+      }, 
+      {headers: {'content-type': 'application/x-www-form-urlencoded'}}
     );
 }
 

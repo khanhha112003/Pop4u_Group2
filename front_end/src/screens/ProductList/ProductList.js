@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { basicGetRequets } from "../../app_logic/APIHandler.js";
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -43,6 +43,8 @@ function filterWithFilterInfo(items, filter_info = {}) {
                 return a_price - b_price;
             } else if (filter_info.descendingPrice) {
                 return b_price - a_price;
+            } else {  
+                return 0;
             }
         });
     }
