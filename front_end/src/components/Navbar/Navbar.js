@@ -11,8 +11,12 @@ import { ReactComponent as AccountIcon } from './icons/icon_account.svg';
 import { ReactComponent as SearchIcon } from './icons/icon_search.svg';
 import { ReactComponent as LoginIcon } from './icons/icon_login.svg';
 import './style.css'
+import { useAuth } from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 function CustomNavbar() {
+	const { user } = useAuth();
+	const navigate = useNavigate();
 	return (
 		<Navbar expand="xxl" style={{ backgroundColor: 'var(--bs-body-bg)', paddingTop: 0, paddingBottom: 0 }}>
 			<Container className="bg-body-tertiary" >
@@ -66,12 +70,12 @@ function CustomNavbar() {
 						</Form>
 
 						{
-							true ? (
+							(user !== null) ? (
 								<div className="ml-lg-4">
-									<Button href='/user/cart' variant="outline-success">
+									<Button onClick={() => navigate("/user/cart")} variant="outline-success">
 										<CartIcon />
 									</Button>
-									<Button href='/user/user_profile' variant="outline-success">
+									<Button  onClick={() => navigate("/user/user_profile")} variant="outline-success">
 										<AccountIcon />
 									</Button>
 								</div>

@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as EditIcon } from "./Icon_edit.svg"
 import './UserProfile.css';
 import { basicGetRequets, basicPostRequest } from '../../app_logic/APIHandler';
-
+import { useAuth } from '../../hooks/useAuth';
 const UserProfile = () => {
 	const navigate = useNavigate();
-	const [userData, setUserData] = useState({
+	const [profileData, setProfileData] = useState({
 		"username": "",
 		"email": "",
 		"fullname": "",
@@ -14,23 +14,10 @@ const UserProfile = () => {
 		"phone_number": "",
 	});
 
-	
+	const { user } = useAuth();
 
 	useEffect(() => {
-		if (true) {
-			basicGetRequets('/auth/user_profile')
-				.then((response) => {
-					// setUserData(response.data);
-					setUserData({})
-				}
-				).catch((error) => {
-					// if (error.response.status === 401) {
-					// 	setAuth(false);
-					// 	removeToken();
-					// 	navigate('/signin');
-					// }
-				});
-		}
+		
 	}, []);
 
 
@@ -83,7 +70,7 @@ const UserProfile = () => {
 							className='body-small sign-in-field'
 							type="fullName"
 							id="fullName"
-							value={userData.fullname} />
+							value={navigate.fullname} />
 					</div>
 				</div>
 			</div>
@@ -95,7 +82,7 @@ const UserProfile = () => {
 							className='body-small sign-in-field'
 							type="dob"
 							id="dob"
-							value={userData.birthdate} />
+							value={navigate.birthdate} />
 					</div>
 				</div>
 			</div>
@@ -107,7 +94,7 @@ const UserProfile = () => {
 							className='body-small sign-in-field'
 							type="email"
 							id="email"
-							value={userData.email} />
+							value={navigate.email} />
 					</div>
 				</div>
 			</div>
@@ -119,7 +106,7 @@ const UserProfile = () => {
 							className='body-small sign-in-field'
 							type="address"
 							id="address"
-							value={userData.phone_number} />
+							value={navigate.phone_number} />
 					</div>
 				</div>
 			</div>

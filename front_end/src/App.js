@@ -46,24 +46,24 @@ function App() {
 				<Route path="signup" element={<SignUp />} />
 				<Route path="signin" element={<SignIn />} />
 			</Route>
-			<Route path="/" element={<NormalLayout />}>
-				<Route exact path="/" element={<HomePage />} />
-				<Route path="about" element={<AboutUs />} />
-				<Route path="artists" element={<ArtistList />} />
-				<Route path="blog" element={<Blog />} />
-				<Route path="single-post/:postId" element={<SinglePost />} />
-				<Route path="product_detail" element={<ProductDetail />} />
-				<Route path="buy_policy" element={<BuyPolicy />} />
-				<Route path="ship_policy" element={<ShipPolicy />} />
-				<Route path="payment_policy" element={<PaymentPolicy />} />
-				<Route path="personal_data" element={<PersonalData />} />
-				<Route path="supplier" element={<Supplier />} />
-				<Route path="esg" element={<ESG />} />
-				<Route path="product_list">
+			<Route  element={<NormalLayout />}>
+				<Route path="/" element={<HomePage />} />
+				<Route path="/about" element={<AboutUs />} />
+				<Route path="/artists" element={<ArtistList />} />
+				<Route path="/blog" element={<Blog />} />
+				<Route path="/single-post/:postId" element={<SinglePost />} />
+				<Route path="/product_detail" element={<ProductDetail />} />
+				<Route path="/buy_policy" element={<BuyPolicy />} />
+				<Route path="/ship_policy" element={<ShipPolicy />} />
+				<Route path="/payment_policy" element={<PaymentPolicy />} />
+				<Route path="/personal_data" element={<PersonalData />} />
+				<Route path="/supplier" element={<Supplier />} />
+				<Route path="/esg" element={<ESG />} />
+				<Route path="/product_list">
 					<Route path=":sort" element={<ProductList />} />
 					<Route path="" element={<ProductList />} />
 				</Route>
-				<Route path="artist_detail" element={<ProductArtist />} />
+				<Route path="/artist_detail" element={<ProductArtist />} />
 			</Route>
 			<Route path="/user" element={<ProtectedLayout />}>
 				<Route path="user_profile" element={<UserProfile />} />

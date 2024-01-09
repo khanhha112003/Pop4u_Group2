@@ -5,6 +5,7 @@ import Footer from "../components/Footer/Footer";
 
 export const GuestLayout = () => {
   const { user } = useAuth();
+  console.log("---from guest layout---");
 
   if (user) {
     return <Navigate to="/" />;

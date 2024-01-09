@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import "react-bootstrap";
 import { ReactComponent as ArrowUp } from './images/arrow_outward.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./SignIn.css";
-import { loginPostRequest, } from '../../app_logic/APIHandler';
 import { CustomInputBox } from '../../components/CustomInputBox/CustomInputBox';
 import UsernameIcon from './images/icon_account.svg';
 import PasswordIcon from './images/password.svg';
+import { useAuth } from '../../hooks/useAuth';
 
 function SignIn() {
     const [userLoginContent, setUserLoginContent] = useState({});//[username, password] = userLoginContent;
     const [loginErrorMessage, setLoginErrorMessage] = useState('');
-    const navigate = useNavigate();
-
+    const { login } = useAuth();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -23,18 +22,7 @@ function SignIn() {
             setLoginErrorMessage('Vui lòng nhập thông tin đăng nhập.');
             return;
         }
-        loginPostRequest('/auth/login', userLoginContent.username, userLoginContent.password)
-            .then((response) => {
-                if (response.data.status === 1) {
-                   
-                    navigate('/');
-                } else {
-                    setLoginErrorMessage(response.data.message);
-                }
-            }
-            ).catch((error) => {
-                setLoginErrorMessage(error.message);
-            });
+        login({dataPass: userLoginContent, callback: setLoginErrorMessage});
     };
 
     return (
@@ -96,7 +84,7 @@ function SignIn() {
                         <div className='col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xs-12 mx-auto text-center'>
                             <div className='sign-in-support'>
                                 <p className='label-m'>
-                                    <a onClick={ console.log("forgot to implement") }>
+                                    <a onClick={() => console.log("forgot to implement") }>
                                         <span className=''>Bạn đã quên mật khẩu?</span>
                                         <ArrowUp></ArrowUp>
                                     </a>

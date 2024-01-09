@@ -5,7 +5,7 @@ import Footer from "../components/Footer/Footer";
 
 export const ProtectedLayout = () => {
   const { user } = useAuth();
-
+  console.log("---from protected layout---");
   if (!user) {
     return <Navigate to="/" />;
   }
