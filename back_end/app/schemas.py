@@ -85,7 +85,7 @@ class Artist(BaseModel):
 class CartItem(BaseModel):
     quantity: int
     image: str
-    _id: int
+    product_code: str
     product_name: str
     discount_price: float
     sell_price: float

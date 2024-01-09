@@ -1,6 +1,7 @@
 import './ProductDetail.css'
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 import 'react-bootstrap';
 import { Carousel } from 'react-bootstrap';
 import { ReactComponent as Arrow } from './icons/icon_arrow.svg';
@@ -12,12 +13,13 @@ import NotFoundPage from "../Error/NotFoundError";
 import LoadingPage from "../Loading/LoadingPage";
 import HomepageProductItem from "../../components/HomepageProductItem/HomepageProductItem";
 import HorizontalPagination from "../../components/HorizontalPagination/HorizontalPaginaton";
-
-import { basicGetRequets, basicPostRequest, combineMultipleRequests } from "../../app_logic/APIHandler";
+import { BASE_URL, basicGetRequets, basicPostRequest, combineMultipleRequests } from "../../app_logic/APIHandler";
+import axios from 'axios';
 
 function ProductDetail() {
     const [searchParam] = useSearchParams();
     const navigate = useNavigate();
+    const { user } = useAuth();
     const [content, setContent] = useState(
         {
             product_data: {
@@ -91,40 +93,116 @@ function ProductDetail() {
         setImageIndex(selectedIndex);
     };
 
-    const handleRatingChange = (newRating) => {
-        const newRatingData = { rating: newRating, num_of_rating: ratingData.num_of_rating + 1 };
-        const updateRatingRequest = basicPostRequest("/update_rating", { product_code: searchParam.get("product_code") , rating: newRatingData.rating, num_of_rating: newRatingData.num_of_rating });
-        updateRatingRequest.then((response) => {
-            setRatingData(response.data);
-        }).catch(error => {
-            if (error.response.status === 401) {
-                navigate("/signin");
+    const handleRatingChange = async (newRating) => {
+        if (user === null) {
+            navigate("/account/signin");
+            return;
+        }
+        if (newRating <= 0 || newRating > 5) {
+            return;
+        } 
+    
+        async function actionExecute() {
+            const token = 'Bearer ' + user.access_token;
+            try {
+                const req = await axios.get(BASE_URL + "/auth/user_profile",
+					{
+						headers: {
+							'content-type': 'application/json',
+							'Authorization': token
+						}
+					})
+				if (req.data) {
+				} else {
+				}
+            } catch (error) {
+                console.log("");
             }
-        });
+        }
+        // const newRatingData = { rating: newRating, num_of_rating: ratingData.num_of_rating + 1 };
+        // const updateRatingRequest = basicPostRequest("/update_rating", { product_code: searchParam.get("product_code") , rating: newRatingData.rating, num_of_rating: newRatingData.num_of_rating });
+        // updateRatingRequest.then((response) => {
+        //     setRatingData(response.data);
+        // }).catch(error => {
+        //     if (error.response.status === 401) {
+        //         navigate("/signin");
+        //     }
+        // });
+        await actionExecute();
     };
 
-    const handleBuyNowButton = (product_code, quantity) => {
-        const newCartRequest = basicPostRequest("/order/add_to_cart", { product_code: product_code, quantity: quantity });
-        newCartRequest.then((response) => {
-            if (response.data.status === "success") {
-                navigate("/cart");
+    const handleBuyNowButton = async (product_code, quantity) => {
+        if (user === null) {
+            navigate("/account/signin");
+            return;
+        }
+        async function actionExecute() {
+            const token = 'Bearer ' + user.access_token;
+            try {
+                const req = await axios.get(BASE_URL + "/auth/user_profile",
+					{
+						headers: {
+							'content-type': 'application/json',
+							'Authorization': token
+						}
+					})
+				if (req.data) {
+				} else {
+				}
+            } catch (error) {
+                console.log("");
             }
-        }).catch(error => {
-            if (error.response.status === 401) {
-                navigate("/signin");
-            }
-        });
+        }
+        // const newCartRequest = basicPostRequest("/order/add_to_cart", { product_code: product_code, quantity: quantity });
+        // newCartRequest.then((response) => {
+        //     if (response.data.status === "success") {
+        //         navigate("/cart");
+        //     }
+        // }).catch(error => {
+        //     if (error.response.status === 401) {
+        //         navigate("/signin");
+        //     }
+        // });
+        await actionExecute();
     };
 
-    const handleAddToCartButton = (product_code, quantity) => {
-        const newCartRequest = basicPostRequest("/order/add_to_cart", { product_code: product_code, quantity: quantity });
-        newCartRequest.then((response) => {
-            alert("Thêm vào giỏ hàng thành công");
-        }).catch(error => {
-            if (error.response.status === 401) {
-                navigate("/signin");
+    const handleAddToCartButton = async (product_code, quantity) => {
+        if (user === null) {
+            navigate("/account/signin");
+            return;
+        }
+        async function actionExecute() {
+            const token = 'Bearer ' + user.access_token;
+            try {
+                const req = await axios.post(BASE_URL + "/order/add_to_cart",
+                    {
+                        product_code: product_code,
+                        quantity: quantity
+                    },
+					{
+						headers: {
+							'content-type': 'application/json',
+							'Authorization': token
+						}
+					})
+				if (req.data) {
+                    alert("Thêm vào giỏ hàng thành công");
+				} else {
+                    alert("Thêm vào giỏ hàng thất bại");
+				}
+            } catch (error) {
+                console.log("");
             }
-        });
+        }
+        // const newCartRequest = basicPostRequest("/order/add_to_cart", { product_code: product_code, quantity: quantity });
+        // newCartRequest.then((response) => {
+        //     alert("Thêm vào giỏ hàng thành công");
+        // }).catch(error => {
+        //     if (error.response.status === 401) {
+        //         navigate("/signin");
+        //     }
+        // });
+        await actionExecute();
     };
 
     if (loading) {

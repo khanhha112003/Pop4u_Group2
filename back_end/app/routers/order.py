@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
+from pydantic import BaseModel
 from oauth2 import get_current_active_user
 from schemas import OrderForm, Cart
 from db.shopping import * 
@@ -14,12 +15,16 @@ def get_cart(usr = Depends(get_current_active_user)):
         if res:
             return cart
         raise HTTPException(status_code=404, detail="Cart not found")
-    
+
+class ProductBuyInfo(BaseModel):
+    product_code: str
+    quantity: int
+
 @router.post('/add_to_cart')
-def add_to_cart(product_code: str, quantity: int, usr = Depends(get_current_active_user)):
+def add_to_cart(productInfo: ProductBuyInfo, usr = Depends(get_current_active_user)):
     res = update_cart_by_username(usr.username, 
-                                    product_code,
-                                    quantity)
+                                  productInfo.product_code,
+                                  productInfo.quantity)
     if res:
         return {"status":1}
     else:
