@@ -28,8 +28,8 @@
 .about-us-logo {
     display: flex;
     justify-content: center;  
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 24px;
+    padding-bottom: 18px;
 }
 
 .section-content-main {
@@ -37,6 +37,15 @@
     place-items: center;  
     grid-row-gap: -0.5em;
     row-gap: -0.5em;
+}
+
+.heading-about-us-left, .heading-about-us-center {
+    color: var(--color-surface-light);
+    transition: all 0.5s;
+}
+
+.heading-about-us-left:hover, .heading-about-us-center:hover {
+    letter-spacing: 4px;
 }
 
 .main-statement {
@@ -86,8 +95,8 @@
 .music-spectrum {
     width: 100%;
     display: flex; 
-    justify-content: center; /* Center the content horizontally */
-    align-items: center; /* Center the content vertically */
+    justify-content: center; 
+    align-items: center;
     text-align: center;
 }
 
@@ -227,14 +236,12 @@
 .statement-script-side {
     color: var(--color-primary-light);
     font-weight: var(--font-bold);
-    font-size: 40px;
     max-width: 80%;
 }
 
 .statement-script-center {
     color: var(--color-primary-light);
     font-weight: var(--font-bold);
-    font-size: 40px;
     max-width: 80%;
     text-align: center;
 }
@@ -252,11 +259,11 @@
     background-position: top;
 }
 
-.section-esg h5 {
+.section-esg .head6 {
     color: var(--color-primary-light);
 }
 
-.esg h4 {
+.esg .head4 {
     color: var(--color-surface-light);
 }
 
@@ -382,7 +389,7 @@
     width: 65%;
 }
 
-.review-content-text h5 {
+.review-content-text .head5 {
     margin-bottom: 24px;
     color: var(--color-primary-light);
 }

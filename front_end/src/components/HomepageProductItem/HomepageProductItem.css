@@ -12,7 +12,7 @@ img {
   width: 100%;
 }
 
-@import url(../../theme/theme.css);
+@import url('../../theme/theme.css');
 
 /* h4 {
   width: 100%;
@@ -89,6 +89,9 @@ img {
   height: 100px;
 }
 
-.product-item-card:hover {
-  /* transform: scale(1.06); */
+.product-item-card:hover > *,
+.product-item-card:hover > * > *,
+.product-item-card:hover > * > * > *, 
+.product-item-card:hover > * > * > * > *{
+  transition: all 0.3s;
 }

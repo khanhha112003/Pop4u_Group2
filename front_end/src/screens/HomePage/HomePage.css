@@ -267,7 +267,13 @@
   65% {
     transform: rotate(15deg) scale(1.1); 
   }
-  100% {
+  85% {
     transform: rotate(0deg) scale(1); 
+  }
+  90% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
