@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './VoucherList.css';
+import { useNavigate } from "react-router-dom";
+import { ReactComponent as SearchIcon } from "../Product/icon_productadmin_search.svg" 
+import { ReactComponent as EditIcon } from "../../UserProfile/Icon_edit.svg"
 
 const VoucherList = () => {
+  const navigate = useNavigate();
   const data = [
     {
       "_id": 1,
@@ -36,16 +40,30 @@ const VoucherList = () => {
 
   return (
     <div className="container margin">
-      <h2 className="text-center">Danh sách Voucher</h2>
-      <a href="/admin/add_voucher"><button className="input-button" type="submit">Tạo mới</button></a>
-      <div>
-      <label htmlFor="categoryFilter">Filter by Category:</label>
+       <h2 className="text-center" style={{color:'#3F5AA9', marginTop:'1%'}}>Danh sách Voucher</h2>
+       <hr></hr>
+      <a onClick={() => navigate("/admin/add_voucher")}><button className="add-button" type="submit">Tạo mới</button></a>
+      <div class="search-container margin">
+  <input 
+  class="search-input"
+        type="text"
+        placeholder="Nhập Mã giảm giá"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{color:'#3F5AA9'}}
+      />
+        <button class="search-button">
+  <SearchIcon class="search-icon fas fa-search text-danger"></SearchIcon>
+  </button>
+    </div>
+      <div className='margin'>
+      <label htmlFor="categoryFilter">Phân loại:</label>
       <select
         id="categoryFilter"
         onChange={(e) => setFilterCategory(e.target.value)}
         value={filterCategory}
       >
-        <option value="">All</option>
+        <option value="">Tất cả</option>
         {/* Tạo các option từ danh sách category duy nhất */}
         {[...new Set(data.map((voucher) => voucher.category))].map(
           (category, index) => (
@@ -56,14 +74,7 @@ const VoucherList = () => {
         )}
       </select>
       </div>
-        <div className="margin">
-      <input
-        type="text"
-        placeholder="Search by Mã giảm giá"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-    </div>
+
       {/* Bảng hiển thị danh sách sản phẩm */}
       <table>
         <thead>
@@ -72,6 +83,7 @@ const VoucherList = () => {
             <th>Mã giảm giá</th>
             <th>Loại giảm giá</th>
             <th>Mô tả</th>
+            <th>Xem chi tiết</th>
           </tr>
         </thead>
         <tbody>
@@ -81,7 +93,7 @@ const VoucherList = () => {
               <td>{voucher.voucher_code}</td>
               <td>{voucher.category}</td>
               <td>{voucher.description}</td>
-  
+              <td className="text-center"><a onClick={() => navigate("/admin/voucher_detail")} style={{cursor: "pointer"}}><EditIcon></EditIcon></a></td>
             </tr>
           ))}
         </tbody>

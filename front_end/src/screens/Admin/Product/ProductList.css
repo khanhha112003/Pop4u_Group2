@@ -2,27 +2,88 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #ddd;
+    border: 1px solid #3F5AA9;
+    text-align: center;
   }
   
   /* Style cho header của bảng */
   th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+    border: 1px solid #3F5AA9;
+    padding: 1px;
+    text-align: center;
+    color:#3F5AA9
   }
   
   /* Style cho các dòng trong bảng */
   td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+    border: 1px solid #3F5AA9;
+    padding: 1px;
+    text-align: center;
   }
   
   /* Style cho hàng chẵn */
   tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: none;
   }
 .margin{
   margin:20px;
 }  
+.add-button {
+  border: 0.1em solid var(--color-surface-tint-light);
+  border-radius: 5em;
+  outline: none;
+  transition: box-shadow 0.3s;
+  height: 3em; 
+  box-sizing: border-box; 
+  color: var(--color-on-primary-light);
+  background-color: var(--color-primary-light);
+  width: 100px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  transition: background 0.5s ease-in-out;
+  float:right
+}
+
+
+/* Styles for the search container */
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  border: 1px solid #3F5AA9;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+/* Styles for the search input */
+.search-input {
+  flex: 1;
+  border:none;
+  outline: none;
+  padding: 10px;
+  border-radius: 30px;
+  font-size: 16px;
+}
+
+/* Styles for the search button */
+.search-button {
+  background-color:  #DDE1F9;
+  color: #3F5AA9;
+  border: 1px solid #3F5AA9;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+/* Icon styles */
+.fa-search {
+  font-size: 18px;
+}
+
+/* Hover effect for the search button */
+.search-button:hover {
+  background-color: #B4C5FF;
+
+}
+
