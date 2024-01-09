@@ -2,33 +2,54 @@ from typing import Optional
 from database import db
 from schemas import Cart, Order, Product, CartItem
 from db.products import get_product_detail_by_code
-from serializer.product_serializer import productSerializer
+from serializer.product_serializer import productSerializer, cartItemSerializer
+
+
+def create_cart(username: str):
+    collection = db['Carts']
+    cart = Cart(username=username,
+                total_price=0,
+                products=[])
+    result = collection.insert_one(cart.__dict__)
+    if result:
+        return cart
+    return None
 
 def update_cart_by_username(username:str, 
                    product_code:str, 
                    quantity:int):
     collection = db['Carts']
     product = productSerializer(get_product_detail_by_code(product_code))
-    item = CartItem(product_code=product_code,
-                    quantity=quantity,
+    item = CartItem(quantity=quantity,
+                    image=product.list_product_image[0],
+                    _id=product._id,
+                    product_name=product.product_name,
                     discount_price=product.discount_price,
                     sell_price=product.sell_price)
     existing_user_cart = collection.find_one({"username": username})
     if existing_user_cart:
-        if len(existing_user_cart['products']) == 0:
-            existing_user_cart['products'].append(item.__dict__)
+        if len(existing_user_cart['products']) != 0:
+            list_product = []
+            for i in existing_user_cart['products']:
+                list_product.append(cartItemSerializer(i))
+            if item._id not in [i._id for i in list_product]:
+                existing_user_cart['products'].append(item.__dict__)
+            else:
+                for i in range(len(existing_user_cart['products'])):
+                    if existing_user_cart['products'][i]['product_code'] == product_code:
+                        existing_user_cart['products'][i]['quantity'] += quantity
+                        break
+            new_cart = calculate_total_price(existing_user_cart)
+            result = collection.update_one({"username": username}, {"$set": new_cart})
+            return result
         else:
-            for i in range(len(existing_user_cart['products'])):
-                if existing_user_cart['products'][i]['product_code'] == product_code:
-                    existing_user_cart['products'][i]['quantity'] += quantity
-                    break
-        existing_user_cart = calculate_total_price(existing_user_cart)
-        result = collection.update_one({"username": username}, {"$set": existing_user_cart})
+            existing_user_cart["products"] = [item.__dict__]
+            existing_user_cart = calculate_total_price(existing_user_cart)
+            result = collection.update_one({"username": username}, {"$set": existing_user_cart})
     else:
         cart = Cart(username=username,
-                    date="",
                     total_price=0,
-                    products=[item.__dict__])
+                    products=[item])
         cart_dict = calculate_total_price(cart.__dict__)
         result = collection.insert_one(cart_dict)
     return result
@@ -72,6 +93,9 @@ def calculate_total_price(cart: dict):
     cart['total_price'] = total_price
     return cart
 
+
+# ================== Order ==================
+
 def create_order(username: str, 
                 address: str,
                 payment_method: str,
@@ -98,4 +122,3 @@ def create_order(username: str,
         drop_user_cart(username)
         return result
     return None
-

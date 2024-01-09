@@ -84,15 +84,16 @@ class Artist(BaseModel):
 # Cart
 class CartItem(BaseModel):
     quantity: int
+    image: str
+    _id: int
+    product_name: str
     discount_price: float
     sell_price: float
-    product_code: str
 
 class Cart(BaseModel):
     username: str
-    date: str
     total_price: float
-    products: List[Product]
+    products: List[CartItem]
 
 # Order
 class Order(BaseModel):
