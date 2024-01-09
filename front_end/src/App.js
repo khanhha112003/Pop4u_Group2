@@ -36,11 +36,16 @@ import {
 import { AdminLayout } from "./ProtectingRoute/AdminLayout";
 import { ProtectedLayout } from "./ProtectingRoute/ProtectedLayout";
 import { NormalLayout } from "./ProtectingRoute/NormalLayout";
+import { GuestLayout } from './ProtectingRoute/GuestLayout';
 
 
 function App() {
 	return (
 		<Routes>
+			<Route path="/" element={<GuestLayout />}>
+				<Route path="signup" element={<SignUp />} />
+				<Route path="signin" element={<SignIn />} />
+			</Route>
 			<Route path="/" element={<NormalLayout />}>
 				<Route exact path="/" element={<HomePage />} />
 				<Route path="about" element={<AboutUs />} />
@@ -60,7 +65,6 @@ function App() {
 					<Route path="" element={<ProductList />} />
 				</Route>
 				<Route path="artist_detail" element={<ProductArtist />} />
-				<Route path="signin" element={<SignIn />} />
 			</Route>
 			<Route path="/user" element={<ProtectedLayout />}>
 				<Route path="user_profile" element={<UserProfile />} />
