@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './ProductList.css';
+import { useNavigate } from "react-router-dom";
+import { ReactComponent as SearchIcon } from "./icon_productadmin_search.svg"
+import { ReactComponent as EditIcon } from "../../UserProfile/Icon_edit.svg"
 
 const ProductListAdmin = () => {
+  const navigate = useNavigate();
   const data = [
     {
       "_id": {"$numberInt": "2"},
@@ -54,16 +58,30 @@ const ProductListAdmin = () => {
 
   return (
     <div className="container margin">
-      <h2 className="text-center">Danh sách sản phẩm</h2>
-      <a href="/admin/add_product"><button className="input-button" type="submit">Tạo mới</button></a>
-      <div>
-      <label htmlFor="categoryFilter">Filter by Category:</label>
+      <h2 className="text-center" style={{color:'#3F5AA9', marginTop:'1%'}}>Danh sách sản phẩm</h2>
+      <hr></hr>
+      <a onClick={() => navigate("/admin/add_product")}><button className="add-button " type="submit">Tạo mới</button></a>
+<div class="search-container margin">
+  <input 
+  class="search-input"
+  type="text"
+  placeholder="Nhập tên sản phẩm"
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+  style={{color:'#3F5AA9'}} />
+  <button class="search-button">
+  <SearchIcon class="search-icon fas fa-search text-danger"></SearchIcon>
+  </button>
+</div>
+
+      <div className='margin'>
+      <label htmlFor="categoryFilter">Danh mục sản phẩm: </label>
       <select
         id="categoryFilter"
         onChange={(e) => setFilterCategory(e.target.value)}
         value={filterCategory}
       >
-        <option value="">All</option>
+        <option value="">Tất cả</option>
         {/* Tạo các option từ danh sách category duy nhất */}
         {[...new Set(data.map((product) => product.category))].map(
           (category, index) => (
@@ -74,34 +92,28 @@ const ProductListAdmin = () => {
         )}
       </select>
       </div>
-        <div className="margin">
-      <input
-        type="text"
-        placeholder="Search by Product Name"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-    </div>
+
       {/* Bảng hiển thị danh sách sản phẩm */}
-      <table>
+      <table  >
         <thead>
-          <tr>
-            <th>Product Photo</th>
-            <th>Product Name</th>
-            <th>Product Code</th>
-            <th>Category</th>
-            <th>Discount Price</th>
-            <th>Stock</th>
+          <tr >
+            <th>Hình sản phẩm </th>
+            <th>Tên sản phẩm</th>
+            <th>Mã sản phẩm </th>
+            <th>Danh mục sản phẩm</th>
+            <th>Giá bán</th>
+            <th>Tồn kho</th>
+            <th>Xem chi tiết</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           {filteredProducts.map((product, index) => (
             <tr key={index}>
-              <td>
-                <img
+              <td className="text-center">
+                <img 
                   src={product.photo[0]}
                   alt={product.product_name}
-                  style={{ width: '50px', height: '50px' }}
+                  style={{ width: '50px', height: '50px'}}
                 />
               </td>
               <td>{product.product_name}</td>
@@ -109,6 +121,7 @@ const ProductListAdmin = () => {
               <td>{product.category}</td>
               <td>{product.discount_price.$numberInt}</td>
               <td>{product.stock.$numberInt}</td>
+              <td className="text-center"><a onClick={() => navigate("/admin/product_detail")} style={{cursor: "pointer"}}><EditIcon></EditIcon></a></td>
             </tr>
           ))}
         </tbody>
