@@ -40,7 +40,6 @@ function ProductArtist() {
                 if (responses[1].data.list_product.length > 0) {
                     list_product = responses[1].data.list_product;
                 }
-                console.log(responses[0].data.artist_avatar)
                 setContent({ artist_data: responses[0].data, related_product: list_product });
             }).catch(error => {
                 setIsError(true);

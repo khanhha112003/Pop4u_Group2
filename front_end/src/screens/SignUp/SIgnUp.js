@@ -51,7 +51,7 @@ function SignUp() {
 		signupRequest.then((response) => {
 			if (response.data.status === 1) {
 				setRegisterErrorMessage('');
-				navigate('/signin');
+				navigate('/account/signin');
 			} else {
 				setRegisterErrorMessage(response.data.message);
 			}
@@ -217,7 +217,7 @@ function SignUp() {
 								<p>
 									<span className='body-small'>Bạn đã có tài khoản tại Pop4u? </span>
 									<span className='label-m'>
-										<Link to="/signin">
+										<Link to="/account/signin">
 											<span className=''>Đăng nhập ngay bây giờ.</span>
 											<ArrowUp></ArrowUp>
 										</Link>

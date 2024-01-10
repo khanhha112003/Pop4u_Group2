@@ -1,5 +1,5 @@
 from typing import List
-from schemas import Product, ProductReview
+from schemas import Product, ProductReview, CartItem
 def listProductSerializer(listdict: list[dict]) -> List[Product]:
     for dict in listdict:
         dict.pop("_id", None)
@@ -10,3 +10,6 @@ def productSerializer(dict) -> Product:
 
 def productReviewSerializer(dict) -> ProductReview:
     return ProductReview(**dict)
+
+def cartItemSerializer(dict) -> CartItem:
+    return CartItem(**dict)
