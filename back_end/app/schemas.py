@@ -97,23 +97,23 @@ class Cart(BaseModel):
 
 # Order
 class Order(BaseModel):
-    username: str
+    username: Optional[str] = None
     order_date: str
     total_price: float
     status: str
     address: str
     phone: str
-    is_paid: bool
+    is_paid: bool = False
     is_buy_now: bool
     payment_method: str
-    products: List[dict] = []
+    order_product_info: List[dict] = []
     shipping_price: float
     coupoun_price: Optional[float] = None
 
 class OrderForm(BaseModel):
-    username: str
+    username: Optional[str] = None
     address: str
-    products: List[dict]= []
+    order_product_info: List[dict]= []
     phone: str 
     payment_method: str
     shipping_price: float

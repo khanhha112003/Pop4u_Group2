@@ -39,7 +39,13 @@ export function loginPostRequest(url, username, password) {
 
 export function basicPostRequest(url, data) {
     let endpoint = BASE_URL + url;
-    return axios.post(endpoint, data, getHeaders());
+    return axios.post(endpoint, data, getHeaders(true));
+}
+
+export function authPostRequest(url, data, token) {
+  let endpoint = BASE_URL + url;
+  var basicHeader = getHeaders(true);
+  return axios.post(endpoint, data, { headers:  {...basicHeader.headers, Authorization: token} });
 }
 
 export function basicPutRequest(url, data) {
