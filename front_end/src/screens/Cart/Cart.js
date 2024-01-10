@@ -164,12 +164,10 @@ function Cart() {
 					}
 				})
 			if (saveCartRequest.data) {
-				// setLogoutErrorMessage("");
 				console.log("----- create order success -----");
-				// setCartItems(getCartRequest.data.products);
+				setIsCartChange(false);
 			} else {
 				console.log("----- create order 200 nhung khong co data -----");
-				// setLogoutErrorMessage("Lỗi lấy thông tin tài khoản.");
 			}
 		} catch (error) {
 			console.log("----- create order request fail -----");
@@ -178,8 +176,11 @@ function Cart() {
 	}
 
 	const handleCreateOrder = () => {
+		if (isCartChange) {
+            alert('Vui lòng cập nhật thông tin đơn!');
+            return
+        }
 		const token = 'Bearer ' + user.access_token;
-		console.log(token);
 		var listProductToCreateOrder = cartItems.filter((item) => item.checked === true);
 		if (listProductToCreateOrder.length === 0) {
 			return;

@@ -45,7 +45,7 @@ export function basicPostRequest(url, data) {
 export function authPostRequest(url, data, token) {
   let endpoint = BASE_URL + url;
   var basicHeader = getHeaders(true);
-  return axios.post(endpoint, data, {...basicHeader, Authorization: token});
+  return axios.post(endpoint, data, { headers:  {...basicHeader.headers, Authorization: token} });
 }
 
 export function basicPutRequest(url, data) {
