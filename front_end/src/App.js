@@ -1,6 +1,6 @@
 import { AboutUs } from './screens/AboutUs/AboutUs';
 import { SignIn } from './screens/SignIn/SignIn';
-import { SignUp } from './screens/SignUp/SignUp';
+import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
 import { BuyPolicy } from './screens/Policy/BuyPolicy';
 import { ShipPolicy } from './screens/Policy/ShipPolicy';
@@ -12,6 +12,7 @@ import { UserProfile } from './screens/UserProfile/UserProfile'
 
 import { ProductListAdmin } from './screens/Admin/Product/ProductListAdmin'
 import { AddProduct } from './screens/Admin/Product/AddProduct';
+import { ProductDetailEdit } from './screens/Admin/Product/ProductDetail';
 import { AddVoucher } from './screens/Admin/Voucher/AddVoucher';
 import { VoucherList } from './screens/Admin/Voucher/VoucherList';
 import { CustomerManagementAdmin } from "./screens/Admin/Customer/CustomerList";
@@ -73,6 +74,7 @@ function App() {
 			<Route path="/admin" element={<AdminLayout />}>
 				<Route path="add_product" element={<AddProduct />} />
 				<Route path="product_list" element={<ProductListAdmin />} />
+				<Route path="product_detail" element={<ProductDetailEdit />} />
 				<Route path="add_voucher" element={<AddVoucher />} />
 				<Route path="voucher_list" element={<VoucherList />} />
 				<Route path="customer_list" element={<CustomerManagementAdmin />} />
