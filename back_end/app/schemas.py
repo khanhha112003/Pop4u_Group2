@@ -84,15 +84,16 @@ class Artist(BaseModel):
 # Cart
 class CartItem(BaseModel):
     quantity: int
+    image: str
+    product_code: str
+    product_name: str
     discount_price: float
     sell_price: float
-    product_code: str
 
 class Cart(BaseModel):
     username: str
-    date: str
     total_price: float
-    products: List[Product]
+    products: List[CartItem]
 
 # Order
 class Order(BaseModel):
@@ -102,16 +103,26 @@ class Order(BaseModel):
     status: str
     address: str
     phone: str
+    is_paid: bool
+    is_buy_now: bool
     payment_method: str
-    products: List[Product]
+    products: List[dict] = []
     shipping_price: float
+    coupoun_price: Optional[float] = None
 
 class OrderForm(BaseModel):
     username: str
     address: str
-    phone: Optional[str] = None
+    products: List[dict]= []
+    phone: str 
     payment_method: str
     shipping_price: float
+    total_price: float
+    email: Optional[str] = None
+    status: str = "Pending"
+    is_paid: bool = False
+    is_buy_now: bool = False
+    coupoun_price: Optional[float] = None
 
 # Shipping
 class PaymentMethod(BaseModel):

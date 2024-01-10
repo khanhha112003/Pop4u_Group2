@@ -137,3 +137,8 @@ def get_product_review(product_code: str, username: str):
         return None
     else:
         return product["reviews"]
+
+def get_list_product_by_list_code(list_product_code: list):
+    collection = db['Products']
+    list_product = collection.find({"product_code": {"$in": list_product_code}})
+    return list(list_product)
