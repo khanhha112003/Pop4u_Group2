@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./SignUp.css"
 import { ReactComponent as ArrowUp } from './images/arrow_outward.svg';
 import { ReactComponent as HandShake } from './images/handshake.svg';
+import UsernameIcon from './images/icon_account.svg';
 import NameFieldIcon from './images/motion_photos_auto.svg';
 import PhoneIcon from './images/phone.svg';
 import EmailIcon from './images/alternate_email.svg';
@@ -52,7 +53,6 @@ function SignUp() {
 				setRegisterErrorMessage('');
 				navigate('/signin');
 			} else {
-				console.log(response.data);
 				setRegisterErrorMessage(response.data.message);
 			}
 		}).catch((error) => {
@@ -67,7 +67,7 @@ function SignUp() {
 					<div className='col-sm-12 col-md-12 col-lg-12 col-xl-12 col-12'>
 						<div className='sign-in-title'>
 							<h5 className='head5'>Tạo tài khoản tại Pop4u</h5>
-							<p className='body-small'>Bạn chỉ có thể mua hàng khi có tài khoản tại Pop4u.</p>
+							<p className='body-small'>Đồng hành cùng Pop4u trong chặng đường sắp tới.</p>
 						</div>
 					</div>
 				</div>
@@ -80,7 +80,7 @@ function SignUp() {
 							},
 							placeholder: 'Tên đăng nhập',
 							isRequired: true,
-							icon: NameFieldIcon
+							icon: UsernameIcon
 						}}
 						onSuccess={(value) => { setUserRegisterContent({ ...userRegisterContent, username: value }) }}
 						checkErrorMessage={(value) => {
@@ -165,7 +165,7 @@ function SignUp() {
 						onSuccess={(value) => { setUserRegisterContent({ ...userRegisterContent, password: value }) }}
 						checkErrorMessage={(value) => {
 							if (value === '') {
-								return 'Xin vui lòng nhập tên đăng nhập';
+								return 'Xin vui lòng nhập mật khẩu';
 							}
 							return '';
 						}}
@@ -197,7 +197,7 @@ function SignUp() {
 								<HandShake className="hand-shake-icon"></HandShake>
 								<p className='body-min'>Nếu bạn nhấn Tạo tài khoản, bạn đã đồng ý với các điều khoản và dịch vụ của Pop4u về quản lý tài khoản, thông tin cá nhân, thông tin giao dịch và chính sách quảng cáo.</p>
 								<span className='label-m'>
-									<a href='#'>
+									<a onClick={() => navigate('/personal_data')}>
 										<span className=''>Tìm hiểu thêm.</span>
 										<ArrowUp></ArrowUp>
 									</a>

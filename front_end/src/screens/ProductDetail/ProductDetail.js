@@ -49,7 +49,7 @@ function ProductDetail() {
 
         const relatedProductRequest = basicGetRequets("/product/product_list", { type_filter: "related", artist_code: searchParam.get("artist_code") });
         const userRatingRequest = basicGetRequets("/product/product_review", { product_code: searchParam.get("product_code") });
-        const result = combineMultipleRequests([productDetailRequest, relatedProductRequest, userRatingRequest])
+        combineMultipleRequests([productDetailRequest, relatedProductRequest, userRatingRequest])
             .then((responses) => {
                 var related_product = responses[1].data;
                 if (related_product === null) {
@@ -97,7 +97,6 @@ function ProductDetail() {
         updateRatingRequest.then((response) => {
             setRatingData(response.data);
         }).catch(error => {
-            console.log(error);
             if (error.response.status === 401) {
                 navigate("/signin");
             }
@@ -111,7 +110,6 @@ function ProductDetail() {
                 navigate("/cart");
             }
         }).catch(error => {
-            console.log(error);
             if (error.response.status === 401) {
                 navigate("/signin");
             }
@@ -123,7 +121,6 @@ function ProductDetail() {
         newCartRequest.then((response) => {
             alert("Thêm vào giỏ hàng thành công");
         }).catch(error => {
-            console.log(error);
             if (error.response.status === 401) {
                 navigate("/signin");
             }
