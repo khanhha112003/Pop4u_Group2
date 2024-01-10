@@ -1,13 +1,15 @@
 from typing import List
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
-from oauth2 import get_current_active_user
+from oauth2 import get_current_user, get_current_active_user
 from schemas import OrderForm, Cart
 from db.shopping import * 
 
 router = APIRouter()
 @router.get('/cart', response_model=Cart)
 def get_cart(usr = Depends(get_current_active_user)):
+    if usr is None or usr == HTTPException:
+        raise HTTPException(status_code=401, detail="Unauthorized")
     cart = get_cart_by_username(usr.username)
     if cart:
         return cart
@@ -20,22 +22,13 @@ def get_cart(usr = Depends(get_current_active_user)):
 class ProductBuyInfo(BaseModel):
     product_code: str
     quantity: int
-
+    
 @router.post('/add_to_cart')
-def add_to_cart(productInfo: ProductBuyInfo, usr = Depends(get_current_active_user)):
-    res = update_cart_by_username(usr.username, 
-                                  productInfo.product_code,
-                                  productInfo.quantity)
+def update_cart(info: ProductBuyInfo, usr = Depends(get_current_active_user)):
+    print(usr)
+    res = update_cart_by_username(usr.username, info.product_code, info.quantity)
     if res:
         return {"status":1}
-    else:
-        raise HTTPException(status_code=404, detail="Cart not found")
-
-@router.get('/buy_now')
-def buy_now(product_code: str, quantity: int, usr = Depends(get_current_active_user)):
-    res = create_order_buy_now(usr.username, product_code, quantity)
-    if res:
-        return {"res":"created"}
     else:
         raise HTTPException(status_code=404, detail="Cart not found")
 
@@ -52,34 +45,42 @@ def update_cart(productInfo: List[ProductBuyInfo], usr = Depends(get_current_act
         return {"status":1}
     else:
         raise HTTPException(status_code=404, detail="Cart not found")
-        
-# @router.post('/update_cart')
-# def update_cart(product_name: str, quantity: int, usr = Depends(get_current_active_user)):
-#     res = update_cart_by_username(usr.username, 
-#                                     product_name,
-#                                     quantity)
-#     if res:
-#         return {"res":"updated"}
-#     else:
-#         raise HTTPException(status_code=404, detail="Cart not found")
-    
-# @router.delete('/delete_item_in_cart')
-# def delete_item_in_cart(product_name: str, quantity: int, usr = Depends(get_current_active_user)):
-#     res = delete_item_from_cart(usr.username, product_name, quantity)
-#     if res:
-#         return {"res":"deleted"}
-#     else:
-#         raise HTTPException(status_code=404, detail="Cart not found")
 
-# @router.delete('/delete_all_item_in_cart')
-# def delete_all_item_in_cart(usr = Depends(get_current_active_user)):
-#     res = drop_user_cart(usr.username)
-#     if res:
-#         return {"res":"deleted"}
-#     else:
-#         raise HTTPException(status_code=404, detail="Cart not found")
-    
+@router.post('/create_order')
+def create_order(form: OrderForm, usr = Depends(get_current_active_user)):
+    if usr is None or usr == HTTPException:
+        res = create_order(form)
+        if res:
+            return {"status": 1}
+        else :
+            raise HTTPException(status_code=404, detail="Request not success")
+    else:
+        res = create_order(form, usr)
+        if res:
+            list_product = form.products
+            list_convert = []
+            for i in list_product:
+                product_buy_info = ProductBuyInfo(**i)
+                product_buy_info.quantity = 0
+                list_convert.append(product_buy_info.__dict__)
+            res = update_cart_with_multiple_product_id_and_quantity(usr.username, list_convert)
+            if res:
+                return {"status": 1}
+        else :
+            raise HTTPException(status_code=404, detail="Request not success")
+
+        
 # @router.post('/checkout')
+# def checkout(form: OrderForm, usr = Depends(get_current_active_user)):
+#     res = create_order(usr.username,
+#                        form.address,
+#                        form.phone,
+#                        form.payment_method,
+#                        form.shipping_price,) 
+#     if res:
+#         return {"res":"created"}
+#     else:
+#         raise HTTPException(status_code=404, detail="Cart not found")# @router.post('/checkout')
 # def checkout(form: OrderForm, usr = Depends(get_current_active_user)):
 #     res = create_order(usr.username,
 #                        form.address,

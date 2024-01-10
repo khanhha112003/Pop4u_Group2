@@ -1,6 +1,6 @@
 from typing import Optional
 from database import db
-from schemas import Cart, Order, Product, CartItem
+from schemas import Cart, Order, CartItem, OrderForm
 from db.products import get_product_detail_by_code
 from serializer.product_serializer import productSerializer, cartItemSerializer
 
@@ -60,16 +60,20 @@ def update_cart_with_multiple_product_id_and_quantity(username:str, list_data: l
     if not existing_user_cart or len(existing_user_cart['products']) < len(list_data):
         return False
     else:
-        list_product_in_cart = existing_user_cart['products']
+        list_product_in_cart: list = existing_user_cart['products']
         for i in list_data:
             if i['product_code'] not in [j['product_code'] for j in list_product_in_cart]:
                 return False
         for i in range(len(list_product_in_cart)):
             for j in list_data:
                 if list_product_in_cart[i]['product_code'] == j['product_code']:
-                    list_product_in_cart[i]['quantity'] += j['quantity']    
-                    if list_product_in_cart[i]['quantity'] <= 0:
-                        return False
+                    if j['quantity'] > 0:
+                        list_product_in_cart[i]['quantity'] = j['quantity']    
+                        if list_product_in_cart[i]['quantity'] <= 0:
+                            return False
+                    else:
+                        list_product_in_cart.pop(i)
+                        i -= 1
         existing_user_cart['products'] = list_product_in_cart
         existing_user_cart = calculate_total_price(existing_user_cart)
         result = collection.update_one({"username": username}, {"$set": existing_user_cart})
@@ -83,10 +87,21 @@ def get_cart_by_username(username: str):
     return cart
 
 
-def create_order_buy_now(username: str, order: Order):
+def create_order(order: OrderForm):
+    import datetime
     collection = db['Orders']
-    collection.insert_one(order.__dict__)
-    
+    newOrder = Order(username=order.username,
+                     order_date= datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+                     total_price=order.total_price,
+                     products=order.products,
+                     status="pending",
+                     address=order.address,
+                     payment_method=order.payment_method,
+                     phone=order.phone,
+                     shipping_price=order.shipping_price)
+    result = collection.insert_one(newOrder.__dict__)
+    if result:
+        return result
     return None
 
 

@@ -135,7 +135,7 @@ function ProductDetail() {
     };
 
     const handleBuyNowButton = async (product, quantity) => {
-        navigate("/payment", { state: [{ product: product, quantity: quantity }] });
+        navigate("/payment", { state: [{ product: {...product, image: product.list_product_image[0]}, quantity: quantity }] });
     };
 
     const handleAddToCartButton = async (product_code, quantity) => {
@@ -148,13 +148,15 @@ function ProductDetail() {
             try {
                 const req = await axios.post(BASE_URL + "/order/add_to_cart",
                     {
-                        product_code: product_code,
-                        quantity: quantity
+                            product_code: product_code,
+                            quantity: quantity
                     },
 					{
 						headers: {
 							'content-type': 'application/json',
-							'Authorization': token
+                            'Authorization': token,
+                            "Access-Control-Allow-Origin": "*",
+                            "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE, OPTIONS"
 						}
 					})
 				if (req.data) {

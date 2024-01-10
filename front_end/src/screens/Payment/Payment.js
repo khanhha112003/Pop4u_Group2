@@ -6,9 +6,7 @@ import { ReactComponent as Back } from '../../theme/images/back.svg'
 import { ReactComponent as CreditCard } from '../../theme/images/credit_card.svg'
 import { ReactComponent as COD } from '../../theme/images/local_shipping.svg'
 import { ReactComponent as Momo } from '../../theme/images/momo_square_pinkbg.svg'
-import { basicGetRequets } from '../../app_logic/APIHandler';
 import { useAuth } from '../../hooks/useAuth';
-import AnhSanPham from '../../theme/images/Blackpink-The_Album.png'
 
 const lowestPrice = (product) => {
     if (product.discount_price === 0) {
@@ -21,7 +19,7 @@ function PaymentItem({ product, quantity }) {
     return (
         <div className='payment-product'>
             <div className='product-pic'>
-                <img src={product.list_product_image[0]} alt='' />
+                <img src={product.image} alt='' />
             </div>
             <div className='product-des'>
                 <p className='body-medium'>{product.product_name}</p>
@@ -78,16 +76,18 @@ export function Payment() {
     return (
         <div>
             <div className='container'>
-                <div className='row'>
-                    <div className='col-xs-12 col-sm-12 col-md-12 col-xl-12 col-lg-12'>
-                        <div className='button-back'>
-                            <a href='/cart'>
-                                <Back className='icon-back'></Back>
-                                <span className='label-l'>Trở về Giỏ hàng</span>
-                            </a>
+                {user &&
+                    <div className='row'>
+                        <div className='col-xs-12 col-sm-12 col-md-12 col-xl-12 col-lg-12'>
+                            <div className='button-back'>
+                                <a onClick={() => { navigate('/user/cart') }}>
+                                    <Back className='icon-back'></Back>
+                                    <span className='label-l'>Trở về Giỏ hàng</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
                 <div className='row'>
                     <div className='col-xs-12 col-sm-12 col-md-12 col-xl-12 col-lg-12'>
                         <div className='payment-title'>
@@ -229,31 +229,14 @@ export function Payment() {
                                 </div>
                                 {
                                     listProduct.map((item, index) => {
-                                        console.log(item);
                                         return (
-                                            <PaymentItem 
-                                                key={index} 
-                                                product={item.product} 
-                                                quantity={item.quantity}/>
+                                            <PaymentItem
+                                                key={index}
+                                                product={item.product}
+                                                quantity={item.quantity} />
                                         )
                                     })
                                 }
-                                {/* <div className='payment-product'>
-                                    <div className='product-pic'>
-                                        <img src={AnhSanPham} alt='' />
-                                    </div>
-                                    <div className='product-des'>
-                                        <p className='body-medium'>BLACKPINK - 1st FULL ALBUM [THE ALBUM]</p>
-                                        <p className='body-small'>Số lượng: x1 <span></span></p>
-                                        <p className='product-price'>
-                                            <span className='price'>500.000</span>
-                                            <span className='old-price'>550.000</span>
-                                        </p>
-                                    </div>
-                                    <div className='product-total'>
-                                        <p className='price'>500.000đ</p>
-                                    </div>
-                                </div> */}
                             </div>
                             <div className='total-amount'>
                                 <div className='total-price d-flex justify-content-between'>

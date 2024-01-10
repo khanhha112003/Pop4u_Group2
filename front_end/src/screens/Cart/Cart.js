@@ -10,6 +10,7 @@ import { ReactComponent as Remove } from './icons/icon_remove.svg';
 import { useAuth } from '../../hooks/useAuth';
 import { BASE_URL } from '../../app_logic/APIHandler';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function lowestPrice(product) {
 	if (product.discount_price === 0) {
@@ -19,23 +20,18 @@ function lowestPrice(product) {
 }
 
 function Cart() {
-	// const initialCart = [
-	//   { _id: 1, product_name: 'j-hope (BTS) "Jack In The Box" (HOPE Edition)', sell_price: 600000,  discount_price: 450000, quantity: 2, image: require('./icons/img_product.png') },
-	//   { _id: 2, product_name: 'BLACKPINK - 1st FULL ALBUM [THE ALBUM]',  sell_price: 600000, discount_price: 500000,  quantity: 1, image: require('./icons/Blackpink-The_Album.png') },
-	//   // Add more product details
-	// ];
-
 	const { user } = useAuth();
 	const [cartItems, setCartItems] = useState([]);
 	const [couponCode, setCouponCode] = useState('');
 	const [listProductToUpdateCart, setListProductToUpdateCart] = useState([]); // [{_id, quantity}
 	const [discountAmount, setDiscountAmount] = useState(0);
-	// const navigate = useNavigate();
-
+	const [isCartChange, setIsCartChange] = useState(false);
+	const navigate = useNavigate();
+	
 	useEffect(() => {
+		setIsCartChange(false);
 		async function getCart() {
 			const token = 'Bearer ' + user.access_token;
-			console.log(token);
 			try {
 				const getCartRequest = await axios.get(BASE_URL + "/order/cart",
 					{
@@ -73,6 +69,9 @@ function Cart() {
 		const updatedCart = cartItems.filter((item) => item.product_code !== product_code);
 		setListProductToUpdateCart([...listProductToUpdateCart, { product_code, quantity: updatedProduct.quantity }]);
 		setCartItems(updatedCart);
+		if (isCartChange === false) {
+			setIsCartChange(true);
+		}
 	};
 
 	const handleIncrease = (product_code) => {
@@ -80,6 +79,9 @@ function Cart() {
 			item.product_code === product_code ? { ...item, quantity: item.quantity + 1 } : item
 		);
 		setCartItems(updatedCart);
+		if (isCartChange === false) {
+			setIsCartChange(true);
+		}
 	};
 
 
@@ -88,6 +90,9 @@ function Cart() {
 			item.product_code === product_code && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
 		);
 		setCartItems(updatedCart);
+		if (isCartChange === false) {
+			setIsCartChange(true);
+		}
 	};
 	const [selectAll, setSelectAll] = useState(false);
 
@@ -113,6 +118,53 @@ function Cart() {
 		setCartItems(updatedCart);
 		setSelectAll(!selectAll);
 	};
+
+	const onSaveCart = () => {
+		const token = 'Bearer ' + user.access_token;
+		console.log(token);
+		try {
+			const saveCartRequest = axios.post(BASE_URL + "/order/update_cart",
+				{
+					listInfo: listProductToUpdateCart
+				},
+				{
+					headers: {
+						'content-type': 'application/json',
+						'Authorization': token,
+						"Access-Control-Allow-Origin": "*",
+    					"Access-Control-Allow-Methods":"GET, POST, PUT, DELETE, OPTIONS"
+					}
+				})
+			if (saveCartRequest.data) {
+				// setLogoutErrorMessage("");
+				console.log("----- create order success -----");
+				// setCartItems(getCartRequest.data.products);
+			} else {
+				console.log("----- create order 200 nhung khong co data -----");
+				// setLogoutErrorMessage("Lỗi lấy thông tin tài khoản.");
+			}
+		} catch (error) {
+			console.log("----- create order request fail -----");
+			// setLogoutErrorMessage(error.message);
+		}
+	}
+
+	const handleCreateOrder = () => {
+		const token = 'Bearer ' + user.access_token;
+		console.log(token);
+		var listProductToCreateOrder = cartItems.filter((item) => item.checked === true);
+		listProductToCreateOrder = listProductToCreateOrder.map((item) => ({ 
+			product: {
+				product_code: item.product_code,
+				product_name: item.product_name,
+				image: item.image,
+				sell_price: item.sell_price,
+				discount_price: item.discount_price,
+			}, 
+			quantity: item.quantity 
+		}));
+		navigate("/payment", { state: listProductToCreateOrder });
+	}
 
 	return (
 		<div className="container">
@@ -146,6 +198,15 @@ function Cart() {
 							</div>
 						))}
 					</div>
+					{ isCartChange &&
+					<div>
+						<button className='' style={{}} onClick={onSaveCart}>
+							<span className="label-m" style={{ color: 'var(--theme-typo-label-light, #FFF)' }}>
+								Lưu giỏ hàng
+							</span>
+						</button>
+					</div>
+					}
 				</div>
 				<div className="col-xs-12 col-sm-12 col-md-12 col-xl-5 col-lg-5">
 					<div className="section-frame-cart margin">
@@ -165,15 +226,12 @@ function Cart() {
 						</div>
 						<hr></hr>
 						<h5>Tạm tính: {totalPrice - discountAmount}</h5>
-						<a href="/payment"><button className='cart-button label-l' ><span className="label-l" style={{ color: 'var(--theme-typo-label-light, #FFF)' }}>Đặt hàng ngay</span></button></a>
-
-
-
-
-
+						<button className='cart-button label-l' onClick={handleCreateOrder}>
+							<span className="label-l" style={{ color: 'var(--theme-typo-label-light, #FFF)' }}>
+								Đặt hàng ngay
+							</span>
+						</button>
 						{/* Other elements related to payment */}
-
-
 					</div>
 				</div>
 			</div>
