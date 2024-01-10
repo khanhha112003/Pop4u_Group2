@@ -153,6 +153,9 @@ function Cart() {
 		const token = 'Bearer ' + user.access_token;
 		console.log(token);
 		var listProductToCreateOrder = cartItems.filter((item) => item.checked === true);
+		if (listProductToCreateOrder.length === 0) {
+			return;
+		}
 		listProductToCreateOrder = listProductToCreateOrder.map((item) => ({ 
 			product: {
 				product_code: item.product_code,
