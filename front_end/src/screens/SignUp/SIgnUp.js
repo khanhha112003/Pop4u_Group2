@@ -155,7 +155,7 @@ function SignUp() {
 						data={{
 							regex: {
 								checker: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/,
-								message: 'Mật khẩu cần chứa ít nhất 8 ký tự, có ít nhất 1 chữ cái in hoa, 1 chữ cái thường và 1 số.'
+								message: 'Mật khẩu cần chứa ít nhất 8 ký tự, có ít nhất 1 chữ cái in hoa, 1 chữ cái thường, 1 ký tự đặc biệt và 1 số.'
 							},
 							placeholder: "Mật khẩu",
 							isRequired: true,
