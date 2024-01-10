@@ -104,7 +104,6 @@ def create_order(order: OrderForm):
         return result
     return None
 
-
 def delete_item_from_cart(username: str, product_code: str, quantity: int):
     collection = db['Carts']
     cart = collection.find_one({"username": username})

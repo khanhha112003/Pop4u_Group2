@@ -97,7 +97,7 @@ class Cart(BaseModel):
 
 # Order
 class Order(BaseModel):
-    username: str
+    username: Optional[str] = None
     order_date: str
     total_price: float
     status: str
@@ -111,7 +111,7 @@ class Order(BaseModel):
     coupoun_price: Optional[float] = None
 
 class OrderForm(BaseModel):
-    username: str
+    username: Optional[str] = None
     address: str
     products: List[dict]= []
     phone: str 

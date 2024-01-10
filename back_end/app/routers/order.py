@@ -1,7 +1,7 @@
 from typing import List
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Body, Depends, HTTPException, Query
 from pydantic import BaseModel
-from oauth2 import get_current_user, get_current_active_user
+from oauth2 import get_current_active_user, get_current_user
 from schemas import OrderForm, Cart
 from db.shopping import * 
 
@@ -33,12 +33,14 @@ def update_cart(info: ProductBuyInfo, usr = Depends(get_current_active_user)):
         raise HTTPException(status_code=404, detail="Cart not found")
 
 @router.post('/update_cart')
-def update_cart(productInfo: List[ProductBuyInfo], usr = Depends(get_current_active_user)):
-    temp_list = {}
-    for i in productInfo:
+def update_cart(productInfo: dict = Body(...), usr = Depends(get_current_active_user)):
+    if usr is None or usr == HTTPException:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    temp_list = []
+    for i in productInfo["list_info"]:
         temp_dict = {}
-        temp_dict["product_code"] = i.product_code
-        temp_dict["quantity"] = i.quantity
+        temp_dict["product_code"] = i["product_code"]
+        temp_dict["quantity"] = i["quantity"]
         temp_list.append(temp_dict)
     res = update_cart_with_multiple_product_id_and_quantity(usr.username, temp_list)
     if res:
@@ -70,24 +72,16 @@ def create_order(form: OrderForm, usr = Depends(get_current_active_user)):
             raise HTTPException(status_code=404, detail="Request not success")
 
         
-# @router.post('/checkout')
-# def checkout(form: OrderForm, usr = Depends(get_current_active_user)):
-#     res = create_order(usr.username,
-#                        form.address,
-#                        form.phone,
-#                        form.payment_method,
-#                        form.shipping_price,) 
-#     if res:
-#         return {"res":"created"}
-#     else:
-#         raise HTTPException(status_code=404, detail="Cart not found")# @router.post('/checkout')
-# def checkout(form: OrderForm, usr = Depends(get_current_active_user)):
-#     res = create_order(usr.username,
-#                        form.address,
-#                        form.phone,
-#                        form.payment_method,
-#                        form.shipping_price,) 
-#     if res:
-#         return {"res":"created"}
-#     else:
-#         raise HTTPException(status_code=404, detail="Cart not found")
+# admin function
+@router.get('/orders')
+def get_orders(usr = Depends(get_current_user)):
+    return {"status": 1}
+    # res = get_all_order()
+    # if res:
+    #     return res
+    # else:
+    #     raise HTTPException(status_code=404, detail="Request not success")
+    
+
+    
+    
