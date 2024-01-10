@@ -5,8 +5,8 @@ import SidebarAdmin from "../components/SidebarAdmin/SidebarAdmin";
 import HeaderAdmin from "../components/HeaderAdmin/HeaderAdmin";
 export const AdminLayout = () => {
   const { user } = useAuth();
-
-  if (!user) {
+  console.log("---from admin layout---");
+  if (!user || user.role !== "admin") {
     return <Navigate to="/" />;
   }
 
