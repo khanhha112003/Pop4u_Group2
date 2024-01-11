@@ -81,7 +81,10 @@ function App() {
 				<Route path="voucher_list" element={<VoucherList />} />
 				<Route path="customer_list" element={<CustomerManagementAdmin />} />
 				<Route path="artist_list" element={<ArtistAdmin />} />
+				<Route path='artist_detail' element={<ArtistDetailAdmin />} />
+				<Route path='artist_add' element={<AddArtistAdmin />} />
 				<Route path="order_list" element={<OrderList />} />
+				{/* <Route path="order_detail/:orderId" element={<OrderDetail />} /> */}
 				<Route path='*' exact={true} component={<NotFoundPage/>} />
 			</Route>
 		</Routes>

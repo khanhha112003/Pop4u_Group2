@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './CustomerList.css';
-import { ReactComponent as SearchIcon } from "../Product/icon_productadmin_search.svg" 
-import { ReactComponent as EditIcon } from "../../UserProfile/Icon_edit.svg"
+import { ReactComponent as SearchIcon } from "../Customer/search.svg"
+import { ReactComponent as EditIcon } from "../Customer/Icon_edit.svg"
 import { useNavigate } from "react-router-dom";
 
 function CustomerManagementAdmin () {
@@ -135,7 +135,7 @@ function CustomerManagementAdmin () {
           {filteredCustomers.map((customer, index) => (
             <tr key={index}>
               <td>
-                <b className="name">{customer.name}</b>
+                <b className="name"  onClick={() => navigate("/admin/customer_detail")} style={{cursor: "pointer"}}>{customer.name}</b>
                 <br/>
                 id: {customer._id}
               </td>

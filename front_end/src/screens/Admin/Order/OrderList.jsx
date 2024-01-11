@@ -8,7 +8,7 @@ import axios from 'axios';
 import { BASE_URL } from '../../../app_logic/APIHandler';
 import { useAuth } from '../../../hooks/useAuth';
 import LoadingPage from '../../Loading/LoadingPage';
-const OrderList = () => {
+export const OrderList = () => {
 	const navigate = useNavigate();
 	const [data, setData] = useState([]);
 	const [searchTerm, setSearchTerm] = useState('');
@@ -106,7 +106,6 @@ const OrderList = () => {
 					<option value="In-transit">In-transit</option>
 					<option value="In-prepare">In-prepare</option>
 					<option value="Done">Done</option>
-
 				</select>
 				{/* </div> */}
 			</div>
@@ -153,5 +152,3 @@ const OrderList = () => {
 		</div>
 	);
 };
-
-export { OrderList };
