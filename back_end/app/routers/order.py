@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from oauth2 import get_current_active_user, get_current_user, get_user_or_none
 from schemas import OrderForm, Cart
 from db.shopping import * 
+from db.orderAdmin import *
 
 router = APIRouter()
 @router.get('/cart', response_model=Cart)
@@ -48,16 +49,24 @@ def update_cart(productInfo: dict = Body(...), usr = Depends(get_current_active_
         raise HTTPException(status_code=404, detail="Cart not found")
 
 @router.post('/create_order')
-def make_order(form: OrderForm, usr = Depends(get_user_or_none)):
+def make_order(form: dict = Body(...), usr = Depends(get_user_or_none)):
+    order = OrderForm(  total_price=form["total_price"],
+                        address=form["address"],
+                        phone=form["phone_number"],
+                        is_buy_now=form["is_buy_now"],
+                        payment_method=form["payment_method"],
+                        order_product_info=form["order_product_info"],
+                        shipping_price=form["shipping_price"],
+                        coupon_code=form["coupon_code"])
     if usr is None or usr == HTTPException:
-        res = create_order(form)
+        res = create_order(order)
         if res:
             return {"status": 1}
         else :
             raise HTTPException(status_code=404, detail="Request not success")
     else:
-        res = create_order(form, usr.username)
-        print(res)
+        order.username = usr.username
+        res = create_order(order, usr.username)
         if res:
             return {"status": 1}
         else :
@@ -65,15 +74,27 @@ def make_order(form: OrderForm, usr = Depends(get_user_or_none)):
 
         
 # admin function
-@router.get('/orders')
+@router.get('/all_orders')
 def get_orders(usr = Depends(get_current_user)):
-    return {"status": 1}
-    # res = get_all_order()
-    # if res:
-    #     return res
-    # else:
-    #     raise HTTPException(status_code=404, detail="Request not success")
-    
+    if usr is None or usr == HTTPException:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    if usr['role']!= "admin":
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    res = get_all_order()
+    if res != None:
+        return res
+    else:
+        raise HTTPException(status_code=404, detail="Request not success")
 
     
-    
+@router.get('/order/{order_id}')
+def get_order(order_id: str, usr = Depends(get_current_user)):
+    if usr is None or usr == HTTPException:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    if usr['role']!= "admin":
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    res = get_order_by_id(order_id)
+    if res != None:
+        return res
+    else:
+        raise HTTPException(status_code=404, detail="Request not success")

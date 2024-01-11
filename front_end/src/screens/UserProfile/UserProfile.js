@@ -19,7 +19,6 @@ const UserProfile = () => {
 	useEffect(() => {
 		async function getProfile() {
 			const token = 'Bearer ' + user.access_token;
-			console.log(token);
 			try {
 				const getProfileRequest = await axios.get(BASE_URL + "/auth/user_profile",
 					{

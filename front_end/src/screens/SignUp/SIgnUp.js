@@ -14,7 +14,6 @@ import { basicPostRequest } from '../../app_logic/APIHandler';
 import { CustomInputBox } from '../../components/CustomInputBox/CustomInputBox';
 
 function validateForm({ username, fullname, phone_number, password, birthdate }) {
-	console.log(username, fullname, phone_number, password, birthdate);
 	return username.length > 0 && fullname.length > 0 && phone_number.length > 0 && password.length > 0 && birthdate.length > 0;
 }
 

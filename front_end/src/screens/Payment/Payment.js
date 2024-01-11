@@ -49,13 +49,15 @@ function PaymentItem({ product, quantity }) {
 export function Payment() {
     const [selectedOption, setSelectedOption] = useState('');
     const [listData, setDataContent] = useState([]);
+    const [isBuyNow, setIsBuyNow] = useState(false); // [true, false
     const location = useLocation();
     const { user } = useAuth();
     const navigate = useNavigate();
     useEffect(() => {
         if (location.state) {
             let _state = location.state || [];
-            setDataContent(_state);
+            setIsBuyNow(_state.isBuyNow);
+            setDataContent(_state.orderInfo);
         } else {
             if (!user) {
                 navigate('/');
@@ -78,13 +80,17 @@ export function Payment() {
         if (selectedOption === 'option1') {
             if (user === null) {
                 basicPostRequest('/order/create_order', {
-                    order_product_info: listData,
-                    payment_method: 'COD',
-                    phone: '0123456789',
-                    email: "",
-                    total_price: total_price(),
-                    shipping_price: 20000,
-                    address: 'Hà Nội',
+                        username: '',
+                        order_product_info: listData,
+                        payment_method: 'COD',
+                        phone_number: '0123456789',
+                        email: "",
+                        total_price: total_price(),
+                        shipping_price: 20000,
+                        is_buy_now: isBuyNow,
+                        is_paid: false,
+                        address: 'Hà Nội',
+                        coupon_code: '',
                 }).then((response) => {
                     if (response.data.status === 1) {
                         alert('Đặt hàng thành công');
@@ -99,14 +105,17 @@ export function Payment() {
                 })
             } else {
                 authPostRequest('/order/create_order', {
-                    username: user.username,
-                    order_product_info: listData,
-                    payment_method: 'COD',
-                    phone: '0123456789',
-                    email: "",
-                    total_price: total_price(),
-                    shipping_price: 20000,
-                    address: 'Hà Nội',
+                        username: user.username,
+                        order_product_info: listData,
+                        payment_method: 'COD',
+                        phone_number: '0123456789',
+                        email:  "",
+                        total_price: total_price(),
+                        shipping_price: 20000,
+                        is_buy_now: isBuyNow,
+                        is_paid: false,
+                        address: 'Hà Nội',
+                        coupon_code: '',
                 }, 'Bearer ' + user.access_token).then((response) => {
                     if (response.data.status === 1) {
                         alert('Đặt hàng thành công');

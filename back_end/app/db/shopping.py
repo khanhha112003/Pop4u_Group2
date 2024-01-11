@@ -140,25 +140,22 @@ def create_order(order: OrderForm, username: Optional[str] = None):
     if not cart:
         return None
     import datetime
+    current_string_date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     newOrder = Order(username=username,
-                     order_date= datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+                     order_date= current_string_date,
                      total_price=order.total_price,
                      order_product_info=order.order_product_info,
                      status="pending",
                      is_paid= order.is_paid,
                      is_buy_now= order.is_buy_now,
-                     coupoun_price=order.coupoun_price,
+                     coupon_code=order.coupon_code,
                      address=order.address,
                      payment_method=order.payment_method,
                      phone=order.phone,
                      shipping_price=order.shipping_price)
-    if username:
-        newOrder.is_buy_now = False
-    else:
-        newOrder.is_buy_now = True
-    result = collection.insert_one(order.__dict__)
+    result = collection.insert_one(newOrder.__dict__)
     if result:
-        if username:
+        if username and not newOrder.is_buy_now:
             list_update_info = []
             for i in order.order_product_info:
                 temp_dict = {}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation , useNavigate} from "react-router-dom";
 import './AddProduct.css';
 import { useAuth } from '../../../hooks/useAuth';
 import LoadingPage from '../../Loading/LoadingPage';
@@ -11,6 +11,8 @@ const ProductDetailEdit = () => {
 	const location = useLocation();
 	const [loading, setLoading] = useState(true);
 	const { user, logout } = useAuth();
+	const navigate = useNavigate();
+
 	useEffect(() => {
 		if (location.state) {
 			let _state = location.state;
@@ -27,7 +29,7 @@ const ProductDetailEdit = () => {
 						})
 					if (getProfileRequest.data) {
 						reg.then((data) => {
-							// TODO: Fix here
+							setProduct(data.data);
 						}
 						).catch(error => {
 							setLoading(true);
@@ -46,6 +48,8 @@ const ProductDetailEdit = () => {
 				}
 			}
 			excuteOrder();
+		} else {
+			navigate('/admin/product_list', { replace: true });
 		}
 	}
 		, [location]);
@@ -67,6 +71,9 @@ const ProductDetailEdit = () => {
 	};
 
 	const renderProductImages = () => {
+		if (!product.list_product_image) {
+			return null;
+		}
 		return product.list_product_image.map((image, index) => (
 			<div key={index}>
 				<img src={image} alt={`Product Image ${index}`} style={{ width: '300px', height: '300px', margin: '20px' }} />
@@ -74,59 +81,6 @@ const ProductDetailEdit = () => {
 			</div>
 		));
 	};
-
-
-	const submitChange = () => {
-		const token = 'Bearer ' + user.access_token;
-		const data = {
-			product_code: product.product_code,
-			product_name: product.product_name,
-			artist: product.artist,
-			description: product.description,
-			category: product.category,
-			product_stock: product.product_stock,
-			sell_price: product.sell_price,
-			discount_price: product.discount_price,
-			list_product_image: product.list_product_image,
-		}
-		const reg = basicGetRequets("/product/product_detail", { product_code: product.product_code });
-		async function excuteOrder() {
-			const token = 'Bearer ' + user.access_token;
-			async function excuteOrder() {
-				const token = 'Bearer ' + user.access_token;
-				try {
-					const getProfileRequest = await axios.get(BASE_URL + "/product/product_list",
-						{
-							headers: {
-								'content-type': 'application/json',
-								'Authorization': token
-							}
-						})
-					if (getProfileRequest.data) {
-						reg.then((data) => {
-							
-						}
-						).catch(error => {
-							setLoading(true);
-						}).finally(() => {
-							setLoading(false);
-						});
-					} else {
-						setLoading(true);
-					}
-				} catch (error) {
-					if (error.response.status === 401) {	// Unauthorized
-						logout((val) => { });
-					} else {
-						setLoading(true);
-					}
-				}
-			}
-			excuteOrder();
-		}
-		excuteOrder();
-	}
-				
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
@@ -139,7 +93,7 @@ const ProductDetailEdit = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-
+		// TODO: them func vao day
 	};
 
 	if (loading) {
@@ -239,7 +193,7 @@ const ProductDetailEdit = () => {
 					</div>
 				</div>
 
-				<button onClick={submitChange} className="input-button" type="submit">Lưu</button>
+				<button className="input-button" type="submit">Lưu</button>
 			</form>
 		</div>
 
