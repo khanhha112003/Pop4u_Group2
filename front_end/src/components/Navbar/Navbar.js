@@ -70,7 +70,7 @@ function CustomNavbar() {
 
 						{
 							(user !== null) ? (
-								<div className="ml-md-2">
+								<div className="ml-lg-4">
 									<Button onClick={() => navigate("/user/cart")} variant="outline-success">
 										<CartIcon />
 									</Button>
@@ -79,7 +79,7 @@ function CustomNavbar() {
 									</Button>
 								</div>
 							) : (
-								<div className="ml-md-2">
+								<div className="ml-lg-4">
 									<Button href='/account/signin' variant="outline-success">
 										<LoginIcon />
 									</Button>
