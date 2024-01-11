@@ -13,9 +13,12 @@ const OrderList = () => {
       date: "2023-12-14",
       phone: "0254823646",
       addr: "125 Thủ Đức",
-      value: 2500000,
+      value: 960000,
       paymethod: "COD",
       status: "In-transit",
+      ord_de:[
+        {sp: 'BLACKPINK Mini Album Vol.2 [KILL THIS LOVE]', sl: 3, prc: 320000}
+      ]
     },
     {
       id: 10008,
@@ -23,9 +26,12 @@ const OrderList = () => {
       date: "2023-11-15",
       phone: "02548257646",
       addr: "125 Thủ Đức",
-      value: 1500000,
+      value: 1680000,
       paymethod: "Chuyển khoản",
       status: "Done",
+      ord_de:[
+        {sp: 'Scrunchie Set BTS', sl: 4,prc: 420000}
+      ]
     },
     {
       id: 10009,
@@ -33,13 +39,14 @@ const OrderList = () => {
       date: "2024-01-06",
       phone: "0254783646",
       addr: "125 Thủ Đức",
-      value: 1600000,
+      value: 900000,
       paymethod: "Chuyển khoản",
       status: "In-prepare",
+      ord_de:[
+        {sp: 'ALBUM WENDY - [LIKE WATER] PHOTOBOOK ver', sl: 2, prc: 450000}
+      ]
     },
     
-    
-    // Add more products here
   ];
  
   // Filter
@@ -89,7 +96,7 @@ const handleFilterByStatus = (selectedStatus) => {
             class="search-input"
             style={{color:'#3F5AA9'}}
               type="text"
-              placeholder="Tìm theo OrderID hoặc sđt"
+              placeholder="Tìm theo OrderID hoặc SĐT"
               value={searchTerm}
               onChange={handleChange}
             />
@@ -129,16 +136,16 @@ const handleFilterByStatus = (selectedStatus) => {
         <tbody>
         {searchResults.map((order, index) => (
             <tr key={index}>
-              <td>{order.id}</td>
-              <td>{order.customer}</td>
-              <td>{order.date}</td>
-              <td>{order.phone}</td>
-              <td>{order.value}</td>
-              <td>{order.paymethod}</td>
+              <td className="text-center">{order.id}</td>
+              <td className="text-center">{order.customer}</td>
+              <td className="text-center">{order.date}</td>
+              <td className="text-center">{order.phone}</td>
+              <td className="text-center">{order.value}</td>
+              <td className="text-center">{order.paymethod}</td>
               <td>
                 <span className= {`status ${order.status}`}> {order.status} </span>
               </td>
-              <td className="text-center"><a onClick={() => navigate("/admin/order_detail")} style={{cursor: "pointer"}}><EditIcon></EditIcon></a></td>
+              <td className="text-center"><a onClick={() =>  navigate(`/admin/order_detail/${order.id}`, { state: { order } })} style={{cursor: "pointer"}}><EditIcon></EditIcon></a></td>
             </tr>
           ))}
         </tbody>

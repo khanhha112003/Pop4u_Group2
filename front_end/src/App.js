@@ -1,6 +1,6 @@
 import { AboutUs } from './screens/AboutUs/AboutUs';
 import { SignIn } from './screens/SignIn/SignIn';
-import { SignUp } from './screens/SignUp/SignUp';
+import { SignUp } from './screens/SignUp/SIgnUp';
 import { HomePage } from './screens/HomePage/HomePage';
 import { BuyPolicy } from './screens/Policy/BuyPolicy';
 import { ShipPolicy } from './screens/Policy/ShipPolicy';
@@ -17,7 +17,8 @@ import { AddVoucher } from './screens/Admin/Voucher/AddVoucher';
 import { VoucherList } from './screens/Admin/Voucher/VoucherList';
 import { CustomerManagementAdmin } from "./screens/Admin/Customer/CustomerList";
 import { ArtistAdmin } from "./screens/Admin/Artist/ArtistAdmin";
-import { OrderList } from "./screens/Admin/Order/OrderList"
+import { OrderList } from "./screens/Admin/Order/OrderList";
+// import { OrderDetail} from "./screens/Admin/Order/OrderDetail";
 
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
 import { ProductList } from './screens/ProductList/ProductList';
@@ -82,6 +83,7 @@ function App() {
 				<Route path="customer_list" element={<CustomerManagementAdmin />} />
 				<Route path="artist_list" element={<ArtistAdmin />} />
 				<Route path="order_list" element={<OrderList />} />
+				{/* <Route path="order_detail/:orderId" element={<OrderDetail />} /> */}
 				<Route path='*' exact={true} component={<NotFoundPage/>} />
 			</Route>
 		</Routes>
