@@ -104,12 +104,11 @@ class Order(BaseModel):
     address: str
     phone: str
     is_paid: bool = False
-    is_buy_now: bool
+    is_buy_now: bool = False
     payment_method: str
     order_product_info: List[dict] = []
     shipping_price: float
-    coupoun_price: Optional[float] = None
-
+    coupon_code: Optional[str] = None
 class OrderForm(BaseModel):
     username: Optional[str] = None
     address: str
@@ -119,10 +118,10 @@ class OrderForm(BaseModel):
     shipping_price: float
     total_price: float
     email: Optional[str] = None
-    status: str = "Pending"
+    status: Optional[str] = "Pending"
     is_paid: bool = False
     is_buy_now: bool = False
-    coupoun_price: Optional[float] = None
+    coupon_code: Optional[str] = None
 
 # Shipping
 class PaymentMethod(BaseModel):

@@ -135,7 +135,10 @@ function ProductDetail() {
     };
 
     const handleBuyNowButton = async (product, quantity) => {
-        navigate("/payment", { state: [{ product: {...product, image: product.list_product_image[0]}, quantity: quantity }] });
+        navigate("/payment", { state: { 
+            orderInfo: [{ product: {...product, image: product.list_product_image[0]}, quantity: quantity }],
+            isBuyNow: true }
+        });
     };
 
     const handleAddToCartButton = async (product_code, quantity) => {
