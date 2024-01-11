@@ -1,7 +1,12 @@
+@import url(../../theme/theme.css); 
 .carousel-control-prev {
  width: 50px;
 }
 
 .carousel-control-next {
  width: 50px;
+}
+
+.active.carousel-item{
+    background-color: var(--color-surface-light) !important;
 }

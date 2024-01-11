@@ -18,7 +18,7 @@ function CustomNavbar() {
 	const { user } = useAuth();
 	const navigate = useNavigate();
 	return (
-		<Navbar expand="xxl" style={{ backgroundColor: 'var(--bs-body-bg)', paddingTop: 0, paddingBottom: 0 }}>
+		<Navbar expand="xl" style={{ paddingTop: 10, paddingBottom: 10 }}>
 			<Container className="bg-body-tertiary" >
 				<Navbar.Brand className='d-flex w-50 me-auto' href="/">
 					<LogoIcon />
@@ -47,14 +47,13 @@ function CustomNavbar() {
 							</NavDropdown.Item>
 						</NavDropdown>
 						<Nav.Link className="label-m" href="/artists">Nghệ sĩ</Nav.Link>
-						<Nav.Link className="label-m" href="/preorder">Pre-order</Nav.Link>
 						<Nav.Link className="label-m" href="/about">Về chúng tôi</Nav.Link>
 						<Nav.Link className="label-m" href="/blog">Blog</Nav.Link>
 					</Nav>
 					<Nav className='ms-auto w-100 justify-content-end'>
 						<Form className="d-flex justify-content-center align-items-center">
 							<div style={{ margin: '0px !important' }}> {/* Centered div */}
-								<InputGroup>
+								<InputGroup style={{width: 150}}>
 									<Form.Control
 										placeholder="Search"
 										aria-label="Search"
@@ -71,7 +70,7 @@ function CustomNavbar() {
 
 						{
 							(user !== null) ? (
-								<div className="ml-lg-4">
+								<div className="ml-md-2">
 									<Button onClick={() => navigate("/user/cart")} variant="outline-success">
 										<CartIcon />
 									</Button>
@@ -80,7 +79,7 @@ function CustomNavbar() {
 									</Button>
 								</div>
 							) : (
-								<div className="ml-lg-4">
+								<div className="ml-md-2">
 									<Button href='/account/signin' variant="outline-success">
 										<LoginIcon />
 									</Button>
