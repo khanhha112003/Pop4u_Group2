@@ -14,6 +14,7 @@ function getHeaders(isCors) {
   return { headers: headers };
 }
 
+
 export function basicGetRequets(url, urlParams, isCors = true) {
     let endpoint = BASE_URL + url;
     return axios.get(endpoint, {
@@ -40,6 +41,15 @@ export function loginPostRequest(url, username, password) {
 export function basicPostRequest(url, data) {
     let endpoint = BASE_URL + url;
     return axios.post(endpoint, data, getHeaders(true));
+}
+
+export function authAdminValidateRequest(token) {
+  let endpoint = BASE_URL + "/auth/admin_validate";
+  const new_token = 'Bearer ' + token;
+  var basicHeader = getHeaders(true);
+  basicHeader.headers['Authorization'] = new_token;
+  console.log(basicHeader);
+  return axios.get(endpoint, basicHeader);
 }
 
 export function authPostRequest(url, data, token) {

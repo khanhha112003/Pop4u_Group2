@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect } from "react";
 import { Carousel, Card, Stack } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-bootstrap';
 import "./style.css";
 // Import your custom SVG icons
 import { ReactComponent as CustomNextIcon } from "./icons/arrow_right.svg";
@@ -23,7 +23,8 @@ const HorizontalPagination = (
     useLayoutEffect(() => {
         const handleResize = () => {
             const currentMaxItem = Math.min(Math.floor(window.innerWidth / itemWidth), numberOfMaxItems)
-            setItemsPerPage(currentMaxItem);
+            const currentItemsPerPage = Math.max(1, currentMaxItem);
+            setItemsPerPage(currentItemsPerPage);
         };
         window.addEventListener('resize', handleResize);
         return () => {
