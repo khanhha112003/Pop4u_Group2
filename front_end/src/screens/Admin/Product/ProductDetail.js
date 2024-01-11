@@ -153,57 +153,57 @@ const ProductDetailEdit = () => {
 				<div className="row">
 					<h2 className="text-center">Thông tin sản phẩm</h2>
 
-					<div className="col-md-8">
+					<div className="col-xs-12 col-sm-12 col-md-12 col-xl-7 col-lg-7">
 						<div className="section-frame-admin margin">
 							<div className="margin">
 								<label>
-									Tên sản phẩm: <br></br>
-									<input className="input-custom margin" type="text" name="product_name" value={product.product_name} onChange={handleChange} />
-								</label>
+									Tên sản phẩm: <br></br></label>
+									<input className="input-custom" type="text" name="product_name" value={product.product_name} onChange={handleChange} />
+								
 							</div>
 							<div className="margin">
-								Mã Sản phẩm: <br></br>
-								<label>
-									<input className="input-custom margin" type="text" name="product_code" value={product.product_code} onChange={handleChange} />
-								</label>
+							<label>Mã Sản phẩm: <br></br></label>
+								
+									<input className="input-custom " type="text" name="product_code" value={product.product_code} onChange={handleChange} />
+								
 							</div>
 							<div className="margin">
-								Nghệ sĩ: <br></br>
-								<label>
-									<input className="input-custom margin" type="text" name="artist" value={product.artist} onChange={handleChange} />
-								</label>
+							<label>Nghệ sĩ: <br></br></label>
+								
+									<input className="input-custom " type="text" name="artist" value={product.artist} onChange={handleChange} />
+								
 							</div>
 							<div className="margin">
-								Mô tả sản phẩm: <br></br>
-								<label>
-									<input className="input-custom margin" type="text" name="description" value={product.description} onChange={handleChange} />
-								</label>
+							<label>Mô tả sản phẩm: <br></br></label>
+								
+									<input className="input-custom " type="text" name="description" value={product.description} onChange={handleChange} />
+								
 							</div>
 						</div>
 					</div>
 
 
 
-					<div className="col-md-4">
+					<div className="col-sm-12 col-md-12 col-xl-5 col-lg-5">
 						<div className="section-frame-admin margin">
 							<div className="margin">
 								<label>
-									Giá bán: <br></br>
-									<input className="input-custom-price margin" type="number" name="discount_price" value={product.discount_price} onChange={handleChange} />
-								</label>
+									Giá bán: <br></br></label>
+									<input className="input-custom-price " type="number" name="discount_price" value={product.discount_price} onChange={handleChange} />
+								
 							</div>
 							<div className="margin">
-								Giá khuyến mãi: <br></br>
-								<label>
-									<input className="input-custom-price margin" type="number" name="sell_price" value={product.sell_price} onChange={handleChange} />
-								</label>
+							<label>Giá khuyến mãi: <br></br></label>
+								
+									<input className="input-custom-price " type="number" name="sell_price" value={product.sell_price} onChange={handleChange} />
+								
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div className='row'>
-					<div className="col-md-8">
+					<div className="col-xs-12 col-sm-12 col-md-12 col-xl-7 col-lg-7">
 						<div className="section-frame-admin margin">
 							<div className="margin">
 							</div>
@@ -225,12 +225,12 @@ const ProductDetailEdit = () => {
 
 								<div className="margin" >
 									Số lượng: <br></br>
-									<input className="input-custom-price margin" type="number" name="stock" value={product.product_stock} onChange={handleChange} />
+									<input className="input-custom-price " type="number" name="stock" value={product.product_stock} onChange={handleChange} />
 								</div>
 							</div>
 						</div>
 					</div>
-					<div className="col-md-4">
+					<div className="col-sm-12 col-md-12 col-xl-5 col-lg-5">
 						<div className="section-frame-admin margin">
 
 							<div>{renderProductImages()}</div>
