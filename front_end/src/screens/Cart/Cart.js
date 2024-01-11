@@ -67,7 +67,10 @@ function Cart() {
 	const removeItem = (product_code) => {
 		const updatedProduct = cartItems.find((item) => item.product_code === product_code);
 		const updatedCart = cartItems.filter((item) => item.product_code !== product_code);
-		setListProductToUpdateCart([...listProductToUpdateCart, { product_code, quantity: updatedProduct.quantity }]);
+		var newListProductToUpdateCart = listProductToUpdateCart.filter((item) => item.product_code !== product_code);
+		setListProductToUpdateCart([...newListProductToUpdateCart, 
+			{ product_code: updatedProduct.product_code, quantity: 0 }
+		]);
 		setCartItems(updatedCart);
 		if (isCartChange === false) {
 			setIsCartChange(true);
@@ -78,6 +81,19 @@ function Cart() {
 		const updatedCart = cartItems.map((item) =>
 			item.product_code === product_code ? { ...item, quantity: item.quantity + 1 } : item
 		);
+		if (listProductToUpdateCart.find((item) => item.product_code === product_code) === undefined) {
+			var item = cartItems.find((item) => item.product_code === product_code);
+			var newListProductToUpdateCart = [
+				...listProductToUpdateCart
+				,{ product_code: product_code, quantity: item.quantity + 1 }]
+			setListProductToUpdateCart(newListProductToUpdateCart);
+		} else {
+			var newListProductToUpdateCart = listProductToUpdateCart.map((item) => item.product_code !== product_code 
+				? item 
+				: { product_code: item.product_code, quantity: item.quantity + 1 }
+			);
+			setListProductToUpdateCart(newListProductToUpdateCart);
+		}
 		setCartItems(updatedCart);
 		if (isCartChange === false) {
 			setIsCartChange(true);
@@ -89,6 +105,19 @@ function Cart() {
 		const updatedCart = cartItems.map((item) =>
 			item.product_code === product_code && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
 		);
+		if (listProductToUpdateCart.find((item) => item.product_code === product_code) === undefined) {
+			var item = cartItems.find((item) => item.product_code === product_code);
+			var newListProductToUpdateCart = [
+				...listProductToUpdateCart
+				,{ product_code: product_code, quantity: item.quantity - 1 }]
+			setListProductToUpdateCart(newListProductToUpdateCart);
+		} else {
+			var newListProductToUpdateCart = listProductToUpdateCart.map((item) => item.product_code !== product_code 
+				? item 
+				: { product_code: item.product_code, quantity: item.quantity - 1 }
+			);
+			setListProductToUpdateCart(newListProductToUpdateCart);
+		}
 		setCartItems(updatedCart);
 		if (isCartChange === false) {
 			setIsCartChange(true);
@@ -121,11 +150,10 @@ function Cart() {
 
 	const onSaveCart = () => {
 		const token = 'Bearer ' + user.access_token;
-		console.log(token);
 		try {
 			const saveCartRequest = axios.post(BASE_URL + "/order/update_cart",
 				{
-					listInfo: listProductToUpdateCart
+					list_info: listProductToUpdateCart
 				},
 				{
 					headers: {
@@ -136,12 +164,10 @@ function Cart() {
 					}
 				})
 			if (saveCartRequest.data) {
-				// setLogoutErrorMessage("");
 				console.log("----- create order success -----");
-				// setCartItems(getCartRequest.data.products);
+				setIsCartChange(false);
 			} else {
 				console.log("----- create order 200 nhung khong co data -----");
-				// setLogoutErrorMessage("Lỗi lấy thông tin tài khoản.");
 			}
 		} catch (error) {
 			console.log("----- create order request fail -----");
@@ -150,8 +176,11 @@ function Cart() {
 	}
 
 	const handleCreateOrder = () => {
+		if (isCartChange) {
+            alert('Vui lòng cập nhật thông tin đơn!');
+            return
+        }
 		const token = 'Bearer ' + user.access_token;
-		console.log(token);
 		var listProductToCreateOrder = cartItems.filter((item) => item.checked === true);
 		if (listProductToCreateOrder.length === 0) {
 			return;
@@ -203,7 +232,7 @@ function Cart() {
 					</div>
 					{ isCartChange &&
 					<div>
-						<button className='' style={{}} onClick={onSaveCart}>
+						<button className='cart-button label-l' style={{}} onClick={onSaveCart}>
 							<span className="label-m" style={{ color: 'var(--theme-typo-label-light, #FFF)' }}>
 								Lưu giỏ hàng
 							</span>

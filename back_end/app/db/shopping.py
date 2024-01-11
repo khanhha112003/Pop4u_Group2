@@ -54,55 +54,47 @@ def update_cart_by_username(username:str,
         result = collection.insert_one(cart_dict)
     return result
 
-def update_cart_with_multiple_product_id_and_quantity(username:str, list_data: list[dict]):
+def update_cart_with_multiple_product_id_and_quantity(username:str, list_data: list[dict], is_created_order: bool = False):
     collection = db['Carts']
     existing_user_cart = collection.find_one({"username": username})
     if not existing_user_cart or len(existing_user_cart['products']) < len(list_data):
         return False
     else:
-        list_product_in_cart: list = existing_user_cart['products']
-        for i in list_data:
-            if i['product_code'] not in [j['product_code'] for j in list_product_in_cart]:
-                return False
-        for i in range(len(list_product_in_cart)):
-            for j in list_data:
-                if list_product_in_cart[i]['product_code'] == j['product_code']:
-                    if j['quantity'] > 0:
-                        list_product_in_cart[i]['quantity'] = j['quantity']    
-                        if list_product_in_cart[i]['quantity'] <= 0:
-                            return False
-                    else:
-                        list_product_in_cart.pop(i)
-                        i -= 1
-        existing_user_cart['products'] = list_product_in_cart
-        existing_user_cart = calculate_total_price(existing_user_cart)
-        result = collection.update_one({"username": username}, {"$set": existing_user_cart})
-        if result:
-            return True
-        return False
+        list_product_in_cart: list[dict] = existing_user_cart['products']
+        if not is_created_order:
+            for i in list_data:
+                if i['product_code'] not in [j['product_code'] for j in list_product_in_cart]:
+                    return False
+            for i in range(len(list_product_in_cart)):
+                for j in list_data:
+                    if list_product_in_cart[i]['product_code'] == j['product_code']:
+                        if j['quantity'] > 0:
+                            list_product_in_cart[i]['quantity'] = j['quantity']    
+                            if list_product_in_cart[i]['quantity'] <= 0:
+                                return False
+                        else:
+                            list_product_in_cart.pop(i)
+                            i -= 1
+            existing_user_cart['products'] = list_product_in_cart
+            existing_user_cart = calculate_total_price(existing_user_cart)
+            result = collection.update_one({"username": username}, {"$set": existing_user_cart})
+            if result:
+                return True
+            return False
+        else:
+            list_modify_product_code = [i['product_code'] for i in list_data]
+            new_list_product_in_cart = filter(lambda x: x['product_code'] not in list_modify_product_code, list_product_in_cart)
+            existing_user_cart['products'] = list(new_list_product_in_cart)
+            existing_user_cart = calculate_total_price(existing_user_cart)
+            result = collection.update_one({"username": username}, {"$set": existing_user_cart})
+            if result:
+                return True
+            
 
 def get_cart_by_username(username: str):
     collection = db['Carts']
     cart = collection.find_one({"username": username})
     return cart
-
-
-def create_order(order: OrderForm):
-    import datetime
-    collection = db['Orders']
-    newOrder = Order(username=order.username,
-                     order_date= datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-                     total_price=order.total_price,
-                     products=order.products,
-                     status="pending",
-                     address=order.address,
-                     payment_method=order.payment_method,
-                     phone=order.phone,
-                     shipping_price=order.shipping_price)
-    result = collection.insert_one(newOrder.__dict__)
-    if result:
-        return result
-    return None
 
 
 def delete_item_from_cart(username: str, product_code: str, quantity: int):
@@ -142,29 +134,38 @@ def calculate_total_price(cart: dict):
 
 # ================== Order ==================
 
-def create_order(username: str, 
-                address: str,
-                payment_method: str,
-                shipping_price: float,
-                phone: Optional[str] = None):
+def create_order(order: OrderForm, username: Optional[str] = None):
     collection = db['Orders']
     cart = get_cart_by_username(username)
     if not cart:
         return None
-    list_product = [productSerializer(get_product_detail_by_code(item['product_code'])).__dict__ for item in cart['products']]
-
-    order = Order(username=username,
-                  order_date="",
-                  total_price=cart['total_price'],
-                  products=cart['products'],
-                  list_product=list_product,
-                  status="pending",
-                  address=address,
-                  payment_method=payment_method,
-                  phone=phone,
-                  shipping_price=shipping_price)
+    import datetime
+    newOrder = Order(username=username,
+                     order_date= datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+                     total_price=order.total_price,
+                     order_product_info=order.order_product_info,
+                     status="pending",
+                     is_paid= order.is_paid,
+                     is_buy_now= order.is_buy_now,
+                     coupoun_price=order.coupoun_price,
+                     address=order.address,
+                     payment_method=order.payment_method,
+                     phone=order.phone,
+                     shipping_price=order.shipping_price)
+    if username:
+        newOrder.is_buy_now = False
+    else:
+        newOrder.is_buy_now = True
     result = collection.insert_one(order.__dict__)
     if result:
-        drop_user_cart(username)
-        return result
-    return None
+        if username:
+            list_update_info = []
+            for i in order.order_product_info:
+                temp_dict = {}
+                temp_dict['product_code'] = i['product']['product_code']
+                temp_dict['quantity'] = 0
+                list_update_info.append(temp_dict)
+            return update_cart_with_multiple_product_id_and_quantity(username, list_update_info, True)
+        else:
+            return True
+    return False

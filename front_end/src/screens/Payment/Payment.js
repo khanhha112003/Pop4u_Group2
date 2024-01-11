@@ -7,6 +7,7 @@ import { ReactComponent as CreditCard } from '../../theme/images/credit_card.svg
 import { ReactComponent as COD } from '../../theme/images/local_shipping.svg'
 import { ReactComponent as Momo } from '../../theme/images/momo_square_pinkbg.svg'
 import { useAuth } from '../../hooks/useAuth';
+import { authPostRequest, basicPostRequest } from '../../app_logic/APIHandler';
 
 const lowestPrice = (product) => {
     if (product.discount_price === 0) {
@@ -47,14 +48,14 @@ function PaymentItem({ product, quantity }) {
 
 export function Payment() {
     const [selectedOption, setSelectedOption] = useState('');
-    const [listProduct, setListProduct] = useState([]);
+    const [listData, setDataContent] = useState([]);
     const location = useLocation();
     const { user } = useAuth();
     const navigate = useNavigate();
     useEffect(() => {
         if (location.state) {
             let _state = location.state || [];
-            setListProduct(_state);
+            setDataContent(_state);
         } else {
             if (!user) {
                 navigate('/');
@@ -67,10 +68,65 @@ export function Payment() {
     };
 
     const total_price = () => {
-        const result = listProduct.reduce((total, item) => {
+        const result = listData.reduce((total, item) => {
             return total + item.quantity * lowestPrice(item.product);
         }, 0);
         return result;
+    }
+
+    const executeOrder = () => {
+        if (selectedOption === 'option1') {
+            if (user === null) {
+                basicPostRequest('/order/create_order', {
+                    order_product_info: listData,
+                    payment_method: 'COD',
+                    phone: '0123456789',
+                    email: "",
+                    total_price: total_price(),
+                    shipping_price: 20000,
+                    address: 'Hà Nội',
+                }).then((response) => {
+                    if (response.data.status === 1) {
+                        alert('Đặt hàng thành công');
+                        navigate('/user/cart');
+                    } else {
+                        alert('Đặt hàng thất bại');
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    alert('Đặt hàng thất bại');
+
+                })
+            } else {
+                authPostRequest('/order/create_order', {
+                    username: user.username,
+                    order_product_info: listData,
+                    payment_method: 'COD',
+                    phone: '0123456789',
+                    email: "",
+                    total_price: total_price(),
+                    shipping_price: 20000,
+                    address: 'Hà Nội',
+                }, 'Bearer ' + user.access_token).then((response) => {
+                    if (response.data.status === 1) {
+                        alert('Đặt hàng thành công');
+                        navigate('/user/cart');
+                    } else {
+                        alert('Đặt hàng thất bại');
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    alert('Đặt hàng thất bại');
+
+                })
+            }
+        } else if (selectedOption === 'option2') {
+            alert('Thanh toán qua thẻ Napas');
+        } else if (selectedOption === 'option3') {
+            alert('Thanh toán qua ví điện tử MoMo');
+        } else {
+            alert('Vui lòng chọn phương thức thanh toán');
+        }
     }
 
     return (
@@ -183,70 +239,70 @@ export function Payment() {
                                 </div>
 
                             </div>
-                            
+
+                        </div>
+                        <div className='payment-method'>
+                            <h6 className='head6'>Phương thức thanh toán</h6>
+                            <div className='d-flex payment-option'>
+                                <input
+                                    type="radio"
+                                    value="option1"
+                                    id='payment-option1'
+                                    checked={selectedOption === 'option1'}
+                                    onChange={handleRadioChange}
+                                />
+                                <label htmlFor="payment-option1">
+                                    <span className='label-l'>Thanh toán khi nhận hàng  (COD)</span>
+                                    <COD className="payment-method-icon"></COD>
+                                </label>
                             </div>
-                                <div className='payment-method'>
-                                    <h6 className='head6'>Phương thức thanh toán</h6>
-                                    <div className='d-flex payment-option'>
-                                        <input
-                                            type="radio"
-                                            value="option1"
-                                            id='payment-option1'
-                                            checked={selectedOption === 'option1'}
-                                            onChange={handleRadioChange}
-                                        />
-                                        <label for="payment-option1">
-                                            <span className='label-l'>Thanh toán khi nhận hàng  (COD)</span>
-                                            <COD className="payment-method-icon"></COD>
-                                        </label>
-                                    </div>
-                                    <div className='d-flex payment-option'>
-                                        <input
-                                            type="radio"
-                                            value="option2"
-                                            id='payment-option2'
-                                            checked={selectedOption === 'option2'}
-                                            onChange={handleRadioChange}
-                                            />
-                                        <label for="payment-option2" >
-                                            <span className='label-l'>Thanh toán thông qua thẻ Napas</span>
-                                            <CreditCard className="payment-method-icon"></CreditCard>
-                                        </label>
-                                    </div>
-                                    <div className='d-flex payment-option'>
-                                        <input
-                                            type="radio"
-                                            value="option3"
-                                            id='payment-option3'
-                                            checked={selectedOption === 'option3'}
-                                            onChange={handleRadioChange}
-                                        />
-                                        <label for="payment-option3">
-                                            <span className='label-l'>Thanh toán thông qua Ví điện tử MoMo</span>
-                                            <Momo className="payment-method-icon"></Momo>
-                                        </label>
-                                    </div>
+                            <div className='d-flex payment-option'>
+                                <input
+                                    type="radio"
+                                    value="option2"
+                                    id='payment-option2'
+                                    checked={selectedOption === 'option2'}
+                                    onChange={handleRadioChange}
+                                />
+                                <label htmlFor="payment-option2" >
+                                    <span className='label-l'>Thanh toán thông qua thẻ Napas</span>
+                                    <CreditCard className="payment-method-icon"></CreditCard>
+                                </label>
+                            </div>
+                            <div className='d-flex payment-option'>
+                                <input
+                                    type="radio"
+                                    value="option3"
+                                    id='payment-option3'
+                                    checked={selectedOption === 'option3'}
+                                    onChange={handleRadioChange}
+                                />
+                                <label htmlFor="payment-option3">
+                                    <span className='label-l'>Thanh toán thông qua Ví điện tử MoMo</span>
+                                    <Momo className="payment-method-icon"></Momo>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='col-xs-12 col-sm-12 col-md-12 col-xl-7 col-lg-7'>
+                        <div className='payment-amount'>
+                            <h6 className='head6'>Đơn hàng của bạn</h6>
+                            <div className='payment-product-list'>
+                                <div className='sub-title d-flex justify-content-between'>
+                                    <span className='body-medium'>Sản phẩm</span>
+                                    <span className='body-medium product-total'>Tổng cộng</span>
                                 </div>
+                                {
+                                    listData.map((item, index) => {
+                                        return (
+                                            <PaymentItem
+                                                key={index}
+                                                product={item.product}
+                                                quantity={item.quantity} />
+                                        )
+                                    })
+                                }
                             </div>
-                          <div className='col-xs-12 col-sm-12 col-md-12 col-xl-7 col-lg-7'>
-                              <div className='payment-amount'>
-                                  <h6 className='head6'>Đơn hàng của bạn</h6>
-                                  <div className='payment-product-list'>
-                                      <div className='sub-title d-flex justify-content-between'>
-                                          <span className='body-medium'>Sản phẩm</span>
-                                          <span className='body-medium product-total'>Tổng cộng</span>
-                                      </div>
-                                      {
-                                          listProduct.map((item, index) => {
-                                              return (
-                                                  <PaymentItem
-                                                      key={index}
-                                                      product={item.product}
-                                                      quantity={item.quantity} />
-                                              )
-                                          })
-                                      }
-                                    </div>
                             <div className='total-amount'>
                                 <div className='total-price d-flex justify-content-between'>
                                     <span className='body-medium'>Tổng tiền sản phẩm</span>
@@ -266,7 +322,7 @@ export function Payment() {
                                 <span className='price'>20.000đ</span>
                             </div>
                             <div>
-                                <button className='payment-button label-xl' type="submit">Tiếp tục thanh toán</button>
+                                <button onClick={executeOrder} className='payment-button label-xl' type="submit">Tiếp tục thanh toán</button>
                             </div>
                         </div>
                     </div>

@@ -1,133 +1,144 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProductList.css';
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as SearchIcon } from "./icon_productadmin_search.svg"
 import { ReactComponent as EditIcon } from "../../UserProfile/Icon_edit.svg"
+import { basicGetRequets, BASE_URL } from '../../../app_logic/APIHandler';
+import axios from 'axios';
+import LoadingPage from '../../Loading/LoadingPage';
+import { useAuth } from '../../../hooks/useAuth';
 
 const ProductListAdmin = () => {
-  const navigate = useNavigate();
-  const data = [
-    {
-      "_id": {"$numberInt": "2"},
-      "category": "Album",
-      "artist_code": "BP01",
-      "num_of_rating": {"$numberInt": "24"},
-      "artist": "BLACKPINK",
-      "product_name": "BLACKPINK - 1st FULL ALBUM [THE ALBUM]",
-      "discount_price": {"$numberInt": "450000"},
-      "sell_price": {"$numberInt": "500000"},
-      "option": ["Ver 1", "Ver 2", "Ver 3", "Ver 4"],
-      "description": "BLACKPINK - THE ALBUM (Random Ver.)\n \n* Date of Release : 2020. 10. 06\n \nVER : Ver.1 / Ver2 / Ver.3 / Ver.4\nPHOTOBOOK : 96p\nPOSTCARD SET : 4p 1set\nCREDITS SHEET : 2p\nLYRICS BOOKET : 14p\nPHOTOCARD : Random 2p out of 20p\nPOSTCARD : Random 2p out of 20p\nSTICKER : Random 1p out of 4p\nMOUNTED PHOTOCARD",
-      "stock": {"$numberInt": "100"},
-      "rating": {"$numberInt": "5"},
-      "photo": [
-        "https://upload.wikimedia.org/wikipedia/vi/5/5f/Blackpink-_The_Album.png",
-        "https://kpopersxela.com/wp-content/uploads/2021/03/product.22099.159858902587810.jpg",
-        "https://shop.koari.net/client_info/KOARI/itemimage/KC02151/KC02151_01.jpg",
-        "https://shop.koari.net/client_info/KOARI/itemimage/KC02152/KC02152_01.jpg",
-        "https://kpopersxela.com/wp-content/uploads/2021/03/product.22102.159858979386078.jpg"
-      ],
-      "product_code": "ABP1001"
-    },
-    {"_id":{"$numberInt":"20"},
-    "category":"Photobook",
-    "artist_code":"JS01",
-    "num_of_rating":{"$numberInt":"28"},
-    "artist":"JISOO",
-    "product_name":"JISOO [ME] (PHOTOBOOK) (SPECIAL EDITION)",
-    "discount_price":{"$numberInt":"950000"},
-    "sell_price":{"$numberInt":"1000000"},
-    "option":[],
-    "description":"- SLEEVE (1ea)\n- PHOTOBOOK (1ea / 176p)\n- POSTCARDBOOK (1ea / 20pcs)\n- SELFIE PHOTOCARD (RANDOM 1 of 2)\n- POLAROID (RANDOM 1 of 2)\n- STICKER (1ea)\n- CLEAR PHOTOCARD (1ea)\n- LUGGAGE TAG (1ea)\n- INSTAX PHOTO FILM (ONLY 103ea / RANDOM 1 of 5)\n* Random Instax Photo Film : Limited quantity of 103ea \n* The components of the product may be subject to slight changes during the manufacturing process",
-    "stock":{"$numberInt":"60"},
-    "rating":{"$numberInt":"5"},
-    "photo":["https://img.ws.mms.shopee.vn/vn-11134207-7r98o-lnooxpp4dkvh5f","https://img.joomcdn.net/3d2d3c6ddaaa72ea04b6ced639c4c7f1f8143a5f_original.jpeg","https://cdn-amz.woka.io/images/I/61l-ONBuC6L.SS400.jpg"],
-    "product_code":"PJS1001"},
-    {"_id":{"$numberInt":"34"},"category":"Album","artist_code":"BT01","num_of_rating":{"$numberInt":"35"},"artist":"BTS","product_name":"ALBUM BTS - MAP OF THE SOUL : 7","discount_price":{"$numberInt":"450000"},"sell_price":{"$numberInt":"500000"},"option":["Ver 1","Ver 2","Ver 3","Ver 4"],"description":"\"BTS - MAP OF THE SOUL : 7 (Random Ver.)\n\nVER : Ver. 1 / Ver. 2 / Ver. 3 / Ver. 4\nSIZE : 223*295*24mm\nPHOTOBOOK : 205 x 277 (mm) / 36 Pages (different inside leaf photo for each version)\nLYRIC BOOK : 140 x 185 (mm) / 52 Pages\nMINI BOOK (HYYH The Notes) : 90 x 127 (mm) / 20 Pages\nPHOTO CARD : Random 1p out of 8p\nPOSTCARD : 1p\nSTICKER : 1p\nCOLORING PAPER : 1p\"","stock":{"$numberInt":"100"},"rating":{"$numberInt":"5"},"photo":["https://bandina.vn/wp-content/uploads/2023/02/product.19709.161103869334845.jpg","https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/51XLchG8d7L._UF1000,1000_QL80_.jpg","https://m.media-amazon.com/images/I/61dMr8RTFvL._UF894,1000_QL80_.jpg","https://m.media-amazon.com/images/I/61Rh1cFUnZL._UF1000,1000_QL80_.jpg","https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/61Pj0N8bp2L._UF1000,1000_QL80_.jpg"],"product_code":"ABT1001"}, 
-    
-    // Add more products here
-  ];
+	const navigate = useNavigate();
+	const [productData, setProductData] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [filterCategory, setFilterCategory] = useState('');
+	const [searchTerm, setSearchTerm] = useState('');
+	const { user, logout } = useAuth();
 
-  const [filterCategory, setFilterCategory] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
+	useEffect(() => {
+		// Lấy dữ liệu từ API
+		const reg = basicGetRequets("/product/product_list", { type_filter: "all", limit: 1000 });
+		async function excuteOrder() {
+			const token = 'Bearer ' + user.access_token;
+			try {
+				const getProfileRequest = await axios.get(BASE_URL + "/product/product_list",
+					{
+						headers: {
+							'content-type': 'application/json',
+							'Authorization': token
+						}
+					})
+				if (getProfileRequest.data) {
+					reg.then((data) => {
+						const serverItem = data.data.list_product;
+						setProductData(serverItem);
+					}
+					).catch(error => {
+						setLoading(true);
+					}). finally(() => {
+						setLoading(false);
+					});
+				} else {
+					setLoading(true);
+				}
+			} catch (error) {
+				if (error.response.status === 401) {	// Unauthorized
+					logout((val) => { });
+				} else {
+					setLoading(true);
+				}
+			}
+		}
+		excuteOrder();
+	},[]);
 
-  const filteredProducts = data.filter((product) =>
-    product.category.toLowerCase().includes(filterCategory.toLowerCase()) &&
-    product.product_name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
-  return (
-    <div className="container margin">
-      <h2 className="text-center" style={{color:'#3F5AA9', marginTop:'1%'}}>Danh sách sản phẩm</h2>
-      <hr></hr>
-      <a onClick={() => navigate("/admin/add_product")}><button className="add-button " type="submit">Tạo mới</button></a>
-<div class="search-container margin">
-  <input 
-  class="search-input"
-  type="text"
-  placeholder="Nhập tên sản phẩm"
-  value={searchTerm}
-  onChange={(e) => setSearchTerm(e.target.value)}
-  style={{color:'#3F5AA9'}} />
-  <button class="search-button">
-  <SearchIcon class="search-icon fas fa-search text-danger"></SearchIcon>
-  </button>
-</div>
+	const filteredProducts = productData.filter((product) =>
+		product.category.toLowerCase().includes(filterCategory.toLowerCase()) &&
+		product.product_name.toLowerCase().includes(searchTerm.toLowerCase())
+	);
 
-      <div className='margin'>
-      <label htmlFor="categoryFilter">Danh mục sản phẩm: </label>
-      <select
-        id="categoryFilter"
-        onChange={(e) => setFilterCategory(e.target.value)}
-        value={filterCategory}
-      >
-        <option value="">Tất cả</option>
-        {/* Tạo các option từ danh sách category duy nhất */}
-        {[...new Set(data.map((product) => product.category))].map(
-          (category, index) => (
-            <option key={index} value={category}>
-              {category}
-            </option>
-          )
-        )}
-      </select>
-      </div>
+	if (loading) {
+		return <LoadingPage />;
+	}
 
-      {/* Bảng hiển thị danh sách sản phẩm */}
-      <table  >
-        <thead>
-          <tr >
-            <th>Hình sản phẩm </th>
-            <th>Tên sản phẩm</th>
-            <th>Mã sản phẩm </th>
-            <th>Danh mục sản phẩm</th>
-            <th>Giá bán</th>
-            <th>Tồn kho</th>
-            <th>Xem chi tiết</th>
-          </tr>
-        </thead>
-        <tbody >
-          {filteredProducts.map((product, index) => (
-            <tr key={index}>
-              <td className="text-center">
-                <img 
-                  src={product.photo[0]}
-                  alt={product.product_name}
-                  style={{ width: '50px', height: '50px'}}
-                />
-              </td>
-              <td>{product.product_name}</td>
-              <td>{product.product_code}</td>
-              <td>{product.category}</td>
-              <td>{product.discount_price.$numberInt}</td>
-              <td>{product.stock.$numberInt}</td>
-              <td className="text-center"><a onClick={() => navigate("/admin/product_detail")} style={{cursor: "pointer"}}><EditIcon></EditIcon></a></td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+	return (
+		<div className="container margin">
+			<h2 className="text-center" style={{ color: '#3F5AA9', marginTop: '1%' }}>Danh sách sản phẩm</h2>
+			<hr></hr>
+			<a onClick={() => navigate("/admin/add_product")}><button className="add-button " type="submit">Tạo mới</button></a>
+			<div className="search-container margin">
+				<input
+					className="search-input"
+					type="text"
+					placeholder="Nhập tên sản phẩm"
+					value={searchTerm}
+					onChange={(e) => setSearchTerm(e.target.value)}
+					style={{ color: '#3F5AA9' }} />
+				<button className="search-button">
+					<SearchIcon className="search-icon fas fa-search text-danger"></SearchIcon>
+				</button>
+			</div>
+
+			<div className='margin'>
+				<label htmlFor="categoryFilter">Danh mục sản phẩm: </label>
+				<select
+					id="categoryFilter"
+					onChange={(e) => setFilterCategory(e.target.value)}
+					value={filterCategory}
+				>
+					<option value="">Tất cả</option>
+					{/* Tạo các option từ danh sách category duy nhất */}
+					{[...new Set(productData.map((product) => product.category))].map(
+						(category, index) => (
+							<option key={index} value={category}>
+								{category}
+							</option>
+						)
+					)}
+				</select>
+			</div>
+
+			{/* Bảng hiển thị danh sách sản phẩm */}
+			<table  >
+				<thead>
+					<tr >
+						<th>Hình sản phẩm </th>
+						<th>Tên sản phẩm</th>
+						<th>Mã sản phẩm </th>
+						<th>Danh mục sản phẩm</th>
+						<th>Giá khuyến mãi</th>
+						<th>Giá bán</th>
+						<th>Tồn kho</th>
+						<th>Xem chi tiết</th>
+					</tr>
+				</thead>
+				<tbody >
+					{filteredProducts.map((product, index) => (
+						<tr key={index}>
+							<td className="text-center">
+								<img
+									src={product.list_product_image[0]}
+									alt={product.product_name}
+									style={{ width: '50px', height: '50px' }}
+								/>
+							</td>
+							<td>{product.product_name}</td>
+							<td>{product.product_code}</td>
+							<td>{product.category}</td>
+							<td>{product.discount_price}</td>
+							<td>{product.sell_price}</td>
+							<td>{product.product_stock}</td>
+							<td className="text-center"><a onClick={() => navigate("/admin/product_detail", {
+								state: { product_code: product.product_code }
+							})} style={{ cursor: "pointer" }}><EditIcon></EditIcon></a></td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+	);
 };
 
 export { ProductListAdmin };

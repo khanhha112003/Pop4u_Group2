@@ -65,14 +65,6 @@ def logout(token: str = Depends(get_current_token), usr: str = Depends(get_curre
             return {'status': 1}
     return {'status': 0}
 
-@router.post('/check_token', status_code=status.HTTP_200_OK)
-def check_token(token: str = Depends(get_current_token), usr: str = Depends(get_current_user)):
-    tokendata = db['Tokens'].find_one({"access_token": token, "username": usr['username']})
-    if tokendata:
-        return {'status': 1}
-    return {'status': 0}
-
-
 @router.get('/user_profile', response_model=PersonalInfo)
 def get_me(usr: str = Depends(get_current_active_user)):
     if type(usr) == HTTPException:
@@ -81,5 +73,14 @@ def get_me(usr: str = Depends(get_current_active_user)):
         usr = usr.__dict__
         response = PersonalInfo(**usr)
         return response
+    
+@router.get('/admin_validate')
+def validate_admin(usr = Depends(get_current_user)):
+    if type(usr) == HTTPException:
+        raise usr
+    elif usr.role != "admin":
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+    else:
+        return {"status": 1}
     
 
