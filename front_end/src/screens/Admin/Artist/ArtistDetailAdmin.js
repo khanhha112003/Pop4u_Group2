@@ -84,7 +84,7 @@ function ArtistDetailAdmin() {
                             </label>
                         </div>
                         <div className='col-8 text-center' style={{ marginBottom:'64px' }}>
-                            <button type="button" class="btn btn-primary btn-lg">Lưu chỉnh sửa</button>
+                            <button type="button" className="btn btn-primary btn-lg">Lưu chỉnh sửa</button>
                         </div>
                     </div>
                 </div>

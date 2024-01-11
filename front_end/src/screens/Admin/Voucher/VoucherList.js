@@ -43,17 +43,17 @@ const VoucherList = () => {
        <h2 className="text-center" style={{color:'#3F5AA9', marginTop:'1%'}}>Danh sách Voucher</h2>
        <hr></hr>
       <a onClick={() => navigate("/admin/add_voucher")}><button className="add-button" type="submit">Tạo mới</button></a>
-      <div class="search-container margin">
+      <div className="search-container margin">
   <input 
-  class="search-input"
+  className="search-input"
         type="text"
         placeholder="Nhập Mã giảm giá"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         style={{color:'#3F5AA9'}}
       />
-        <button class="search-button">
-  <SearchIcon class="search-icon fas fa-search text-danger"></SearchIcon>
+        <button className="search-button">
+  <SearchIcon className="search-icon fas fa-search text-danger"></SearchIcon>
   </button>
     </div>
       <div className='margin'>

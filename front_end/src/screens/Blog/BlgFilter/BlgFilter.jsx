@@ -88,7 +88,7 @@ export function Blog(){
                 </div>  
             
             <div className='Posts' style={{marginTop:'20px'}} >
-                <div class="container">
+                <div className="container">
                 <div className="row">
                     {filteredBlgPosts.slice(0, visiblePosts).map((post, idx) => (
                         <div key={`BlgPosts-${idx}`} className="col- col-12 col-sm-6 col-md-4 col-lg-4">
