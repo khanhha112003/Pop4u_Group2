@@ -24,19 +24,19 @@ function ArtistAdmin() {
     <div className="container margin">
         <h2 className="text-center" style={{color:'#3F5AA9', marginTop:'1%'}}>Danh sách nghệ sĩ</h2>
         <hr></hr>
-        <div class="search-container margin">
+        <div className="search-container margin">
             <input 
-            class="search-input"
+            className="search-input"
             type="text"
             placeholder="Tìm kiếm nghệ sĩ"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}/>
-            <button class="search-button">
-            <SearchIcon class="search-icon fas fa-search text-danger"></SearchIcon>
+            <button className="search-button">
+            <SearchIcon className="search-icon fas fa-search text-danger"></SearchIcon>
             </button>    
         </div>
         <div style={{ marginTop: '32px', marginBottom: '16px' }}>
-            <button onClick={() => navigate("/admin/artist_add")} type="button" class="btn btn-primary btn-sm">Thêm nghệ sĩ mới</button>
+            <button onClick={() => navigate("/admin/artist_add")} type="button" className="btn btn-primary btn-sm">Thêm nghệ sĩ mới</button>
         </div>
         <table>
             <thead>

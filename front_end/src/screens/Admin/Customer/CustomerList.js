@@ -94,8 +94,8 @@ function CustomerManagementAdmin () {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         style={{color:'#3F5AA9'}}/>
-        <button class="search-button">
-        <SearchIcon class="search-icon fas fa-search text-danger"></SearchIcon>
+        <button className="search-button">
+        <SearchIcon className="search-icon fas fa-search text-danger"></SearchIcon>
         </button>
       
 

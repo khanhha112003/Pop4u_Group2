@@ -89,7 +89,7 @@ function AddArtistAdmin() {
                             </label>
                         </div>
                         <div className='col-8 text-center' style={{ marginBottom:'64px' }}>
-                            <button type="button" class="btn btn-primary btn-lg">Lưu thông tin</button>
+                            <button type="button" className="btn btn-primary btn-lg">Lưu thông tin</button>
                         </div>
                     </div>
                 </div>
