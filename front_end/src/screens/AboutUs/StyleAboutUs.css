@@ -13,18 +13,6 @@
     margin-bottom: 64px;
 }
 
-/* .section-1 {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s, transform 0.5s;  
-} 
-
-.section-1 .visible {
-    opacity: 1;
-    transform: translateY(0);
-} */
-
-
 .about-us-logo {
     display: flex;
     justify-content: center;  
@@ -58,9 +46,8 @@
     font-style: normal;
     font-weight: 700;
     line-height: 1;
-    padding-bottom: 0.1em;
-    margin-bottom: -0.03em;
-    letter-spacing: -0.015em; 
+    padding-bottom: 24px;
+    letter-spacing: -6px; 
     max-width: 12ch;
     white-space: pre-line;
     margin-block-start: 0.5em;
