@@ -1,0 +1,58 @@
+.customer-detail-container {
+    width: 50%;
+    margin:auto;
+    padding: auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .customer-detail-container h3 {
+    text-align: center;
+    color: rgb(63, 90, 169);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    color: rgb(63, 90, 169);
+  }
+  
+  input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 4px;
+    color: black;
+  }
+  
+  button {
+    padding: 10px;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+  }
+  button.save {
+    margin-top: 10px;
+    margin-right: 3px;
+    background-color: #03ee16;
+    color: black;
+    border-radius: 10px;
+  }
+  
+  button.cancel {
+    background-color: #e74c3c;
+    color: black;
+    border-radius: 10px;
+  }
+  button:hover {
+    background-color: rgb(63, 90, 169);
+    color: white;
+    font-weight: bold;
+  }
+  
+  

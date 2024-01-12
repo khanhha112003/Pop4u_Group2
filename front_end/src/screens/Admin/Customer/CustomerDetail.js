@@ -1,110 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CustomerDetail.css"
+const CustomerDetail = ({ customer, onClose }) => {
+  const [formData, setFormData] = useState({
+    name: customer.name,
+    email: customer.email,
+    phone: customer.phone,
+    datebirth: customer.datebirth,
+    point: customer.point,
+    type: customer.type,
+  });
 
+  const handleInputChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    })); 
+    const { name, value } = e.target;
+   
+    if ((name === "phone" || name === "datebirth") && !(/^\d*$/).test(value)) {
+      return; 
+    }
+  };
 
-function CustomerDetail (){
+  const handleSave = () => {
+    console.log("Form data saved:", formData);
+    onClose();
+  };
 
-    const data = [
-    {
-      "_id":'1',
-      "name": "Xuân Thiều",
-      "email": "thieuntx21411@st.uel.edu.vn",
-      "phone": "0975109849",
-      "datebirth": "01/01/2003",
-      "point":"20",
-      'type':"Thân thiết",
-    },
-    {
-      "_id":'2',
-      "name": "Thanh Lực",
-      "email": "lucnt21411@st.uel.edu.vn",
-      "phone": "08132943943",
-      "datebirth": "01/01/2003",
-      "point":"200",
-      'type':"VIP",
-    },
-    {
-      "_id":'3',
-      "name": "Thanh Tâm",
-      "email": "tamltt21411@st.uel.edu.vn",
-      "phone": "0294241424",
-      "datebirth": "01/01/2003",
-      "point":20,
-      'type':"Thân thiết",
-    },
-    {
-      "_id":'4',
-      "name": "Khánh Hà",
-      "email": "hapnk21411@st.uel.edu.vn",
-      "phone": "0294241424",
-      "datebirth": "01/01/2003",
-      "point":400,
-      'type':"VIP",
-    },
-    {
-      "_id":'5',
-      "name": "Anh Thuy",
-      "email": "thuybta21411@st.uel.edu.vn",
-      "phone": "0192434224",
-      "datebirth": "01/01/2003",
-      "point":20,
-      'type':"Thân thiết",
-    },
-    {
-      "_id":'6',
-      "name": "Gia Huy",
-      "email": "huylg21411@st.uel.edu.vn",
-      "phone": "07213144",
-      "datebirth": "01/01/2003",
-      "point":200,
-      'type':"VIP",
-    },
-    {
-      "_id":'7',
-      "name": "Như Ý",
-      "email": "thieuntx21411@st.uel.edu.vn",
-      "phone": "0294241424",
-      "datebirth": "01-01-2003",
-      "point":60,
-      'type':"Thân thiết",
-    },
-    
-  ];
+  const handleCancel = () => {
+    onClose();
+  };
 
-  const customer =data[1];
-  
   return (
     <div className="customer-detail-container">
-    <h2>Thông tin chi tiết khách hàng</h2>
-    <div className="customer-detail">
-      <div>
-        <label>Tên Khách hàng:</label>
-        <span>{customer.name}</span>
-      </div>
-      <div>
+      <h3>Chi tiết khách hàng</h3>
+      <form>
+      <label>Họ và tên:</label>
+        <input type="text" name="name" value={formData.name} onChange={handleInputChange} style={{color: "#000"}} />
+       
         <label>Email:</label>
-        <span>{customer.email}</span>
-      </div>
-      <div>
+        <input type="text" name="email" value={formData.email} onChange={handleInputChange} style={{color: "#000"}}/>
+
         <label>Số điện thoại:</label>
-        <span>{customer.phone}</span>
-      </div>
-      <div>
+        <input type="text" name="phone" value={formData.phone} onChange={handleInputChange} style={{color: "#000"}}/>
+
         <label>Ngày sinh:</label>
-        <span>{customer.datebirth}</span>
-      </div>
-      <div>
+        <input type="text" name="datebirth" value={formData.datebirth} onChange={handleInputChange} style={{color: "#000"}}/>
+
         <label>Điểm tích lũy:</label>
-        <span>{customer.point}</span>
-      </div>
-      <div>
+        <input type="text" name="point" value={formData.point} onChange={handleInputChange} style={{color: "#000"}} />
+
         <label>Loại khách hàng:</label>
-        <span>{customer.type}</span>
-      </div>
+        <select
+          name="type"
+          value={formData.type}
+          onChange={handleInputChange}
+          style={{color: "#000"}}
+        >
+          <option value="VIP">VIP</option>
+          <option value="Thân Thiết">Thân Thiết</option>
+        </select>
+
+     
+
+        <div>
+          <button type="button" className="save" onClick={handleSave}>
+            Save
+          </button>
+          <button type="button" className="cancel" onClick={handleCancel}>
+            Cancel
+          </button>
+        </div>
+      </form>
     </div>
-  </div>
   );
-
-
 };
-export {CustomerDetail};
+
+export default CustomerDetail;

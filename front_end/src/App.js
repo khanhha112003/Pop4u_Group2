@@ -17,6 +17,8 @@ import { AddVoucher } from './screens/Admin/Voucher/AddVoucher';
 import { VoucherList } from './screens/Admin/Voucher/VoucherList';
 import { CustomerManagementAdmin } from "./screens/Admin/Customer/CustomerList";
 import { ArtistAdmin } from "./screens/Admin/Artist/ArtistAdmin";
+import { ArtistDetailAdmin } from "./screens/Admin/Artist/ArtistDetailAdmin";
+import { AddArtistAdmin } from './screens/Admin/Artist/AddArtistAdmin';
 import { OrderList } from "./screens/Admin/Order/OrderList"
 
 import { ProductDetail } from './screens/ProductDetail/ProductDetail';
@@ -39,7 +41,7 @@ import { ProtectedLayout } from "./ProtectingRoute/ProtectedLayout";
 import { NormalLayout } from "./ProtectingRoute/NormalLayout";
 import { GuestLayout } from './ProtectingRoute/GuestLayout';
 import NotFoundPage from './screens/Error/NotFoundError';
-import { CustomerDetail } from './screens/Admin/Customer/CustomerDetail';
+import { OrderDetail } from './screens/Admin/Order/OrderDetail';
 
 function App() {
 	return (
@@ -81,9 +83,12 @@ function App() {
 				<Route path="add_voucher" element={<AddVoucher />} />
 				<Route path="voucher_list" element={<VoucherList />} />
 				<Route path="customer_list" element={<CustomerManagementAdmin />} />
-				<Route path="customer_detail/:customerId" element={<CustomerDetail />} />
 				<Route path="artist_list" element={<ArtistAdmin />} />
+				<Route path='artist_detail' element={<ArtistDetailAdmin />} />
+				<Route path='artist_add' element={<AddArtistAdmin />} />
 				<Route path="order_list" element={<OrderList />} />
+				<Route path="order_detail" element={<OrderDetail />} />
+				{/* <Route path="order_detail/:orderId" element={<OrderDetail />} /> */}
 				<Route path='*' exact={true} component={<NotFoundPage/>} />
 			</Route>
 		</Routes>

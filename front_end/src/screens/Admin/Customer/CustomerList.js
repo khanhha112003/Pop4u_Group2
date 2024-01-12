@@ -3,6 +3,7 @@ import './CustomerList.css';
 import { ReactComponent as SearchIcon } from "../Customer/search.svg"
 import { ReactComponent as EditIcon } from "../Customer/Icon_edit.svg"
 import { useNavigate } from "react-router-dom";
+import CustomerDetail from "./CustomerDetail";
 
 function CustomerManagementAdmin () {
 
@@ -70,18 +71,31 @@ function CustomerManagementAdmin () {
       "point":60,
       'type':"Thân thiết",
     },
-    // Add more products here
+    
   ];
+  
   const navigate = useNavigate();
   const [filterCategory, setFilterCategory] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
 
   const filteredCustomers = data.filter((customer) =>
     customer.type.toLowerCase().includes(filterCategory.toLowerCase()) &&
     customer.phone.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   const handleCustomerClick = (customerId) => {
-    navigate(`/admin/customer_detail/${customerId}`);
+    setSelectedCustomer(data.find(customer => customer._id === customerId));
+  };
+const handleEditClick = (customer) => {
+    setSelectedCustomer(customer);
+  };
+  const handleCloseDetail = () => {
+    setSelectedCustomer(null);
+  };
+  const handleSaveDetail = (updatedData) => {
+    console.log("Updated data:", updatedData);
+    handleCloseDetail();
   };
 
   return (
@@ -137,8 +151,14 @@ function CustomerManagementAdmin () {
         <tbody>
           {filteredCustomers.map((customer, index) => (
             <tr key={index}>
-              <td>
-                <b className="name"  onClick={() => handleCustomerClick(customer._id)} style={{cursor: "pointer"}}>{customer.name}</b>
+                          <td>
+                <b
+                  className="name"
+                  onClick={() => handleCustomerClick(customer._id)}
+                  style={{cursor: "pointer"}}
+                >
+                  {customer.name}
+                </b>
                 <br/>
                 id: {customer._id}
               </td>
@@ -147,11 +167,29 @@ function CustomerManagementAdmin () {
               <td>{customer.datebirth}</td>
               <td>{customer.point}</td>
               <td>{customer.type}</td>
-              <td className="text-center"><a onClick={() => handleCustomerClick(customer._id)} style={{cursor: "pointer"}}><EditIcon></EditIcon></a></td>
+              <td className="text-center">
+                  <a
+                    onClick={() => handleEditClick(customer)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <EditIcon></EditIcon>
+                  </a>
+              
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {/* tạo modal layout */}
+      {selectedCustomer && (
+        <div className="modal-background">
+          <CustomerDetail
+            customer={selectedCustomer}
+            onSave={handleSaveDetail}
+            onClose={handleCloseDetail}
+          />
+        </div>
+      )}
     </div>
   );
 };
