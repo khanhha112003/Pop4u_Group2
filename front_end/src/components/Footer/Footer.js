@@ -29,7 +29,7 @@ function Footer() {
                     <li><a onClick={() => navigate ("/about")} ><span className="label-s">Về chúng tôi</span></a></li>
                     <li><a onClick={() => navigate("/supplier")}><span className="label-s">Nhà cung ứng</span></a></li>
                     <li><a onClick={() => navigate("/esg")}><span className="label-s">ESG</span></a></li>
-                    <li><a onClick={() => navigate("/todo")}><span className="label-s">Chứng nhận</span></a></li>    
+                    <li><a href="https://circlechart.kr/" target="blank"><span className="label-s">Chứng nhận</span></a></li>    
                 </ul>
             </div>
             <div className="col-sm-6 col-md-6 col-lg-3 col-xl-3">
