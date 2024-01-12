@@ -4,17 +4,17 @@ table td {
     padding: 5px 10px;
     border-radius: 15px;
 
-    &.In-transit{
+    &.Pending{
       color: goldenrod;
       background-color: rgb(189, 189, 3, 0.103);
     }
 
-    &.Done{
+    &.Delivering{
       color: rgb(34, 219, 34);
       background-color: rgba(12, 77, 3, 0.103);
     }
 
-    &.In-prepare{
+    &.Delivered{
       color: rgb(73, 29, 231);
       background-color: rgba(12, 1, 22, 0.103);
     }

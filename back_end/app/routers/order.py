@@ -87,13 +87,30 @@ def get_orders(usr = Depends(get_current_user)):
         raise HTTPException(status_code=404, detail="Request not success")
 
     
-@router.get('/order/{order_id}')
-def get_order(order_id: str, usr = Depends(get_current_user)):
+@router.get('/get_order')
+def get_order_by_code(order_code: str, usr = Depends(get_current_user)):
     if usr is None or usr == HTTPException:
         raise HTTPException(status_code=401, detail="Unauthorized")
     if usr['role']!= "admin":
         raise HTTPException(status_code=401, detail="Unauthorized")
-    res = get_order_by_id(order_id)
+    print(order_code)
+    res = get_order_by_order_code(order_code)
+    if res != None:
+        return res
+    else:
+        raise HTTPException(status_code=404, detail="Request not success")
+    
+class OrderUpdate(BaseModel):
+    order_code: str
+    order_state: str
+
+@router.post('/update_order_state')
+def update_order_by_code(data: OrderUpdate, usr = Depends(get_current_user)):
+    if usr is None or usr == HTTPException:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    if usr['role']!= "admin":
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    res = update_order_state(data.order_code, data.order_state)
     if res != None:
         return res
     else:

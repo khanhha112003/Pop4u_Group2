@@ -9,5 +9,16 @@ def get_all_order():
     list_order_converted: list[dict] = list(list_order)
     return [Order(**i) for i in list_order_converted]
 
-def get_order_by_id():
-    pass
+def get_order_by_order_code(order_code):
+    collection = db['Orders']
+    res = collection.find_one({"order_code": order_code})
+    if res == None:
+        return None
+    return Order(**res)
+
+def update_order_state(order_code, state):
+    collection = db['Orders']
+    res = collection.update_one({"order_code": order_code}, {"$set": {"status": state}})
+    if res.modified_count == 1:
+        return True
+    return False

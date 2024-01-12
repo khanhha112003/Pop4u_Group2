@@ -60,8 +60,8 @@ const ProductListAdmin = () => {
 	);
 
 	if (loading) {
-		return <LoadingPage />;
-	}
+        return <LoadingPage isAdmin={true} />;
+    }
 
 	return (
 		<div className="container margin">

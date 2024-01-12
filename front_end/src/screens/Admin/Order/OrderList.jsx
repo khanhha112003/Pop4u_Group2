@@ -8,6 +8,7 @@ import axios from 'axios';
 import { BASE_URL } from '../../../app_logic/APIHandler';
 import { useAuth } from '../../../hooks/useAuth';
 import LoadingPage from '../../Loading/LoadingPage';
+
 export const OrderList = () => {
 	const navigate = useNavigate();
 	const [data, setData] = useState([]);
@@ -78,8 +79,9 @@ export const OrderList = () => {
 
 
 	if (loading) {
-		return <LoadingPage />;
-	}
+        return <LoadingPage isAdmin={true} />;
+    }
+
 	return (
 		<div className="container margin">
 			<h2 className="text-center" style={{ color: '#3F5AA9', marginTop: '1%' }}>Danh sách đơn hàng</h2>
@@ -114,6 +116,7 @@ export const OrderList = () => {
 				<table>
 					<thead>
 						<tr>
+							<th>Mã đơn hàng</th>
 							<th>Tên khách hàng</th>
 							<th>Ngày đặt hàng</th>
 							<th>SĐT</th>
@@ -127,6 +130,7 @@ export const OrderList = () => {
 					<tbody>
 						{searchResults.map((order, index) => (
 							<tr key={index}>
+								<td>{order.order_code}</td>
 								<td>{order.username}</td>
 								<td>{order.order_date}</td>
 								<td>{order.phone}</td>
@@ -136,13 +140,19 @@ export const OrderList = () => {
 								<td>
 									<span className={`status ${order.status}`}> {order.status} </span>
 								</td>
-								<td className="text-center"><a onClick={() => navigate("/admin/order_detail")} style={{ cursor: "pointer" }}><EditIcon></EditIcon></a></td>
+								<td className="text-center">
+									<a 
+									onClick={() => navigate("/admin/order_detail", { state: { order_code: order.order_code } })} 
+									style={{ cursor: "pointer" }}>
+										<EditIcon/>
+									</a>
+								</td>
 							</tr>
 						))}
 					</tbody>
 				</table>
 			</div>
-			<div className='Return button'>
+			<div className='return-button'>
 				{searchResults.length > 0 && (
 					<div className="return-button">
 						<button onClick={handleClearSearch}>Return</button>
