@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation , useNavigate} from "react-router-dom";
+import React, { useState, useEffect, useCallback } from 'react';
+import { useLocation, useNavigate } from "react-router-dom";
 import './AddProduct.css';
 import { useAuth } from '../../../hooks/useAuth';
 import LoadingPage from '../../Loading/LoadingPage';
@@ -12,6 +12,7 @@ const ProductDetailEdit = () => {
 	const [loading, setLoading] = useState(true);
 	const { user, logout } = useAuth();
 	const navigate = useNavigate();
+
 
 	useEffect(() => {
 		if (location.state) {
@@ -53,21 +54,22 @@ const ProductDetailEdit = () => {
 		}
 	}
 		, [location]);
-	const handleImageChange = (index) => (e) => {
-		const files = e.target.files;
-		const updatedImages = [...product.list_product_image];
+	const handleImageChange = (index, value) => {
+		const updatedImages = product.list_product_image;
+			updatedImages[index] = value;
+			setProduct({
+				...product,
+				list_product_image: updatedImages,
+			});
+	};
 
-		if (files.length > 0) {
-			const reader = new FileReader();
-			reader.readAsDataURL(files[0]);
-			reader.onload = () => {
-				updatedImages[index] = reader.result;
-				setProduct({
-					...product,
-					list_product_image: updatedImages,
-				});
-			};
-		}
+	const deleteImage = (index) => {
+		const updatedImages = product.list_product_image;
+		updatedImages.splice(index, 1);
+		setProduct({
+			...product,
+			list_product_image: updatedImages,
+		});
 	};
 
 	const renderProductImages = () => {
@@ -75,9 +77,10 @@ const ProductDetailEdit = () => {
 			return null;
 		}
 		return product.list_product_image.map((image, index) => (
-			<div key={index}>
-				<img src={image} alt={`Product Image ${index}`} style={{ width: '300px', height: '300px', margin: '20px' }} />
-				<input type="file" onChange={handleImageChange(index)} />
+			<div key={index} className='col-sm-10 col-md-10 col-xl-3 col-lg-4 mx-auto' style={{ width: '90%', marginBottom: 20 }}>
+				<input className="input-custom" type="text" name="image_link" value={image} onChange={(e) => handleImageChange(index, e.target.value)} />
+				<img src={image} alt={`Product Image ${index}`} style={{ width: 300, margin: 10 }} />
+				<button onClick={() => deleteImage(index)}> Xoá ảnh </button>
 			</div>
 		));
 	};
@@ -90,15 +93,32 @@ const ProductDetailEdit = () => {
 		});
 	};
 
+	const handleCheckboxChange = (label, value) => {
+		setProduct((prevProduct) => ({
+			...prevProduct,
+			[label]: value,
+		}));
+	};
+
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		// TODO: them func vao day
+		console.log(product);
+	};
+
+	const addImage = () => {
+		const updatedImages = product.list_product_image;
+		updatedImages.push('');
+		setProduct({
+			...product,
+			list_product_image: updatedImages,
+		});
 	};
 
 	if (loading) {
-        return <LoadingPage isAdmin={true} />;
-    }
+		return <LoadingPage isAdmin={true} />;
+	}
 
 	return (
 		<div className="container">
@@ -112,54 +132,55 @@ const ProductDetailEdit = () => {
 							<div className="margin">
 								<label>
 									Tên sản phẩm: <br></br></label>
-									<input className="input-custom" type="text" name="product_name" value={product.product_name} onChange={handleChange} />
-								
+								<input className="input-custom" type="text" name="product_name" value={product.product_name} onChange={handleChange} />
+
 							</div>
 							<div className="margin">
-							<label>Mã Sản phẩm: <br></br></label>
-								
-									<input className="input-custom " type="text" name="product_code" value={product.product_code} onChange={handleChange} />
-								
+								<label>Mã Sản phẩm: <br></br></label>
+
+								<input className="input-custom " type="text" name="product_code" value={product.product_code} onChange={handleChange} />
+
 							</div>
 							<div className="margin">
-							<label>Nghệ sĩ: <br></br></label>
-								
-									<input className="input-custom " type="text" name="artist" value={product.artist} onChange={handleChange} />
-								
+								<label>Nghệ sĩ: <br></br></label>
+
+								<input className="input-custom " type="text" name="artist" value={product.artist} onChange={handleChange} />
+
+							</div>
+
+							<div className="margin">
+								<label>Mã nghệ sĩ: <br></br></label>
+
+								<input className="input-custom " type="text" name="artist_code" value={product.artist_code} onChange={handleChange} />
+
 							</div>
 							<div className="margin">
-							<label>Mô tả sản phẩm: <br></br></label>
-								
-									<input className="input-custom " type="text" name="description" value={product.description} onChange={handleChange} />
-								
+								<label>Nhãn đánh giá: <br></br></label>
+								<input className="input-custom " type="text" name="rating_detail" value={product.rating_detail} onChange={handleChange} />
+
 							</div>
+
+							<div className="margin" >
+								Số lượng: <br></br>
+								<input className="input-custom-price " type="number" name="product_stock" value={product.product_stock} onChange={handleChange} />
+							</div>
+
 						</div>
 					</div>
-
-
 
 					<div className="col-sm-12 col-md-12 col-xl-5 col-lg-5">
 						<div className="section-frame-admin margin">
 							<div className="margin">
 								<label>
 									Giá bán: <br></br></label>
-									<input className="input-custom-price " type="number" name="discount_price" value={product.discount_price} onChange={handleChange} />
-								
-							</div>
-							<div className="margin">
-							<label>Giá khuyến mãi: <br></br></label>
-								
-									<input className="input-custom-price " type="number" name="sell_price" value={product.sell_price} onChange={handleChange} />
-								
-							</div>
-						</div>
-					</div>
-				</div>
+								<input className="input-custom-price " type="number" name="discount_price" value={product.discount_price} onChange={handleChange} />
 
-				<div className='row'>
-					<div className="col-xs-12 col-sm-12 col-md-12 col-xl-7 col-lg-7">
-						<div className="section-frame-admin margin">
+							</div>
 							<div className="margin">
+								<label>Giá khuyến mãi: <br></br></label>
+
+								<input className="input-custom-price " type="number" name="sell_price" value={product.sell_price} onChange={handleChange} />
+
 							</div>
 							<div className="margin">
 								Nhóm sản phẩm: <br></br>
@@ -167,30 +188,94 @@ const ProductDetailEdit = () => {
 									<div>
 										<select
 											id="productClassification"
-											name="classification"
+											name="categories"
 											value={product.category}
+											onChange={handleChange}
 										>
 											<option value="">{product.category}</option>
 										</select>
 									</div>
 								</label>
 							</div>
-							<div>
+							<div className='row'>
+								<div className="margin">
+									Nhãn đặc biệt: <br></br>
+									<div>
+										<input
+											type="checkbox"
+											id="is_hot"
+											checked={product.is_hot}
+											onChange={() => handleCheckboxChange('is_hot', !product.is_hot)}
+										/>
+										<label htmlFor="hotProduct">Sản phẩm hot</label>
+									</div>
 
-								<div className="margin" >
-									Số lượng: <br></br>
-									<input className="input-custom-price " type="number" name="stock" value={product.product_stock} onChange={handleChange} />
+									<div>
+										<input
+											type="checkbox"
+											id="is_new"
+											checked={product.is_new}
+											onChange={() => handleCheckboxChange('is_new', !product.is_new)}
+										/>
+										<label htmlFor="newProduct">Sản phẩm mới</label>
+									</div>
+
+									<div>
+										<input
+											type="checkbox"
+											id="is_sale"
+											checked={product.is_sale}
+											onChange={() => handleCheckboxChange('is_sale', !product.is_sale)}
+										/>
+										<label htmlFor="bestSeller">Sản phẩm bán chạy</label>
+									</div>
+
+									<div>
+										<input
+											type="checkbox"
+											id="is_freeship"
+											checked={product.is_freeship}
+											onChange={() => handleCheckboxChange('is_freeship', !product.is_freeship)}
+										/>
+										<label htmlFor="freeShipping">Sản phẩm free ship</label>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div className="col-sm-12 col-md-12 col-xl-5 col-lg-5">
+
+
+				</div>
+
+
+
+
+				<div className='row'>
+
+					<div className="col-sm-12 col-md-12 col-xl-12 col-lg-12">
+						<div className="section-frame-admin margin">
+
+							<div className="margin" >
+								<label>Mô tả sản phẩm: <br></br></label>
+								<div className='text-area-container'>
+									<textarea className="input-custom " type="text" name="description" value={product.description} onChange={handleChange} />
+								</div>	
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div className='row'>
+
+					<div className="col-sm-12 col-md-12 col-xl-12 col-lg-12">
 						<div className="section-frame-admin margin">
 
 							<div>{renderProductImages()}</div>
 
 						</div>
 					</div>
+					<button className="input-button" onClick={addImage}>Thêm ảnh</button>
 				</div>
 
 				<button className="input-button" type="submit">Lưu</button>
