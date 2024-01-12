@@ -114,3 +114,7 @@ textarea.input-custom {
   border: 0.1em solid var(--color-surface-tint-light);
   border-radius: 1em;
 }
+
+div.container.margin {
+  max-width: 100%;
+}

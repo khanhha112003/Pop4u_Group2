@@ -97,13 +97,13 @@ def update_product(data: dict, usr = Depends(get_user_or_none)):
             raise HTTPException(status_code=400, detail="Invalid data")
         
 @router.delete('/delete_product')
-def delete_product(product_name, usr = Depends(get_user_or_none)):
+def delete_product(product_code, usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException:
         raise usr
     elif usr == None or usr.role != "admin":
         raise HTTPException(status_code=401, detail="Invalid user")
     else:
-        res = delete_product(product_name)
+        res = delete_product(product_code)
         if res:
             return {"res":"deleted"}
         else:

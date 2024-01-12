@@ -58,28 +58,31 @@
   transition: background 0.5s ease-in-out;
 }
 
-.input-button:hover {
-  background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%);
-  border: 0; 
-
-}
-.input-button {
+.input-button-danger {
   border: 0.1em solid var(--color-surface-tint-light);
   border-radius: 5em;
   outline: none;
   transition: box-shadow 0.3s;
   height: 3.5em; 
   box-sizing: border-box; 
-  color: var(--color-on-primary-light);
-  background-color: var(--color-primary-light);
+  color: darkblue;
+  background-color: rgb(233, 199, 199);
   width: 20%;
   margin-top: 0.5em;
   margin-bottom: 1.5em;
   transition: background 0.5s ease-in-out;
 }
 
+
+
 .input-button:hover {
   background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%);
+  border: 0; 
+
+}
+
+.input-button-danger:hover {
+  background: linear-gradient(60deg,#c3c4a5,#c96e6e,#e50f0f 90%);
   border: 0; 
 
 }

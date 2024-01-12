@@ -138,6 +138,41 @@ const ProductDetailEdit = () => {
 		await excuteOrder();
 	};
 
+	const handleDeleteProduct = async (event) => {
+		event.preventDefault();
+		async function excuteOrder() {
+			const token = 'Bearer ' + user.access_token;
+			const data = {
+				product_code: product.product_code,
+			}
+			const config = {
+				headers: {
+					'content-type': 'application/json',
+					'Authorization': token,
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+				}
+			}
+			try {
+				const postRequest = await axios.delete(BASE_URL + "/product/delete_product", data, config);
+				if (postRequest.data.status) {
+					alert("Xoá thành công");
+					navigate('/admin/product_list', { replace: true });
+				} else {
+					alert("Xoá thất bại");
+				}
+			} catch (error) {
+				if (error.response.status === 401) {
+					alert("User không có quyền"); // Unauthorized
+					logout((val) => { });
+				} else {
+					alert("Xoá thất bại");
+				}
+			}
+		}
+		await excuteOrder();
+	};
+
 	const addImage = () => {
 		const updatedImages = product.list_product_image;
 		updatedImages.push('');
@@ -346,8 +381,20 @@ const ProductDetailEdit = () => {
                         </div>
                     </div>
                 </div>
+				<div className='row'>
+					<div className="col-sm-12 col-md-12 col-xl-6 col-lg-6">
+						<button className="input-button" type="submit" onClick={handleSubmit}>Lưu</button>
+					</div>
+					<div className="col-sm-12 col-md-12 col-xl-6 col-lg-6" 
+						 style={{alignItems: 'flex-end', display: 'flex', flexDirection: 'row-reverse'}}>
+						<button 
 
-				<button className="input-button" type="submit" onClick={handleSubmit}>Lưu</button>
+							className="input-button-danger" 
+							type="submit" 
+							onClick={handleDeleteProduct}>Xoá sản phẩm</button>
+					</div>
+                </div>
+
 			</form>
 		</div>
 
