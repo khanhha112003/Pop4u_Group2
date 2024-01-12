@@ -83,7 +83,7 @@ function AboutUs() {
                     </div>
                 </div>
                 <div className="col-12 section-content-main">
-                    <h1 className="head1 main-statement">By your side. 
+                    <h1 className="main-statement">By your side. 
                     Together.</h1>
                 </div>
                 <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12">
