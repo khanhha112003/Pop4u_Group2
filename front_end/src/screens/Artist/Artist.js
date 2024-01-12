@@ -84,7 +84,7 @@ function ArtistList() {
 				</div>
 				<div className="row">
 					{filteredData.map(artist => (
-						<div key={artist._id} className="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+						<div key={artist.artist_name} className="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
 							<div className="artist-card animate__animated animate__slideInRight" onClick={() => navigate('/artist_detail?artist_code=' + artist.artist_code)}>
 								<div className="artist-pic">
 									<img src={artist.artist_logo} alt={artist.artist_name} />
