@@ -69,7 +69,7 @@ function ProductList() {
         isHotProduct: false,
         ascendingPrice: false,
         descendingPrice: false,
-        category: (sort === undefined || sort === "") ? "All" : sort,
+        category: (sort === undefined || sort === "") ? "All" : sort.charAt(0).toUpperCase() + sort.slice(1),
         filterName: ""
     });
 
@@ -87,7 +87,8 @@ function ProductList() {
 
         reg.then((data) => {
             const serverItem = data.data.list_product;
-            const newState = calulatePageInformation(serverItem);
+            const filteredItems = filterWithFilterInfo(serverItem, filter_info);
+            const newState = calulatePageInformation(filteredItems);
             setTotalProduct(serverItem);
             setCurrentPageInfo(newState);
         }).catch(error => {
