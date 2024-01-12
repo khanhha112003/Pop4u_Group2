@@ -288,12 +288,12 @@ export function Payment() {
                                 </div>
                                 <div className='address-input'>
                                     <div className='payment-input text-center'>
-                                        <p id='location-value'>{orderDetail.province}</p>
+                                        {/* <p id='location-value'>{orderDetail.province}</p> */}
                                         <select
-                                            id='province'
-                                            className='body-small payment-field'
+                                            id='location-value'
+                                            className='body-small payment-field-select'
                                             placeholder='Tỉnh/ Thành phố'
-                                            // value={orderDetail.province}
+                                            value={orderDetail.province}
                                             onChange={e => handleProvinceChange(e.target.value)}
                                         >
                                             <option value="" disabled>Tỉnh/ Thành phố</option>
@@ -307,11 +307,11 @@ export function Payment() {
                                         </select>
                                     </div>
                                     <div className='payment-input text-center'>
-                                        <p id='location-value'>{orderDetail.district}</p>
+                                        {/* <p id='location-value'>{orderDetail.district}</p> */}
                                         <select
-                                            id='district'
-                                            className='body-small payment-field'
-                                            // value={orderDetail.district}
+                                            id='location-value'
+                                            className='body-small payment-field-select'
+                                            value={orderDetail.district}
                                             onChange={e => handleDistrictChange(e.target.value)}
                                         >
                                             <option value="" disabled>Quận/ Huyện</option>
@@ -325,11 +325,11 @@ export function Payment() {
                                         </select>
                                     </div>
                                     <div className='payment-input text-center'>
-                                        <p id='location-value'>{orderDetail.ward}</p>
+                                        {/* <p id='location-value'>{orderDetail.ward}</p> */}
                                         <select
-                                            id='ward'
-                                            className='body-small payment-field'
-                                            // value={orderDetail.ward}
+                                            id='location-value'
+                                            className='body-small payment-field-select'
+                                            value={orderDetail.ward}
                                             onChange={e => handleWardChange(e.target.value)}
                                         >
                                             <option value="" disabled>Phường/ Xã</option>
