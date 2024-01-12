@@ -60,6 +60,21 @@ body{
     width: 100%;
 }
 
+.payment-field-select {
+    /* padding-left: 2em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-right: 2em; */
+    padding-left: 3.5em;
+    border: 0.1em solid var(--color-surface-tint-light);
+    border-radius: 1em;
+    outline: none;  
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+    background-color: transparent; 
+    height: 3.5em;
+    width: 100%;
+}
+
 .payment-field:focus {
     border-color: var(--color-on-primary-fixed-variant-light); 
     box-shadow: 0 0 3em rgba(25, 118, 210, 0.5), inset 0 0 0.5em rgba(186, 225, 255, 0.3);
@@ -97,14 +112,14 @@ body{
 
 
 #province, #district {
-    width: 30%;
+    width: 100%;
     float: left; 
     margin-right: 5%;
     margin-bottom: 1em;
 }
 
 #ward {
-    width: 30%;
+    width: 100%;
     float: left; 
     margin-bottom: 1em;
 
