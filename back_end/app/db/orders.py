@@ -3,8 +3,89 @@ from database import db
 from schemas import Cart, Order, CartItem, OrderForm
 from db.products import get_product_detail_by_code
 from serializer.product_serializer import productSerializer, cartItemSerializer
+import datetime, random, string
+
+'''
+Admin specific function
+'''
+def get_all_order():
+    collection = db['Orders']
+    list_order = collection.find({}, {'_id': 0})
+    list_order_converted: list[dict] = list(list_order)
+    return [Order(**i) for i in list_order_converted]
+
+def get_order_by_order_code(order_code):
+    collection = db['Orders']
+    res = collection.find_one({"order_code": order_code})
+    if res == None:
+        return None
+    return Order(**res)
+
+def update_order_state(order_code, state):
+    collection = db['Orders']
+    res = collection.update_one({"order_code": order_code}, {"$set": {"status": state}})
+    if res.modified_count == 1:
+        return True
+    return False
 
 
+#==================== Generate Ordere ====================
+def generate_order_code(length=4):
+    characters = string.ascii_uppercase
+    order_code = ''.join(random.choice(characters) for _ in range(length))
+    return order_code
+
+def lowest_price_of_product(product: dict):
+    if product['discount_price'] == 0:
+        return product['sell_price']
+    return product['discount_price']
+
+def create_order(order: OrderForm, username: Optional[str] = None):
+    collection = db['Orders']
+    cart = get_cart_by_username(username)
+    if not cart:
+        return None
+    current_string_date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    str_date_code = current_string_date[0:2] + current_string_date[3:5] + current_string_date[6:10]
+    new_code = str_date_code + generate_order_code()
+    while collection.find_one({"order_code": new_code}):
+        new_code = new_code + generate_order_code()
+        # product_final_price
+    for info in order.order_product_info:
+        info['product']['product_final_price'] = lowest_price_of_product(info['product'])
+    newOrder = Order(username=username,
+                     order_code=new_code,
+                     order_date= current_string_date,
+                     total_price=order.total_price,
+                     order_product_info=order.order_product_info,
+                     status="Pending",
+                     is_paid= order.is_paid,
+                     is_buy_now= order.is_buy_now,
+                     coupon_code=order.coupon_code,
+                     address=order.address,
+                     payment_method=order.payment_method,
+                     phone=order.phone,
+                     shipping_price=order.shipping_price)
+    result = collection.insert_one(newOrder.__dict__)
+    if result:
+        if username and not newOrder.is_buy_now:
+            list_update_info = []
+            for i in order.order_product_info:
+                temp_dict = {}
+                temp_dict['product_code'] = i['product']['product_code']
+                temp_dict['quantity'] = 0
+                list_update_info.append(temp_dict)
+            return update_cart_with_multiple_product_id_and_quantity(username, list_update_info, True)
+        else:
+            return True
+    return False
+
+
+
+
+'''
+=========================== . Cart handler =============================
+'''
 def create_cart(username: str):
     collection = db['Carts']
     cart = Cart(username=username,
@@ -129,63 +210,3 @@ def calculate_total_price(cart: dict):
             total_price += item['quantity'] * item['sell_price']
     cart['total_price'] = total_price
     return cart
-
-
-# ================== Order ==================
-import random
-import string
-import datetime
-
-def generate_order_code(length=4):
-    # Define the characters to be used in the order code
-    characters = string.ascii_uppercase
-
-    # Generate a random order code with the specified length
-    order_code = ''.join(random.choice(characters) for _ in range(length))
-
-    return order_code
-
-def lowest_price_of_product(product: dict):
-    if product['discount_price'] == 0:
-        return product['sell_price']
-    return product['discount_price']
-
-def create_order(order: OrderForm, username: Optional[str] = None):
-    collection = db['Orders']
-    cart = get_cart_by_username(username)
-    if not cart:
-        return None
-    current_string_date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    str_date_code = current_string_date[0:2] + current_string_date[3:5] + current_string_date[6:10]
-    new_code = str_date_code + generate_order_code()
-    while collection.find_one({"order_code": new_code}):
-        new_code = new_code + generate_order_code()
-        # product_final_price
-    for info in order.order_product_info:
-        info['product']['product_final_price'] = lowest_price_of_product(info['product'])
-    newOrder = Order(username=username,
-                     order_code=new_code,
-                     order_date= current_string_date,
-                     total_price=order.total_price,
-                     order_product_info=order.order_product_info,
-                     status="Pending",
-                     is_paid= order.is_paid,
-                     is_buy_now= order.is_buy_now,
-                     coupon_code=order.coupon_code,
-                     address=order.address,
-                     payment_method=order.payment_method,
-                     phone=order.phone,
-                     shipping_price=order.shipping_price)
-    result = collection.insert_one(newOrder.__dict__)
-    if result:
-        if username and not newOrder.is_buy_now:
-            list_update_info = []
-            for i in order.order_product_info:
-                temp_dict = {}
-                temp_dict['product_code'] = i['product']['product_code']
-                temp_dict['quantity'] = 0
-                list_update_info.append(temp_dict)
-            return update_cart_with_multiple_product_id_and_quantity(username, list_update_info, True)
-        else:
-            return True
-    return False

@@ -3,8 +3,7 @@ from fastapi import APIRouter, Body, Depends, HTTPException
 from pydantic import BaseModel
 from oauth2 import get_current_active_user, get_current_user, get_user_or_none
 from schemas import OrderForm, Cart
-from db.shopping import * 
-from db.orderAdmin import *
+from db.orders import * 
 
 router = APIRouter()
 @router.get('/cart', response_model=Cart)
