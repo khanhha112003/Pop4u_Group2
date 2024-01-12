@@ -16,9 +16,9 @@ def insert_product(product: Product):
     result = collection.insert_one(product.__dict__)
     return result
 
-def update_product_by_id(product: Product):
+def update_product_by_code(product_code: str, product: Product):
     collection = db['Products']
-    result = collection.update_one({"product_name": product.product_name}, {"$set": product.__dict__})
+    result = collection.update_one({"product_code": product_code}, {"$set": product.__dict__})
     return result
 
 def delete_product(product_name: str):

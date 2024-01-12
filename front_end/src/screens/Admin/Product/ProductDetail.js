@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import './AddProduct.css';
 import { useAuth } from '../../../hooks/useAuth';
@@ -53,14 +53,14 @@ const ProductDetailEdit = () => {
 			navigate('/admin/product_list', { replace: true });
 		}
 	}
-		, [location]);
+		, [location, navigate, user.access_token, logout]);
 	const handleImageChange = (index, value) => {
 		const updatedImages = product.list_product_image;
-			updatedImages[index] = value;
-			setProduct({
-				...product,
-				list_product_image: updatedImages,
-			});
+		updatedImages[index] = value;
+		setProduct({
+			...product,
+			list_product_image: updatedImages,
+		});
 	};
 
 	const deleteImage = (index) => {
@@ -79,8 +79,8 @@ const ProductDetailEdit = () => {
 		return product.list_product_image.map((image, index) => (
 			<div key={index} className='col-sm-10 col-md-10 col-xl-3 col-lg-4 mx-auto' style={{ width: '90%', marginBottom: 20 }}>
 				<input className="input-custom" type="text" name="image_link" value={image} onChange={(e) => handleImageChange(index, e.target.value)} />
-				<img src={image} alt={`Product Image ${index}`} style={{ width: 300, margin: 10 }} />
-				<button onClick={() => deleteImage(index)}> Xoá ảnh </button>
+				<img src={image} alt={`Product detail ${index}`} style={{ width: 300, margin: 10 }} />
+				<button style={{display: product.list_product_image.length > 0}} onClick={() => deleteImage(index)}> Xoá ảnh </button>
 			</div>
 		));
 	};
@@ -101,10 +101,42 @@ const ProductDetailEdit = () => {
 	};
 
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		// TODO: them func vao day
-		console.log(product);
+	const handleSubmit = async (event) => {
+		async function excuteOrder() {
+			event.preventDefault();
+			const token = 'Bearer ' + user.access_token;
+			const data = {
+				product_code: product.product_code,
+				product_info: product
+			}
+			const config = {
+				headers: {
+					'content-type': 'application/json',
+					'Authorization': token,
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+				}
+			}
+			try {
+				const postRequest = await axios.post(BASE_URL + "/product/update_product", data, config);
+				console.log(postRequest);
+				if (postRequest.data.status) {
+					alert("Cập nhật thành công");
+					navigate('/admin/product_list', { replace: true });
+				} else {
+					alert("Cập nhật thất bại");
+				}
+
+			} catch (error) {
+				if (error.response.status === 401) {
+					alert("User không có quyền"); // Unauthorized
+					logout((val) => { });
+				} else {
+					alert("Cập nhật thất bại");
+				}
+			}
+		}
+		await excuteOrder();
 	};
 
 	const addImage = () => {
@@ -122,7 +154,7 @@ const ProductDetailEdit = () => {
 
 	return (
 		<div className="container">
-			<form onSubmit={handleSubmit}>
+			<form>
 
 				<div className="row">
 					<h2 className="text-center">Thông tin sản phẩm</h2>
@@ -132,37 +164,65 @@ const ProductDetailEdit = () => {
 							<div className="margin">
 								<label>
 									Tên sản phẩm: <br></br></label>
-								<input className="input-custom" type="text" name="product_name" value={product.product_name} onChange={handleChange} />
+								<input
+									className="input-custom"
+									type="text"
+									name="product_name"
+									value={product.product_name}
+									onChange={handleChange} />
 
 							</div>
 							<div className="margin">
 								<label>Mã Sản phẩm: <br></br></label>
 
-								<input className="input-custom " type="text" name="product_code" value={product.product_code} onChange={handleChange} />
+								<input
+									className="input-custom "
+									type="text"
+									name="product_code"
+									value={product.product_code}
+									onChange={handleChange} />
 
 							</div>
 							<div className="margin">
 								<label>Nghệ sĩ: <br></br></label>
-
-								<input className="input-custom " type="text" name="artist" value={product.artist} onChange={handleChange} />
+								<input
+									className="input-custom "
+									type="text"
+									name="artist"
+									value={product.artist}
+									onChange={handleChange} />
 
 							</div>
 
 							<div className="margin">
 								<label>Mã nghệ sĩ: <br></br></label>
 
-								<input className="input-custom " type="text" name="artist_code" value={product.artist_code} onChange={handleChange} />
+								<input
+									className="input-custom "
+									type="text"
+									name="artist_code"
+									value={product.artist_code}
+									onChange={handleChange} />
 
 							</div>
 							<div className="margin">
 								<label>Nhãn đánh giá: <br></br></label>
-								<input className="input-custom " type="text" name="rating_detail" value={product.rating_detail} onChange={handleChange} />
+								<input
+									className="input-custom "
+									type="text"
+									name="rating_detail"
+									value={product.rating_detail}
+									onChange={handleChange} />
 
 							</div>
 
 							<div className="margin" >
 								Số lượng: <br></br>
-								<input className="input-custom-price " type="number" name="product_stock" value={product.product_stock} onChange={handleChange} />
+								<input
+									className="input-custom-price "
+									type="number"
+									name="product_stock"
+									value={product.product_stock} onChange={handleChange} />
 							</div>
 
 						</div>
@@ -278,7 +338,7 @@ const ProductDetailEdit = () => {
 					<button className="input-button" onClick={addImage}>Thêm ảnh</button>
 				</div>
 
-				<button className="input-button" type="submit">Lưu</button>
+				<button className="input-button" type="submit" onClick={handleSubmit}>Lưu</button>
 			</form>
 		</div>
 
