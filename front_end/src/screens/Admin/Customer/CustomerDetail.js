@@ -68,10 +68,10 @@ function CustomerDetail (){
       "point":60,
       'type':"Thân thiết",
     },
-    // Add more products here
+    
   ];
 
-  const customer =data[0];
+  const customer =data[1];
   
   return (
     <div className="customer-detail-container">

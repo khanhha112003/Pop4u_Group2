@@ -9,14 +9,14 @@ table {
   th {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: left;
+    text-align: center;
   }
   
   /* Style cho các dòng trong bảng */
   td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: left;
+    text-align: center;
   }
   
   /* Style cho hàng chẵn */

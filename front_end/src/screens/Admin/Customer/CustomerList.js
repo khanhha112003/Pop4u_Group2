@@ -80,6 +80,9 @@ function CustomerManagementAdmin () {
     customer.type.toLowerCase().includes(filterCategory.toLowerCase()) &&
     customer.phone.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const handleCustomerClick = (customerId) => {
+    navigate(`/admin/customer_detail/${customerId}`);
+  };
 
   return (
     <div className="container margin">
@@ -135,7 +138,7 @@ function CustomerManagementAdmin () {
           {filteredCustomers.map((customer, index) => (
             <tr key={index}>
               <td>
-                <b className="name"  onClick={() => navigate("/admin/customer_detail")} style={{cursor: "pointer"}}>{customer.name}</b>
+                <b className="name"  onClick={() => handleCustomerClick(customer._id)} style={{cursor: "pointer"}}>{customer.name}</b>
                 <br/>
                 id: {customer._id}
               </td>
@@ -144,7 +147,7 @@ function CustomerManagementAdmin () {
               <td>{customer.datebirth}</td>
               <td>{customer.point}</td>
               <td>{customer.type}</td>
-              <td className="text-center"><a onClick={() => navigate("/admin/customer_detail")} style={{cursor: "pointer"}}><EditIcon></EditIcon></a></td>
+              <td className="text-center"><a onClick={() => handleCustomerClick(customer._id)} style={{cursor: "pointer"}}><EditIcon></EditIcon></a></td>
             </tr>
           ))}
         </tbody>
