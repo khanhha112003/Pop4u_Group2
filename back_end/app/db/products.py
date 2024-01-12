@@ -24,7 +24,7 @@ def update_product_by_code(product_code: str, product: Product):
     result = collection.update_one({"product_code": product_code}, {"$set": product.__dict__})
     return result
 
-def delete_product(product_code: str):
+def delete_product_by_product_code(product_code: str):
     collection = db['Products']
     result = collection.delete_one({"product_code": product_code})
     return result

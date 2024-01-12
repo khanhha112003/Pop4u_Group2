@@ -271,7 +271,13 @@ export const AddProduct = () => {
                             <div className="margin" >
                                 <label>Mô tả sản phẩm: <br></br></label>
                                 <div className='text-area-container'>
-                                    <textarea className="input-custom " type="text" name="description" value={product.description} onChange={handleChange} />
+                                    <textarea 
+                                        className="input-custom" 
+                                        style={{border: 'none'}} 
+                                        type="text" 
+                                        name="description" 
+                                        value={product.description} 
+                                        onChange={handleChange} />
                                 </div>
                             </div>
 
