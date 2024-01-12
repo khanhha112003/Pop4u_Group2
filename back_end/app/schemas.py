@@ -99,6 +99,7 @@ class Cart(BaseModel):
 class Order(BaseModel):
     username: Optional[str] = None
     order_date: str
+    order_code: str
     total_price: float
     status: str
     address: str

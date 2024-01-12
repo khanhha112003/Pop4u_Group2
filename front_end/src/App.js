@@ -41,6 +41,7 @@ import { ProtectedLayout } from "./ProtectingRoute/ProtectedLayout";
 import { NormalLayout } from "./ProtectingRoute/NormalLayout";
 import { GuestLayout } from './ProtectingRoute/GuestLayout';
 import NotFoundPage from './screens/Error/NotFoundError';
+import { OrderDetail } from './screens/Admin/Order/OrderDetail';
 
 function App() {
 	return (
@@ -86,6 +87,7 @@ function App() {
 				<Route path='artist_detail' element={<ArtistDetailAdmin />} />
 				<Route path='artist_add' element={<AddArtistAdmin />} />
 				<Route path="order_list" element={<OrderList />} />
+				<Route path="order_detail" element={<OrderDetail />} />
 				{/* <Route path="order_detail/:orderId" element={<OrderDetail />} /> */}
 				<Route path='*' exact={true} component={<NotFoundPage/>} />
 			</Route>

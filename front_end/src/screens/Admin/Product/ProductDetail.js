@@ -97,8 +97,8 @@ const ProductDetailEdit = () => {
 	};
 
 	if (loading) {
-		return <LoadingPage />;
-	}
+        return <LoadingPage isAdmin={true} />;
+    }
 
 	return (
 		<div className="container">
