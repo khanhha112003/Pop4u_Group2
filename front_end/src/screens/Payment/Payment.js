@@ -67,7 +67,9 @@ export function Payment() {
             let _state = location.state || [];
             setIsBuyNow(_state.isBuyNow);
             setDataContent(_state.orderInfo);
-            setDiscountAmount(_state.discountAmount);
+            if (_state.discountAmount) {
+                setDiscountAmount(_state.discountAmount);
+            }
             // setCouponCode(_state.couponCode);
         } else {
             if (!user) {
