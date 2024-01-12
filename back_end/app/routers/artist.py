@@ -78,7 +78,7 @@ def modify_artist(artist: Artist, usr = Depends(get_user_or_none)):
             raise HTTPException(status_code=404, detail="Artist not found")
 
 @router.delete('/delete_artist')
-def delete_artist(artist_code, usr = Depends(get_user_or_none)):
+def delete_artist(artist_code: str, usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException:
         raise usr
     elif usr == None or usr.role != "admin":

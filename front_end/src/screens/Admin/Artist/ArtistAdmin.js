@@ -70,7 +70,7 @@ export function ArtistAdmin() {
                 <tbody>
                     {filteredArtist.map((artist, index) => (
                         <tr key={index}>
-                            <td>{artist._id}</td>
+                            <td>{index}</td>
                             <td>{artist.artist_code}</td>
                             <td>{artist.artist_name}</td>
                             <td>
@@ -98,7 +98,14 @@ export function ArtistAdmin() {
                                     style={{ width: '72px', height: '72px', objectFit: 'cover', borderRadius: '12px' }}
                                 />
                             </td>
-                            <td className="text-center"><a onClick={() => navigate("/admin/artist_detail", { state: artist})} style={{ cursor: "pointer" }}><EditIcon></EditIcon></a></td>
+                            <td className="text-center">
+                                <div 
+                                    onClick={() => navigate("/admin/artist_detail", { state: artist})} 
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    <EditIcon/>
+                                </div>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
