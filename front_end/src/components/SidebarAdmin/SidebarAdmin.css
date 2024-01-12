@@ -1,6 +1,6 @@
 
 .sidebar {
-    width: 220px;
+    width: 200px;
     font-family: var(--inter);
     background-color: var(--bs-body-bg);
 }
@@ -8,14 +8,17 @@
 .nav-item.admin-nav-item {
     display: flex;
     gap: 2em;
+    width: 190px;
 }
 .nav-link.admin-navlink{
     display: flex;
     align-items: center;
     gap: 1em;
+    width: 190px;
 }
 .nav-link.admin-navlink:hover {
     background-color: #DBE1FF ;
     color: white;
     cursor: pointer;
+    width: 190px;
 }   

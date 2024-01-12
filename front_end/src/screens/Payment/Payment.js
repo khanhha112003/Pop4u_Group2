@@ -49,24 +49,51 @@ function PaymentItem({ product, quantity }) {
 export function Payment() {
     const [selectedOption, setSelectedOption] = useState('');
     const [listData, setDataContent] = useState([]);
-    const [isBuyNow, setIsBuyNow] = useState(false); // [true, false
+    const [isBuyNow, setIsBuyNow] = useState(false);
+    const [discountAmount, setDiscountAmount] = useState(0);
+    const [orderDetail, setOrderDetail] = useState({ phone: "", email: "", address: "", note: "", province: "", district: "", ward: "" });
+    const [couponCode, setCouponCode] = useState('');
+    const [feeShip, setFeeShip] = useState(0);
     const location = useLocation();
     const { user } = useAuth();
+
+    const [listProvince, setListProvince] = useState([]);
+    const [listDistrict, setListDistrict] = useState([]);
+    const [listWard, setListWard] = useState([]);
+
     const navigate = useNavigate();
     useEffect(() => {
         if (location.state) {
             let _state = location.state || [];
             setIsBuyNow(_state.isBuyNow);
             setDataContent(_state.orderInfo);
+            if (_state.discountAmount) {
+                setDiscountAmount(_state.discountAmount);
+            }
+            // setCouponCode(_state.couponCode);
         } else {
             if (!user) {
                 navigate('/');
             }
         }
+
+        fetch('https://vapi.vnappmob.com/api/province/')
+            .then((response) => response.json())
+            .then((data) => {
+                setListProvince(data.results);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }, []);
 
     const handleRadioChange = (event) => {
         setSelectedOption(event.target.value);
+        if (event.target.value === 'option1') {
+            setFeeShip(20000);
+        } else {
+            setFeeShip(0);
+        }
     };
 
     const total_price = () => {
@@ -77,20 +104,31 @@ export function Payment() {
     }
 
     const executeOrder = () => {
+        if (orderDetail.fullname === "" || 
+            orderDetail.email === "" || 
+            orderDetail.phone === "" || 
+            orderDetail.address === "" || 
+            orderDetail.province === "" || 
+            orderDetail.district === "" || 
+            orderDetail.ward === "") {
+            alert('Vui lòng nhập đầy đủ thông tin');
+            return;
+        }
         if (selectedOption === 'option1') {
             if (user === null) {
                 basicPostRequest('/order/create_order', {
-                        username: '',
-                        order_product_info: listData,
-                        payment_method: 'COD',
-                        phone_number: '0123456789',
-                        email: "",
-                        total_price: total_price(),
-                        shipping_price: 20000,
-                        is_buy_now: isBuyNow,
-                        is_paid: false,
-                        address: 'Hà Nội',
-                        coupon_code: '',
+                    username: '',
+                    order_product_info: listData,
+                    payment_method: 'COD',
+                    phone_number: orderDetail.phone,
+                    email: orderDetail.email,
+                    total_price: total_price(),
+                    shipping_price: feeShip,
+                    is_buy_now: isBuyNow,
+                    is_paid: false,
+                    address: orderDetail.address + ', ' + orderDetail.ward + ', ' + orderDetail.district + ', ' + orderDetail.province,
+                    note: orderDetail.note,
+                    coupon_code: '',
                 }).then((response) => {
                     if (response.data.status === 1) {
                         alert('Đặt hàng thành công');
@@ -105,17 +143,18 @@ export function Payment() {
                 })
             } else {
                 authPostRequest('/order/create_order', {
-                        username: user.username,
-                        order_product_info: listData,
-                        payment_method: 'COD',
-                        phone_number: '0123456789',
-                        email:  "",
-                        total_price: total_price(),
-                        shipping_price: 20000,
-                        is_buy_now: isBuyNow,
-                        is_paid: false,
-                        address: 'Hà Nội',
-                        coupon_code: '',
+                    username: user.username,
+                    order_product_info: listData,
+                    payment_method: 'COD',
+                    phone_number: orderDetail.phone,
+                    email: orderDetail.email,
+                    total_price: total_price(),
+                    shipping_price: feeShip,
+                    is_buy_now: isBuyNow,
+                    note: orderDetail.note,
+                    is_paid: false,
+                    address: orderDetail.address + ', ' + orderDetail.ward + ', ' + orderDetail.district + ', ' + orderDetail.province,
+                    coupon_code: '',
                 }, 'Bearer ' + user.access_token).then((response) => {
                     if (response.data.status === 1) {
                         alert('Đặt hàng thành công');
@@ -136,6 +175,58 @@ export function Payment() {
         } else {
             alert('Vui lòng chọn phương thức thanh toán');
         }
+    }
+
+    const handleFullnameChange = (event) => {
+        setOrderDetail({ ...orderDetail, fullname: event.target.value });
+    }
+
+    const handleEmailChange = (event) => {
+        setOrderDetail({ ...orderDetail, email: event.target.value });
+    }
+
+    const handlePhoneChange = (event) => {
+        setOrderDetail({ ...orderDetail, phone: event.target.value });
+    }
+
+    const handleDetailLocationChange = (event) => {
+        setOrderDetail({ ...orderDetail, address: event.target.value });
+    }
+
+    const handleProvinceChange = (selectedValue) => {
+        const province_name = listProvince.filter((item) => item.province_id === selectedValue)[0].province_name;
+        setOrderDetail({ ...orderDetail, province: province_name, district: '', ward: '' });
+        fetch('https://vapi.vnappmob.com/api/province/district/' + selectedValue)
+            .then((response) => response.json())
+            .then((data) => {
+                setListDistrict(data.results);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        setListWard([]);
+    };
+
+    const handleDistrictChange = (selectedValue) => {
+        const district_name = listDistrict.filter((item) => item.district_id === selectedValue)[0].district_name;
+        setOrderDetail({ ...orderDetail, district: district_name, ward: '' });
+        fetch('https://vapi.vnappmob.com/api/province/ward/' + selectedValue)
+            .then((response) => response.json())
+            .then((data) => {
+                setListWard(data.results);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const handleWardChange = (selectedValue) => {
+        const ward_name = listWard.filter((item) => item.ward_id === selectedValue)[0].ward_name;
+        setOrderDetail({ ...orderDetail, ward: ward_name });
+    };
+
+    const handleNoteChange = (event) => {
+        setOrderDetail({ ...orderDetail, note: event.target.value });
     }
 
     return (
@@ -170,10 +261,9 @@ export function Payment() {
                                         className='body-small payment-field'
                                         type="text"
                                         id="name"
-                                        // value={username}
                                         placeholder="Họ và tên"
                                         required
-                                    // onChange={handleUsername}
+                                        onChange={handleFullnameChange}
                                     />
                                 </div>
                                 <div className='payment-input text-center'>
@@ -181,10 +271,9 @@ export function Payment() {
                                         className='body-small payment-field'
                                         type="text"
                                         id="email"
-                                        // value={username}
                                         placeholder="Email"
                                         required
-                                    // onChange={handleUsername}
+                                        onChange={handleEmailChange}
                                     />
                                 </div>
                                 <div className='payment-input text-center'>
@@ -192,35 +281,65 @@ export function Payment() {
                                         className='body-small payment-field'
                                         type="text"
                                         id="phone"
-                                        // value={username}
                                         placeholder="Số điện thoại"
                                         required
-                                    // onChange={handleUsername}
+                                        onChange={handlePhoneChange}
                                     />
                                 </div>
                                 <div className='address-input'>
                                     <div className='payment-input text-center'>
-                                        <select id='province' className='body-small payment-field' placeholder='Tỉnh/ Thành phố'>
+                                        <p id='location-value'>{orderDetail.province}</p>
+                                        <select
+                                            id='province'
+                                            className='body-small payment-field'
+                                            placeholder='Tỉnh/ Thành phố'
+                                            // value={orderDetail.province}
+                                            onChange={e => handleProvinceChange(e.target.value)}
+                                        >
                                             <option value="" disabled>Tỉnh/ Thành phố</option>
-                                            <option value="option1">Option 1</option>
-                                            <option value="option2">Option 2</option>
-                                            <option value="option3">Option 3</option>
+                                            {
+                                                listProvince.map((item, index) => {
+                                                    return (
+                                                        <option key={index + item.province_name} value={item.province_id}>{item.province_name}</option>
+                                                    )
+                                                })
+                                            }
                                         </select>
                                     </div>
                                     <div className='payment-input text-center'>
-                                        <select id='district' className='body-small payment-field'>
+                                        <p id='location-value'>{orderDetail.district}</p>
+                                        <select
+                                            id='district'
+                                            className='body-small payment-field'
+                                            // value={orderDetail.district}
+                                            onChange={e => handleDistrictChange(e.target.value)}
+                                        >
                                             <option value="" disabled>Quận/ Huyện</option>
-                                            <option value="option1">Option 1</option>
-                                            <option value="option2">Option 2</option>
-                                            <option value="option3">Option 3</option>
+                                            {
+                                                listDistrict.map((item, index) => {
+                                                    return (
+                                                        <option key={index + item.district_name} value={item.district_id}>{item.district_name}</option>
+                                                    )
+                                                })
+                                            }
                                         </select>
                                     </div>
                                     <div className='payment-input text-center'>
-                                        <select id='ward' className='body-small payment-field'>
+                                        <p id='location-value'>{orderDetail.ward}</p>
+                                        <select
+                                            id='ward'
+                                            className='body-small payment-field'
+                                            // value={orderDetail.ward}
+                                            onChange={e => handleWardChange(e.target.value)}
+                                        >
                                             <option value="" disabled>Phường/ Xã</option>
-                                            <option value="option1">Option 1</option>
-                                            <option value="option2">Option 2</option>
-                                            <option value="option3">Option 3</option>
+                                            {
+                                                listWard.map((item, index) => {
+                                                    return (
+                                                        <option key={index + item.ward_name} value={item.ward_id}>{item.ward_name}</option>
+                                                    )
+                                                })
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -232,7 +351,7 @@ export function Payment() {
                                         // value={username}
                                         placeholder="Số nhà, tên đường"
                                         required
-                                    // onChange={handleUsername}
+                                        onChange={handleDetailLocationChange}
                                     />
                                 </div>
                                 <div className='payment-input text-center'>
@@ -243,7 +362,7 @@ export function Payment() {
                                         // value={username}
                                         placeholder="Ghi chú..."
                                         required
-                                    // onChange={handleUsername}
+                                        onChange={handleNoteChange}
                                     />
                                 </div>
 
@@ -315,20 +434,20 @@ export function Payment() {
                             <div className='total-amount'>
                                 <div className='total-price d-flex justify-content-between'>
                                     <span className='body-medium'>Tổng tiền sản phẩm</span>
-                                    <span className='price'>{total_price()}</span>
+                                    <span className='price'>{total_price()}đ</span>
                                 </div>
                                 <div className='total-discount d-flex justify-content-between'>
                                     <span className='body-medium'>Giảm giá</span>
-                                    <span className='price'>20.000đ</span>
+                                    <span className='price'>{discountAmount}đ</span>
                                 </div>
                                 <div className='total-shipping d-flex justify-content-between'>
                                     <span className='body-medium'>Phí vận chuyển</span>
-                                    <span className='price'>20.000đ</span>
+                                    <span className='price'>{feeShip}đ</span>
                                 </div>
                             </div>
                             <div className='total-bill d-flex justify-content-between'>
                                 <span className='body-medium'>Số tiền thanh toán </span>
-                                <span className='price'>20.000đ</span>
+                                <span className='price'>{total_price() - discountAmount + feeShip}</span>
                             </div>
                             <div>
                                 <button onClick={executeOrder} className='payment-button label-xl' type="submit">Tiếp tục thanh toán</button>

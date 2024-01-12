@@ -196,7 +196,8 @@ function Cart() {
 			quantity: item.quantity 
 		}));
 		navigate("/payment", { state: { orderInfo: listProductToCreateOrder,
-								        isBuyNow: false } });
+								        isBuyNow: false,
+										discount: discountAmount } });
 	}
 
 	return (

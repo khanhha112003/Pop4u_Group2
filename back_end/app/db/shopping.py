@@ -133,19 +133,43 @@ def calculate_total_price(cart: dict):
 
 
 # ================== Order ==================
+import random
+import string
+import datetime
+
+def generate_order_code(length=4):
+    # Define the characters to be used in the order code
+    characters = string.ascii_uppercase
+
+    # Generate a random order code with the specified length
+    order_code = ''.join(random.choice(characters) for _ in range(length))
+
+    return order_code
+
+def lowest_price_of_product(product: dict):
+    if product['discount_price'] == 0:
+        return product['sell_price']
+    return product['discount_price']
 
 def create_order(order: OrderForm, username: Optional[str] = None):
     collection = db['Orders']
     cart = get_cart_by_username(username)
     if not cart:
         return None
-    import datetime
     current_string_date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    str_date_code = current_string_date[0:2] + current_string_date[3:5] + current_string_date[6:10]
+    new_code = str_date_code + generate_order_code()
+    while collection.find_one({"order_code": new_code}):
+        new_code = new_code + generate_order_code()
+        # product_final_price
+    for info in order.order_product_info:
+        info['product']['product_final_price'] = lowest_price_of_product(info['product'])
     newOrder = Order(username=username,
+                     order_code=new_code,
                      order_date= current_string_date,
                      total_price=order.total_price,
                      order_product_info=order.order_product_info,
-                     status="pending",
+                     status="Pending",
                      is_paid= order.is_paid,
                      is_buy_now= order.is_buy_now,
                      coupon_code=order.coupon_code,

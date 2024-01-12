@@ -14,3 +14,6 @@ def userEntity(user) -> dict:
 
 def userSerializer(dict) -> User:
     return User(**dict)
+
+def listUserSerializer(list_dict) -> list[User]:
+    return [userSerializer(i) for i in list_dict]
