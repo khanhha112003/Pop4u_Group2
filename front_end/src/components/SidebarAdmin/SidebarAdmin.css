@@ -1,8 +1,10 @@
 
 .sidebar {
     width: 200px;
+    height: 100% !important;
     font-family: var(--inter);
-    background-color: var(--bs-body-bg);
+    background-color: transparent;
+
 }
 
 .nav-item.admin-nav-item {

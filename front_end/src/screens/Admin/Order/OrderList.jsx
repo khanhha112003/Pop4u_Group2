@@ -44,7 +44,7 @@ export const OrderList = () => {
 			}
 		}
 		fetchData();
-	}, []);
+	}, [logout, user.access_token]);
 
 	const handleChange = (event) => {
 		setSearchTerm(event.target.value);
@@ -105,9 +105,9 @@ export const OrderList = () => {
 					onChange={(e) => handleFilterByStatus(e.target.value)}
 				>
 					<option value="">Lọc theo tình trạng đơn</option>
-					<option value="In-transit">In-transit</option>
-					<option value="In-prepare">In-prepare</option>
-					<option value="Done">Done</option>
+					<option value="Pending">Pending</option>
+					<option value="Delivering">Delivering</option>
+					<option value="Delivered">Delivered</option>
 				</select>
 				{/* </div> */}
 			</div>

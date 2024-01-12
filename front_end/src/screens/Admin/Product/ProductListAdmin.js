@@ -18,27 +18,29 @@ const ProductListAdmin = () => {
 
 	useEffect(() => {
 		// Lấy dữ liệu từ API
-		const reg = basicGetRequets("/product/product_list", { type_filter: "all", limit: 1000 });
 		async function excuteOrder() {
 			const token = 'Bearer ' + user.access_token;
 			try {
 				const getProfileRequest = await axios.get(BASE_URL + "/product/product_list",
-					{
-						headers: {
-							'content-type': 'application/json',
-							'Authorization': token
-						}
-					})
-				if (getProfileRequest.data) {
-					reg.then((data) => {
-						const serverItem = data.data.list_product;
-						setProductData(serverItem);
+				{
+					headers: {
+						'content-type': 'application/json',
+						'Authorization': token,
+						"Access-Control-Allow-Origin": "*",
+						"Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
 					}
-					).catch(error => {
-						setLoading(true);
-					}). finally(() => {
-						setLoading(false);
-					});
+				})
+				if (getProfileRequest.data) {
+					basicGetRequets("/product/product_list", { type_filter: "all", limit: 1000 })
+						.then((data) => {
+							const serverItem = data.data.list_product;
+							setProductData(serverItem);
+						}
+						).catch(_error => {
+							setLoading(true);
+						}). finally(() => {
+							setLoading(false);
+						});
 				} else {
 					setLoading(true);
 				}
@@ -51,7 +53,7 @@ const ProductListAdmin = () => {
 			}
 		}
 		excuteOrder();
-	},[]);
+	},[logout, user.access_token]);
 
 
 	const filteredProducts = productData.filter((product) =>
@@ -67,7 +69,9 @@ const ProductListAdmin = () => {
 		<div className="container margin">
 			<h2 className="text-center" style={{ color: '#3F5AA9', marginTop: '1%' }}>Danh sách sản phẩm</h2>
 			<hr></hr>
-			<a onClick={() => navigate("/admin/add_product")}><button className="add-button " type="submit">Tạo mới</button></a>
+			<button onClick={() => navigate("/admin/add_product")} className="add-button " type="submit">
+				Tạo mới
+			</button>
 			<div className="search-container margin">
 				<input
 					className="search-input"
@@ -130,9 +134,9 @@ const ProductListAdmin = () => {
 							<td>{product.discount_price}</td>
 							<td>{product.sell_price}</td>
 							<td>{product.product_stock}</td>
-							<td className="text-center"><a onClick={() => navigate("/admin/product_detail", {
+							<td className="text-center"><div onClick={() => navigate("/admin/product_detail", {
 								state: { product_code: product.product_code }
-							})} style={{ cursor: "pointer" }}><EditIcon></EditIcon></a></td>
+							})} style={{ cursor: "pointer" }}><EditIcon></EditIcon></div></td>
 						</tr>
 					))}
 				</tbody>

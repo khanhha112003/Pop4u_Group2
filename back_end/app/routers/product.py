@@ -77,32 +77,33 @@ def create_product(product: Product, usr = Depends(get_user_or_none)):
         raise HTTPException(status_code=401, detail="Invalid user")
     else:
         res = insert_product(product)
-        if res:
-            return {"res":"created"}
+        if True:
+            return { 'status': 1}
         else:
             raise HTTPException(status_code=400, detail="Invalid data")
         
-@router.put('/update_product')
-def update_product(product: Product, usr = Depends(get_user_or_none)):
+@router.post('/update_product')
+def update_product(data: dict, usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException:
         raise usr
     elif usr == None or usr.role != "admin":
         raise HTTPException(status_code=401, detail="Invalid user")
     else:
-        res = update_product_by_id(product)
+        updated_product = Product(**data['product_info'])
+        res = update_product_by_code(data["product_code"], updated_product)
         if res:
-            return {"res":"updated"}
+            return { 'status': 1}
         else:
             raise HTTPException(status_code=400, detail="Invalid data")
         
 @router.delete('/delete_product')
-def delete_product(product_name, usr = Depends(get_user_or_none)):
+def delete_product(product_code, usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException:
         raise usr
     elif usr == None or usr.role != "admin":
         raise HTTPException(status_code=401, detail="Invalid user")
     else:
-        res = delete_product(product_name)
+        res = delete_product(product_code)
         if res:
             return {"res":"deleted"}
         else:
@@ -121,16 +122,16 @@ def delete_all_product(usr = Depends(get_user_or_none)):
         else:
             raise HTTPException(status_code=400, detail="Invalid data")
         
-@router.put('/product_review')
-def user_review(review: ProductReview, usr = Depends(get_current_active_user)):
-    if type(usr) == HTTPException:
-        raise usr
-    else:
-        res = update_product_review(review)
-        if res:
-            return {"res":"updated"}
-        else:
-            raise HTTPException(status_code=400, detail="Invalid data")
+# @router.post('/product_review')
+# def user_review(review: ProductReview, usr = Depends(get_current_active_user)):
+#     if type(usr) == HTTPException:
+#         raise usr
+#     else:
+#         res = update_product_review(review)
+#         if res:
+#             return {"res":"updated"}
+#         else:
+#             raise HTTPException(status_code=400, detail="Invalid data")
 
 @router.get('/product_review', response_model=ProductReview)
 def get_user_review(product_code: str, usr = Depends(get_user_or_none)):

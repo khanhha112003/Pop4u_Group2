@@ -13,17 +13,20 @@ def drop_product_collection():
 
 def insert_product(product: Product):
     collection = db['Products']
-    result = collection.insert_one(product.__dict__)
+    total_product_count =  collection.count_documents({})
+    new_product_dict = product.__dict__
+    new_product_dict["_id"] = total_product_count + 1
+    result = collection.insert_one(new_product_dict)
     return result
 
-def update_product_by_id(product: Product):
+def update_product_by_code(product_code: str, product: Product):
     collection = db['Products']
-    result = collection.update_one({"product_name": product.product_name}, {"$set": product.__dict__})
+    result = collection.update_one({"product_code": product_code}, {"$set": product.__dict__})
     return result
 
-def delete_product(product_name: str):
+def delete_product(product_code: str):
     collection = db['Products']
-    result = collection.delete_one({"product_name": product_name})
+    result = collection.delete_one({"product_code": product_code})
     return result
 
 

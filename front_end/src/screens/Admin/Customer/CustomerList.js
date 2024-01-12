@@ -46,7 +46,7 @@ function CustomerManagementAdmin() {
 			}
 		}
 		fetchData();
-	}, []);
+	}, [logout, user.access_token]);
 
 	const filteredCustomers = data.filter((customer) =>
 		customer.role.toLowerCase().includes(filterCategory.toLowerCase()) &&
@@ -119,7 +119,7 @@ function CustomerManagementAdmin() {
 							<td>
 								<b className="name" onClick={() => navigate("/admin/customer_detail")} style={{ cursor: "pointer" }}>{customer.name}</b>
 								<br />
-								id: {customer.fullname}
+								{customer.fullname}
 							</td>
 							<td>{customer.email}</td>
 							<td>{customer.phone_number}</td>

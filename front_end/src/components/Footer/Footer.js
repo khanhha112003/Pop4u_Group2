@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import "./Footer.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from "react-router-dom";
@@ -29,7 +30,7 @@ function Footer() {
                     <li><a onClick={() => navigate ("/about")} ><span className="label-s">Về chúng tôi</span></a></li>
                     <li><a onClick={() => navigate("/supplier")}><span className="label-s">Nhà cung ứng</span></a></li>
                     <li><a onClick={() => navigate("/esg")}><span className="label-s">ESG</span></a></li>
-                    <li><a href="https://circlechart.kr/" target="blank"><span className="label-s">Chứng nhận</span></a></li>    
+                    <li><a href="https://circlechart.kr/" rel="noreferrer" target="blank"><span className="label-s">Chứng nhận</span></a></li>    
                 </ul>
             </div>
             <div className="col-sm-6 col-md-6 col-lg-3 col-xl-3">
@@ -64,7 +65,7 @@ function Footer() {
                         <MailIcon className='label-icon'/>
                         <span className="label-s">pop4u@gmail.com</span>
                     </div></li>
-                    <li><a href="https://maps.app.goo.gl/vjQBUCLQBN6U1fxY7" target='_blank'><div className="label-link-icon">
+                    <li><a href="https://maps.app.goo.gl/vjQBUCLQBN6U1fxY7" rel="noreferrer" target='_blank'><div className="label-link-icon">
                     
                         <ApartmentIcon className='label-icon'/>
                         <span className="label-s">669 QL1A, khu phố 3, Thủ Đức, Thành phố Hồ Chí Minh</span>
@@ -79,13 +80,13 @@ function Footer() {
         </div>
         <div className="row justify-content-between">
             <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 footer-list-social-icon">
-                <a href="https://www.facebook.com/pop4u.business/" target='_blank'>
+                <a href="https://www.facebook.com/pop4u.business/" rel="noreferrer" target='_blank'>
                     <FacebookIcon className="icon-social" />
                 </a>
                 <a href="#">
                     <YoutubeIcon className="icon-social"/>
                 </a>
-                <a href="https://www.instagram.com/pop4u.business/" target='_blank'>
+                <a href="https://www.instagram.com/pop4u.business/" rel="noreferrer" target='_blank'>
                     <InstagramIcon className="icon-social"/>
                 </a>
                 <a href="#">

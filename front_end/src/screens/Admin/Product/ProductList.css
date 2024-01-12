@@ -1,47 +1,49 @@
 /* Style cho bảng */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #3F5AA9;
-    text-align: center;
-  }
-  
-  /* Style cho header của bảng */
-  th {
-    border: 1px solid #3F5AA9;
-    padding: 1px;
-    text-align: center;
-    color:#3F5AA9
-  }
-  
-  /* Style cho các dòng trong bảng */
-  td {
-    border: 1px solid #3F5AA9;
-    padding: 1px;
-    text-align: center;
-  }
-  
-  /* Style cho hàng chẵn */
-  tr:nth-child(even) {
-    background-color: none;
-  }
-.margin{
-  margin:20px;
-}  
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #3F5AA9;
+  text-align: center;
+}
+
+/* Style cho header của bảng */
+th {
+  border: 1px solid #3F5AA9;
+  padding: 1px;
+  text-align: center;
+  color: #3F5AA9
+}
+
+/* Style cho các dòng trong bảng */
+td {
+  border: 1px solid #3F5AA9;
+  padding: 1px;
+  text-align: center;
+}
+
+/* Style cho hàng chẵn */
+tr:nth-child(even) {
+  background-color: none;
+}
+
+.margin {
+  margin: 20px;
+}
+
 .add-button {
   border: 0.1em solid var(--color-surface-tint-light);
   border-radius: 5em;
   outline: none;
   transition: box-shadow 0.3s;
-  height: 3em; 
-  box-sizing: border-box; 
+  height: 3em;
+  box-sizing: border-box;
   color: var(--color-on-primary-light);
   background-color: var(--color-primary-light);
   width: 100px;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   transition: background 0.5s ease-in-out;
-  float:right
+  float: right
 }
 
 
@@ -58,7 +60,7 @@ table {
 /* Styles for the search input */
 .search-input {
   flex: 1;
-  border:none;
+  border: none;
   outline: none;
   padding: 10px;
   border-radius: 30px;
@@ -67,7 +69,7 @@ table {
 
 /* Styles for the search button */
 .search-button {
-  background-color:  #DDE1F9;
+  background-color: #DDE1F9;
   color: #3F5AA9;
   border: 1px solid #3F5AA9;
   padding: 10px 15px;
@@ -87,3 +89,32 @@ table {
 
 }
 
+textarea.input-custom {
+  padding-left: 2.5em;
+  padding-top: 1em;
+  height: 30vh !important;
+  padding-bottom: 0.5em;
+  padding-right: 0.5em;
+  margin: 10;
+  border: 0.0em solid var(--color-surface-tint-light);
+  background-color: var(--color-surface-light);
+  border-radius: 1em;
+  outline: none; 
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+  color: var( --color-on-surface-variant-light);
+  height: 1.5em;
+  width: 100%;
+}
+
+.text-area-container {
+  padding-left: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 1em;
+  border: 0.1em solid var(--color-surface-tint-light);
+  border-radius: 1em;
+}
+
+div.container.margin {
+  max-width: 100%;
+}
