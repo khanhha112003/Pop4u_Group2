@@ -57,7 +57,8 @@ def make_order(form: dict = Body(...), usr = Depends(get_user_or_none)):
                         payment_method=form["payment_method"],
                         order_product_info=form["order_product_info"],
                         shipping_price=form["shipping_price"],
-                        coupon_code=form["coupon_code"])
+                        coupon_code=form["coupon_code"],
+                        note=form["note"],)
     if usr is None or usr == HTTPException:
         res = create_order(order)
         if res:

@@ -40,4 +40,15 @@ def get_user_by(field: str, value: str) :
         return user
     return None
 
+def get_user(type_user):
+    collection = db['Users']
+    if type_user == "all":
+        list_user = collection.find({})
+    else:
+        list_user = collection.find({"role": type_user})
+    list_user_converted: list[dict] = list(list_user)
+    for i in list_user_converted:
+        i.pop('_id', None)
+    return list_user_converted
+
 

@@ -110,6 +110,7 @@ class Order(BaseModel):
     order_product_info: List[dict] = []
     shipping_price: float
     coupon_code: Optional[str] = None
+    note: Optional[str] = None
 class OrderForm(BaseModel):
     username: Optional[str] = None
     address: str
@@ -123,6 +124,7 @@ class OrderForm(BaseModel):
     is_paid: bool = False
     is_buy_now: bool = False
     coupon_code: Optional[str] = None
+    note: Optional[str] = None
 
 # Shipping
 class PaymentMethod(BaseModel):
