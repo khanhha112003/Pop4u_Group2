@@ -8,7 +8,7 @@ function Supplier() {
 			<div className="col-sm-12 col-md-10 col-lg-8 col-xl-8">
 				<h4 className="head4 text-center" 
 					style={{ color: 'var(--color-primary-light)', marginTop: '24px'}}>
-					Nhà Cung Ứng Của Pop4u
+					Nhà Cung Ứng của Pop4u
 				</h4>
 			</div>
 		</div>
