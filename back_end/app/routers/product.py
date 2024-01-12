@@ -77,8 +77,8 @@ def create_product(product: Product, usr = Depends(get_user_or_none)):
         raise HTTPException(status_code=401, detail="Invalid user")
     else:
         res = insert_product(product)
-        if res:
-            return {"res":"created"}
+        if True:
+            return { 'status': 1}
         else:
             raise HTTPException(status_code=400, detail="Invalid data")
         

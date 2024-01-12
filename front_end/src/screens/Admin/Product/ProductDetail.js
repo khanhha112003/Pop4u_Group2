@@ -102,8 +102,8 @@ const ProductDetailEdit = () => {
 
 
 	const handleSubmit = async (event) => {
+		event.preventDefault();
 		async function excuteOrder() {
-			event.preventDefault();
 			const token = 'Bearer ' + user.access_token;
 			const data = {
 				product_code: product.product_code,
@@ -119,7 +119,6 @@ const ProductDetailEdit = () => {
 			}
 			try {
 				const postRequest = await axios.post(BASE_URL + "/product/update_product", data, config);
-				console.log(postRequest);
 				if (postRequest.data.status) {
 					alert("Cập nhật thành công");
 					navigate('/admin/product_list', { replace: true });
@@ -327,16 +326,26 @@ const ProductDetailEdit = () => {
 				</div>
 
 				<div className='row'>
+                    <div className="col-sm-12 col-md-12 col-xl-12 col-lg-12">
+                        <div 
+                            className="section-frame-admin margin" 
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}>
 
-					<div className="col-sm-12 col-md-12 col-xl-12 col-lg-12">
-						<div className="section-frame-admin margin">
+                            <div style={{width: '95%'}}>
+                                {renderProductImages()}
+                            </div>
 
-							<div>{renderProductImages()}</div>
-
-						</div>
-					</div>
-					<button className="input-button" onClick={addImage}>Thêm ảnh</button>
-				</div>
+                            <button style={{width: 300}} type='button' className="input-button" onClick={addImage}>
+                                Thêm ảnh
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
 				<button className="input-button" type="submit" onClick={handleSubmit}>Lưu</button>
 			</form>

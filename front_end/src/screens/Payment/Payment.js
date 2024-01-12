@@ -52,7 +52,7 @@ export function Payment() {
     const [isBuyNow, setIsBuyNow] = useState(false);
     const [discountAmount, setDiscountAmount] = useState(0);
     const [orderDetail, setOrderDetail] = useState({ phone: "", email: "", address: "", note: "", province: "", district: "", ward: "" });
-    const [couponCode, setCouponCode] = useState('');
+    // const [couponCode, setCouponCode] = useState('');
     const [feeShip, setFeeShip] = useState(0);
     const location = useLocation();
     const { user } = useAuth();
@@ -85,7 +85,7 @@ export function Payment() {
             .catch((error) => {
                 console.log(error);
             });
-    }, []);
+    }, [location.state, user, navigate]);
 
     const handleRadioChange = (event) => {
         setSelectedOption(event.target.value);
@@ -236,10 +236,10 @@ export function Payment() {
                     <div className='row'>
                         <div className='col-xs-12 col-sm-12 col-md-12 col-xl-12 col-lg-12'>
                             <div className='button-back'>
-                                <a onClick={() => { navigate('/user/cart') }}>
+                                <div style={{cursor: 'pointer'}} onClick={() => { navigate('/user/cart') }}>
                                     <Back className='icon-back'></Back>
-                                    <span className='label-l'>Trở về Giỏ hàng</span>
-                                </a>
+                                    <span className='label-l'>Trở về giỏ hàng</span>
+                                </div>
                             </div>
                         </div>
                     </div>

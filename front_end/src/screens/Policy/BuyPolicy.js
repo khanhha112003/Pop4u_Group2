@@ -1,6 +1,5 @@
 import React from "react";
 import 'react-bootstrap'
-import {ReactComponent as NewRelease} from '../../theme/images/new_releases.svg';
 
 function BuyPolicy() {
   return (

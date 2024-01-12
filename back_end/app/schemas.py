@@ -52,7 +52,7 @@ class ProductReview(BaseModel):
     rating: Optional[float] = None
 
 class Product(BaseModel):
-    _id: int
+    _id: Optional[int] = None
     category: Optional[str] = None  
     artist_code: str
     artist: str

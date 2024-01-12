@@ -1,14 +1,14 @@
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import InputGroup from 'react-bootstrap/InputGroup';
+// import InputGroup from 'react-bootstrap/InputGroup';
 import { ReactComponent as LogoIcon } from './icons/logo.svg';
 import { ReactComponent as CartIcon } from './icons/icon_cart.svg';
 import { ReactComponent as AccountIcon } from './icons/icon_account.svg';
-import { ReactComponent as SearchIcon } from './icons/icon_search.svg';
+// import { ReactComponent as SearchIcon } from './icons/icon_search.svg';
 import { ReactComponent as LoginIcon } from './icons/icon_login.svg';
 import './style.css'
 import { useAuth } from '../../hooks/useAuth';
@@ -51,22 +51,21 @@ function CustomNavbar() {
 						<Nav.Link className="label-m" href="/blog">Blog</Nav.Link>
 					</Nav>
 					<Nav className='ms-auto w-100 justify-content-end'>
-						<Form className="d-flex justify-content-center align-items-center">
-							<div style={{ margin: '0px !important' }}> {/* Centered div */}
+						{/* <Form className="d-flex justify-content-center align-items-center">
+							<div style={{ margin: '0px !important' }}> 
 								<InputGroup style={{width: 150}}>
 									<Form.Control
 										placeholder="Search"
 										aria-label="Search"
 										aria-describedby="basic-addon2"
-										style={{ borderRadius: '20px 0 0 20px' }} // Adjust border-radius as needed
+										style={{ borderRadius: '20px 0 0 20px' }} 
 									/>
 									<InputGroup.Text style={{ borderRadius: '0 20px 20px 0' }}>
-										{/* Adjust border-radius as needed */}
 										<SearchIcon />
 									</InputGroup.Text>
 								</InputGroup>
 							</div>
-						</Form>
+						</Form> */}
 
 						{
 							(user !== null) ? (
