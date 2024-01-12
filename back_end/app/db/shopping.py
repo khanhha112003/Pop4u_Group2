@@ -47,11 +47,10 @@ def update_cart_by_username(username:str,
             existing_user_cart = calculate_total_price(existing_user_cart)
             result = collection.update_one({"username": username}, {"$set": existing_user_cart})
     else:
-        cart = Cart(username=username,
-                    total_price=0,
-                    products=[item])
-        cart_dict = calculate_total_price(cart.__dict__)
-        result = collection.insert_one(cart_dict)
+        created_cart = create_cart(username)
+        if created_cart:
+            return update_cart_by_username(username, product_code, quantity)
+        return None
     return result
 
 def update_cart_with_multiple_product_id_and_quantity(username:str, list_data: list[dict], is_created_order: bool = False):

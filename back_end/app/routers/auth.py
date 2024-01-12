@@ -1,40 +1,21 @@
-from fastapi import APIRouter, Response, status, Depends, HTTPException, Request
+from fastapi import APIRouter, status, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from hashing import Hash
-from oauth2 import get_current_user, create_access_token, get_current_token, get_current_active_user
+from oauth2 import *
 from database import db
 from schemas import User, PersonalInfo
-from datetime import datetime
 from db.user import *
-
+from serializer.user_serializer import *
 
 router = APIRouter()
 
+
 @router.post('/register')
 def create_user(request:User):
-    hashed_pass = Hash.bcrypt(request.password)
-    user_object = dict(request)
-    find_usr = db["Users"].find_one({"username":request.username})
-    if find_usr:
-        return {"status": 0, "message": "Tài khoản đã tồn tại"}
-    find_usr = db["Users"].find_one({"phone_number":request.phone_number})
-    if find_usr:
-        return {"status": 0, "message": "Số điện thoại đã được sử dụng"}
-    user_object["password"] = hashed_pass
-    user_object["role"] = "user"
-    user_object["verified"] = False
-    user_object["email"] = request.email
-    user_object["fullname"] = request.fullname
-    user_object["phone_number"] = request.phone_number
-    user_object["username"] = request.username
-    user_object["birthdate"] = request.birthdate
-    user_object["created_at"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    user_object["updated_at"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    try:
-        db["Users"].insert_one(user_object)
+    res = insert_user(request)
+    if res:
         return {"status": 1}
-    except Exception as e:
-        return {"res":str(e)}
+    return {"status": 0, "message": "Lỗi tạo tài khoản"}
 
 @router.post('/login')
 def login(request:OAuth2PasswordRequestForm = Depends()):
@@ -73,6 +54,21 @@ def get_me(usr: str = Depends(get_current_active_user)):
         usr = usr.__dict__
         response = PersonalInfo(**usr)
         return response
+
+@router.post('/update_profile')
+def modify_profile(request: PersonalInfo, usr: str = Depends(get_current_active_user)):
+    if type(usr) == HTTPException:
+        raise usr
+    else:
+        usr = usr.__dict__
+        usr["fullname"] = request.fullname
+        usr["birthdate"] = request.birthdate
+        usr["phone_number"] = request.phone_number
+        usr["email"] = request.email
+        res = update_user_by_id(User(**usr))
+        if res:
+            return {"status": 1}
+        return {"status": 0, "message": "Lỗi cập nhật thông tin"}
     
 @router.get('/admin_validate')
 def validate_admin(usr = Depends(get_current_user)):
@@ -82,5 +78,17 @@ def validate_admin(usr = Depends(get_current_user)):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
     else:
         return {"status": 1}
+    
+@router.get('/all_users')
+def get_all_customer(usr = Depends(get_user_or_none)):
+    if usr is None or usr == HTTPException:
+        raise HTTPException(status_code=404, detail="Forbidden")
+    if usr.role != "admin":
+        raise HTTPException(status_code=401, detail="Forbidden")
+    list_customer = get_user(type_user="all")
+    if list_customer:
+        return listUserSerializer(list_customer)
+    else:
+        return []
     
 

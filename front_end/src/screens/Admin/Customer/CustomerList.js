@@ -20,7 +20,7 @@ function CustomerManagementAdmin() {
 	useEffect(() => {
 		async function fetchData() {
 			try {
-				const getRequest = await axios.get(BASE_URL + '/utils/all_users',
+				const getRequest = await axios.get(BASE_URL + '/auth/all_users',
 					{
 						headers: {
 							'Authorization': `Bearer ${user.access_token}`,
