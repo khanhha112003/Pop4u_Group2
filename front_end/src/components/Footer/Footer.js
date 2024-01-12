@@ -94,7 +94,7 @@ function Footer() {
             </div>
             <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <div className="copy-right">
-                    <span className="body-small">© Bản quyền thuộc về Pop4u 2023.</span>
+                    <span className="body-small">© Bản quyền thuộc về Pop4u 2024.</span>
                 </div>
             </div>
         </div>
