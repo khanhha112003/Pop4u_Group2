@@ -1,28 +1,48 @@
 /* Style cho bảng */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #ddd;
-  }
-  
-  /* Style cho header của bảng */
-  th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  /* Style cho các dòng trong bảng */
-  td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  /* Style cho hàng chẵn */
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-.margin{
-  margin:20px;
-}  
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+/* Style cho header của bảng */
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Style cho các dòng trong bảng */
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Style cho hàng chẵn */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.margin {
+  margin: 20px;
+}
+
+textarea.input-custom {
+  padding-left: 2em;
+  padding-top: 2em;
+  padding-bottom: 1.5em;
+  padding-right: 1.5em;
+  border: 0.1em solid var(--color-surface-tint-light);
+  border-radius: 1em;
+  outline: none; 
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+  color: var( --color-on-surface-variant-light);
+  height: 1.5em;
+  width: 100%;
+}
+
+textarea.input-custom:focus{
+  border-color: var(--color-on-primary-fixed-variant-light); 
+  box-shadow: 0 0 3em rgba(25, 118, 210, 0.5), inset 0 0 0.5em rgba(186, 225, 255, 0.3);
+}

@@ -24,6 +24,11 @@
   width: 100%;
 }
 
+.input-custom:focus{
+  border-color: var(--color-on-primary-fixed-variant-light); 
+  box-shadow: 0 0 3em rgba(25, 118, 210, 0.5), inset 0 0 0.5em rgba(186, 225, 255, 0.3);
+}
+
 .input-custom-price {
   padding-left: 3.5em;
   padding-top: 2em;
@@ -37,11 +42,7 @@
   height: 1.5em;
   width: 100%;
 }
-.input-custom:focus{
-  border-color: var(--color-on-primary-fixed-variant-light); 
-  box-shadow: 0 0 3em rgba(25, 118, 210, 0.5), inset 0 0 0.5em rgba(186, 225, 255, 0.3);
 
-}
 
 .input-button {
   border: 0.1em solid var(--color-surface-tint-light);

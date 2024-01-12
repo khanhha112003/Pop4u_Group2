@@ -87,9 +87,6 @@ export const AddProduct = () => {
         event.preventDefault();
         async function excuteOrder() {
             const token = 'Bearer ' + user.access_token;
-            const data = {
-                product: product
-            }
             const config = {
                 headers: {
                     'content-type': 'application/json',

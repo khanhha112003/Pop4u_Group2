@@ -13,10 +13,13 @@ def drop_artist_collection():
 
 def insert_artist(artist: Artist):
     collection = db['Artists']
-    result = collection.insert_one(artist.__dict__)
+    artist_dict = artist.__dict__
+    number_of_artist = collection.count_documents({})   
+    artist_dict["_id"] = number_of_artist + 1
+    result = collection.insert_one(artist_dict)
     return result
 
-def update_artist_by_id(artist: Artist):
+def update_artist(artist: Artist):
     collection = db['Artists']
     result = collection.update_one({"artist_code": artist.artist_code}, {"$set": artist.__dict__})
     return result

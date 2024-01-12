@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from pydantic import BaseModel
 from oauth2 import get_user_or_none
 
 from schemas import Artist
@@ -59,17 +60,20 @@ def create_artist(artist: Artist, usr = Depends(get_user_or_none)):
         res = insert_artist(artist)
         if res:
             return {"res":"created"}
+        else:
+            raise HTTPException(status_code=404, detail="Artist not found")
         
-@router.put('/update_artist')
-def update_artist(artist: Artist, usr = Depends(get_user_or_none)):
+@router.post('/update_artist')
+def modify_artist(artist: Artist, usr = Depends(get_user_or_none)):
+    print(usr)
     if type(usr) == HTTPException:
         raise usr
     elif usr == None or usr.role != "admin":
         raise HTTPException(status_code=401, detail="Invalid user")
     else:
-        res = update_artist_by_id(artist)
+        res = update_artist(artist)
         if res:
-            return {"res":"updated"}
+            return {"status": 1}
         else:
             raise HTTPException(status_code=404, detail="Artist not found")
 
