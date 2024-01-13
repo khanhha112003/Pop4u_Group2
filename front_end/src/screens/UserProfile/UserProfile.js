@@ -35,6 +35,7 @@ const UserProfile = () => {
 				}
 			} catch (error) {
 				setLogoutErrorMessage(error.message);
+				logout((val) => { })
 			}
 		}
 		getProfile();
