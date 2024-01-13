@@ -56,6 +56,31 @@ export function ArtistDetailAdmin() {
         }
     }
 
+    const deleteArtistData = async () => {
+        const token = 'Bearer ' + user.access_token;
+        try {
+            const getProfileRequest = await axios.delete(BASE_URL + "/artist/delete_artist?artist_code=" + artist.artist_code,
+                {
+                    headers: {
+                        'content-type': 'application/json',
+                        'Authorization': token
+                    }
+                })
+            if (getProfileRequest.data) {
+                alert("Xoá thành công")
+                navigate("/admin/artist_list")
+            } else {
+                alert("Xoá thất bại")
+            }
+        } catch (error) {
+            if (error.response.status === 401) {	// Unauthorized
+                logout((val) => { });
+            } else {
+                alert("Lỗi mạng")
+            }
+        }
+    }
+
     return (
         <div>
             <div className='container margin' style={{ width: '80%' }}>
@@ -115,12 +140,12 @@ export function ArtistDetailAdmin() {
                     <div className='row' style={{ marginBottom: '32px' }}>
                         <label>
                             <h5>Mô tả về nghệ sĩ</h5>
-                            <textarea 
-                                style={{ height: '30vh' }} 
-                                className="input-custom" 
-                                type="text" 
-                                name="artist_description" 
-                                value={artist.artist_description} 
+                            <textarea
+                                style={{ height: '30vh' }}
+                                className="input-custom"
+                                type="text"
+                                name="artist_description"
+                                value={artist.artist_description}
                                 onChange={(e) => {
                                     setDataArtist({ ...artist, artist_description: e.target.value })
                                 }}
@@ -138,9 +163,9 @@ export function ArtistDetailAdmin() {
                             <p>Chọn ảnh khác</p>
                             <input
                                 type="text"
-                                className="input-custom" 
+                                className="input-custom"
                                 value={artist.artist_logo}
-                                onChange={ (e) => {
+                                onChange={(e) => {
                                     setDataArtist({ ...artist, artist_logo: e.target.value })
                                 }}
                             />
@@ -157,21 +182,37 @@ export function ArtistDetailAdmin() {
                             <p>Chọn ảnh khác</p>
                             <input
                                 type="text"
-                                className="input-custom" 
+                                className="input-custom"
                                 value={artist.artist_avatar}
-                                onChange={ (e) => { 
+                                onChange={(e) => {
                                     setDataArtist({ ...artist, artist_avatar: e.target.value })
                                 }}
                             />
                         </label>
                     </div>
-                    <div className='col-8 text-center' style={{ marginBottom: '64px' }}>
-                        <button type="button" 
-                                className="btn btn-primary btn-lg"
+                    <div className='row' style={{ marginBottom: '32px' }}>
+
+                        <div className="col-sm-12 col-md-12 col-xl-6 col-lg-6">
+                            <button 
+                                style={{ width: 150 }}
+                                type="button"
+                                className="input-button"
                                 onClick={saveArtistData}
                             >
-                            Lưu chỉnh sửa
-                        </button>
+                                Lưu chỉnh sửa
+                            </button>
+                        </div>
+                        <div className="col-sm-12 col-md-12 col-xl-6 col-lg-6"
+                            style={{ alignItems: 'flex-end', display: 'flex', flexDirection: 'row-reverse' }}>
+                            <button
+                                style={{ width: 150 }}
+                                className="input-button-danger"
+                                type="submit"
+                                onClick={deleteArtistData}
+                            >
+                                Xoá nghệ sĩ
+                            </button>
+                        </div>
                     </div>
                 </div>
 

@@ -20,7 +20,7 @@ function CustomerManagementAdmin() {
 	useEffect(() => {
 		async function fetchData() {
 			try {
-				const getRequest = await axios.get(BASE_URL + '/utils/all_users',
+				const getRequest = await axios.get(BASE_URL + '/auth/all_users',
 					{
 						headers: {
 							'Authorization': `Bearer ${user.access_token}`,
@@ -116,16 +116,16 @@ function CustomerManagementAdmin() {
 				<tbody>
 					{filteredCustomers.map((customer, index) => (
 						<tr key={index}>
-							<td>
+							<td className="text-center">
 								<b className="name" onClick={() => navigate("/admin/customer_detail")} style={{ cursor: "pointer" }}>{customer.name}</b>
 								<br />
 								{customer.fullname}
 							</td>
-							<td>{customer.email}</td>
-							<td>{customer.phone_number}</td>
+							<td className="text-center">{customer.email}</td>
+							<td className="text-center">{customer.phone_number}</td>
 							<td>{customer.birthdate}</td>
 							{/* <td>{customer.point}</td> */}
-							<td>{customer.role}</td>
+							<td className="text-center">{customer.role}</td>
 							<td className="text-center">
 								<a onClick={ () => handleEditOnRowIndex(index)}  style={{ cursor: "pointer" }}>
 									<EditIcon/>

@@ -35,21 +35,17 @@ def get_list_artist(page: int = 1,
         return listArtistSerializer(list_artist)
 
 @router.get('/artist_detail', response_model=Artist)
-def get_artist(artist_code):
-    res = get_artist_by_id(artist_code)
+def get_detail_artist(artist_code):
+    res = get_artist_by_code(artist_code)
     if res:
         return artistSerializer(res)
     else:
         raise HTTPException(status_code=404, detail="Artist not found")
 
-@router.get('/search_artist', response_model=List[Artist])
-def get_list_artist_by_name(artist_name):
-    res = get_artist_list_by_name(artist_name)
-    if res:
-        return listArtistSerializer(res)
-    else:
-        raise HTTPException(status_code=404, detail="Artist not found")
 
+'''
+========================= Admin feature ======================================
+'''
 @router.post('/create_artist')
 def create_artist(artist: Artist, usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException:
@@ -78,26 +74,13 @@ def modify_artist(artist: Artist, usr = Depends(get_user_or_none)):
             raise HTTPException(status_code=404, detail="Artist not found")
 
 @router.delete('/delete_artist')
-def delete_artist(artist_code, usr = Depends(get_user_or_none)):
+def delete_artist(artist_code: str, usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException:
         raise usr
     elif usr == None or usr.role != "admin":
         raise HTTPException(status_code=401, detail="Invalid user")
     else:
         res = delete_artist_by_code(artist_code)
-        if res:
-            return {"res":"deleted"}
-        else:
-            raise HTTPException(status_code=404, detail="Artist not found")
-
-@router.delete('/delete_all_artist')
-def delete_all_artist(usr = Depends(get_user_or_none)):
-    if type(usr) == HTTPException:
-        raise usr
-    elif usr == None or usr.role != "admin":
-        raise HTTPException(status_code=401, detail="Invalid user")
-    else:
-        res = drop_artist_collection()
         if res:
             return {"res":"deleted"}
         else:

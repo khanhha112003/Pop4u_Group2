@@ -17,7 +17,7 @@ function ArtistList() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		const newProductRequest = basicGetRequets("/artist/artist_list", { type_filter: "all", limit: 1000 });
-		const result = newProductRequest
+		newProductRequest
 			.then((responses) => {
 				let data = responses.data.list_artist
 				setTotalArtists(data)

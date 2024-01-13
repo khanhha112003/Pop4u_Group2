@@ -1,38 +1,9 @@
-from typing import Optional
 from database import db
 from schemas import User
+from datetime import datetime
+from hashing import Hash
 
 # admin specific function
-def drop_user_collection():
-    collection = db['Users']
-    try:
-        collection.drop()
-        return True
-    except:
-        return False
-    
-def insert_user(user: User):
-    collection = db['Users']
-    result = collection.insert_one(user.__dict__)
-    return result
-
-def update_user_by_id(user: User):
-    collection = db['Users']
-    result = collection.update_one({"username": user.username}, {"$set": user.__dict__})
-    return result
-
-def delete_user_by_username(username: str):
-    collection = db['Users']
-    result = collection.delete_one({"username": username})
-    return result
-
-
-# global user function
-def get_total_user():
-    collection = db['Users']
-    total_user = collection.count_documents({})
-    return total_user
-
 def get_user_by(field: str, value: str) :
     collection = db['Users']
     user = collection.find_one({field: value})
@@ -50,5 +21,36 @@ def get_user(type_user):
     for i in list_user_converted:
         i.pop('_id', None)
     return list_user_converted
+    
+# global user function
+def insert_user(request: User):
+    hashed_pass = Hash.bcrypt(request.password)
+    user_object = dict(request)
+    find_usr = db["Users"].find_one({"username":request.username})
+    if find_usr:
+        return {"status": 0, "message": "Tài khoản đã tồn tại"}
+    find_usr = db["Users"].find_one({"phone_number":request.phone_number})
+    if find_usr:
+        return {"status": 0, "message": "Số điện thoại đã được sử dụng"}
+    user_object["password"] = hashed_pass
+    user_object["role"] = "user"
+    user_object["verified"] = False
+    user_object["email"] = request.email
+    user_object["fullname"] = request.fullname
+    user_object["phone_number"] = request.phone_number
+    user_object["username"] = request.username
+    user_object["birthdate"] = request.birthdate
+    user_object["created_at"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    user_object["updated_at"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    req = db["Users"].insert_one(user_object)
+    if req:
+        return True
+    return False
+
+def update_user_by_id(user: User):
+    collection = db['Users']
+    result = collection.update_one({"username": user.username}, {"$set": user.__dict__})
+    return result
+
 
 

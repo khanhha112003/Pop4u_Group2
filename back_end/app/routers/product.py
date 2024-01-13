@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
-from oauth2 import get_user_or_none, get_current_active_user
+from oauth2 import get_user_or_none
 
-from schemas import Product, ProductReview
+from schemas import Product, ProductReview, Voucher
 from typing import List, Optional
 from serializer.product_serializer import *
 from db.products import * 
+from db.voucher import *
 
 def tracking_user(username, action, data):
     pass
@@ -61,77 +62,7 @@ def get_product_detail(product_code: str, usr = Depends(get_user_or_none)):
     else:
         raise HTTPException(status_code=404, detail="Product not found")
 
-@router.get('/search_product', response_model=List[Product])
-def get_list_product_by_name(product_name):
-    res = get_product_list_by_name(product_name)
-    if res:
-        return listProductSerializer(res)
-    else:
-        raise HTTPException(status_code=404, detail="Product not found")
-    
-@router.post('/create_product')
-def create_product(product: Product, usr = Depends(get_user_or_none)):
-    if type(usr) == HTTPException:
-        raise usr
-    elif usr == None or usr.role != "admin":
-        raise HTTPException(status_code=401, detail="Invalid user")
-    else:
-        res = insert_product(product)
-        if True:
-            return { 'status': 1}
-        else:
-            raise HTTPException(status_code=400, detail="Invalid data")
-        
-@router.post('/update_product')
-def update_product(data: dict, usr = Depends(get_user_or_none)):
-    if type(usr) == HTTPException:
-        raise usr
-    elif usr == None or usr.role != "admin":
-        raise HTTPException(status_code=401, detail="Invalid user")
-    else:
-        updated_product = Product(**data['product_info'])
-        res = update_product_by_code(data["product_code"], updated_product)
-        if res:
-            return { 'status': 1}
-        else:
-            raise HTTPException(status_code=400, detail="Invalid data")
-        
-@router.delete('/delete_product')
-def delete_product(product_code, usr = Depends(get_user_or_none)):
-    if type(usr) == HTTPException:
-        raise usr
-    elif usr == None or usr.role != "admin":
-        raise HTTPException(status_code=401, detail="Invalid user")
-    else:
-        res = delete_product(product_code)
-        if res:
-            return {"res":"deleted"}
-        else:
-            raise HTTPException(status_code=400, detail="Invalid data")
 
-@router.delete('/delete_all_product')
-def delete_all_product(usr = Depends(get_user_or_none)):
-    if type(usr) == HTTPException:
-        raise usr
-    elif usr == None or usr.role != "admin":
-        raise HTTPException(status_code=401, detail="Invalid user")
-    else:
-        res = drop_product_collection()
-        if res:
-            return {"res":"deleted"}
-        else:
-            raise HTTPException(status_code=400, detail="Invalid data")
-        
-# @router.post('/product_review')
-# def user_review(review: ProductReview, usr = Depends(get_current_active_user)):
-#     if type(usr) == HTTPException:
-#         raise usr
-#     else:
-#         res = update_product_review(review)
-#         if res:
-#             return {"res":"updated"}
-#         else:
-#             raise HTTPException(status_code=400, detail="Invalid data")
 
 @router.get('/product_review', response_model=ProductReview)
 def get_user_review(product_code: str, usr = Depends(get_user_or_none)):
@@ -154,3 +85,125 @@ def list_code_to_list_product(list_code: List[str] = Query(None), usr = Depends(
         return listProductSerializer(res)
     else:
         raise HTTPException(status_code=404, detail="Product not found")
+
+
+'''
+========================= Admin feature ======================================
+'''    
+
+@router.post('/create_product')
+def create_product(product: Product, usr = Depends(get_user_or_none)):
+    if type(usr) == HTTPException:
+        raise usr
+    elif usr == None or usr.role != "admin":
+        raise HTTPException(status_code=401, detail="Invalid user")
+    else:
+        res = insert_product(product)
+        if res:
+            return { 'status': 1}
+        raise HTTPException(status_code=403, detail="Update to db fail")
+        
+@router.post('/update_product')
+def update_product(data: dict, usr = Depends(get_user_or_none)):
+    if type(usr) == HTTPException:
+        raise usr
+    elif usr == None or usr.role != "admin":
+        raise HTTPException(status_code=401, detail="Invalid user")
+    else:
+        updated_product = Product(**data['product_info'])
+        res = update_product_by_code(data["product_code"], updated_product)
+        if res:
+            return { 'status': 1}
+        else:
+            raise HTTPException(status_code=400, detail="Invalid data")
+        
+@router.delete('/delete_product')
+def delete_product(product_code, usr = Depends(get_user_or_none)):
+    if type(usr) == HTTPException:
+        raise usr
+    elif usr == None or usr.role != "admin":
+        raise HTTPException(status_code=401, detail="Invalid user")
+    else:
+        res = delete_product_by_product_code(product_code)
+        if res:
+            return {"res":"deleted"}
+        else:
+            raise HTTPException(status_code=400, detail="Invalid data")
+
+'''
+Voucheer feature
+'''
+# admin get all
+@router.get('/get_all_voucher')
+def all_voucher(usr = Depends(get_user_or_none)):
+    if type(usr) == HTTPException:
+        raise usr
+    elif usr == None or usr.role != "admin":
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    else:
+        res = get_all_voucher()
+        if res != None:
+            return res
+        else:
+            raise HTTPException(status_code=404, detail="Invalid request")
+
+# admin create voucher
+@router.post('/create_voucher')
+def create_voucher(voucher: Voucher, usr = Depends(get_user_or_none)):
+    if type(usr) == HTTPException:
+        raise usr
+    elif usr == None or usr.role != "admin":
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    else:
+        res = insert_voucher(voucher)
+        if res:
+            return { 'status': 1}
+        raise HTTPException(status_code=403, detail="Update to db fail")
+
+# admin update voucher
+@router.post('/update_voucher')
+def update_voucher(data: dict, usr = Depends(get_user_or_none)):
+    if type(usr) == HTTPException:
+        raise usr
+    elif usr == None or usr.role != "admin":
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    else:
+        updated_voucher = Voucher(**data['voucher_info'])
+        res = update_voucher_by_code(data["voucher_code"], updated_voucher)
+        if res:
+            return { 'status': 1}
+        else:
+            raise HTTPException(status_code=404, detail="Invalid request")
+        
+# admin delete voucher
+@router.delete('/delete_voucher')
+def delete_voucher(voucher_code, usr = Depends(get_user_or_none)):
+    if type(usr) == HTTPException:
+        raise usr
+    elif usr == None or usr.role != "admin":
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    else:
+        res = delete_voucher_by_code(voucher_code)
+        if res:
+            return {"res":"deleted"}
+        else:
+            raise HTTPException(status_code=400, detail="Invalid data")
+
+# user validate voucher
+@router.get('/validate_voucher')
+def check_voucher(voucher_code, usr = Depends(get_user_or_none)):
+    if type(usr) == HTTPException:
+        raise usr
+    elif usr == None:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    else:
+        res, amount = validate_voucher(voucher_code)
+        if res == 1:
+            return { 'status': 1 , "discount_amount": amount} 
+        elif res == -1:
+            return { 'status': 0, "message": "Voucher không tồn tại"}
+        elif res == 0:
+            return { 'status': 0, "message": "Voucher hết hạn sử dụng"}
+        else:
+            raise HTTPException(status_code=400, detail="Invalid request")
+        

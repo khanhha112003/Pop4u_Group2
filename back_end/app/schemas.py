@@ -130,3 +130,10 @@ class OrderForm(BaseModel):
 class PaymentMethod(BaseModel):
     method: str
     fee: float
+    
+class Voucher(BaseModel):
+    code: str
+    discount_amount: float
+    # min_price: float
+    number_of_use: int
+    is_active: bool

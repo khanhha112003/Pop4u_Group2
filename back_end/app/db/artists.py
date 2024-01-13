@@ -3,13 +3,6 @@ from database import db
 from schemas import Artist
 
 # admin specific function
-def drop_artist_collection():
-    collection = db['Artists']
-    try:
-        collection.drop()
-        return True
-    except:
-        return False
 
 def insert_artist(artist: Artist):
     collection = db['Artists']
@@ -48,7 +41,7 @@ def get_list_artist_with_special_filter(type_filter: str, limit: int):
         list_artist = collection.find({}).sort("created_at", -1).limit(limit)
         return list(list_artist)
 
-def get_artist_by_id(artist_code: str) :
+def get_artist_by_code(artist_code: str) :
     collection = db['Artists']
     artist = collection.find_one({"artist_code": artist_code})
     return artist
@@ -62,9 +55,3 @@ def get_artist_list(page: int,
      else:
           list_artist = collection.find({}).skip((page-1)*limit).limit(limit)
      return list(list_artist)
-
-def get_artist_list_by_name(artist_name):
-    collection = db['Artists']
-    list_artist = collection.find({"name": {"$regex": artist_name, "$options": "i"}})
-    return list_artist
-
