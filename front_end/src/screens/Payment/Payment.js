@@ -8,6 +8,7 @@ import { ReactComponent as COD } from '../../theme/images/local_shipping.svg'
 import { ReactComponent as Momo } from '../../theme/images/momo_square_pinkbg.svg'
 import { useAuth } from '../../hooks/useAuth';
 import { authPostRequest, basicPostRequest } from '../../app_logic/APIHandler';
+import Select from 'react-select'
 
 const lowestPrice = (product) => {
     if (product.discount_price === 0) {
@@ -87,7 +88,7 @@ export function Payment() {
             .catch((error) => {
                 console.log(error);
             });
-    }, [location.state, user, navigate]);
+    }, [location.state, user, navigate, orderDetail]);
 
     const handleRadioChange = (event) => {
         setSelectedOption(event.target.value);
@@ -195,10 +196,8 @@ export function Payment() {
         setOrderDetail({ ...orderDetail, address: event.target.value });
     }
 
-    const handleProvinceChange = (selectedValue) => {
-        const province_name = listProvince.filter((item) => item.province_id === selectedValue)[0].province_name;
-        setOrderDetail({ ...orderDetail, province: province_name, district: '', ward: '' });
-        fetch('https://vapi.vnappmob.com/api/province/district/' + selectedValue)
+    const handleProvinceChange = (province_id, province_name) => {
+        fetch('https://vapi.vnappmob.com/api/province/district/' + province_id)
             .then((response) => response.json())
             .then((data) => {
                 setListDistrict(data.results);
@@ -206,13 +205,12 @@ export function Payment() {
             .catch((error) => {
                 console.log(error);
             });
+        setOrderDetail({ ...orderDetail, province: province_name, district: '', ward: '' });
         setListWard([]);
     };
 
-    const handleDistrictChange = (selectedValue) => {
-        const district_name = listDistrict.filter((item) => item.district_id === selectedValue)[0].district_name;
-        setOrderDetail({ ...orderDetail, district: district_name, ward: '' });
-        fetch('https://vapi.vnappmob.com/api/province/ward/' + selectedValue)
+    const handleDistrictChange = (district_id, district_name) => {
+        fetch('https://vapi.vnappmob.com/api/province/ward/' + district_id)
             .then((response) => response.json())
             .then((data) => {
                 setListWard(data.results);
@@ -220,10 +218,10 @@ export function Payment() {
             .catch((error) => {
                 console.log(error);
             });
+        setOrderDetail({ ...orderDetail, district: district_name, ward: '' });
     };
 
-    const handleWardChange = (selectedValue) => {
-        const ward_name = listWard.filter((item) => item.ward_id === selectedValue)[0].ward_name;
+    const handleWardChange = (ward_id, ward_name) => {
         setOrderDetail({ ...orderDetail, ward: ward_name });
     };
 
@@ -291,58 +289,30 @@ export function Payment() {
                                 <div className='address-input'>
                                     <div className='payment-input text-center'>
                                         {/* <p id='location-value'>{orderDetail.province}</p> */}
-                                        <select
-                                            id='location-value'
-                                            className='body-small payment-field-select'
+                                        <Select
+                                            styles={{width: '100%', height: '100%', border: '0px solid'}}
                                             placeholder='Tỉnh/ Thành phố'
-                                            value={orderDetail.province}
-                                            onChange={e => handleProvinceChange(e.target.value)}
-                                        >
-                                            <option value="" disabled>Tỉnh/ Thành phố</option>
-                                            {
-                                                listProvince.map((item, index) => {
-                                                    return (
-                                                        <option key={index + item.province_name} value={item.province_id}>{item.province_name}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
+                                            options={listProvince.map((value) => ({ value: value.province_id, label: value.province_name }))}
+                                            onChange={(value) => handleProvinceChange(value.value, value.label)}
+                                        />
                                     </div>
                                     <div className='payment-input text-center'>
                                         {/* <p id='location-value'>{orderDetail.district}</p> */}
-                                        <select
-                                            id='location-value'
-                                            className='body-small payment-field-select'
-                                            value={orderDetail.district}
-                                            onChange={e => handleDistrictChange(e.target.value)}
-                                        >
-                                            <option value="" disabled>Quận/ Huyện</option>
-                                            {
-                                                listDistrict.map((item, index) => {
-                                                    return (
-                                                        <option key={index + item.district_name} value={item.district_id}>{item.district_name}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
+                                        <Select
+                                            styles={{width: '100%', height: '100%', border: '0px solid'}}
+                                            placeholder='Quận/ Huyện'
+                                            options={listDistrict.map((value) => ({ value: value.district_id, label: value.district_name }))}
+                                            onChange={(value) => handleDistrictChange(value.value, value.label)}
+                                        />
                                     </div>
                                     <div className='payment-input text-center'>
                                         {/* <p id='location-value'>{orderDetail.ward}</p> */}
-                                        <select
-                                            id='location-value'
-                                            className='body-small payment-field-select'
-                                            value={orderDetail.ward}
-                                            onChange={e => handleWardChange(e.target.value)}
-                                        >
-                                            <option value="" disabled>Phường/ Xã</option>
-                                            {
-                                                listWard.map((item, index) => {
-                                                    return (
-                                                        <option key={index + item.ward_name} value={item.ward_id}>{item.ward_name}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
+                                        <Select
+                                            styles={{width: '100%', height: '100%', border: '0px solid'}}
+                                            placeholder='Phường/ Xã'
+                                            options={listWard.map((value) => ({ value: value.ward_id, label: value.ward_name }))}
+                                            onChange={(value) => handleWardChange(value.value, value.label)}
+                                        />
                                     </div>
                                 </div>
                                 <div className='payment-input text-center'>
