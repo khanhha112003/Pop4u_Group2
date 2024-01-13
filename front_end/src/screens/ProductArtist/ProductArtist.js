@@ -48,6 +48,11 @@ function ProductArtist() {
             })
     }, [])
 
+    const navigateToAnotherProduct = async (product_code, artist_code) => {
+        navigate("/product_detail?product_code=" + product_code + "&artist_code=" + artist_code, { replace: true });
+        navigate(0)
+    };
+
     const styles = {
         overlayImage: {
             backgroundImage: `linear-gradient(0deg, rgba(128,128,128,1) 0%, rgba(128,128,128,0.9) 20%, rgba(128,128,128,0.3) 80%, rgba(255,255,255,0) 100%) ,url(${content.artist_data.artist_avatar})`,
@@ -96,10 +101,14 @@ function ProductArtist() {
                                     gap={10} // Adjust the gap between items as needed
                                     background_color="white"
                                     items={content.related_product.map((item, index) => (
-                                        <HomepageProductItem
-                                            key={index}
-                                            data={item}
-                                        />
+                                        <div 
+                                            onClick={ () => navigateToAnotherProduct(item.product_code, item.artist_code)}
+                                            style={{padding: 0, height: '100%', width: '100%'}}>
+                                            <HomepageProductItem
+                                                key={index}
+                                                data={item}
+                                            />
+                                        </div>
                                     ))}
                                     itemWidth={250} // Set the width of each item as needed
                                     itemHeight={425} // Set the height of each item as needed

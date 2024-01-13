@@ -55,6 +55,11 @@ function HomePage() {
 
     }, []);
 
+    const navigateToAnotherProduct = async (product_code, artist_code) => {
+        navigate("/product_detail?product_code=" + product_code + "&artist_code=" + artist_code, { replace: true });
+        navigate(0)
+    };
+
     if (loading) {
         return <LoadingPage />;
     }
@@ -71,26 +76,26 @@ function HomePage() {
                         <Carousel className="banner-carousel">
                             <Carousel.Item className="banner-carousel-item">
                                 <img
-                                className="d-block w-100 carousel-banner-img"
-                                src= {BannerWelcome}
-                                alt="First slide"
-                                onClick={() => navigate("/product_list")}
+                                    className="d-block w-100 carousel-banner-img"
+                                    src={BannerWelcome}
+                                    alt="First slide"
+                                    onClick={() => navigate("/product_list")}
                                 />
                             </Carousel.Item>
                             <Carousel.Item className="banner-carousel-item">
                                 <img
-                                className="d-block w-100 carousel-banner-img"
-                                src= {BannerTet}
-                                alt="Second slide"
-                                onClick={() => navigate("/product_list")}
+                                    className="d-block w-100 carousel-banner-img"
+                                    src={BannerTet}
+                                    alt="Second slide"
+                                    onClick={() => navigate("/product_list")}
                                 />
                             </Carousel.Item>
                             <Carousel.Item className="banner-carousel-item">
                                 <img
-                                className="d-block w-100 carousel-banner-img"
-                                src={BannerBlue}
-                                alt="Third slide"
-                                onClick={() => navigate("/product_list")}
+                                    className="d-block w-100 carousel-banner-img"
+                                    src={BannerBlue}
+                                    alt="Third slide"
+                                    onClick={() => navigate("/product_list")}
                                 />
                             </Carousel.Item>
                         </Carousel>
@@ -203,10 +208,14 @@ function HomePage() {
                                 gap={10} // Adjust the gap between items as needed
                                 background_color="white"
                                 items={content.sale_product.map((item, index) => (
-                                    <HomepageProductItem
-                                        key={index}
-                                        data={item}
-                                    />
+                                    <div
+                                        onClick={() => navigateToAnotherProduct(item.product_code, item.artist_code)}
+                                        style={{ padding: 0, height: '100%', width: '100%' }}>
+                                        <HomepageProductItem
+                                            key={index}
+                                            data={item}
+                                        />
+                                    </div>
                                 ))}
                                 itemWidth={250}
                                 itemHeight={425}
@@ -229,10 +238,14 @@ function HomePage() {
                                 gap={10} // Adjust the gap between items as needed
                                 background_color="white"
                                 items={content.new_product.map((item, index) => (
-                                    <HomepageProductItem
-                                        key={index}
-                                        data={item}
-                                    />
+                                    <div
+                                        onClick={() => navigateToAnotherProduct(item.product_code, item.artist_code)}
+                                        style={{ padding: 0, height: '100%', width: '100%' }}>
+                                        <HomepageProductItem
+                                            key={index}
+                                            data={item}
+                                        />
+                                    </div>
                                 ))}
                                 itemWidth={250}
                                 itemHeight={425}
