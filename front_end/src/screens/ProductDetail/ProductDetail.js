@@ -93,6 +93,11 @@ function ProductDetail() {
         setImageIndex(selectedIndex);
     };
 
+    const navigateToAnotherProduct = async (product_code, artist_code) => {
+        navigate("/product_detail?product_code=" + product_code + "&artist_code=" + artist_code, { replace: true });
+        navigate(0)
+    };
+
     const handleRatingChange = async (newRating) => {
         if (user === null) {
             navigate("/account/signin");
@@ -100,25 +105,25 @@ function ProductDetail() {
         }
         if (newRating <= 0 || newRating > 5) {
             return;
-        } 
-    
+        }
+
         async function actionExecute() {
             const token = 'Bearer ' + user.access_token;
             try {
                 const req = await axios.get(BASE_URL + "/auth/user_profile",
-					{
-						headers: {
-							'content-type': 'application/json',
-							'Authorization': token
-						}
-					})
-				if (req.data) {
-				} else {
-				}
+                    {
+                        headers: {
+                            'content-type': 'application/json',
+                            'Authorization': token
+                        }
+                    })
+                if (req.data) {
+                } else {
+                }
             } catch (error) {
                 console.log("Request error");
                 if (error.response.status === 401) {
-                    logout((val) => {});
+                    logout((val) => { });
                 }
             }
         }
@@ -135,10 +140,16 @@ function ProductDetail() {
     };
 
     const handleBuyNowButton = async (product, quantity) => {
-        navigate("/payment", { state: { 
-            orderInfo: [{ product: {...product, image: product.list_product_image[0]}, quantity: quantity }],
-            isBuyNow: true }
+        navigate("/payment", {
+            state: {
+                orderInfo: [{ product: { ...product, image: product.list_product_image[0] }, quantity: quantity }],
+                isBuyNow: true
+            }
         });
+    };
+
+    const relatedProductMoreHandler = () => {
+        navigate("/product_list")
     };
 
     const handleAddToCartButton = async (product_code, quantity) => {
@@ -151,26 +162,26 @@ function ProductDetail() {
             try {
                 const req = await axios.post(BASE_URL + "/order/add_to_cart",
                     {
-                            product_code: product_code,
-                            quantity: quantity
+                        product_code: product_code,
+                        quantity: quantity
                     },
-					{
-						headers: {
-							'content-type': 'application/json',
+                    {
+                        headers: {
+                            'content-type': 'application/json',
                             'Authorization': token,
                             "Access-Control-Allow-Origin": "*",
-                            "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE, OPTIONS"
-						}
-					})
-				if (req.data) {
+                            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
+                        }
+                    })
+                if (req.data) {
                     alert("Thêm vào giỏ hàng thành công");
-				} else {
+                } else {
                     alert("Thêm vào giỏ hàng thất bại");
-				}
+                }
             } catch (error) {
                 console.log("Request error");
                 if (error.response.status === 401) {
-                    logout((val) => {});
+                    logout((val) => { });
                 }
             }
         }
@@ -189,7 +200,7 @@ function ProductDetail() {
 
     return (
         <div className="container">
-            <div className="row" style={{'marginTop': '64px'}}>
+            <div className="row" style={{ 'marginTop': '64px' }}>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <div className="image-size">
                         <Carousel activeIndex={imageIndex} onSelect={handleImageSelect}>
@@ -226,7 +237,7 @@ function ProductDetail() {
                             </h5>
                         </div>
                         <div className='d-flex badges-amount'>
-                            <BadgeList data={content.product_data} small={false}/>
+                            <BadgeList data={content.product_data} small={false} />
                             <div className='amount-warehouse'>
                                 <span className="body-small">Số lượng: {content.product_data.product_stock}</span>
                             </div>
@@ -268,33 +279,33 @@ function ProductDetail() {
                         <div className='select-amount d-flex'>
                             <span className='body-small'>Số lượng:</span>
                             <div className='select-amount-button'>
-                                <label style={{ cursor: 'pointer' }} onClick={decreaseQuantity}><Minus/></label>
+                                <label style={{ cursor: 'pointer' }} onClick={decreaseQuantity}><Minus /></label>
                                 <input className="quantity body-small" type="text" value={quantity} readOnly />
-                                <label style={{ cursor: 'pointer' }} onClick={increaseQuantity}><Plus/></label>
+                                <label style={{ cursor: 'pointer' }} onClick={increaseQuantity}><Plus /></label>
                             </div>
                         </div>
                         <div className='conversion-btn'>
-                            <button 
-                                onClick={() => {handleAddToCartButton(content.product_data.product_code, quantity)}}
+                            <button
+                                onClick={() => { handleAddToCartButton(content.product_data.product_code, quantity) }}
                                 className='add-to-cart'
                             >
                                 <span className="label-xl">Thêm vào giỏ hàng</span>
                             </button>
-                            <button 
-                                onClick={() => {handleBuyNowButton(content.product_data, quantity)}}
-                                className='buy-now' 
+                            <button
+                                onClick={() => { handleBuyNowButton(content.product_data, quantity) }}
+                                className='buy-now'
                             >
                                 <span className="label-xl">Mua ngay</span>
                             </button>
                         </div>
                     </div>
                     <hr></hr>
-                            <div>
-                                <h5 className="margin">Mô tả sản phẩm:</h5>
-                                <p className="body-small margin pre-line">
-                                    {content.product_data.description}
-                                </p>
-                            </div>
+                    <div>
+                        <h5 className="margin">Mô tả sản phẩm:</h5>
+                        <p className="body-small margin pre-line">
+                            {content.product_data.description}
+                        </p>
+                    </div>
                 </div>
                 {
                     content.related_product.length > 0 && (
@@ -302,7 +313,14 @@ function ProductDetail() {
                             <div className='center'
                                 style={{ marginTop: '60px', cursor: 'pointer' }}>
                                 <h4 className='head4'>Sản phẩm liên quan</h4>
-                                <h6>Xem tất cả <a href="#"><Arrow /></a></h6>
+                                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                                    <h6>Xem tất cả</h6>
+                                        <div
+                                            onClick={relatedProductMoreHandler}
+                                            style={{ cursor: 'pointer' }}>
+                                            <Arrow />
+                                        </div>
+                                </div>
                             </div>
                             <div className="product" style={{ marginBottom: 40 }}>
                                 <HorizontalPagination
@@ -310,10 +328,14 @@ function ProductDetail() {
                                     gap={10} // Adjust the gap between items as needed
                                     background_color="white"
                                     items={content.related_product.map((item, index) => (
-                                        <HomepageProductItem
-                                            key={index}
-                                            data={item}
-                                        />
+                                        <div 
+                                            onClick={ () => navigateToAnotherProduct(item.product_code, item.artist_code)}
+                                            style={{padding: 0, height: '100%', width: '100%'}}>
+                                            <HomepageProductItem
+                                                key={index}
+                                                data={item}
+                                            />
+                                        </div>
                                     ))}
                                     itemWidth={250} // Set the width of each item as needed
                                     itemHeight={425} // Set the height of each item as needed

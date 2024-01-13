@@ -6,8 +6,6 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { BadgeList } from '../BadgeList/BadgeList';
 
-import { Link } from 'react-router-dom'
-
 const HomepageProductItem = ({ data }) => {
     const price_element = data.discount_price !== 0 ? (
         <div style={{display: 'flex',flexDirection: 'row'}}>
@@ -23,14 +21,10 @@ const HomepageProductItem = ({ data }) => {
     );
 
     return (
-        <Link 
-            to={`/product_detail?product_code=${data.product_code}&artist_code=${data.artist_code}`}
-            style={{ width: '100%', height: '100%', cursor: 'pointer' }}
-        >
         <Card 
             className="product-item-card" // nah man, this is not a good way to do it, you should use css module instead
             // but i don't have time to fix it, so i will leave it here
-            style={{ width: '100%', height: '100%', padding: '10px 0'}}
+            style={{ width: '100%', height: '100%', padding: '10px 0', cursor: 'pointer' }}
             onMouseOver={(e) => { e.target.style.transform = 'scale(1.06)'; }} 
             onMouseOut={(e) => { e.target.style.transform = 'scale(1)'; }} 
         >
@@ -61,7 +55,6 @@ const HomepageProductItem = ({ data }) => {
                 {price_element}
             </Card.Body>
         </Card>
-        </Link>
     );
 };
 

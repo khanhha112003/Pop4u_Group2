@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import auth, product, order, artist
 
-app = FastAPI()
+app = FastAPI(docs_url=None)
 
 
 app.add_middleware(
