@@ -191,7 +191,7 @@ def delete_voucher(voucher_code, usr = Depends(get_user_or_none)):
 
 # user validate voucher
 @router.get('/validate_voucher')
-def validate_voucher(voucher_code, usr = Depends(get_user_or_none)):
+def check_voucher(voucher_code, usr = Depends(get_user_or_none)):
     if type(usr) == HTTPException:
         raise usr
     elif usr == None:

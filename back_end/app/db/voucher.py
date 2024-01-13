@@ -12,7 +12,7 @@ def get_all_voucher():
 
 def update_voucher_by_code(voucher_code: str, voucher: Voucher):
     collection = db['Vouchers']
-    result = collection.update_one({"voucher_code": voucher_code}, {"$set": voucher.__dict__})
+    result = collection.update_one({"code": voucher_code}, {"$set": voucher.__dict__})
     return result
 
 def delete_voucher_by_code(voucher_code: str):
@@ -30,7 +30,7 @@ def insert_voucher(voucher: Voucher):
 # user specific function
 def validate_voucher(voucher_code: str):
     collection = db['Vouchers']
-    voucher = collection.find_one({"voucher_code": voucher_code})
+    voucher = collection.find_one({"code": voucher_code})
     serialized_voucher = Voucher(**voucher)
     if serialized_voucher.is_active:
         return 1, serialized_voucher.discount_amount

@@ -50,6 +50,7 @@ export function Payment() {
     const [selectedOption, setSelectedOption] = useState('');
     const [listData, setDataContent] = useState([]);
     const [isBuyNow, setIsBuyNow] = useState(false);
+    const [voucherCode, setVoucherCode] = useState('');
     const [discountAmount, setDiscountAmount] = useState(0);
     const [orderDetail, setOrderDetail] = useState({ phone: "", email: "", address: "", note: "", province: "", district: "", ward: "" });
     // const [couponCode, setCouponCode] = useState('');
@@ -67,8 +68,9 @@ export function Payment() {
             let _state = location.state || [];
             setIsBuyNow(_state.isBuyNow);
             setDataContent(_state.orderInfo);
-            if (_state.discountAmount) {
-                setDiscountAmount(_state.discountAmount);
+            if (_state.discount) {
+                setDiscountAmount(_state.discount);
+                setVoucherCode(_state.voucherCode);
             }
             // setCouponCode(_state.couponCode);
         } else {
@@ -128,7 +130,7 @@ export function Payment() {
                     is_paid: false,
                     address: orderDetail.address + ', ' + orderDetail.ward + ', ' + orderDetail.district + ', ' + orderDetail.province,
                     note: orderDetail.note,
-                    coupon_code: '',
+                    coupon_code: voucherCode,
                 }).then((response) => {
                     if (response.data.status === 1) {
                         alert('Đặt hàng thành công');
@@ -154,7 +156,7 @@ export function Payment() {
                     note: orderDetail.note,
                     is_paid: false,
                     address: orderDetail.address + ', ' + orderDetail.ward + ', ' + orderDetail.district + ', ' + orderDetail.province,
-                    coupon_code: '',
+                    coupon_code: voucherCode,
                 }, 'Bearer ' + user.access_token).then((response) => {
                     if (response.data.status === 1) {
                         alert('Đặt hàng thành công');

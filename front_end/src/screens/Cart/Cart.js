@@ -8,7 +8,7 @@ import { ReactComponent as Plus } from './icons/icon_plus.svg';
 import { ReactComponent as Minus } from './icons/icon_minus.svg';
 import { ReactComponent as Remove } from './icons/icon_remove.svg';
 import { useAuth } from '../../hooks/useAuth';
-import { BASE_URL } from '../../app_logic/APIHandler';
+import { BASE_URL, basicGetRequets } from '../../app_logic/APIHandler';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,7 +27,7 @@ function Cart() {
 	const [discountAmount, setDiscountAmount] = useState(0);
 	const [isCartChange, setIsCartChange] = useState(false);
 	const navigate = useNavigate();
-	
+
 	useEffect(() => {
 		setIsCartChange(false);
 		async function getCart() {
@@ -56,11 +56,24 @@ function Cart() {
 		getCart();
 	}, [user.access_token]);
 
-	const applyCoupon = () => {
-		if (couponCode === 'COUPON123') {
-			setDiscountAmount(20000);
-		} else {
-			setDiscountAmount(0);
+	const applyCoupon = async () => {
+		try {
+			const request = await axios.get(BASE_URL + "/product/validate_voucher?voucher_code=" + couponCode,
+				{
+					headers: {
+						'Content-type': 'application/json',
+						'Authorization': 'Bearer ' + user.access_token,
+						"Access-Control-Allow-Origin": "*",
+						"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
+					}
+				})
+			if (request.data.status === 1) {
+				setDiscountAmount(request.data.discount_amount);
+			} else {
+				alert("Mã giảm giá không hợp lệ");
+			}
+		} catch (error) {
+			alert("Đã có lỗi xảy ra. Vui lòng thử lại sau!");
 		}
 	};
 
@@ -68,8 +81,8 @@ function Cart() {
 		const updatedProduct = cartItems.find((item) => item.product_code === product_code);
 		const updatedCart = cartItems.filter((item) => item.product_code !== product_code);
 		var newListProductToUpdateCart = listProductToUpdateCart.filter((item) => item.product_code !== product_code);
-		setListProductToUpdateCart([...newListProductToUpdateCart, 
-			{ product_code: updatedProduct.product_code, quantity: 0 }
+		setListProductToUpdateCart([...newListProductToUpdateCart,
+		{ product_code: updatedProduct.product_code, quantity: 0 }
 		]);
 		setCartItems(updatedCart);
 		if (isCartChange === false) {
@@ -86,11 +99,11 @@ function Cart() {
 			var item = cartItems.find((item) => item.product_code === product_code);
 			newListProductToUpdateCart = [
 				...listProductToUpdateCart
-				,{ product_code: product_code, quantity: item.quantity + 1 }]
+				, { product_code: product_code, quantity: item.quantity + 1 }]
 			setListProductToUpdateCart(newListProductToUpdateCart);
 		} else {
-			newListProductToUpdateCart = listProductToUpdateCart.map((item) => item.product_code !== product_code 
-				? item 
+			newListProductToUpdateCart = listProductToUpdateCart.map((item) => item.product_code !== product_code
+				? item
 				: { product_code: item.product_code, quantity: item.quantity + 1 }
 			);
 			setListProductToUpdateCart(newListProductToUpdateCart);
@@ -111,11 +124,11 @@ function Cart() {
 			var item = cartItems.find((item) => item.product_code === product_code);
 			newListProductToUpdateCart = [
 				...listProductToUpdateCart
-				,{ product_code: product_code, quantity: item.quantity - 1 }]
+				, { product_code: product_code, quantity: item.quantity - 1 }]
 			setListProductToUpdateCart(newListProductToUpdateCart);
 		} else {
-			newListProductToUpdateCart = listProductToUpdateCart.map((item) => item.product_code !== product_code 
-				? item 
+			newListProductToUpdateCart = listProductToUpdateCart.map((item) => item.product_code !== product_code
+				? item
 				: { product_code: item.product_code, quantity: item.quantity - 1 }
 			);
 			setListProductToUpdateCart(newListProductToUpdateCart);
@@ -162,7 +175,7 @@ function Cart() {
 						'content-type': 'application/json',
 						'Authorization': token,
 						"Access-Control-Allow-Origin": "*",
-    					"Access-Control-Allow-Methods":"GET, POST, PUT, DELETE, OPTIONS"
+						"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
 					}
 				})
 			if (saveCartRequest.data) {
@@ -179,26 +192,31 @@ function Cart() {
 
 	const handleCreateOrder = () => {
 		if (isCartChange) {
-            alert('Vui lòng cập nhật thông tin đơn!');
-            return
-        }
+			alert('Vui lòng cập nhật thông tin đơn!');
+			return
+		}
 		var listProductToCreateOrder = cartItems.filter((item) => item.checked === true);
 		if (listProductToCreateOrder.length === 0) {
 			return;
 		}
-		listProductToCreateOrder = listProductToCreateOrder.map((item) => ({ 
+		listProductToCreateOrder = listProductToCreateOrder.map((item) => ({
 			product: {
 				product_code: item.product_code,
 				product_name: item.product_name,
 				image: item.image,
 				sell_price: item.sell_price,
 				discount_price: item.discount_price,
-			}, 
-			quantity: item.quantity 
+			},
+			quantity: item.quantity
 		}));
-		navigate("/payment", { state: { orderInfo: listProductToCreateOrder,
-								        isBuyNow: false,
-										discount: discountAmount } });
+		navigate("/payment", {
+			state: {
+				orderInfo: listProductToCreateOrder,
+				isBuyNow: false,
+				voucherCode: couponCode,
+				discount: discountAmount
+			}
+		});
 	}
 
 	return (
@@ -233,14 +251,14 @@ function Cart() {
 							</div>
 						))}
 					</div>
-					{ isCartChange &&
-					<div>
-						<button className='cart-button label-l' style={{}} onClick={onSaveCart}>
-							<span className="label-m" style={{ color: 'var(--theme-typo-label-light, #FFF)' }}>
-								Lưu giỏ hàng
-							</span>
-						</button>
-					</div>
+					{isCartChange &&
+						<div>
+							<button className='cart-button label-l' style={{}} onClick={onSaveCart}>
+								<span className="label-m" style={{ color: 'var(--theme-typo-label-light, #FFF)' }}>
+									Lưu giỏ hàng
+								</span>
+							</button>
+						</div>
 					}
 				</div>
 				<div className="col-xs-12 col-sm-12 col-md-12 col-xl-5 col-lg-5">
