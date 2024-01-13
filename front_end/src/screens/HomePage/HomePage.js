@@ -57,7 +57,6 @@ function HomePage() {
 
     const navigateToAnotherProduct = async (product_code, artist_code) => {
         navigate("/product_detail?product_code=" + product_code + "&artist_code=" + artist_code, { replace: true });
-        navigate(0)
     };
 
     if (loading) {

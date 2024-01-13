@@ -341,3 +341,24 @@ p {
     background: linear-gradient(60deg,#673E96,#E13A3E,#E07900 90%);
     border: 0; 
 }
+
+.css-13cymwt-control {
+    padding-left: 3.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 2em;
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+    border: 0.1em solid var(--color-primary-light) !important;
+    border-radius: 1em !important;
+    outline: none !important; 
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s !important;
+    background-color: transparent !important;
+    height: 3.5em;
+    width: 100%;
+}
+
+/* .css-1fdsijx-ValueContainer {
+    height: 100%;
+} */

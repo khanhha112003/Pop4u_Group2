@@ -39,7 +39,7 @@ function Footer() {
                     <li><a onClick={() => navigate("/product_list/album")}><span className="label-s">Album</span></a></li>
                     <li><a onClick={() => navigate("/product_list/merch")}><span className="label-s">Merch</span></a></li>
                     <li><a onClick={() => navigate("/product_list/photobook")}><span className="label-s">Photobook</span></a></li>
-                    <li><a onClick={() => navigate("/product_list/vynil")}><span className="label-s">Vinyl</span></a></li>
+                    <li><a onClick={() => navigate("/product_list/vinyl")}><span className="label-s">Vinyl</span></a></li>
                     <li><a onClick={() => navigate("/product_list/lightstick")}><span className="label-s">Lightstick</span></a></li>
                 </ul>
             </div>

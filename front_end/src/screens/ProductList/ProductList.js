@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { basicGetRequets } from "../../app_logic/APIHandler.js";
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -61,6 +61,7 @@ function calulatePageInformation(items, currentPage = 1) {
 
 function ProductList() {
     const { sort } = useParams();
+    const navigate = useNavigate();
     const [total_product, setTotalProduct] = useState([]);
     const [currentPageInfo, setCurrentPageInfo] = useState({ filtered_product: [], current_page: 0, current_item: [], total_page: 0 });
     const [filter_info, setFilterInfo] = useState({
@@ -163,6 +164,10 @@ function ProductList() {
         const newState = calulatePageInformation(filteredItems);
         setCurrentPageInfo(newState);
         setFilterInfo(newFilterInfo);
+    }
+
+    const navigateToAnotherProduct = async (product_code, artist_code) => {
+        navigate("/product_detail?product_code=" + product_code + "&artist_code=" + artist_code, { replace: true });
     }
 
     if (loading) {
@@ -302,7 +307,9 @@ function ProductList() {
                     <Container>
                         <Row>
                             {currentPageInfo.current_item.map((item, index) => (
-                                <Col key={index} sm={3}>
+                                <Col key={index} sm={11} md={6} xl={3} xxl={3}
+                                    onClick={ () => navigateToAnotherProduct(item.product_code, item.artist_code)}
+                                    style={{paddingBottom: 10}}>
                                     <HomepageProductItem
                                         key={'product' + index}
                                         data={item}

@@ -204,7 +204,7 @@ export const AddProduct = () => {
                                             <option value="Album">Album</option>
                                             <option value="Lightstick">Lightstick</option>
                                             <option value="Merch">Merch</option>
-                                            <option value="Vynil">Vynil</option>
+                                            <option value="Vinyl">Vinyl</option>
                                             <option value="Photobook">Photobook</option>
                                         </select>
                                     </div>

@@ -39,7 +39,7 @@ function CustomNavbar() {
 							<NavDropdown.Item href="/product_list/merch">
 								Merch
 							</NavDropdown.Item>
-							<NavDropdown.Item href="/product_list/vynil">
+							<NavDropdown.Item href="/product_list/vinyl">
 								Vinyl
 							</NavDropdown.Item>
 							<NavDropdown.Item href="/product_list/photobook">
