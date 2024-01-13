@@ -66,6 +66,11 @@ def create_order(order: OrderForm, username: Optional[str] = None):
                      payment_method=order.payment_method,
                      phone=order.phone,
                      shipping_price=order.shipping_price)
+    discount = use_coupon_code(order.coupon_code)
+    if discount:
+        newOrder.total_price -= discount
+    else:
+        newOrder.coupon_code = ""
     result = collection.insert_one(newOrder.__dict__)
     if result:
         if username and not newOrder.is_buy_now:
@@ -80,7 +85,18 @@ def create_order(order: OrderForm, username: Optional[str] = None):
             return True
     return False
 
-
+def use_coupon_code(coupon_code: str):
+    collection = db['Vouchers']
+    if not coupon_code or coupon_code == "":
+        return None
+    coupon = collection.find_one({"code": coupon_code})
+    if not coupon:
+        return None
+    if coupon['number_of_use'] == 0:
+        return None
+    coupon['number_of_use'] -= 1
+    collection.update_one({"code": coupon_code}, {"$set": coupon})
+    return coupon['discount_amount']
 
 
 '''

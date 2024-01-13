@@ -58,16 +58,6 @@ export function authPostRequest(url, data, token) {
   return axios.post(endpoint, data, { headers:  {...basicHeader.headers, Authorization: token} });
 }
 
-export function basicPutRequest(url, data) {
-    let endpoint = BASE_URL + url;
-    return axios.put(endpoint, data, getHeaders());
-}
-
-export function basicDeleteRequest(url) {
-    let endpoint = BASE_URL + url;
-    return axios.delete(endpoint, getHeaders());
-}
-
 export function combineMultipleRequests(requests) {
     return axios.all(requests);
 }

@@ -54,7 +54,7 @@ function Cart() {
 			}
 		}
 		getCart();
-	}, []);
+	}, [user.access_token]);
 
 	const applyCoupon = () => {
 		if (couponCode === 'COUPON123') {
@@ -81,14 +81,15 @@ function Cart() {
 		const updatedCart = cartItems.map((item) =>
 			item.product_code === product_code ? { ...item, quantity: item.quantity + 1 } : item
 		);
+		var newListProductToUpdateCart = [];
 		if (listProductToUpdateCart.find((item) => item.product_code === product_code) === undefined) {
 			var item = cartItems.find((item) => item.product_code === product_code);
-			var newListProductToUpdateCart = [
+			newListProductToUpdateCart = [
 				...listProductToUpdateCart
 				,{ product_code: product_code, quantity: item.quantity + 1 }]
 			setListProductToUpdateCart(newListProductToUpdateCart);
 		} else {
-			var newListProductToUpdateCart = listProductToUpdateCart.map((item) => item.product_code !== product_code 
+			newListProductToUpdateCart = listProductToUpdateCart.map((item) => item.product_code !== product_code 
 				? item 
 				: { product_code: item.product_code, quantity: item.quantity + 1 }
 			);
@@ -105,14 +106,15 @@ function Cart() {
 		const updatedCart = cartItems.map((item) =>
 			item.product_code === product_code && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
 		);
+		var newListProductToUpdateCart = [];
 		if (listProductToUpdateCart.find((item) => item.product_code === product_code) === undefined) {
 			var item = cartItems.find((item) => item.product_code === product_code);
-			var newListProductToUpdateCart = [
+			newListProductToUpdateCart = [
 				...listProductToUpdateCart
 				,{ product_code: product_code, quantity: item.quantity - 1 }]
 			setListProductToUpdateCart(newListProductToUpdateCart);
 		} else {
-			var newListProductToUpdateCart = listProductToUpdateCart.map((item) => item.product_code !== product_code 
+			newListProductToUpdateCart = listProductToUpdateCart.map((item) => item.product_code !== product_code 
 				? item 
 				: { product_code: item.product_code, quantity: item.quantity - 1 }
 			);
@@ -148,10 +150,10 @@ function Cart() {
 		setSelectAll(!selectAll);
 	};
 
-	const onSaveCart = () => {
+	const onSaveCart = async () => {
 		const token = 'Bearer ' + user.access_token;
 		try {
-			const saveCartRequest = axios.post(BASE_URL + "/order/update_cart",
+			const saveCartRequest = await axios.post(BASE_URL + "/order/update_cart",
 				{
 					list_info: listProductToUpdateCart
 				},
@@ -180,7 +182,6 @@ function Cart() {
             alert('Vui lòng cập nhật thông tin đơn!');
             return
         }
-		const token = 'Bearer ' + user.access_token;
 		var listProductToCreateOrder = cartItems.filter((item) => item.checked === true);
 		if (listProductToCreateOrder.length === 0) {
 			return;
